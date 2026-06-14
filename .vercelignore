@@ -1,0 +1,9 @@
+node_modules
+package.json
+package-lock.json
+_v.js
+*.md
+design_dl
+tarot-deck/*.png
+tarot-deck/*.jpg
+assets/*.png

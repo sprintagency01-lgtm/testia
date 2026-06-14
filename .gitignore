@@ -1,0 +1,15 @@
+.vercel
+
+# Dependencias y archivos de desarrollo
+node_modules/
+package.json
+package-lock.json
+_v.js
+
+# Imágenes originales pesadas (en producción solo se usan las .webp)
+tarot-deck/*.png
+tarot-deck/*.jpg
+assets/*.png
+
+# Sistema
+.DS_Store

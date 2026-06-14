@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Testia — ¿De verdad te conoces? Tests de personalidad, CI y más</title>
+<meta name="description" content="Hazte los tests y conócete de verdad. Más de 20 tests con base científica: personalidad, CI, vocacional, apego, inteligencia emocional y más. Sin registro.">
+<meta name="keywords" content="test de personalidad, test de iq, test vocacional, big five, estilo de apego, inteligencia emocional, test gratis online">
+<meta property="og:title" content="Testia — ¿De verdad te conoces?">
+<meta property="og:description" content="Hazte los tests y descúbrete. Más de 20 tests con base científica para conocerte de verdad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%232f4bd6'/><text x='50' y='72' font-size='62' font-family='Georgia' fill='white' text-anchor='middle'>A</text></svg>">
+<style>
+  :root{
+    --bg:#f1f1ef; --ink:#17181c; --ink2:#3d3f45; --ink3:#54565c;
+    --mut:#9a9b9f; --mut2:#6e7075; --line:#e6e6e3; --line2:#e4e4e1; --line3:#dcdcd8;
+    --cobalt:#2f4bd6; --cobalt2:#3a57e8; --cobalt3:#2840c4;
+    --disp:'Bricolage Grotesque',sans-serif; --ui:'Instrument Sans',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:linear-gradient(180deg,#f4f4f2,#eeefea);color:var(--ink);font-family:var(--ui);
+    -webkit-font-smoothing:antialiased;font-size:17px;line-height:1.6;min-height:100vh}
+  ::selection{background:var(--cobalt);color:#fff}
+  a{text-decoration:none;color:inherit}
+  @keyframes inFade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+  .disp{font-family:var(--disp)}
+  .ital{font-family:var(--ui);font-style:italic;font-weight:500}
+  .btn{font-family:inherit;cursor:pointer;border:none;font-weight:600;border-radius:999px;
+    background:linear-gradient(135deg,var(--cobalt2),var(--cobalt3));color:#fff;transition:.15s}
+  .btn:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .btn.lg{font-size:1.02rem;letter-spacing:.01em;padding:18px 38px;box-shadow:0 14px 34px rgba(47,75,214,.3)}
+  .btn.sm{font-size:.74rem;letter-spacing:.06em;padding:11px 22px}
+  .btn.out{background:#fff;border:1px solid var(--line3);color:var(--ink)}
+  .btn.out:hover{border-color:var(--cobalt);color:var(--cobalt);filter:none;transform:none}
+  .btn:disabled{cursor:not-allowed;background:#e2e2de;color:#b3b3ad;box-shadow:none;transform:none;filter:none}
+  .upper{text-transform:uppercase;letter-spacing:.14em;font-weight:600}
+  /* header */
+  header{position:sticky;top:0;z-index:60;backdrop-filter:blur(10px);background:rgba(244,244,242,.82);border-bottom:1px solid var(--line2)}
+  .nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:baseline;gap:13px;cursor:pointer}
+  .brand .nm{font-family:var(--disp);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+  .brand .tag{font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--mut);font-weight:600}
+  .nav nav{display:flex;align-items:center;gap:26px}
+  .nav nav a{cursor:pointer;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mut2)}
+  .nav nav a:hover{color:var(--ink)}
+  @media(max-width:760px){.nav nav a.hideMob{display:none}.wrap{padding:0 22px}}
+  .screen{display:none}
+  .screen.active{display:block}
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .glow{position:absolute;border-radius:50%;pointer-events:none}
+  .hero .grid{position:relative;display:grid;grid-template-columns:1.34fr .66fr;gap:64px;align-items:center;padding:84px 0 72px}
+  @media(max-width:880px){.hero .grid{grid-template-columns:1fr;gap:36px;padding:54px 0 48px}}
+  .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--cobalt);margin-bottom:24px}
+  h1.title{font-family:var(--disp);font-weight:600;font-size:clamp(2.7rem,6vw,5.3rem);line-height:1;letter-spacing:-.035em;margin:0;max-width:15ch}
+  .lead{font-size:1.22rem;color:var(--ink3);max-width:46ch;line-height:1.5}
+  .heroCard{border:1px solid #e6e7ec;border-radius:16px;background:linear-gradient(165deg,#fff,#f3f5fc);padding:22px 24px;box-shadow:0 24px 60px rgba(23,24,28,.08)}
+  .heroRow{display:flex;align-items:center;gap:15px;padding:12px 2px;border-top:1px solid #ebedf3;cursor:pointer}
+  .heroRow:hover{opacity:.62}
+  .mono{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .mono svg{width:21px;height:21px;display:block}
+  /* sections */
+  .secHead{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:24px}
+  .secHead .l{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .secNum{font-family:var(--disp);font-weight:500;font-size:1.3rem;color:#c2c2bd}
+  .secHead h2{font-family:var(--disp);font-weight:600;font-size:1.85rem;letter-spacing:-.025em;margin:0}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+  .card{border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;background:linear-gradient(180deg,#fff,#fafafa);
+    transition:transform .2s,border-color .2s,box-shadow .2s;cursor:pointer}
+  .card:hover{border-color:#c3ccf2;transform:translateY(-3px);box-shadow:0 18px 40px rgba(23,24,28,.1)}
+  .card h3{font-family:var(--disp);font-weight:600;font-size:1.34rem;letter-spacing:-.02em;margin:18px 0 0;line-height:1.14;color:var(--ink)}
+  .card p{color:var(--mut);font-size:.93rem;margin:7px 0 0;line-height:1.45}
+  .card .foot{display:flex;align-items:center;justify-content:space-between;margin-top:20px;border-top:1px solid #eeeeeb;padding-top:14px}
+  .card .meta{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .status{font-size:.8rem;font-weight:600;color:#1f8a6d}
+  /* dark spread */
+  .spread{position:relative;overflow:hidden;background:linear-gradient(135deg,#181f48 0%,#241c63 52%,#3a2c7c 100%);color:#e9ebfa}
+  .spread .in{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;padding:86px 0}
+  @media(max-width:880px){.spread .in{grid-template-columns:1fr;gap:30px;padding:54px 0}}
+  /* filters */
+  .filters{display:flex;margin-top:32px;border:1px solid var(--line3);border-radius:999px;width:fit-content;max-width:100%;overflow:hidden;flex-wrap:wrap;background:#fff}
+  .filters button{font-family:inherit;cursor:pointer;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:11px 18px;border:none;border-left:1px solid var(--line2);background:transparent;color:var(--mut2)}
+  .filters button:first-child{border-left:none}
+  .filters button.on{background:var(--ink);color:#fff}
+  /* quiz */
+  .qwrap{max-width:780px;margin:0 auto;padding:40px 40px 80px}
+  .qbarTrack{height:4px;background:#e2e2de;border-radius:999px;overflow:hidden;margin-bottom:46px}
+  .qbarTrack i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#3a57e8,#7b3fa0);transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .qhead{display:flex;align-items:baseline;gap:18px;margin-bottom:30px}
+  .qhead .big{font-family:var(--disp);font-weight:500;font-size:2.3rem;color:#c4c4be;line-height:1}
+  .qhead h2{font-family:var(--disp);font-weight:600;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.1;letter-spacing:-.025em;margin:0;text-wrap:balance}
+  .opts{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  @media(max-width:560px){.opts{grid-template-columns:1fr}}
+  .opt{position:relative;cursor:pointer;border-radius:14px;padding:18px 20px;display:flex;align-items:center;
+    border:2px solid var(--line);background:#fff;transition:border-color .15s,background .15s;font-size:1.04rem;font-weight:500}
+  .opt:hover{border-color:var(--cobalt)}
+  .opt.on{border-color:var(--cobalt);background:linear-gradient(120deg,#eef1fc,#fbfcff)}
+  .opt .ck{position:absolute;top:12px;right:13px;width:22px;height:22px;border-radius:50%;background:var(--cobalt);color:#fff;font-size:.72rem;display:none;align-items:center;justify-content:center}
+  .opt.on .ck{display:flex}
+  .qprompt{color:var(--mut);font-size:.95rem;margin-bottom:10px}
+  .qnav{display:flex;justify-content:space-between;align-items:center;margin-top:40px}
+  .timer{font-variant-numeric:tabular-nums;font-weight:700}
+  .timer.low{color:#b8434c}
+  /* result */
+  .res{display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:start;padding:54px 0 26px}
+  @media(max-width:920px){.res{grid-template-columns:1fr;gap:36px}}
+  .resName{font-family:var(--disp);font-weight:600;font-size:clamp(2.3rem,5.6vw,4rem);line-height:.96;letter-spacing:-.03em;margin:0}
+  .bars{display:grid;gap:14px;margin:26px 0 0}
+  .barrow .bl{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem;margin-bottom:6px}
+  .barrow .bl .tg{color:var(--mut);font-weight:600;font-size:.82rem}
+  .btrack{height:8px;background:#e7e7e3;border-radius:999px;overflow:hidden}
+  .btrack i{display:block;height:100%;border-radius:999px;width:0;transition:width .8s cubic-bezier(.4,0,.2,1)}
+  .stats{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line3);margin-top:30px}
+  .stats .st{padding:22px 22px 22px 0}
+  .stats .st+.st{border-left:1px solid var(--line3);padding:22px 0 22px 22px}
+  .stats .v{font-family:var(--disp);font-weight:600;font-size:2rem;line-height:1}
+  .stats .l{font-size:.76rem;letter-spacing:.04em;color:var(--mut);margin-top:6px;text-transform:uppercase;font-weight:600}
+  .chips{display:flex;gap:9px;flex-wrap:wrap;margin:26px 0 0}
+  .chip{padding:7px 16px;border:1px solid var(--line3);border-radius:999px;font-size:.76rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink3);background:#fff}
+  .cardFrame{border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 30px 70px rgba(23,24,28,.16)}
+  .cardFrame canvas{display:block;width:100%;height:auto}
+  /* premium */
+  .price{border:1px solid var(--line2);border-radius:18px;padding:36px;background:#fff;display:flex;flex-direction:column}
+  .price.hi{border:1.5px solid var(--cobalt);background:linear-gradient(180deg,#f4f6fe,#fff);position:relative}
+  .price .amt{font-family:var(--disp);font-weight:600;font-size:3rem;line-height:1;margin:18px 0 2px}
+  .feat{display:flex;gap:11px;color:var(--ink2)}
+  /* tarot */
+  .tcards{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;perspective:1400px;margin:26px 0}
+  .tk{width:170px;height:255px;position:relative;cursor:pointer}
+  .tk .inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,.2,.2,1)}
+  .tk.flipped .inner{transform:rotateY(180deg)}
+  .tk .f{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;overflow:hidden;box-shadow:0 16px 38px rgba(23,24,28,.22)}
+  .tk .f img{width:100%;height:100%;object-fit:cover;display:block}
+  .tk .front{transform:rotateY(180deg)}
+  .tk.rev .front img{transform:rotate(180deg)}
+  .tk .front .cap{position:absolute;left:0;right:0;bottom:0;padding:14px 10px 8px;background:linear-gradient(0deg,rgba(13,11,38,.94),rgba(13,11,38,.5) 60%,transparent);text-align:center}
+  .tk .front .cap .nm{font-family:var(--disp);font-weight:600;font-size:.84rem;color:#fff;line-height:1.12}
+  .tk .front .cap .or{font-size:.58rem;margin-top:3px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+  .tk .front .cap .or.up{color:#7fe0c0}
+  .tk .front .cap .or.rv{color:#f2a7ae}
+  .tk:hover .inner{box-shadow:0 0 0 transparent}
+  /* tarot gamification */
+  .thero{position:relative;border-radius:18px;overflow:hidden;margin:26px 0 0;border:1px solid #2a2c55;aspect-ratio:3/2;background:#181f48}
+  .thero img,.thero video{width:100%;height:100%;object-fit:cover;display:block}
+  .thero .ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(13,11,38,.7),transparent 55%)}
+  .gamebar{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:22px 0 0}
+  .gstat{display:flex;align-items:center;gap:10px;border:1px solid var(--line2);background:#fff;border-radius:14px;padding:12px 18px;text-align:left}
+  .gstat .ic{font-size:1.5rem;line-height:1}
+  .gstat b{font-family:var(--disp);font-weight:600;font-size:1.2rem;display:block;line-height:1}
+  .gstat span{font-size:.74rem;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;font-weight:600}
+  .gstat .gprog{width:120px;height:7px;background:#ececea;border-radius:999px;overflow:hidden;margin-top:5px}
+  .gstat .gprog i{display:block;height:100%;background:linear-gradient(90deg,#7b3fa0,#d4af5a);border-radius:999px}
+  .daily{margin:24px auto 0;max-width:560px;border:1px solid #2a2c55;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#181f48,#3a2c7c);color:#e9ebfa;text-align:left;display:flex;align-items:center;gap:18px;padding:20px 22px}
+  .daily .dcardimg{width:74px;height:111px;border-radius:9px;object-fit:cover;flex-shrink:0;border:1px solid #6b5fb0;box-shadow:0 8px 20px rgba(0,0,0,.3)}
+  .daily.rev .dcardimg{transform:rotate(180deg)}
+  .daily h4{font-family:var(--disp);font-weight:600;font-size:1.15rem;margin:0 0 2px}
+  .daily p{margin:0;font-size:.9rem;color:#c3c8ef}
+  .albumgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(78px,1fr));gap:9px;margin:22px 0}
+  .acard{aspect-ratio:2/3;border-radius:8px;overflow:hidden;border:1px solid #2a2c55;position:relative;background:#181f48}
+  .acard img{width:100%;height:100%;object-fit:cover;display:block}
+  .acard.lock img{filter:brightness(.5) saturate(.4)}
+  .acard .nm{position:absolute;left:0;right:0;bottom:0;font-size:.52rem;text-align:center;padding:3px 2px;background:linear-gradient(0deg,rgba(13,11,38,.92),transparent);color:#fff;font-weight:600;line-height:1.05}
+  .badge{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid var(--line2);border-radius:999px;padding:7px 14px;font-size:.78rem;font-weight:600;color:var(--ink2)}
+  .tpos{text-align:center;color:var(--cobalt);font-weight:600;font-size:.68rem;text-transform:uppercase;letter-spacing:.14em;margin-bottom:10px}
+  .tkcol{display:flex;flex-direction:column;align-items:center}
+  .reading{max-width:680px;margin:8px auto 0;display:grid;gap:13px;text-align:left}
+  .rdcard{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}
+  .rdcard .h{font-family:var(--disp);font-weight:600;margin-bottom:5px}
+  .rdcard .h .s{color:var(--mut);font-weight:600;font-size:.84rem}
+  .rdcard p{color:var(--ink3);font-size:.96rem;margin:0}
+  /* footer */
+  footer{border-top:1px solid var(--line2);background:#fff;color:var(--mut2);margin-top:0}
+  .fcols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;align-items:start;padding:50px 0 0}
+  @media(max-width:760px){.fcols{grid-template-columns:1fr 1fr;gap:26px}}
+  .fcols a{cursor:pointer;color:var(--mut2);font-size:.94rem}
+  .fcols a:hover{color:var(--cobalt)}
+  .fhead{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:14px}
+  .fbar{border-top:1px solid var(--line2);margin-top:36px;padding:20px 0 40px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.8rem;color:var(--mut)}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;font-weight:600;padding:14px 24px;border-radius:999px;box-shadow:0 18px 40px rgba(0,0,0,.25);transition:.4s;z-index:99;font-size:.92rem}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  /* === quiz options redesign === */
+  .olist{display:flex;flex-direction:column;gap:11px}
+  .orow{display:flex;align-items:center;gap:14px;width:100%;padding:16px 20px;border:1.5px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;font-size:1.04rem;font-weight:500;transition:border-color .14s,background .14s;text-align:left;font-family:inherit}
+  .orow:hover{border-color:var(--cobalt)}
+  .orow.on{border-color:var(--cobalt);background:linear-gradient(120deg,#eef1fc,#fbfcff)}
+  .orow .k{width:28px;height:28px;border-radius:8px;background:var(--bg);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;color:var(--mut2)}
+  .orow.on .k{background:var(--cobalt);color:#fff;border-color:var(--cobalt)}
+  /* likert horizontal scale */
+  .scale{display:flex;align-items:center;justify-content:center;gap:20px;margin:20px 0 0;flex-wrap:wrap}
+  .scale .endlab{font-size:.82rem;font-weight:600;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;max-width:130px;line-height:1.25}
+  .scale .endlab.l{text-align:right}.scale .endlab.r{text-align:left}
+  .dots{display:flex;align-items:center;gap:16px}
+  .dot{border-radius:50%;cursor:pointer;background:#fff;transition:transform .14s,background .14s,box-shadow .14s;padding:0;border:2.5px solid;font-family:inherit}
+  .dot:hover{transform:scale(1.14)}
+  .dot.sel{box-shadow:0 0 0 5px rgba(47,75,214,.12)}
+  .scaleCap{text-align:center;color:var(--ink2);font-weight:600;margin-top:20px;min-height:1.5em;font-size:1.04rem}
+  @media(max-width:560px){.scale{gap:9px}.dots{gap:10px}.scale .endlab{font-size:.7rem;max-width:80px}}
+  /* === tarot reading summary === */
+  .summary{border:1px solid #2a2c55;border-radius:18px;background:linear-gradient(135deg,#181f48,#3a2c7c);color:#e9ebfa;padding:24px 26px;text-align:left;max-width:680px;margin:0 auto 16px}
+  .summary .lab{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#a9b0f4;margin-bottom:8px}
+  .summary h3{font-family:var(--disp);font-weight:600;font-size:1.4rem;margin:0 0 10px}
+  .summary p{margin:0 0 8px;color:#cfd3f5;font-size:1rem;line-height:1.55}
+  .summary .kwline{margin-top:10px;font-size:.82rem;color:#a9b0f4;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .rdcard{cursor:pointer;display:flex;align-items:center;gap:14px}
+  .rdcard:hover{border-color:#c3ccf2}
+  .rdcard .thumb{width:46px;height:69px;border-radius:7px;object-fit:cover;flex-shrink:0;border:1px solid var(--line2)}
+  .rdcard.rev .thumb{transform:rotate(180deg)}
+  /* === tarot lightbox === */
+  .lbox{position:fixed;inset:0;z-index:200;background:rgba(10,8,30,.88);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px}
+  .lbox.on{display:flex;animation:inFade .25s ease}
+  .lbi{position:relative;max-width:840px;width:100%;display:grid;grid-template-columns:290px 1fr;gap:30px;align-items:center;background:linear-gradient(160deg,#1b1640,#0f1030);border:1px solid #4b3f86;border-radius:20px;padding:30px;color:#e9ebfa;max-height:92vh;overflow:auto}
+  .lbi .cardwrap img{width:100%;border-radius:12px;display:block;box-shadow:0 24px 60px rgba(0,0,0,.55)}
+  .lbi.rev .cardwrap img{transform:rotate(180deg)}
+  .lbi h3{font-family:var(--disp);font-weight:600;font-size:1.9rem;margin:0;letter-spacing:-.02em}
+  .lbi .or{display:inline-block;margin:8px 0;padding:4px 12px;border-radius:999px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+  .lbi .or.up{background:rgba(31,138,109,.2);color:#7fe0c0}.lbi .or.rv{background:rgba(184,67,76,.2);color:#f2a7ae}
+  .lbi .kw{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+  .lbi .kw span{padding:5px 12px;border:1px solid #4b3f86;border-radius:999px;font-size:.74rem;color:#c3c8ef;text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+  .lbi p{color:#cfd3f5;font-size:1.06rem;line-height:1.6;margin:10px 0 0}
+  .lbi .x{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.08);border:1px solid #4b3f86;color:#e9ebfa;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.1rem;font-family:inherit}
+  @media(max-width:620px){.lbi{grid-template-columns:1fr;gap:16px;padding:22px}.lbi .cardwrap img{width:58%;margin:0 auto}}
+  /* === responsive + a11y === */
+  .pricegrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch;max-width:980px}
+  .panel2{display:grid;grid-template-columns:1.3fr .7fr;gap:34px;align-items:center}
+  @media(max-width:720px){.pricegrid{grid-template-columns:1fr}.panel2{grid-template-columns:1fr;gap:18px;text-align:left}.panel2 .r{text-align:left!important}}
+  :focus-visible{outline:2.5px solid var(--cobalt);outline-offset:2px;border-radius:6px}
+  .tk:focus-visible,.card:focus-visible,.acard:focus-visible,.spread:focus-visible{outline-offset:3px}
+  /* === paywall (resultado) === */
+  .locked{filter:blur(9px);pointer-events:none;user-select:none;opacity:.92;transition:filter .4s ease}
+  .paywallcard{max-width:560px;margin:30px auto 6px;text-align:center;border:1px solid var(--line2);border-radius:22px;background:linear-gradient(180deg,#fff,#f4f6fe);padding:40px 32px;box-shadow:0 24px 60px rgba(23,24,28,.12);position:relative;overflow:hidden}
+  .paywallcard .pwemoji{font-size:2.6rem}
+  .paywallcard h2{font-family:var(--disp);font-weight:600;font-size:1.75rem;letter-spacing:-.02em;margin:8px 0 6px}
+  .paywallcard p{color:var(--ink3);margin:0 auto 24px;max-width:42ch}
+  .paywallcard .btn{font-size:1.04rem;padding:18px 34px}
+  .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .pwprice{font-family:var(--disp);font-weight:700}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" onclick="go('home')"><span class="nm">Testia</span><span class="tag">Tests · Autoconocimiento</span></a>
+  <nav>
+    <a onclick="go('catalog')">Catálogo</a>
+    <a onclick="startTarot()">Tarot</a>
+  </nav>
+</div></header>
+
+<main>
+<!-- ============ HOME ============ -->
+<section id="home" class="screen active">
+  <div style="animation:inFade .5s ease">
+    <div class="hero">
+      <div class="glow" style="top:-240px;right:-120px;width:620px;height:620px;background:radial-gradient(circle,rgba(47,75,214,.16),transparent 66%)"></div>
+      <div class="glow" style="top:60px;right:300px;width:420px;height:420px;background:radial-gradient(circle,rgba(123,63,160,.1),transparent 68%)"></div>
+      <div class="wrap"><div class="grid">
+        <div>
+          <div class="eyebrow">El atlas del autoconocimiento</div>
+          <h1 class="title">¿De verdad <span class="ital" style="color:var(--cobalt)">te conoces</span>?</h1>
+          <p class="lead" style="margin:26px 0 0">Hazte los tests y descúbrete. Más de 20 tests con base científica para entender de una vez quién eres, cómo piensas y por qué haces lo que haces.</p>
+          <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:36px">
+            <button class="btn lg" onclick="startTest(FLAGSHIP)">Conócete ahora →</button>
+            <a onclick="go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver los 20 tests</a>
+          </div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.8rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--mut)">
+            <span>✓ Sin registro</span><span>✓ +20 tests</span><span>✓ Base científica</span>
+          </div>
+        </div>
+        <div class="heroCard">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+            <span style="font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)">Los más hechos</span>
+            <span style="font-size:.66rem;font-weight:600;letter-spacing:.08em;color:#bdbdb8">Destacados</span>
+          </div>
+          <div id="heroList"></div>
+          <a onclick="go('catalog')" style="display:inline-block;margin-top:14px;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cobalt);cursor:pointer">Ver el catálogo ↗</a>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="wrap" style="padding:36px 40px 4px">
+      <div style="border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#faf9f6;position:relative">
+        <img src="assets/atlas-cover.webp" alt="Testia — un atlas de perfiles humanos" style="width:100%;display:block" loading="lazy" onerror="this.closest('div').style.display='none'">
+        <div style="position:absolute;left:22px;bottom:16px;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mut2)">El atlas de los perfiles · Vol. 01</div>
+      </div>
+    </div>
+    <div class="wrap" style="padding-top:10px"><div id="homeSections"></div></div>
+
+    <!-- tarot promo -->
+    <div class="wrap" style="padding:8px 40px 0">
+      <div class="spread" style="border-radius:18px">
+        <div class="glow" style="top:-120px;left:-60px;width:380px;height:380px;background:radial-gradient(circle,rgba(123,99,220,.34),transparent 66%)"></div>
+        <div class="panel2" style="position:relative;padding:44px 48px">
+          <div>
+            <div style="font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#a9b0f4">Sección de entretenimiento</div>
+            <h2 class="disp" style="font-weight:600;font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.04;letter-spacing:-.02em;margin:14px 0 8px">¿Y si echamos las cartas?</h2>
+            <p style="color:#c3c8ef;margin:0;max-width:48ch">Una tirada con la baraja completa de 78 cartas ilustradas. Sin pretensión científica: pura reflexión y diversión mística.</p>
+          </div>
+          <div class="r" style="text-align:right"><button class="btn out" style="padding:16px 28px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="startTarot()">Echar las cartas →</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- privacy spread -->
+    <div class="spread" style="margin-top:44px">
+      <div class="glow" style="top:-160px;left:-80px;width:520px;height:520px;background:radial-gradient(circle,rgba(123,99,220,.32),transparent 64%)"></div>
+      <div class="wrap"><div class="in">
+        <div>
+          <div style="font-size:.72rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#a9b0f4;margin-bottom:24px">Privacy-first</div>
+          <h2 class="disp" style="font-weight:600;font-size:clamp(2.2rem,4.4vw,3.7rem);line-height:1.02;letter-spacing:-.03em;margin:0;max-width:16ch">Tu mente es tuya. No la archivamos.</h2>
+        </div>
+        <div>
+          <p style="font-size:1.24rem;line-height:1.5;color:#c3c8ef;margin:0">No hay cuentas ni perfiles guardados, no almacenamos respuestas que te identifiquen. Calculamos tu resultado y lo olvidamos —un test debería ser un espejo, no un expediente.</p>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);margin-top:38px;border-top:1px solid #3d3f86">
+            <div style="padding:20px 18px 0 0"><div class="disp" style="font-weight:500;font-size:1.2rem;color:#fff">Sin registro</div><div style="font-size:.85rem;color:#9498d2;margin-top:3px">Entras, respondes, te vas.</div></div>
+            <div style="padding:20px 18px 0;border-left:1px solid #3d3f86"><div class="disp" style="font-weight:500;font-size:1.2rem;color:#fff">Sin rastro</div><div style="font-size:.85rem;color:#9498d2;margin-top:3px">No almacenamos respuestas.</div></div>
+            <div style="padding:20px 0 0 18px;border-left:1px solid #3d3f86"><div class="disp" style="font-weight:500;font-size:1.2rem;color:#fff">Sin diagnóstico</div><div style="font-size:.85rem;color:#9498d2;margin-top:3px">Conforme al RGPD.</div></div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+    <div id="footer1"></div>
+  </div>
+</section>
+
+<!-- ============ CATALOG ============ -->
+<section id="catalog" class="screen">
+  <div style="animation:inFade .45s ease">
+    <div class="wrap" style="padding:70px 40px 20px">
+      <div class="eyebrow">El catálogo completo</div>
+      <h1 class="disp" style="font-weight:600;font-size:clamp(2.5rem,5.4vw,4.2rem);line-height:1;letter-spacing:-.03em;margin:0;max-width:18ch">Todos los tests. Un solo sitio, bien hechos.</h1>
+      <p class="lead" style="max-width:54ch;margin:22px 0 0">20 tests basados en instrumentos validados. Filtra por lo que te apetezca ahora.</p>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="wrap" style="padding:18px 40px 60px"><div class="cards" id="catalogCards"></div></div>
+    <div id="footer2"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="quiz" class="screen">
+  <div class="qwrap" style="animation:inFade .4s ease">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <span class="upper" style="font-size:.72rem;color:var(--mut)" id="qcount">—</span>
+      <span style="display:flex;gap:18px;align-items:center">
+        <span class="timer" id="timer" style="display:none">05:00</span>
+        <button onclick="go('home')" style="font-family:inherit;cursor:pointer;background:none;border:none;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)">Salir ✕</button>
+      </span>
+    </div>
+    <div class="qbarTrack"><i id="qbar" style="width:0"></i></div>
+    <div class="qprompt" id="qprompt" style="display:none"></div>
+    <div class="qhead"><span class="big" id="qbig">01</span><h2 id="qtext">…</h2></div>
+    <div id="opts"></div>
+    <div class="qnav">
+      <button id="prevBtn" onclick="prev()" style="font-family:inherit;font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;color:var(--mut);cursor:pointer">← Anterior</button>
+      <button id="nextBtn" class="btn" style="padding:15px 34px;font-size:.95rem" onclick="next()" disabled>Siguiente →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section id="result" class="screen">
+  <div style="animation:inFade .5s ease">
+    <div class="wrap"><div id="paywall" style="display:none"></div></div>
+    <div class="wrap"><div class="res" id="resBody">
+      <div>
+        <div class="upper" style="font-size:.72rem;color:var(--mut)" id="resEyebrow">Tu lectura · El espejo</div>
+        <div style="display:flex;align-items:center;gap:18px;margin-top:16px">
+          <span class="mono" id="resMono" style="width:58px;height:58px;border-radius:15px;font-family:var(--disp);font-size:1.18rem;font-weight:700"></span>
+          <h1 class="resName" id="resName">—</h1>
+        </div>
+        <div class="ital" id="resRole" style="font-size:1.4rem;color:var(--ink3);margin-top:14px"></div>
+        <p id="resDesc" style="font-size:1.2rem;color:var(--ink2);line-height:1.55;margin:18px 0 0"></p>
+        <div class="chips" id="resTraits"></div>
+        <div id="resBars"></div>
+        <div class="stats" id="resStats"></div>
+      </div>
+      <div style="position:sticky;top:96px">
+        <div class="cardFrame"><canvas id="idcard" width="864" height="1080"></canvas></div>
+        <div style="display:flex;gap:10px;margin-top:16px">
+          <button class="btn" style="flex:1;padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="downloadCard()">Descargar carta</button>
+          <button class="btn out" style="padding:15px 22px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="shareCard()">Compartir</button>
+          <button class="btn out" style="padding:15px 18px;font-size:1rem" onclick="restart()">↻</button>
+        </div>
+        <p class="upper" style="font-size:.72rem;color:var(--mut);text-align:center;margin:14px 0 0">Optimizada para Stories · 4:5</p>
+      </div>
+    </div></div>
+    <div class="wrap">
+      <p style="font-size:.78rem;color:var(--mut);max-width:80ch;line-height:1.5;margin:30px 0 50px">Aviso: herramienta de entretenimiento y autoconocimiento basada en instrumentos validados, adaptados para uso divulgativo. Los resultados son orientativos y no constituyen una evaluación ni un diagnóstico clínico.</p>
+    </div>
+    <div id="footer3"></div>
+  </div>
+</section>
+
+<!-- ============ PREMIUM ============ -->
+<section id="premium" class="screen">
+  <div style="animation:inFade .45s ease">
+    <div class="wrap" style="padding:72px 40px 24px;text-align:center">
+      <div class="eyebrow">Premium</div>
+      <h1 class="disp" style="font-weight:600;font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1;letter-spacing:-.03em;margin:0 auto;max-width:18ch">Cuando el resultado gratis te sabe a poco</h1>
+      <p class="lead" style="max-width:52ch;margin:22px auto 0">Sin suscripciones. Pagas una vez, solo por el informe que quieres.</p>
+    </div>
+    <div class="wrap pricegrid" style="padding:30px 40px 70px">
+      <div class="price">
+        <div class="upper" style="font-size:.72rem;color:var(--mut)">Resultado</div>
+        <h3 class="disp" style="font-weight:600;font-size:1.6rem;margin:8px 0 0">Gratuito</h3>
+        <div class="amt">0 €</div>
+        <div style="color:var(--mut);font-size:.86rem;margin-bottom:26px">Siempre, sin registro</div>
+        <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Tu resultado e interpretación</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Carta compartible descargable</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Posición frente a la media</div>
+          <div class="feat" style="color:#c2c2bd"><span>—</span> Análisis ampliado por IA</div>
+          <div class="feat" style="color:#c2c2bd"><span>—</span> Certificado en alta resolución</div>
+        </div>
+        <button class="btn out" style="padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-top:28px" onclick="go('catalog')">Hacer otro test</button>
+      </div>
+      <div class="price hi">
+        <span style="position:absolute;top:-11px;left:36px;background:linear-gradient(135deg,var(--cobalt2),var(--cobalt3));color:#fff;font-size:.66rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:5px 13px;border-radius:999px">Más elegido</span>
+        <div class="upper" style="font-size:.72rem;color:var(--cobalt)">Informe</div>
+        <h3 class="disp" style="font-weight:600;font-size:1.6rem;margin:8px 0 0">Completo</h3>
+        <div class="amt" style="color:var(--cobalt)">4,99 €</div>
+        <div style="color:var(--mut);font-size:.86rem;margin-bottom:26px">Pago único · PDF al instante</div>
+        <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Todo lo del resultado gratis</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Análisis ampliado, redactado por IA</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Desglose de cada dimensión</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Comparativa por edad y país</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Certificado en alta resolución</div>
+        </div>
+        <button class="btn" style="padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-top:28px" onclick="toast('La pasarela de pago no está incluida en este MVP 😉')">Desbloquear informe →</button>
+      </div>
+    </div>
+    <div id="footer4"></div>
+  </div>
+</section>
+
+<!-- ============ TAROT ============ -->
+<section id="tarot" class="screen">
+  <div class="wrap" style="max-width:880px;padding:60px 40px 0;text-align:center;animation:inFade .45s ease">
+    <div class="eyebrow" style="color:#7b3fa0">Tarot · Entretenimiento</div>
+    <h1 class="disp" style="font-weight:600;font-size:clamp(2.3rem,5.2vw,3.6rem);line-height:1;letter-spacing:-.03em;margin:0">Echa las cartas</h1>
+    <p class="lead" style="max-width:54ch;margin:18px auto 0">Concéntrate en tu pregunta y elige una tirada. El tarot no predice el futuro, pero a veces ordena las ideas.</p>
+    <div id="tarotIntro">
+      <div id="tarotHero"></div>
+      <div id="tarotGameBar"></div>
+      <div id="dailyZone"></div>
+      <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin:26px 0">
+        <div class="card" style="text-align:left" onclick="dealSpread(1)"><div class="mono" style="background:linear-gradient(135deg,rgba(123,63,160,.18),rgba(123,63,160,.07));color:#7b3fa0;font-size:1.3rem">🌟</div><h3>Carta del día</h3><p>Una carta para tu energía de hoy.</p></div>
+        <div class="card" style="text-align:left" onclick="dealSpread(3)"><div class="mono" style="background:linear-gradient(135deg,rgba(123,63,160,.18),rgba(123,63,160,.07));color:#7b3fa0;font-size:1.3rem">🕰️</div><h3>Pasado · Presente · Futuro</h3><p>La tirada clásica de tres cartas.</p></div>
+        <div class="card" style="text-align:left" onclick="dealSpread(5)"><div class="mono" style="background:linear-gradient(135deg,rgba(123,63,160,.18),rgba(123,63,160,.07));color:#7b3fa0;font-size:1.3rem">✦</div><h3>La Cruz</h3><p>Cinco cartas para una lectura a fondo.</p></div>
+      </div>
+      <button class="btn out" style="padding:14px 26px" onclick="go('home')">← Volver</button>
+    </div>
+    <div id="tarotAlbum" style="display:none"></div>
+    <div id="tarotBoard" style="display:none">
+      <p id="tarotHint" class="upper" style="color:#7b3fa0;font-size:.74rem;margin:22px 0 4px">Toca cada carta para girarla</p>
+      <div class="tcards" id="tcards"></div>
+      <div id="tarotReading"></div>
+      <div id="tarotActions" style="display:none;margin-top:8px">
+        <div class="cardFrame" style="max-width:480px;margin:18px auto 0"><canvas id="tcanvas" width="864" height="1080"></canvas></div>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px">
+          <button class="btn" style="padding:14px 22px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="downloadTarot()">Descargar lectura</button>
+          <button class="btn out" style="padding:14px 22px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="shareTarot()">Compartir</button>
+          <button class="btn out" style="padding:14px 22px;font-size:.8rem" onclick="startTarot()">↻ Otra tirada</button>
+        </div>
+      </div>
+    </div>
+    <p style="font-size:.78rem;color:var(--mut);margin:30px auto 60px;max-width:60ch">El tarot es una práctica de entretenimiento y reflexión personal, sin validez científica ni capacidad predictiva demostrada.</p>
+  </div>
+  <div id="footer5"></div>
+</section>
+</main>
+
+<div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="tests.js"></script>
+<script src="tarot.js"></script>
+<script>
+/* ===== Testia engine ===== */
+const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
+/* === Pago: pega aquí tu Stripe Payment Link de 1,99€ (https://buy.stripe.com/...).
+   En Stripe → Payment Links → crea uno de 1,99€ y, en "Tras el pago / After payment",
+   elige "Redirigir a tu sitio" con la URL de esta página acabada en ?paid=1
+   (p. ej. https://testia.info/?paid=1). Déjalo vacío para usar el modo demo. */
+const STRIPE_PAYMENT_LINK="https://buy.stripe.com/cNi7sM3Ln5ZN5zAcC9eUU00";
+const CATS={
+  personalidad:{name:"Personalidad",color:"#2f4bd6",desc:"Quién eres de verdad"},
+  inteligencia:{name:"Inteligencia",color:"#7b3fa0",desc:"Cómo razonas"},
+  profesional:{name:"Profesional y decisiones",color:"#1f8a6d",desc:"Hacia dónde vas"},
+  relaciones:{name:"Relaciones y emociones",color:"#b8434c",desc:"Cómo te vinculas"},
+  bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
+};
+const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
+const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",
+  iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
+  riasec:"profesional",grit:"profesional",maximizer:"profesional",
+  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",
+  moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar"};
+const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
+  riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock"};
+const ICONS={
+  user:["M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"],
+  bolt:["M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"],
+  heart:["M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"],
+  moon:["M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"],
+  bulb:["M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"],
+  cube:["M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3"],
+  chip:["M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z"],
+  cap:["M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5"],
+  fire:["M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.983 8.983 0 0 1 3.361-6.867 8.21 8.21 0 0 0 3 2.48Z","M12 18a3.75 3.75 0 0 0 .495-7.468 5.99 5.99 0 0 0-1.925 3.547 5.975 5.975 0 0 1-2.133-1.001A3.75 3.75 0 0 0 12 18Z"],
+  cart:["M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"],
+  link:["M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"],
+  chat:["M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"],
+  users:["M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"],
+  scale:["M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971Z"],
+  sparkles:["M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"],
+  star:["M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z"],
+  sun:["M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"],
+  smile:["M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm5.25 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Z"],
+  shield:["M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"],
+  clock:["M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"],
+};
+function hexA(hex,a){const h=hex.replace('#','');return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`;}
+function svgIcon(name,col){const ds=ICONS[name]||ICONS.user;return `<svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="${col}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ds.map(d=>`<path d="${d}"/>`).join('')}</svg>`;}
+function monoBox(id,size){const col=CATS[TEST_CAT[id]].color;return `style="background:linear-gradient(135deg,${hexA(col,.18)},${hexA(col,.07)});color:${col}"`;}
+function initials(s){return s.replace(/[^A-Za-zÁÉÍÓÚÑáéíóúñ ]/g,'').trim().split(/\s+/).map(w=>w[0]).join('').slice(0,2).toUpperCase();}
+
+/* ----- state ----- */
+let T=null, items=[], idx=0, answers=[], startedAt=0, timeLeft=0, timerId=null, lastResult=null, filter='todos';
+function $(id){return document.getElementById(id);}
+
+/* ----- navigation ----- */
+function go(s){clearInterval(timerId);document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(s).classList.add('active');window.scrollTo({top:0});}
+
+/* ----- catalog / home build ----- */
+function cardHTML(t,showCat){
+  const cat=CATS[TEST_CAT[t.id]];
+  return `<div class="card" onclick="startTest('${t.id}')">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <span class="mono" ${monoBox(t.id)}>${svgIcon(ICON_OF[t.id],cat.color)}</span>
+      <span class="status">Disponible</span>
+    </div>
+    <h3>${t.name}</h3><p>${t.blurb}</p>
+    <div class="foot"><span class="meta">${showCat?cat.name+' · ':''}${t.items.length} preguntas</span><span style="font-size:1.05rem;color:${cat.color}">→</span></div>
+  </div>`;
+}
+function buildHome(){
+  // hero featured list (first test of each category)
+  const featured=CAT_ORDER.map(c=>TESTS.find(t=>TEST_CAT[t.id]===c)).filter(Boolean).slice(0,6);
+  $('heroList').innerHTML=featured.map(t=>{const cat=CATS[TEST_CAT[t.id]];
+    return `<div class="heroRow" onclick="startTest('${t.id}')">
+      <span class="mono" style="width:32px;height:32px;border-radius:9px;${'background:linear-gradient(135deg,'+hexA(cat.color,.18)+','+hexA(cat.color,.07)+')'}">${svgIcon(ICON_OF[t.id],cat.color)}</span>
+      <div style="flex:1;min-width:0"><div class="disp" style="font-weight:500;font-size:1.05rem;line-height:1.1">${t.name}</div><div style="font-size:.82rem;color:var(--mut)">${cat.desc}</div></div>
+      <span style="font-size:.82rem;color:var(--mut)">→</span></div>`;}).join('');
+  // sections
+  let html='';
+  CAT_ORDER.forEach((c,i)=>{const cat=CATS[c];const list=TESTS.filter(t=>TEST_CAT[t.id]===c);
+    html+=`<div style="padding:38px 0 12px"><div class="secHead"><div class="l">
+      <span class="secNum">${String(i+1).padStart(2,'0')}</span>
+      <h2>${cat.name}</h2><span class="ital" style="color:var(--mut);font-size:.96rem">${cat.desc}</span></div>
+      <span class="upper" style="font-size:.7rem;color:var(--mut)">${list.length} tests</span></div>
+      <div class="cards">${list.map(t=>cardHTML(t,false)).join('')}</div></div>`;
+  });
+  $('homeSections').innerHTML=html;
+}
+function buildCatalog(){
+  const defs=[['todos','Todos'],...CAT_ORDER.map(c=>[c,CATS[c].name])];
+  $('filters').innerHTML=defs.map(([k,l])=>`<button class="${filter===k?'on':''}" onclick="setFilter('${k}')">${l}</button>`).join('');
+  const list=TESTS.filter(t=>filter==='todos'||TEST_CAT[t.id]===filter);
+  $('catalogCards').innerHTML=list.map(t=>cardHTML(t,true)).join('');
+}
+function setFilter(k){filter=k;buildCatalog();}
+function buildFooter(){
+  const f=`<footer><div class="wrap"><div class="fcols">
+    <div><div class="disp" style="font-size:1.4rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)">Testia</div>
+      <p style="margin:12px 0 0;font-size:.94rem;max-width:32ch;line-height:1.5">El atlas de los tests: todos en un solo sitio, bien hechos. Autoconocimiento sin letra pequeña.</p></div>
+    <div><div class="fhead">Tests</div><div style="display:grid;gap:9px">${CAT_ORDER.map(c=>`<a onclick="go('catalog')">${CATS[c].name}</a>`).join('')}</div></div>
+    <div><div class="fhead">Testia</div><div style="display:grid;gap:9px"><a onclick="go('catalog')">Catálogo</a><a onclick="startTarot()">Tarot</a><a>Sobre Testia</a></div></div>
+    <div><div class="fhead">Legal</div><div style="display:grid;gap:9px"><a>Privacidad</a><a>Cookies</a><a>Aviso legal</a></div></div>
+  </div><div class="fbar"><span>© 2026 Testia · Tests de entretenimiento y autoconocimiento.</span><span>Sin valor diagnóstico · Privacy-first · RGPD</span></div></div></footer>`;
+  ['footer1','footer2','footer3','footer4','footer5'].forEach(id=>$(id).innerHTML=f);
+}
+
+/* ----- quiz ----- */
+function likertLabels(t){const m=t.scaleMax;
+  if(t.id==='panas')return["Nada","Un poco","Algo","Bastante","Muchísimo"];
+  if(t.id==='values')return["Nada como yo","Poco","Algo","Bastante","Mucho","Igual que yo"];
+  if(m===4)return["Muy en desacuerdo","En desacuerdo","De acuerdo","Muy de acuerdo"];
+  if(m===5)return["Totalmente en desacuerdo","En desacuerdo","Neutral","De acuerdo","Totalmente de acuerdo"];
+  if(m===6)return["Totalmente en desacuerdo","Bastante en desacuerdo","Algo en desacuerdo","Algo de acuerdo","Bastante de acuerdo","Totalmente de acuerdo"];
+  if(m===7)return["Totalmente en desacuerdo","Muy en desacuerdo","Algo en desacuerdo","Neutral","Algo de acuerdo","Muy de acuerdo","Totalmente de acuerdo"];
+  return Array.from({length:m},(_,i)=>String(i+1));}
+function startTest(id){
+  T=TESTS.find(t=>t.id===id);if(!T)return;
+  items=T.items;idx=0;answers=new Array(items.length).fill(null);
+  const tm=$('timer');
+  if(T.mode==='correct'){timeLeft=T.duration||300;startedAt=Date.now();tm.style.display='inline';clearInterval(timerId);timerId=setInterval(tick,1000);updTimer();}
+  else{tm.style.display='none';clearInterval(timerId);}
+  if(T.prompt){$('qprompt').style.display='block';$('qprompt').textContent=T.prompt;}else $('qprompt').style.display='none';
+  go('quiz');renderItem();
+}
+function tick(){timeLeft--;updTimer();if(timeLeft<=0){clearInterval(timerId);finish();}}
+function updTimer(){const m=String(Math.floor(timeLeft/60)).padStart(2,'0'),s=String(timeLeft%60).padStart(2,'0');const t=$('timer');t.textContent=`⏱ ${m}:${s}`;t.classList.toggle('low',timeLeft<=30);}
+function renderItem(){
+  const it=items[idx],cat=CATS[TEST_CAT[T.id]];
+  if(!it)return;
+  $('qcount').textContent=`Pregunta ${idx+1} de ${items.length}`;
+  $('qbig').textContent=String(idx+1).padStart(2,'0');
+  $('qbar').style.width=(idx/items.length*100)+'%';
+  $('qtext').textContent=(T.mode==='correct')?it.q:it.t;
+  if(T.mode==='likert') renderScale(it);
+  else{
+    const opts=(T.mode==='correct')?it.o.map((o,i)=>({l:o,v:i})):it.opts.map(o=>({l:o.l,v:o.v}));
+    const keys=['1','2','3','4','5','6','7','8'];
+    $('opts').innerHTML=`<div class="olist">${opts.map((o,i)=>`<div class="orow ${answers[idx]===o.v?'on':''}" role="button" tabindex="0" onclick="pick(${o.v})"><span class="k">${keys[i]}</span><span>${o.l}</span></div>`).join('')}</div>`;
+  }
+  $('prevBtn').style.visibility=idx===0?'hidden':'visible';
+  $('nextBtn').disabled=answers[idx]===null;
+  $('nextBtn').textContent=idx===items.length-1?'Ver resultado →':'Siguiente →';
+}
+function renderScale(it){
+  const labels=likertLabels(T),n=labels.length,center=(n-1)/2,NEG='#b8434c',POS='#1f8a6d',NEU='#9a9b9f';
+  let dots='';
+  for(let i=0;i<n;i++){const v=i+1,d=center===0?0:Math.abs(i-center)/center,size=Math.round(26+d*22);
+    const side=i<center?NEG:i>center?POS:NEU,sel=answers[idx]===v,bg=sel?side:'#fff';
+    const lab=labels[i].replace(/'/g,"\\'");
+    dots+=`<button class="dot${sel?' sel':''}" style="width:${size}px;height:${size}px;border-color:${side};background:${bg}" aria-label="${labels[i]}" onclick="pick(${v})" onmouseenter="scaleCap('${lab}')" onfocus="scaleCap('${lab}')"></button>`;
+  }
+  const cur=answers[idx]?'Tu respuesta: '+labels[answers[idx]-1]:'Toca un círculo: izquierda = en desacuerdo, derecha = de acuerdo';
+  $('opts').innerHTML=`<div class="scale"><span class="endlab l">${labels[0]}</span><div class="dots">${dots}</div><span class="endlab r">${labels[n-1]}</span></div><div class="scaleCap" id="scaleCap">${cur}</div>`;
+}
+function scaleCap(t){const e=$('scaleCap');if(e&&answers[idx]==null)e.textContent=t;}
+function pick(v){
+  answers[idx]=v;renderItem();
+  if(T.mode!=='correct'&&idx<items.length-1){const at=idx,tid=T.id;setTimeout(()=>{
+    if(T&&T.id===tid&&idx===at&&answers[at]!=null&&$('quiz').classList.contains('active')){idx++;renderItem();window.scrollTo({top:0,behavior:'smooth'});}
+  },320);}
+}
+function next(){if(answers[idx]===null)return;if(idx<items.length-1){idx++;renderItem();window.scrollTo({top:0});}else finish();}
+function prev(){if(idx>0){idx--;renderItem();window.scrollTo({top:0});}}
+
+/* ----- scoring ----- */
+function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
+function pctIQ(iq){const z=(iq-100)/15;return Math.min(99.9,Math.max(0.1,0.5*(1+erf(z/Math.SQRT2))*100));}
+function computeIQ(c,total,secs,dur){const M=total*0.55,SD=total*0.2;let iq=100+15*((c-M)/SD);iq+=Math.max(0,(dur-secs)/dur)*8*(c/total);return Math.round(Math.min(145,Math.max(70,iq)));}
+function scalePcts(){const sum={},mn={},mx={};Object.keys(T.scales).forEach(k=>{sum[k]=mn[k]=mx[k]=0;});
+  items.forEach((it,i)=>{const s=it.s,v=answers[i];
+    if(T.mode==='choice'){const vs=it.opts.map(o=>o.v);sum[s]+=v;mn[s]+=Math.min(...vs);mx[s]+=Math.max(...vs);}
+    else{const adj=it.r?(T.scaleMax+1-v):v;sum[s]+=adj;mn[s]+=1;mx[s]+=T.scaleMax;}});
+  const pct={};Object.keys(T.scales).forEach(k=>pct[k]=mx[k]>mn[k]?(sum[k]-mn[k])/(mx[k]-mn[k])*100:0);return pct;}
+function band(bands,p){let b=bands[0];for(const x of bands)if(p>=x.min)b=x;return b;}
+
+/* ----- veredictos ilustrativos ----- */
+const ARCHE={
+  bigfive:{O:'La mente abierta',C:'La metódica',E:'El alma de la fiesta',A:'El corazón de oro',ES:'La roca serena'},
+  tipi:{O:'La mente abierta',C:'La metódica',E:'El alma de la fiesta',A:'El corazón de oro',ES:'La roca serena'},
+  darktriad:{MAQ:'El estratega en la sombra',NAR:'La estrella del show',PSI:'El que no tiene freno'},
+  moral:{CUI:'El alma compasiva',JUS:'El justiciero',LEA:'El incondicional',AUT:'El guardián del orden',PUR:'El idealista'},
+  values:{AUT:'El espíritu libre',EST:'El buscador de emociones',HED:'El amante del placer',LOG:'El triunfador',POD:'El ambicioso',SEG:'El que busca refugio',CON:'El que sigue las reglas',TRA:'El guardián de tradiciones',BEN:'El protector de los suyos',UNI:'El alma universal'},
+};
+const PANAS_V={pos:{name:'Días luminosos',desc:'Ahora mismo domina tu afecto positivo: energía, entusiasmo y buen ánimo por encima de lo negativo.'},neg:{name:'Días grises',desc:'Ahora mismo pesa más tu afecto negativo. Es un estado, no una sentencia: date margen y cuídate.'}};
+const OVERALL_TIERS={
+  honesty:[
+    {min:0,name:'Trepa de manual',desc:'Lo tuyo es mirar por ti, cueste lo que cueste a los demás. La gente haría bien en contar la vuelta delante de ti.'},
+    {min:40,name:'Honesto con matices',desc:'Ni santo ni villano: tan decente como la media, con algún atajo de vez en cuando.'},
+    {min:66,name:'Persona de fiar',desc:'Juego limpio, modestia y cero codicia. De los que devuelven la cartera con todo dentro.'}],
+  ei:[
+    {min:0,name:'Analfabeto emocional',desc:'Las emociones —las tuyas y las ajenas— te pillan a contrapié. La buena noticia: esto se entrena.'},
+    {min:40,name:'Termómetro decente',desc:'Lees y manejas las emociones razonablemente bien, con margen de mejora.'},
+    {min:66,name:'Maestro de las emociones',desc:'Lees a la gente como un libro abierto y gestionas lo tuyo con temple.'}],
+  grit:[
+    {min:0,name:'Rey del abandono',desc:'Empiezas mil cosas con pasión y las dejas a medias. La constancia no es lo tuyo… todavía.'},
+    {min:40,name:'Constante a ratos',desc:'Aguantas cuando de verdad importa, pero algún proyecto se queda por el camino.'},
+    {min:66,name:'Imparable',desc:'Pasión y perseverancia a prueba de bombas. Cuando te marcas algo, lo terminas.'}],
+};
+
+/* ----- finish / result ----- */
+function finish(){
+  clearInterval(timerId);
+  const cat=CATS[TEST_CAT[T.id]],accent=cat.color,R=T.result;
+  let r={accent,traits:[],bars:null,stats:[],desc:'',role:T.name,eyebrow:'Tu lectura · El espejo'};
+  if(T.mode==='correct'){
+    const correct=answers.reduce((n,a,i)=>n+(a===items[i].a?1:0),0);
+    if(T.scoring==='iq'){
+      const secs=Math.min(T.duration,Math.round((Date.now()-startedAt)/1000)),iq=computeIQ(correct,items.length,secs,T.duration),pc=pctIQ(iq);
+      const v=iq>=140?["Genio"]:iq>=130?["Muy superior"]:iq>=120?["Superior"]:iq>=110?["Notable"]:iq>=90?["En la media"]:iq>=80?["Por debajo de la media"]:["A entrenar"];
+      r.name=String(iq);r.role="Coeficiente intelectual estimado";r.desc=`Tu puntuación te sitúa en el rango «${v[0].toLowerCase()}». Superas a aproximadamente el ${pc.toFixed(0)}% de la población.`;
+      r.traits=[v[0]];r.mono=iq>=100?'CI':'ci';
+      r.stats=[{v:pc.toFixed(0)+'%',l:'superas a la población'},{v:`${correct}/${items.length}`,l:'aciertos'}];
+      r.card={mono:String(iq),name:v[0],role:'Coeficiente intelectual',stat:`TOP ${(100-pc).toFixed(0)}% MUNDIAL`};
+    }else{
+      const b=correct<=1?["Intuitivo","Te fías de tu instinto: rápido, pero la trampa te pilla."]:correct<=3?["Mixto","Combinas instinto y reflexión según la pregunta."]:["Reflexivo","Paras a pensar antes de responder. La trampa no te pilla."];
+      r.name=`${correct}/${items.length}`;r.role="Estilo de pensamiento";r.desc=b[1];r.traits=[b[0]];r.mono=initials(b[0]);
+      r.stats=[{v:`${correct}/${items.length}`,l:'aciertos reflexivos'}];
+      r.card={mono:`${correct}/${items.length}`,name:b[0],role:'Estilo de pensamiento',stat:b[0].toUpperCase()};
+    }
+  }else{
+    const pct=scalePcts();
+    if(R.type==='single'){
+      const p=pct[Object.keys(T.scales)[0]],b=band(R.bands,p);
+      r.name=b.label;r.role=T.name;r.desc=b.desc;r.mono=initials(b.label);r.traits=[b.emoji+' '+Object.values(T.scales)[0]];
+      r.bars=[{lab:Object.values(T.scales)[0],p}];
+      r.stats=[{v:Math.round(p)+'/100',l:'tu puntuación'}];
+      r.card={mono:String(Math.round(p)),name:b.label,role:T.name,stat:`${Math.round(p)} / 100`};
+    }else if(R.type==='profileBars'){
+      const keys=Object.keys(T.scales),arr=keys.map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
+      const showArr=R.topOnly?arr.slice(0,R.topOnly):arr;
+      if(R.overall){const mean=keys.reduce((s,k)=>s+pct[k],0)/keys.length;const tier=band(OVERALL_TIERS[T.id],mean);
+        r.name=tier.name;r.role=R.overallLabel;r.desc=tier.desc;r.mono=initials(R.overallLabel);
+        r.card={mono:initials(R.overallLabel),name:tier.name,role:R.overallLabel,stat:R.overallLabel.toUpperCase()};
+      }else if(T.id==='panas'){const t=pct.POS>=pct.NEG?PANAS_V.pos:PANAS_V.neg;
+        r.name=t.name;r.role='Tu balance emocional';r.desc=t.desc;r.mono=initials(t.name);
+        r.card={mono:initials(t.name),name:t.name,role:'Balance emocional',stat:pct.POS>=pct.NEG?'EN POSITIVO':'EN NEGATIVO'};
+      }else{const top=arr[0];const arche=(ARCHE[T.id]&&ARCHE[T.id][top.k])||top.lab;
+        r.name=arche;r.role=top.lab;r.desc=`Tu rasgo más marcado es «${top.lab}». Así se reparte tu perfil completo:`;r.mono=initials(top.lab);
+        r.card={mono:initials(top.lab),name:arche,role:top.lab,stat:`${top.lab.toUpperCase()} ${Math.round(top.p)}%`};
+      }
+      r.traits=arr.slice(0,3).map(x=>x.lab);r.bars=showArr;
+      r.stats=[{v:Math.round(arr[0].p)+'%',l:arr[0].lab},{v:Math.round(arr[1].p)+'%',l:arr[1].lab}];
+    }else if(R.type==='riasec'){
+      const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
+      const code=arr.slice(0,3).map(x=>x.k).join('');
+      const careers=[...new Set([...(RIASEC_CAREERS[arr[0].k]||[]),...(RIASEC_CAREERS[arr[1].k]||[])])].slice(0,6);
+      r.name=code;r.role="Tu código Holland";r.mono=code;r.desc=`Tus tres intereses dominantes son ${arr.slice(0,3).map(x=>x.lab).join(', ')}. Estas áreas suelen encajar con tu perfil:`;
+      r.traits=careers;r.bars=arr;
+      r.stats=[{v:code,l:'código vocacional'},{v:arr[0].lab,l:'interés principal'}];
+      r.card={mono:code,name:arr[0].lab,role:'Perfil vocacional',stat:'CÓDIGO '+code};
+    }else if(R.type==='attachment'){
+      const anx=pct.ANX,avo=pct.AVO,hi=50;
+      let st=anx<hi&&avo<hi?["Seguro","Te vinculas con confianza: cercanía sin miedo y autonomía sin frialdad."]
+        :anx>=hi&&avo<hi?["Ansioso","Buscas mucha cercanía y te angustia el rechazo. Tiendes a darle vueltas a la relación."]
+        :anx<hi&&avo>=hi?["Evitativo","Valoras tu independencia y te incomoda la intimidad profunda. Mantienes distancia."]
+        :["Temeroso-evitativo","Deseas cercanía pero a la vez la temes: una mezcla intensa de ansiedad y evitación."];
+      r.name=st[0];r.role="Tu estilo de apego";r.desc=st[1];r.mono=initials(st[0]);r.traits=[st[0]];
+      r.bars=[{lab:'Ansiedad',p:anx},{lab:'Evitación',p:avo}];
+      r.stats=[{v:Math.round(anx)+'%',l:'ansiedad'},{v:Math.round(avo)+'%',l:'evitación'}];
+      r.card={mono:initials(st[0]),name:st[0],role:'Estilo de apego',stat:'APEGO '+st[0].toUpperCase()};
+    }
+  }
+  lastResult=r;renderResult(r);go('result');drawCard(r);lockResult();
+}
+function lockResult(){
+  $('paywall').innerHTML=`<div class="paywallcard">
+    <div class="pwemoji">✨</div>
+    <h2>¡Genial! Ya tenemos tu resultado</h2>
+    <p>Has completado «${T.name}». Desbloquea tu resultado completo, tu carta compartible y tu posición frente a la media.</p>
+    <button class="btn lg" onclick="payAndUnlock()">Desbloquear resultado · <span class="pwprice">1,99&nbsp;€</span></button>
+    <div class="pwsec">Pago único · solo por este resultado</div>
+  </div>`;
+  $('paywall').style.display='block';
+  $('resBody').classList.add('locked');
+}
+function revealResult(){$('paywall').style.display='none';$('resBody').classList.remove('locked');window.scrollTo({top:0,behavior:'smooth'});}
+function payAndUnlock(){
+  if(STRIPE_PAYMENT_LINK){
+    // Guardamos el resultado para recuperarlo al volver del pago, y vamos a Stripe.
+    try{localStorage.setItem('atlas_pending',JSON.stringify({testId:T.id,r:lastResult}));}catch(e){}
+    window.location.href=STRIPE_PAYMENT_LINK;
+  }else{ revealResult(); toast('Modo demo: configura tu Stripe Payment Link para cobrar de verdad 😉'); }
+}
+function handleReturn(){
+  const p=new URLSearchParams(location.search);
+  if(p.get('paid')==='1'||p.has('session_id')){
+    try{const pend=JSON.parse(localStorage.getItem('atlas_pending'));
+      if(pend&&pend.r){T=TESTS.find(t=>t.id===pend.testId)||T;lastResult=pend.r;renderResult(pend.r);go('result');revealResult();try{drawCard(pend.r);}catch(e){}}
+    }catch(e){}
+    try{localStorage.removeItem('atlas_pending');history.replaceState({},'',location.pathname);}catch(e){}
+    toast('¡Pago confirmado! Resultado desbloqueado ✓');
+  }
+}
+function renderResult(r){
+  $('resEyebrow').textContent=r.eyebrow;
+  const m=$('resMono');m.style.background=`linear-gradient(135deg,${hexA(r.accent,.2)},${hexA(r.accent,.08)})`;m.style.color=r.accent;m.textContent=r.mono||'';
+  const n=$('resName');n.textContent=r.name;n.style.color=r.accent;
+  $('resRole').textContent=r.role;$('resDesc').textContent=r.desc;
+  $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
+  if(r.bars){$('resBars').innerHTML=`<div class="bars">${r.bars.map(b=>{const tag=b.p>=66?'Alto':b.p>=40?'Medio':'Bajo';
+    return `<div class="barrow"><div class="bl"><span>${b.lab}</span><span class="tg">${tag} · ${Math.round(b.p)}%</span></div><div class="btrack"><i data-w="${b.p}" style="background:linear-gradient(90deg,${r.accent},${hexA(r.accent,.55)})"></i></div></div>`;}).join('')}</div>`;
+    setTimeout(()=>document.querySelectorAll('#resBars .btrack>i').forEach(i=>i.style.width=i.dataset.w+'%'),120);
+  }else $('resBars').innerHTML='';
+  $('resStats').innerHTML=(r.stats||[]).map(s=>`<div class="st"><div class="v" style="color:${r.accent}">${s.v}</div><div class="l">${s.l}</div></div>`).join('');
+}
+function restart(){if(T)startTest(T.id);}
+
+/* ----- carta El Espejo (864x1080) ----- */
+function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();}
+function drawCard(r){
+  const c=$('idcard'),x=c.getContext('2d'),W=c.width,H=c.height,col=r.accent,cd=r.card||{mono:r.mono,name:r.name,role:r.role,stat:''};
+  x.clearRect(0,0,W,H);
+  const bg=x.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#ffffff');bg.addColorStop(1,'#f4f5fb');x.fillStyle=bg;x.fillRect(0,0,W,H);
+  const gl=x.createRadialGradient(W/2,H*0.34,20,W/2,H*0.34,W*0.6);gl.addColorStop(0,hexA(col,.12));gl.addColorStop(1,hexA(col,0));x.fillStyle=gl;x.fillRect(0,0,W,H*0.7);
+  x.strokeStyle='#e6e6e3';x.lineWidth=2;x.strokeRect(34,34,W-68,H-68);
+  x.textBaseline='alphabetic';
+  x.fillStyle='#17181c';x.textAlign='left';x.font='700 38px "Bricolage Grotesque",sans-serif';x.fillText(BRAND,64,104);
+  x.fillStyle='#9a9b9f';x.textAlign='right';x.font='600 18px "Instrument Sans",sans-serif';x.fillText('E L   E S P E J O',W-64,100);
+  x.strokeStyle='#e6e6e3';x.lineWidth=1;x.beginPath();x.moveTo(64,128);x.lineTo(W-64,128);x.stroke();
+  const sq=232,sx=(W-sq)/2,sy=210;
+  const sg=x.createLinearGradient(sx,sy,sx+sq,sy+sq);sg.addColorStop(0,hexA(col,.2));sg.addColorStop(1,hexA(col,.08));x.fillStyle=sg;rr(x,sx,sy,sq,sq,26);x.fill();
+  x.fillStyle=col;x.textAlign='center';const mono=String(cd.mono||'');const ms=mono.length<=2?118:mono.length<=3?92:70;
+  x.font=`700 ${ms}px "Bricolage Grotesque",sans-serif`;x.fillText(mono,W/2,sy+sq/2+ms*0.36);
+  x.fillStyle='#9a9b9f';x.font='600 22px "Instrument Sans",sans-serif';x.fillText('M I   R E S U L T A D O',W/2,sy+sq+92);
+  const nm=String(cd.name||'');const ns=nm.length<=10?104:nm.length<=16?72:52;
+  x.fillStyle=col;x.font=`600 ${ns}px "Bricolage Grotesque",sans-serif`;x.fillText(nm,W/2,sy+sq+198);
+  x.fillStyle='#54565c';x.font='italic 400 40px "Instrument Sans",sans-serif';x.fillText(String(cd.role||'').slice(0,40),W/2,sy+sq+256);
+  if(r.traits&&r.traits.length){x.fillStyle='#6e7075';x.font='600 22px "Instrument Sans",sans-serif';x.fillText(r.traits.slice(0,3).join('   ·   ').toUpperCase().slice(0,46),W/2,sy+sq+314);}
+  x.strokeStyle='#e6e6e3';x.lineWidth=1;x.beginPath();x.moveTo(64,H-118);x.lineTo(W-64,H-118);x.stroke();
+  x.fillStyle='#9a9b9f';x.font='600 21px "Instrument Sans",sans-serif';x.textAlign='left';x.fillText(String(cd.stat||'').slice(0,30),64,H-78);
+  x.textAlign='right';x.fillStyle=col;x.fillText(DOMAIN.toUpperCase(),W-64,H-78);
+}
+function downloadCard(){const l=document.createElement('a');l.download=`testia-${T.id}.png`;l.href=$('idcard').toDataURL('image/png');l.click();toast('Carta descargada ✓');}
+async function shareCard(){const c=$('idcard');const text=`Mi resultado en "${T.name}": ${lastResult.name}. ¿Y el tuyo? — ${BRAND}`;
+  try{const blob=await new Promise(r=>c.toBlob(r,'image/png'));const f=new File([blob],'testia.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text});return;}
+    if(navigator.share){await navigator.share({text});return;}
+    await navigator.clipboard.writeText(text);toast('Texto copiado ✓');}catch(e){toast('Compartir no disponible aquí');}}
+
+/* ----- TAROT ----- */
+let tarotDraw=[],tarotSpread=null;
+const TAROT_HERO_IMG="tarot-deck/oracle-hero.webp";   // ilustración GPT-2
+const TAROT_HERO_VID="tarot-deck/oracle-hero.mp4";   // animación Seedance
+/* gamificación: estado persistente */
+function loadG(){try{return JSON.parse(localStorage.getItem('atlas_tarot'))||{};}catch(e){return {};}}
+function saveG(g){try{localStorage.setItem('atlas_tarot',JSON.stringify(g));}catch(e){}}
+let G=loadG();if(!G.found)G.found=[];if(!G.streak)G.streak=0;
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function discover(ci){if(!G.found.includes(ci)){G.found.push(ci);saveG(G);checkBadges();renderTarotHome();}}
+function checkBadges(){const n=G.found.length,hits=[[1,'Primera carta descubierta 🃏'],[10,'10 cartas en tu álbum'],[39,'¡Media baraja! 39/78'],[78,'¡Baraja completa! 78/78 🏆']];
+  G.badges=G.badges||[];hits.forEach(([t,msg])=>{if(n>=t&&!G.badges.includes(t)){G.badges.push(t);saveG(G);toast('🏅 '+msg);}});}
+function startTarot(){clearInterval(timerId);G=loadG();if(!G.found)G.found=[];$('tarotIntro').style.display='block';$('tarotAlbum').style.display='none';$('tarotBoard').style.display='none';$('tarotActions').style.display='none';$('tarotReading').innerHTML='';renderTarotHome();go('tarot');}
+function renderTarotHome(){
+  // hero (vídeo si existe, si no imagen)
+  $('tarotHero').innerHTML=`<div class="thero"><video src="${TAROT_HERO_VID}" autoplay muted loop playsinline poster="${TAROT_HERO_IMG}" onerror="this.replaceWith(Object.assign(document.createElement('img'),{src:'${TAROT_HERO_IMG}',onerror:function(){this.closest('.thero').style.display='none';}}))"></video><div class="ov"></div></div>`;
+  const pct=Math.round(G.found.length/TAROT.length*100);
+  $('tarotGameBar').innerHTML=`<div class="gamebar">
+    <div class="gstat"><span class="ic">🔥</span><div><b>${G.streak||0}</b><span>racha diaria</span></div></div>
+    <div class="gstat"><span class="ic">📖</span><div><b>${G.found.length}/${TAROT.length}</b><span>álbum</span><div class="gprog"><i style="width:${pct}%"></i></div></div></div>
+    <button class="btn out" style="padding:12px 20px" onclick="openAlbum()">Ver álbum →</button></div>`;
+  renderDaily();
+}
+function renderDaily(){
+  const done=G.dailyDate===todayStr();
+  if(done&&G.dailyCi!=null){const c=TAROT[G.dailyCi],rev=G.dailyRev;
+    $('dailyZone').innerHTML=`<div class="daily${rev?' rev':''}" style="cursor:pointer" role="button" tabindex="0" onclick="openCard(${G.dailyCi},${rev})"><img class="dcardimg" src="${c.img}"><div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#a9b0f4;font-weight:700">Tu carta del día</div><h4>${c.n}${rev?' (invertida)':''}</h4><p>${rev?c.rev:c.up}</p><div style="font-size:.74rem;color:#8b90c8;margin-top:6px">Toca para ampliar →</div></div></div>`;
+  }else{
+    $('dailyZone').innerHTML=`<div class="daily" style="cursor:pointer;justify-content:center" onclick="drawDaily()"><img class="dcardimg" src="${TAROT_BACK}"><div><div style="font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;color:#a9b0f4;font-weight:700">Oráculo diario</div><h4>Tu carta del día te espera</h4><p>Una carta gratis cada día. No rompas la racha 🔥</p></div></div>`;
+  }
+}
+function drawDaily(){
+  const ci=Math.floor(Math.random()*TAROT.length),rev=Math.random()<0.5,t=todayStr();
+  // racha
+  const y=new Date();y.setDate(y.getDate()-1);const yStr=y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();
+  if(G.lastDaily===yStr)G.streak=(G.streak||0)+1;else if(G.lastDaily!==t)G.streak=1;
+  G.dailyDate=t;G.dailyCi=ci;G.dailyRev=rev;G.lastDaily=t;saveG(G);
+  discover(ci);renderTarotHome();toast('🔥 Racha: '+G.streak+(G.streak===1?' día':' días'));
+}
+function openAlbum(){
+  $('tarotIntro').style.display='none';$('tarotAlbum').style.display='block';
+  $('tarotAlbum').innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:26px 0 4px">
+    <span class="badge">📖 ${G.found.length}/${TAROT.length} cartas descubiertas</span>
+    <button class="btn out" style="padding:10px 20px" onclick="startTarot()">← Volver</button></div>
+    <p style="color:var(--mut);font-size:.9rem;margin:0 0 4px;text-align:left">Cada carta que revelas en una tirada o en tu carta del día se desbloquea aquí. Complétalas todas.</p>
+    <div class="albumgrid">${TAROT.map((c,i)=>{const f=G.found.includes(i);
+      return `<div class="acard${f?'':' lock'}" ${f?`role="button" tabindex="0" style="cursor:pointer" onclick="openCard(${i},false)"`:''}><img src="${f?c.img:TAROT_BACK}" alt="${f?c.n:'?'}">${f?`<div class="nm">${c.n}</div>`:''}</div>`;}).join('')}</div>`;
+  window.scrollTo({top:0});
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function dealSpread(n){
+  tarotSpread=TAROT_SPREADS[n];
+  tarotDraw=shuffle(TAROT.map((_,i)=>i)).slice(0,n).map(ci=>({ci,card:TAROT[ci],rev:Math.random()<0.5,flipped:false}));
+  $('tarotIntro').style.display='none';$('tarotAlbum').style.display='none';$('tarotBoard').style.display='block';$('tarotActions').style.display='none';
+  $('tarotHint').style.display='block';$('tarotReading').innerHTML='';
+  $('tcards').innerHTML=tarotDraw.map((dc,i)=>`<div class="tkcol"><div class="tpos">${tarotSpread.pos[i]}</div>
+    <div class="tk${dc.rev?' rev':''}" id="tk${i}" role="button" tabindex="0" onclick="cardClick(${i})"><div class="inner">
+      <div class="f back"><img src="${TAROT_BACK}" alt="reverso"></div>
+      <div class="f front"><img src="${dc.card.img}" alt="${dc.card.n}"><div class="cap"><div class="nm">${dc.card.n}</div><div class="or ${dc.rev?'rv':'up'}">${dc.rev?'Invertida':'Del derecho'}</div></div></div>
+    </div></div></div>`).join('');
+}
+function cardClick(i){const dc=tarotDraw[i];if(!dc.flipped){flipCard(i);}else{openCard(dc.ci,dc.rev);}}
+function flipCard(i){const dc=tarotDraw[i];if(dc.flipped)return;dc.flipped=true;$('tk'+i).classList.add('flipped');discover(dc.ci);
+  if(tarotDraw.every(c=>c.flipped))setTimeout(revealReading,760);}
+function openCard(ci,rev){const c=TAROT[ci];
+  $('lboxInner').className='lbi'+(rev?' rev':'');
+  $('lboxInner').innerHTML=`<button class="x" onclick="closeCard()" aria-label="Cerrar">✕</button>
+    <div class="cardwrap"><img src="${c.img}" alt="${c.n}"></div>
+    <div><h3>${c.n}</h3><div class="or ${rev?'rv':'up'}">${rev?'Invertida':'Del derecho'}</div>
+      <div class="kw">${c.kw.map(k=>`<span>${k}</span>`).join('')}</div>
+      <p>${rev?c.rev:c.up}</p></div>`;
+  $('lbox').className='lbox on';
+}
+function closeCard(){$('lbox').className='lbox';}
+function buildSummary(){
+  const n=tarotDraw.length,ups=tarotDraw.filter(d=>!d.rev).length,revs=n-ups;
+  const kws=[...new Set([].concat(...tarotDraw.map(d=>d.card.kw)))].slice(0,5);
+  let tono = revs>ups?"Predominan las cartas invertidas: es momento de mirar hacia dentro, revisar resistencias y bajar el ritmo antes de actuar."
+    : ups>revs?"Predomina la energía directa y favorable: el momento empuja hacia la acción con cierta claridad."
+    : "Luces y sombras a partes iguales: un equilibrio entre avanzar y replegarte.";
+  const nm=tarotDraw.map(d=>`<b>${d.card.n}</b>${d.rev?' (inv.)':''}`);
+  let hilo;
+  if(n===1) hilo=`Hoy tu energía gira en torno a ${nm[0]}. Deja que sus palabras —${tarotDraw[0].card.kw.join(', ')}— guíen tu día.`;
+  else if(n===3) hilo=`Vienes de ${nm[0]}, atraviesas un presente marcado por ${nm[1]} y te encaminas hacia ${nm[2]}. El pasado explica, el presente pide y el futuro insinúa.`;
+  else hilo=`Tu situación (${nm[0]}) choca con ${nm[1]}; el consejo es ${nm[2]}, con raíz en ${nm[3]} y un desenlace que apunta a ${nm[4]}.`;
+  return `<div class="summary"><div class="lab">La lectura en conjunto</div><h3>${tarotSpread.name}</h3>
+    <p>${hilo}</p><p>${tono}</p>
+    <div class="kwline">Hilos: ${kws.join(' · ')}</div></div>`;
+}
+function revealReading(){
+  $('tarotHint').style.display='none';
+  const cards=tarotDraw.map((dc,i)=>{const m=dc.rev?dc.card.rev:dc.card.up;
+    return `<div class="rdcard${dc.rev?' rev':''}" role="button" tabindex="0" onclick="openCard(${dc.ci},${dc.rev})"><img class="thumb" src="${dc.card.img}" alt="${dc.card.n}"><div><div class="h">${tarotSpread.pos[i]}: ${dc.card.n} <span class="s">· ${dc.rev?'Invertida':'Del derecho'}</span></div><p>${m}</p></div></div>`;}).join('');
+  $('tarotReading').innerHTML=buildSummary()+`<div class="reading">${cards}</div>`;
+  $('tarotActions').style.display='block';drawTarotCanvas();
+}
+function loadImg(src){return new Promise(res=>{const im=new Image();im.onload=()=>res(im);im.onerror=()=>res(null);im.src=src;});}
+function tarotSlots(n,W){
+  if(n===1)return [{x:(W-392)/2,y:236,w:392,h:588}];
+  if(n===3){const w=224,h=336,gap=28,t=w*3+gap*2,x0=(W-t)/2,y=300;return [0,1,2].map(i=>({x:x0+i*(w+gap),y,w,h}));}
+  const w=158,h=237,gap=24;const t1=w*3+gap*2,x1=(W-t1)/2,y1=212;const t2=w*2+gap,x2=(W-t2)/2,y2=y1+h+96;
+  const out=[];[0,1,2].forEach(i=>out.push({x:x1+i*(w+gap),y:y1,w,h}));[0,1].forEach(i=>out.push({x:x2+i*(w+gap),y:y2,w,h}));return out;
+}
+async function drawTarotCanvas(){
+  const c=$('tcanvas'),x=c.getContext('2d'),W=c.width,H=c.height;
+  const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#181f48');g.addColorStop(.55,'#241c63');g.addColorStop(1,'#3a2c7c');x.fillStyle=g;x.fillRect(0,0,W,H);
+  const rg=x.createRadialGradient(W/2,150,20,W/2,150,W*.75);rg.addColorStop(0,'rgba(123,99,220,.3)');rg.addColorStop(1,'rgba(123,99,220,0)');x.fillStyle=rg;x.fillRect(0,0,W,H);
+  x.strokeStyle='rgba(212,175,90,.5)';x.lineWidth=2;x.strokeRect(34,34,W-68,H-68);
+  x.textAlign='left';x.textBaseline='alphabetic';x.fillStyle='#fff';x.font='700 38px "Bricolage Grotesque",sans-serif';x.fillText(BRAND,64,104);
+  x.textAlign='right';x.fillStyle='#d4af5a';x.font='600 18px "Instrument Sans",sans-serif';x.fillText('T A R O T',W-64,100);
+  x.strokeStyle='rgba(212,175,90,.35)';x.lineWidth=1;x.beginPath();x.moveTo(64,128);x.lineTo(W-64,128);x.stroke();
+  x.textAlign='center';x.fillStyle='#e9ebfa';x.font='600 30px "Bricolage Grotesque",sans-serif';x.fillText(tarotSpread.name,W/2,178);
+  const slots=tarotSlots(tarotDraw.length,W);
+  const imgs=await Promise.all(tarotDraw.map(dc=>loadImg(dc.card.img)));
+  tarotDraw.forEach((dc,i)=>{const s=slots[i],im=imgs[i];
+    x.save();rr(x,s.x,s.y,s.w,s.h,10);x.clip();
+    if(im){if(dc.rev){x.translate(s.x+s.w/2,s.y+s.h/2);x.rotate(Math.PI);x.drawImage(im,-s.w/2,-s.h/2,s.w,s.h);}else x.drawImage(im,s.x,s.y,s.w,s.h);}
+    else{x.fillStyle='rgba(255,255,255,.06)';x.fillRect(s.x,s.y,s.w,s.h);}
+    x.restore();
+    x.strokeStyle=dc.rev?'#e0727f':'#d4af5a';x.lineWidth=2;rr(x,s.x,s.y,s.w,s.h,10);x.stroke();
+    x.textAlign='center';x.fillStyle='#d4af5a';x.font='600 15px "Instrument Sans",sans-serif';x.fillText(tarotSpread.pos[i].toUpperCase().slice(0,20),s.x+s.w/2,s.y+s.h+26);
+    x.fillStyle='#fff';x.font='600 17px "Bricolage Grotesque",sans-serif';x.fillText((dc.card.n+(dc.rev?' (inv.)':'')).slice(0,26),s.x+s.w/2,s.y+s.h+48);
+  });
+  x.fillStyle='#9498d2';x.font='600 20px "Instrument Sans",sans-serif';x.textAlign='left';x.fillText('SOLO ENTRETENIMIENTO',64,H-78);
+  x.textAlign='right';x.fillStyle='#d4af5a';x.fillText(DOMAIN.toUpperCase(),W-64,H-78);
+}
+function downloadTarot(){const l=document.createElement('a');l.download='testia-tarot.png';l.href=$('tcanvas').toDataURL('image/png');l.click();toast('Lectura descargada ✓');}
+async function shareTarot(){const c=$('tcanvas');const text=`Mi tirada de tarot en ${BRAND} (${tarotSpread.name}): ${tarotDraw.map(d=>d.card.n+(d.rev?' invertida':'')).join(', ')}.`;
+  try{const blob=await new Promise(r=>c.toBlob(r,'image/png'));const f=new File([blob],'tarot.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text});return;}
+    if(navigator.share){await navigator.share({text});return;}
+    await navigator.clipboard.writeText(text);toast('Texto copiado ✓');}catch(e){toast('Compartir no disponible aquí');}}
+
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600);}
+
+/* teclado: selección 1-8, Enter/→ siguiente, ← anterior, Esc cierra lightbox */
+document.addEventListener('keydown',e=>{
+  if($('lbox').classList.contains('on')){if(e.key==='Escape')closeCard();return;}
+  if(!$('quiz').classList.contains('active'))return;
+  if(e.key>='1'&&e.key<='8'){const els=$('opts').querySelectorAll('.dot,.orow'),el=els[parseInt(e.key,10)-1];if(el){el.click();e.preventDefault();}}
+  else if(e.key==='Enter'||e.key==='ArrowRight'){if(!$('nextBtn').disabled){next();e.preventDefault();}}
+  else if(e.key==='ArrowLeft'){if(idx>0){prev();e.preventDefault();}}
+});
+
+buildHome();buildCatalog();buildFooter();handleReturn();
+</script>
+</body>
+</html>
