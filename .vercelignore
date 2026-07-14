@@ -7,3 +7,5 @@ design_dl
 tarot-deck/*.png
 tarot-deck/*.jpg
 assets/*.png
+
+.env*.local
