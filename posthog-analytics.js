@@ -37,9 +37,23 @@
   });
 
   document.addEventListener('click', function (event) {
-    var link = event.target.closest && event.target.closest('a[href*="?start="]');
-    if (!link) return;
-    var id = new URL(link.href, location.href).searchParams.get('start');
-    window.trackEvent('test_cta_clicked', { test_id: id || 'unknown', source_path: location.pathname });
+    var target = event.target.closest && event.target.closest('a,button,[role="button"]');
+    if (!target) return;
+    var href = target.getAttribute('href') || '';
+    var label = target.getAttribute('data-analytics-name') ||
+      target.getAttribute('aria-label') ||
+      (target.textContent || '').replace(/\s+/g, ' ').trim() ||
+      target.getAttribute('title') || target.id || href || 'CTA sin nombre';
+    window.trackEvent('cta_clicked', {
+      button_name: label.slice(0, 100),
+      element_type: target.tagName.toLowerCase(),
+      destination: href.split('?')[0],
+      source_path: location.pathname
+    });
+
+    if (href.indexOf('?start=') !== -1) {
+      var id = new URL(target.href, location.href).searchParams.get('start');
+      window.trackEvent('test_cta_clicked', { test_id: id || 'unknown', source_path: location.pathname });
+    }
   });
 }());

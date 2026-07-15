@@ -337,7 +337,7 @@
           <h1 class="title">¿De verdad <span class="ital" style="color:var(--cobalt)">te conoces</span>?</h1>
           <p class="lead" style="margin:26px 0 0">Hazte los tests y descúbrete. Más de 20 experiencias inspiradas en modelos publicados para explorar quién eres, cómo piensas y por qué haces lo que haces.</p>
           <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:36px">
-            <button class="btn lg" onclick="startTest(FLAGSHIP)">Conócete ahora →</button>
+            <button class="btn lg" data-analytics-name="Empezar test destacado" onclick="startTest(FLAGSHIP)">Conócete ahora →</button>
             <a onclick="go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver los 20 tests</a>
           </div>
           <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.8rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--mut)">
@@ -380,7 +380,7 @@
             <h2 class="disp" style="font-weight:600;font-size:clamp(1.9rem,4vw,2.6rem);line-height:1.04;letter-spacing:-.02em;margin:14px 0 8px">¿Y si echamos las cartas?</h2>
             <p style="color:#c3c8ef;margin:0;max-width:48ch">Una tirada con la baraja completa de 78 cartas ilustradas. Sin pretensión científica: pura reflexión y diversión mística.</p>
           </div>
-          <div class="r" style="text-align:right"><button class="btn out" style="padding:16px 28px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="startTarot()">Echar las cartas →</button></div>
+          <div class="r" style="text-align:right"><button class="btn out" data-analytics-name="Empezar lectura de tarot" style="padding:16px 28px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="startTarot()">Echar las cartas →</button></div>
         </div>
       </div>
     </div>
@@ -925,7 +925,7 @@ function lockResult(){
     <div class="pwemoji">✨</div>
     <h2>¡Genial! Ya tenemos tu resultado</h2>
     <p>Has completado «${T.name}». Desbloquea tu resultado completo, tu carta compartible y tu posición frente a la media.</p>
-    <button class="btn lg" onclick="payAndUnlock()">Desbloquear resultado · <span class="pwprice">1,99&nbsp;€</span></button>
+    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock()">Desbloquear resultado · <span class="pwprice">1,99&nbsp;€</span></button>
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción</div>
   </div>`;
   $('paywall').style.display='block';
