@@ -66,6 +66,7 @@ function page(t){
 <style>${CSS}</style>
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="/posthog-analytics.js"></script>
 </head><body>
 <header><div class="wrap nav"><a class="brand" href="/">Testia</a><nav><a class="lnk" href="/">Inicio</a><a class="lnk" href="/#catalogo">Catálogo</a></nav></div></header>
 <main class="wrap">

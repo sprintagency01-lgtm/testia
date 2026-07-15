@@ -311,6 +311,7 @@
 }
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="/posthog-analytics.js"></script>
 </head>
 <body>
 <header><div class="wrap nav">
@@ -750,6 +751,7 @@ function likertLabels(t){const m=t.scaleMax;
   return Array.from({length:m},(_,i)=>String(i+1));}
 function startTest(id){
   T=TESTS.find(t=>t.id===id);if(!T)return;
+  trackEvent('test_started',{test_id:T.id,test_name:T.name,question_count:T.items.length});
   items=T.items;idx=0;answers=new Array(items.length).fill(null);
   const tm=$('timer');
   if(T.mode==='correct'){timeLeft=T.duration||300;startedAt=Date.now();tm.style.display='inline';clearInterval(timerId);timerId=setInterval(tick,1000);updTimer();}
@@ -914,7 +916,7 @@ function finish(){
         return {lab,p,band:bn,text:(T.interp[k]&&T.interp[k][key])||''};}); }
     }
   }
-  lastResult=r;renderResult(r);go('result');drawCard(r);
+  lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length});renderResult(r);go('result');drawCard(r);
   if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(lastResult)drawCard(lastResult);});}
   lockResult();
 }
@@ -932,6 +934,7 @@ function lockResult(){
 function revealResult(){$('paywall').style.display='none';$('resBody').classList.remove('locked');window.scrollTo({top:0,behavior:'smooth'});}
 async function payAndUnlock(){
   try{
+    trackEvent('checkout_started',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});
     const res=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({testId:T.id,testName:T.name})});
     const data=await res.json();
@@ -958,6 +961,7 @@ async function handleReturn(){
   try{history.replaceState({},'',location.pathname);}catch(e){}
   if(ok && pend && pend.r && pend.sid===sid){
     T=TESTS.find(t=>t.id===pend.testId)||T;lastResult=pend.r;renderResult(pend.r);go('result');revealResult();try{drawCard(pend.r);}catch(e){}
+    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,revenue:1.99,currency:'EUR'});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast('¡Pago confirmado! Resultado desbloqueado ✓');
   }else{
@@ -1042,14 +1046,14 @@ function drawCardOn(c,r){
   x.fillStyle=colL;x.font='700 24px "Instrument Sans",sans-serif';x.textAlign='left';x.fillText(String(cd.stat||'').slice(0,26),P,H-72);
   x.fillStyle='#fff';x.textAlign='right';x.fillText(DOMAIN,W-P,H-72);
 }
-function downloadCard(){const l=document.createElement('a');l.download=`testia-${T.id}.png`;l.href=$('idcard').toDataURL('image/png');l.click();toast('Carta descargada ✓');}
-async function shareCard(){const c=$('idcard');const text=`Mi resultado en "${T.name}": ${lastResult.name}. ¿Y el tuyo? — ${BRAND}`;
+function downloadCard(){trackEvent('result_downloaded',{test_id:T.id,format:'post'});const l=document.createElement('a');l.download=`testia-${T.id}.png`;l.href=$('idcard').toDataURL('image/png');l.click();toast('Carta descargada ✓');}
+async function shareCard(){trackEvent('result_shared',{test_id:T.id,format:'post'});const c=$('idcard');const text=`Mi resultado en "${T.name}": ${lastResult.name}. ¿Y el tuyo? — ${BRAND}`;
   try{const blob=await new Promise(r=>c.toBlob(r,'image/png'));const f=new File([blob],'testia.png',{type:'image/png'});
     if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text});return;}
     if(navigator.share){await navigator.share({text});return;}
     await navigator.clipboard.writeText(text);toast('Texto copiado ✓');}catch(e){toast('Compartir no disponible aquí');}}
 function storyCanvas(){const c=document.createElement('canvas');c.width=1080;c.height=1920;drawCardOn(c,lastResult);return c;}
-async function shareStory(){const c=storyCanvas();const text=`Mi resultado en "${T.name}": ${lastResult.name}. ¿Y el tuyo? — ${BRAND}`;
+async function shareStory(){trackEvent('result_shared',{test_id:T.id,format:'story'});const c=storyCanvas();const text=`Mi resultado en "${T.name}": ${lastResult.name}. ¿Y el tuyo? — ${BRAND}`;
   try{const blob=await new Promise(r=>c.toBlob(r,'image/png'));const f=new File([blob],`testia-${T.id}-story.png`,{type:'image/png'});
     if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],text});return;}
   }catch(e){}
