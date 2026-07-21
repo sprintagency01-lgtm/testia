@@ -825,21 +825,36 @@ window.SEO_CONTENT = {
    intro:"Tu perfil de personalidad en versión exprés: diez preguntas, un minuto, los cinco grandes rasgos. Ideal cuando tienes prisa pero quieres una pista fiable de cómo eres.",
    learn:["Tu perfil en los 5 grandes rasgos","El rasgo que más te define","Un retrato rápido de tu carácter","Resultado y carta para compartir"]},
  honesty:{slug:"test-honestidad-humildad", seoTitle:"Test de Honestidad-Humildad (HEXACO) online | Testia", h1:"Test de Honestidad-Humildad",
-   metaDesc:"Test de Honestidad-Humildad basado en HEXACO: explora sinceridad, justicia, modestia y desapego material. Gratis y sin registro.",
-   intro:"La sexta dimensión de la personalidad que el Big Five no captura: cuánta sinceridad, justicia, modestia y desapego material hay en ti. Spoiler: revela más de lo que crees.",
+   metaDesc:"Test de Honestidad-Humildad basado en HEXACO: 12 preguntas sobre sinceridad, justicia, modestia y desapego material. Sin registro.",
+   intro:"Explora la dimensión Honestidad-Humildad del modelo HEXACO: sinceridad, justicia, modestia y poco interés por obtener estatus o ventajas a costa de otros. No decide si eres «buena persona»; describe tendencias concretas de personalidad.",
    learn:["Tu nivel de honestidad y humildad","Tu puntuación en sinceridad, justicia y modestia","Si priorizas el estatus o la integridad","Tu carta de resultado"],
+   overview:[
+    {label:"Mide",text:"Sinceridad, justicia, desapego material y modestia."},
+    {label:"Formato",text:"12 afirmaciones valoradas en una escala de acuerdo."},
+    {label:"Límite",text:"Describe tendencias; no emite un juicio moral sobre ti."}
+   ],
    sections:[
     {title:"Qué mide la dimensión Honestidad-Humildad",body:"El modelo HEXACO añade a los cinco grandes rasgos una sexta dimensión: Honestidad-Humildad. Reúne facetas como sinceridad, justicia, modestia y poco interés por obtener privilegios materiales a costa de otras personas."},
     {title:"Cómo interpretar tu puntuación",body:"Una puntuación alta describe una tendencia a evitar la manipulación y el abuso de estatus; una puntuación baja puede reflejar mayor orientación al beneficio propio o al reconocimiento. Ningún resultado decide si eres buena o mala persona: describe tendencias, no conductas inevitables."}
    ],
    faqs:[
     {q:"¿Este test dice si soy buena persona?",a:"No. La bondad es un juicio moral mucho más amplio. El test explora una dimensión concreta de personalidad relacionada con sinceridad, justicia, modestia y desapego material."},
-    {q:"¿Qué relación tiene con HEXACO?",a:"Toma como referencia la dimensión Honestidad-Humildad del modelo HEXACO. Es una adaptación divulgativa y no sustituye la administración e interpretación del instrumento original."}
-   ]},
+    {q:"¿Qué relación tiene con HEXACO?",a:"Toma como referencia la dimensión Honestidad-Humildad del modelo HEXACO. Es una adaptación divulgativa y no sustituye la administración e interpretación del instrumento original."},
+    {q:"¿Es un test de bondad?",a:"Solo en un sentido coloquial. La puntuación refleja cuatro facetas de personalidad y no puede resumir tu ética, tus acciones ni cómo te comportas en todas las situaciones."}
+   ],
+   sources:[
+    {title:"The HEXACO Personality Inventory — descripción de escalas",url:"https://hexaco.org/scaledescriptions",note:"Descripción del modelo y de las facetas de Honestidad-Humildad."}
+   ],
+   relatedIds:["darktriad","values","bigfive"]},
  darktriad:{slug:"test-triada-oscura", seoTitle:"Test de Tríada Oscura online: conoce tus rasgos | Testia", h1:"Test de Tríada Oscura",
-   metaDesc:"Test de Tríada Oscura online: explora maquiavelismo, narcisismo y psicopatía subclínica con una adaptación inspirada en SD3. Gratis.",
+   metaDesc:"Test de Tríada Oscura online: 18 preguntas sobre maquiavelismo, narcisismo y psicopatía subclínica, inspirado en el modelo SD3.",
    intro:"Maquiavelismo, narcisismo y psicopatía subclínica: los tres rasgos del lado oscuro de la personalidad. ¿Cuánta sombra llevas dentro? Una experiencia divulgativa inspirada en el modelo SD3.",
    learn:["Tu nivel en los 3 rasgos oscuros","Cuál de ellos predomina en ti","Cómo te sitúas frente a la media","Carta de resultado para compartir"],
+   overview:[
+    {label:"Mide",text:"Maquiavelismo, narcisismo y psicopatía subclínica."},
+    {label:"Formato",text:"18 afirmaciones; seis por cada rasgo evaluado."},
+    {label:"Límite",text:"No detecta trastornos ni sustituye una evaluación clínica."}
+   ],
    sections:[
     {title:"Qué es la Tríada Oscura",body:"La Tríada Oscura agrupa tres rasgos de personalidad: maquiavelismo, narcisismo y psicopatía subclínica. Todas las personas pueden mostrar estos rasgos en distinto grado; una puntuación no implica un trastorno ni permite hacer un diagnóstico."},
     {title:"Qué significa cada rasgo oscuro",body:"El maquiavelismo se relaciona con estrategia y manipulación interpersonal; el narcisismo, con búsqueda de admiración y sentido de superioridad; y la psicopatía subclínica, con frialdad emocional, impulsividad y menor sensibilidad al riesgo."}
@@ -847,15 +862,25 @@ window.SEO_CONTENT = {
    faqs:[
     {q:"¿Una puntuación alta significa que soy mala persona?",a:"No. El resultado describe tendencias de personalidad y depende del contexto. No evalúa toda tu conducta, tus valores ni tu capacidad de cambiar."},
     {q:"¿Es lo mismo que tener psicopatía o narcisismo clínico?",a:"No. El test explora rasgos subclínicos en población general. Solo un profesional cualificado puede realizar una evaluación clínica."},
-    {q:"¿En qué se basa el test?",a:"Está inspirado en el modelo Short Dark Triad (SD3) de Jones y Paulhus, con ítems propios y una finalidad divulgativa."}
-   ]},
+    {q:"¿En qué se basa el test?",a:"Está inspirado en el modelo Short Dark Triad (SD3) de Jones y Paulhus, con ítems propios y una finalidad divulgativa."},
+    {q:"¿Este test mide la empatía oscura?",a:"No directamente. La llamada empatía oscura combina capacidad empática con rasgos oscuros; aquí se evalúan únicamente los tres rasgos de la Tríada Oscura. Puedes completar también el test de empatía para comparar ambos perfiles."}
+   ],
+   sources:[
+    {title:"The Short Dark Triad (SD3): A Brief Measure of Dark Personality Traits",url:"https://doi.org/10.1080/00223891.2012.670680",note:"Artículo de Jones y Paulhus que presenta la medida SD3."}
+   ],
+   relatedIds:["honesty","empathy","bigfive"]},
  moral:{slug:"test-brujula-moral", metaDesc:"Test de tu brújula moral (Moral Foundations de Haidt): los 5 pilares que guían lo que para ti está bien o mal. Gratis online.",
    intro:"Los cinco fundamentos morales sobre los que construyes tus juicios —cuidado, justicia, lealtad, autoridad y pureza—, según la teoría de Jonathan Haidt.",
    learn:["Tu peso en los 5 fundamentos morales","Qué valor moral pesa más en ti","Tu perfil moral comparado","Carta de resultado"]},
- iq:{slug:"test-de-ci", seoTitle:"Test de CI online gratis: estimación y percentil | Testia", h1:"Test de CI online",
-   metaDesc:"Test de CI online gratis: 20 preguntas de aptitud verbal, numérica, lógica, abstracta y espacial. Obtén una estimación y tu percentil.",
+ iq:{slug:"test-de-ci", seoTitle:"Test de CI online: 5 aptitudes y percentil | Testia", h1:"Test de CI online",
+   metaDesc:"Test de CI online de 32 preguntas: aptitud verbal, numérica, lógica, abstracta y espacial. Responde gratis y sin registro.",
    intro:"Un test de inteligencia multi-aptitud inspirado en los formatos del ICAR, un instrumento abierto de investigación. Mide cinco aptitudes —verbal, numérica, lógica, abstracta y espacial— y ofrece una estimación orientativa en una escala de media 100.",
-   learn:["Tu CI estimado y tu categoría (escala Wechsler)","Tu percentil frente a la población","Un desglose por las 5 aptitudes cognitivas","Carta de resultado para compartir"],
+   learn:["Tu puntuación estimada en una escala de media 100","Tu percentil orientativo","Un desglose por las 5 aptitudes cognitivas","Carta de resultado para compartir"],
+   overview:[
+    {label:"Mide",text:"Razonamiento verbal, numérico, lógico, abstracto y espacial."},
+    {label:"Formato",text:"32 problemas con un límite aproximado de 15 minutos."},
+    {label:"Límite",text:"Es una estimación online; no equivale al WAIS ni a una prueba supervisada."}
+   ],
    sections:[
     {title:"Qué mide este test de CI",body:"Las preguntas recorren cinco aptitudes: comprensión verbal, razonamiento numérico, lógica, pensamiento abstracto y visualización espacial. El resultado combina el rendimiento en esas áreas para ofrecer una estimación orientativa y un desglose de fortalezas."},
     {title:"Test online frente a una evaluación profesional",body:"Una prueba breve realizada en internet no controla condiciones como el tiempo, el dispositivo, la práctica previa o el entorno. Por eso el resultado sirve como orientación y entretenimiento, pero no tiene el mismo alcance que una evaluación psicométrica administrada por un profesional."}
@@ -863,8 +888,13 @@ window.SEO_CONTENT = {
    faqs:[
     {q:"¿Este test es equivalente al WAIS?",a:"No. Usa una escala de puntuación familiar y formatos inspirados en instrumentos de investigación, pero no es el WAIS ni sustituye una evaluación profesional estandarizada."},
     {q:"¿Qué significa el percentil?",a:"El percentil expresa qué porcentaje de la distribución de referencia queda por debajo de una puntuación. Es una estimación y puede variar si repites el test o cambian las condiciones."},
-    {q:"¿Puedo mejorar mi puntuación de CI?",a:"La familiaridad con el formato, la atención y la práctica pueden mejorar el rendimiento en tareas concretas. Eso no significa necesariamente que cambie por igual toda la capacidad cognitiva general."}
-   ]},
+    {q:"¿Puedo mejorar mi puntuación de CI?",a:"La familiaridad con el formato, la atención y la práctica pueden mejorar el rendimiento en tareas concretas. Eso no significa necesariamente que cambie por igual toda la capacidad cognitiva general."},
+    {q:"¿Cómo debo preparar el test?",a:"Hazlo de una sola vez, sin calculadora ni ayuda externa, en un dispositivo donde veas bien las figuras y con el menor número posible de interrupciones."}
+   ],
+   sources:[
+    {title:"International Cognitive Ability Resource (ICAR)",url:"https://icar-project.com/",note:"Proyecto abierto de medidas de capacidad cognitiva en el que se inspiran los formatos de las preguntas."}
+   ],
+   relatedIds:["crt","ncs","bigfive"]},
  crt:{slug:"test-pensamiento-reflexivo", seoTitle:"Test de pensamiento reflexivo (CRT) online | Testia", h1:"Test de pensamiento reflexivo",
    metaDesc:"Test de pensamiento reflexivo (CRT): seis acertijos para descubrir si respondes por intuición o analizas antes de decidir. Gratis online.",
    intro:"Seis acertijos con trampa que separan a quien se fía del instinto de quien para a pensar. Mide tu estilo de pensamiento: intuitivo vs. reflexivo.",
@@ -890,9 +920,28 @@ window.SEO_CONTENT = {
  swls:{slug:"test-de-felicidad", metaDesc:"Test de satisfacción con la vida (escala SWLS de Diener): ¿cómo de feliz eres? 5 preguntas, validado en decenas de países.",
    intro:"Tu satisfacción global con la vida en cinco preguntas, con la escala SWLS de Diener, validada en decenas de culturas. Una foto honesta de tu bienestar.",
    learn:["Tu nivel de satisfacción vital","Cómo de cerca está tu vida de tu ideal","Una lectura empática de tu bienestar","Carta de resultado"]},
- panas:{slug:"test-estado-de-animo", metaDesc:"Test de estado de ánimo (PANAS): mide tu balance de afecto positivo y negativo. Rápido, gratis y al instante.",
-   intro:"El equilibrio entre tu afecto positivo y negativo en este momento, con la escala PANAS. Ideal como termómetro emocional del día.",
-   learn:["Tu nivel de afecto positivo y negativo","Tu balance emocional actual","Si dominan los días luminosos o grises","Carta de resultado"]},
+ panas:{slug:"test-estado-de-animo", seoTitle:"Test PANAS de estado de ánimo online | Testia", h1:"Test PANAS de estado de ánimo",
+   metaDesc:"Cuestionario PANAS de 16 emociones: explora por separado tu afecto positivo y negativo reciente. Responde gratis y sin registro.",
+   intro:"Un termómetro de tu estado emocional reciente inspirado en PANAS. En lugar de reducirlo todo a «bien» o «mal», distingue dos dimensiones que pueden coexistir: afecto positivo y afecto negativo.",
+   learn:["Tu nivel de afecto positivo y negativo","Tu balance emocional reciente","Qué emociones tienen más peso ahora","Carta de resultado"],
+   overview:[
+    {label:"Mide",text:"Afecto positivo y afecto negativo como dimensiones separadas."},
+    {label:"Formato",text:"16 emociones valoradas según cómo te has sentido últimamente."},
+    {label:"Límite",text:"Es una fotografía del momento, no un diagnóstico de salud mental."}
+   ],
+   sections:[
+    {title:"Qué mide el cuestionario PANAS",body:"El afecto positivo refleja estados como energía, interés o entusiasmo; el afecto negativo reúne experiencias como tensión, irritación o temor. No son extremos de una única escala: una persona puede puntuar alto o bajo en ambos al mismo tiempo."},
+    {title:"Cómo interpretar tu estado de ánimo",body:"El resultado depende del periodo que tengas en mente al responder y puede cambiar con el descanso, el estrés o acontecimientos recientes. Resulta más útil como observación puntual o para comparar momentos que como una etiqueta permanente."}
+   ],
+   faqs:[
+    {q:"¿PANAS diagnostica ansiedad o depresión?",a:"No. PANAS describe afecto positivo y negativo; no establece diagnósticos. Si el malestar persiste o interfiere con tu vida cotidiana, conviene hablar con un profesional sanitario."},
+    {q:"¿Qué periodo debo tener en cuenta al responder?",a:"En esta adaptación debes pensar en cómo te has sentido últimamente. Usa el mismo marco temporal para todas las respuestas si quieres que el perfil sea coherente."},
+    {q:"¿Puedo tener afecto positivo y negativo altos a la vez?",a:"Sí. Son dimensiones distintas: por ejemplo, una etapa exigente puede combinar entusiasmo y energía con nervios o tensión."}
+   ],
+   sources:[
+    {title:"Development and validation of brief measures of positive and negative affect: the PANAS scales",url:"https://doi.org/10.1037/0022-3514.54.6.1063",note:"Publicación original de Watson, Clark y Tellegen (1988)."}
+   ],
+   relatedIds:["swls","resilience","selfesteem"]},
  resilience:{slug:"test-de-resiliencia", metaDesc:"Test de resiliencia (Brief Resilience Scale): ¿cuánto aguantas y te recuperas de los golpes de la vida? Gratis online.",
    intro:"Tu capacidad de recuperarte tras la adversidad —'rebotar'— medida con la Brief Resilience Scale. Cuánto aguantas y cómo te levantas.",
    learn:["Tu nivel de resiliencia","Con qué rapidez te recuperas de un revés","Una lectura constructiva","Carta de resultado"]},
@@ -912,9 +961,14 @@ window.SEO_CONTENT = {
    intro:"¿De izquierdas, de derechas o te lo montas a tu manera? Este test sitúa tu posición real en el eje político combinando economía y valores sociales, sin postureo ni titulares.",
    learn:["Tu posición en el eje izquierda-derecha","Tu peso económico y social","Cómo te comparas con la media","Una carta de resultado para compartir"]},
  lovelang:{slug:"test-lenguaje-del-amor", seoTitle:"Test de lenguajes del amor: descubre el tuyo | Testia", h1:"Test de lenguajes del amor",
-   metaDesc:"Test de lenguajes del amor: descubre si prefieres palabras, tiempo, detalles, actos de servicio o contacto físico. Gratis y sin registro.",
+   metaDesc:"Test de lenguajes del amor: 20 preguntas para explorar palabras, tiempo, detalles, actos de servicio y contacto físico. Sin registro.",
    intro:"¿Palabras, tiempo, regalos, actos o contacto físico? Descubre cuál es tu lenguaje del amor —cómo das y cómo necesitas recibir cariño— y por qué a veces tú y tu pareja no os entendéis.",
    learn:["Tu lenguaje del amor dominante","Cómo das y cómo necesitas recibir cariño","El desglose de los 5 lenguajes en ti","Una carta para compartir con tu pareja"],
+   overview:[
+    {label:"Mide",text:"Cinco preferencias comunes para expresar y recibir afecto."},
+    {label:"Formato",text:"20 situaciones cotidianas, cuatro por cada preferencia."},
+    {label:"Límite",text:"Es una herramienta de conversación, no una prueba clínica ni de compatibilidad."}
+   ],
    sections:[
     {title:"Cuáles son los cinco lenguajes del amor",body:"El modelo distingue palabras de afirmación, tiempo de calidad, regalos o detalles, actos de servicio y contacto físico. El test compara tus preferencias para mostrar qué formas de afecto valoras más, sin asumir que solo puedas tener una."},
     {title:"Cómo usar el resultado en pareja",body:"El resultado puede servir para iniciar una conversación sobre necesidades y expectativas. No es una regla fija ni una prueba de compatibilidad: las preferencias cambian según la relación, el momento y el contexto cultural."}
@@ -922,8 +976,10 @@ window.SEO_CONTENT = {
    faqs:[
     {q:"¿Cuál es mi lenguaje primario del amor?",a:"Es la forma de afecto que obtiene mayor puntuación en tus respuestas. Puedes tener dos preferencias muy próximas y expresarlas de manera diferente a como te gusta recibirlas."},
     {q:"¿Los lenguajes del amor tienen validez clínica?",a:"No son un diagnóstico ni una evaluación clínica. El modelo es popular como herramienta de conversación sobre preferencias afectivas, pero no explica por sí solo la calidad de una relación."},
-    {q:"¿Puedo tener más de un lenguaje del amor?",a:"Sí. Las cinco preferencias forman un perfil y pueden quedar muy igualadas. El contexto y la etapa de la relación también influyen."}
-   ]},
+    {q:"¿Puedo tener más de un lenguaje del amor?",a:"Sí. Las cinco preferencias forman un perfil y pueden quedar muy igualadas. El contexto y la etapa de la relación también influyen."},
+    {q:"¿El test mide cómo doy amor o cómo quiero recibirlo?",a:"Las preguntas se centran principalmente en lo que te hace sentir querido. Puedes expresar afecto de otra forma, por lo que el resultado es un buen punto de partida para hablarlo, no una conclusión definitiva."}
+   ],
+   relatedIds:["attachment","empathy","ei"]},
  redflag:{slug:"test-eres-la-red-flag", metaDesc:"Test: ¿eres tú la red flag de la relación? 20 preguntas honestas para descubrir si el patrón de tus dramas eres tú. Gratis online.",
    intro:"Siempre culpas a tus ex, ¿verdad? Este test responde la pregunta incómoda: ¿y si el denominador común de tus relaciones eres tú? Control, manipulación y huida, sin piedad.",
    learn:["Tu nivel de 'red flag' en pareja","Los patrones que repites sin darte cuenta","Una lectura honesta (y con humor)","Carta de resultado para compartir"]},

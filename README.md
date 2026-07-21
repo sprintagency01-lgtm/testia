@@ -48,8 +48,12 @@ Conectado a Vercel vía Git: **cada `git push` a `main` despliega automáticamen
    ```bash
    node build-pages.mjs
    ```
-3. Si tocaste `index.html`, sincroniza la copia: `cp index.html testia.html`.
-4. Commit + push → Vercel despliega solo.
+3. Valida metadatos, datos estructurados y enlaces internos:
+   ```bash
+   node validate-pages.mjs
+   ```
+4. Si tocaste `index.html`, sincroniza la copia: `cp index.html testia.html`.
+5. Commit + push → Vercel despliega solo.
 
 ## Pagos (cómo funciona el muro)
 
