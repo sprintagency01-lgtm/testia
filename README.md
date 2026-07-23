@@ -22,7 +22,7 @@ api/
   verify-payment.js   Verifica el pago; solo entonces se revela el resultado
 test/               Landings SEO por test (GENERADAS, no editar a mano)
 assets/ tarot-deck/ Imágenes (se usan las .webp)
-testia-tests/       Documentación: investigación de mercado, campañas, tests en JSON
+testia-tests/       Investigación local auxiliar (ignorada; no forma parte del deploy)
 vercel.json         Config de Vercel (cleanUrls, sin trailingSlash)
 ```
 

@@ -14,3 +14,16 @@ assets/*.png
 # Sistema
 .DS_Store
 .env*.local
+
+# Archivos locales de agentes y análisis (no forman parte del sitio)
+/AGENTS.md
+/_d.js
+/_r.js
+/gsc_analysis/
+/gsc_safe/
+/testia-tests/
+
+# Proyectos independientes anidados en este workspace
+/asesorfy/
+/monkway-app/
+/portfolio-mario/
