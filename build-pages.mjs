@@ -108,6 +108,8 @@ ${s.overview?.length?`  <dl class="overview">${s.overview.map(x=>`<div><dt>${esc
 
 ${s.sections?.map(x=>`  <section class="content"><h2>${esc(x.title)}</h2><p>${esc(x.body)}</p></section>`).join("\n")||""}
 
+${s.guide?`  <section><h2>Guía relacionada</h2><div class="rel"><a href="${esc(s.guide.url)}">${esc(s.guide.title)}<span>${esc(s.guide.text)}</span></a></div></section>`:""}
+
 ${s.sources?.length?`  <section><h2>Fuentes y modelo de referencia</h2><ul class="sources">${s.sources.map(x=>`<li><a href="${esc(x.url)}" rel="noopener noreferrer" target="_blank">${esc(x.title)}</a>${x.note?`<span>${esc(x.note)}</span>`:""}</li>`).join("")}</ul></section>`:""}
 
   <h2>Sobre este test</h2>
@@ -126,7 +128,7 @@ ${faqs.length?`  <section><h2>Preguntas frecuentes</h2><div class="faq">${faqs.m
 }
 
 fs.mkdirSync("test", {recursive:true});
-let urls = [`${DOMAIN}/`];
+let urls = [`${DOMAIN}/`,`${DOMAIN}/blog`,`${DOMAIN}/blog/lenguajes-del-amor-en-pareja`];
 for (const t of TESTS){
   const s = SEO[t.id]; if(!s){console.warn("sin SEO:",t.id);continue;}
   fs.writeFileSync(`test/${s.slug}.html`, page(t));

@@ -973,6 +973,7 @@ window.SEO_CONTENT = {
     {title:"Cuáles son los cinco lenguajes del amor",body:"El modelo distingue palabras de afirmación, tiempo de calidad, regalos o detalles, actos de servicio y contacto físico. El test compara tus preferencias para mostrar qué formas de afecto valoras más, sin asumir que solo puedas tener una."},
     {title:"Cómo usar el resultado en pareja",body:"El resultado puede servir para iniciar una conversación sobre necesidades y expectativas. No es una regla fija ni una prueba de compatibilidad: las preferencias cambian según la relación, el momento y el contexto cultural."}
    ],
+   guide:{url:"/blog/lenguajes-del-amor-en-pareja",title:"Lenguajes del amor en pareja: qué dice la ciencia",text:"Los cinco lenguajes, ejemplos cotidianos y límites de la evidencia explicados sin etiquetas rígidas."},
    faqs:[
     {q:"¿Cuál es mi lenguaje primario del amor?",a:"Es la forma de afecto que obtiene mayor puntuación en tus respuestas. Puedes tener dos preferencias muy próximas y expresarlas de manera diferente a como te gusta recibirlas."},
     {q:"¿Los lenguajes del amor tienen validez clínica?",a:"No son un diagnóstico ni una evaluación clínica. El modelo es popular como herramienta de conversación sobre preferencias afectivas, pero no explica por sí solo la calidad de una relación."},
