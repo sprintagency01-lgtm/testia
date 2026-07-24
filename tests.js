@@ -866,7 +866,7 @@ window.SEO_CONTENT = {
     {q:"¿Este test mide la empatía oscura?",a:"No directamente. La llamada empatía oscura combina capacidad empática con rasgos oscuros; aquí se evalúan únicamente los tres rasgos de la Tríada Oscura. Puedes completar también el test de empatía para comparar ambos perfiles."}
    ],
    sources:[
-    {title:"The Short Dark Triad (SD3): A Brief Measure of Dark Personality Traits",url:"https://doi.org/10.1080/00223891.2012.670680",note:"Artículo de Jones y Paulhus que presenta la medida SD3."}
+    {title:"Introducing the Short Dark Triad (SD3): A Brief Measure of Dark Personality Traits",url:"https://doi.org/10.1177/1073191113514105",note:"Artículo de Jones y Paulhus que presenta la medida SD3."}
    ],
    relatedIds:["honesty","empathy","bigfive"]},
  moral:{slug:"test-brujula-moral", metaDesc:"Test de tu brújula moral (Moral Foundations de Haidt): los 5 pilares que guían lo que para ti está bien o mal. Gratis online.",
