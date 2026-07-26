@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escala de CI: media, percentiles y significado | Testia</title>
+<meta name="description" content="Aprende a interpretar la escala de CI: qué significan la media 100, los percentiles, el margen de error y los límites de una puntuación online.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="Testia">
+<link rel="canonical" href="https://www.testia.info/blog/escala-ci-percentiles">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Testia">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Escala de CI: cómo interpretar la media y los percentiles">
+<meta property="og:description" content="Una guía clara para entender una puntuación de CI sin convertir una estimación psicométrica en una etiqueta personal.">
+<meta property="og:url" content="https://www.testia.info/blog/escala-ci-percentiles">
+<meta property="og:image" content="https://www.testia.info/assets/atlas-cover.webp">
+<meta property="article:published_time" content="2026-07-26">
+<meta property="article:modified_time" content="2026-07-26">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Escala de CI: media, percentiles y cómo interpretar una puntuación",
+  "description":"Guía divulgativa sobre puntuaciones estándar de CI, percentiles, incertidumbre de medida y límites de los tests online.",
+  "datePublished":"2026-07-26",
+  "dateModified":"2026-07-26",
+  "author":{"@type":"Organization","name":"Testia"},
+  "publisher":{"@type":"Organization","name":"Testia","url":"https://www.testia.info"},
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.testia.info/blog/escala-ci-percentiles"},
+  "inLanguage":"es"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"¿Cuál es el CI medio?","acceptedAnswer":{"@type":"Answer","text":"En muchas escalas modernas, la media normativa se fija en 100 y la desviación estándar en 15. Esto permite comparar el rendimiento con el grupo de referencia usado para baremar esa prueba."}},
+    {"@type":"Question","name":"¿Qué significa el percentil de CI?","acceptedAnswer":{"@type":"Answer","text":"Indica el porcentaje del grupo normativo que obtuvo una puntuación igual o inferior. Un percentil 75 describe una posición relativa en esa referencia; no significa acertar el 75 % de las preguntas."}},
+    {"@type":"Question","name":"¿CI y percentil son lo mismo?","acceptedAnswer":{"@type":"Answer","text":"No. El CI es una puntuación estándar y el percentil expresa una posición relativa. Se pueden relacionar cuando se conoce la distribución y el baremo de la prueba."}},
+    {"@type":"Question","name":"¿Un test de CI online equivale al WAIS?","acceptedAnswer":{"@type":"Answer","text":"No. Un cuestionario online no reproduce la estandarización, supervisión, amplitud ni interpretación profesional de una evaluación como el WAIS."}},
+    {"@type":"Question","name":"¿Por qué puede cambiar mi puntuación de CI?","acceptedAnswer":{"@type":"Answer","text":"Influyen el error de medida, la atención, el descanso, la práctica, el formato, las condiciones de administración y el grupo normativo. Una puntuación debe interpretarse como una estimación, no como una cantidad exacta."}}
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&amp;family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Instrument Sans',system-ui,sans-serif;background:linear-gradient(180deg,#f4f4f2,#eeefea);color:#17181c;line-height:1.68;font-size:17px;-webkit-font-smoothing:antialiased}a{color:#2f4bd6;text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:980px;margin:0 auto;padding:0 28px}header{position:sticky;top:0;z-index:9;backdrop-filter:blur(10px);background:rgba(244,244,242,.88);border-bottom:1px solid #e4e4e1}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:-.02em;color:#17181c}.nav nav{display:flex;gap:22px}.nav nav a{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6e7075}.article{max-width:760px;margin:0 auto;padding:48px 28px 78px}.crumbs{font-size:.82rem;color:#8a8b90;margin-bottom:24px}.eyebrow{display:inline-block;background:#eeeaf8;color:#5a378f;border-radius:999px;padding:6px 12px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.meta{font-size:.82rem;color:#8a8b90;margin:16px 0 0}h1,h2,h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;letter-spacing:-.03em}h1{font-size:clamp(2.45rem,6vw,4.3rem);line-height:1.01;margin:16px 0 20px}h2{font-size:1.75rem;line-height:1.15;margin:48px 0 16px;padding-bottom:11px;border-bottom:2px solid #17181c}h3{font-size:1.18rem;margin:28px 0 8px}.lead{font-size:1.2rem;color:#34363b;line-height:1.55}.article p{margin:0 0 18px;color:#45474d}.article ul,.article ol{margin:0 0 20px 24px}.article li{margin-bottom:10px;color:#45474d}.note{background:#fff;border:1px solid #e1e1dd;border-left:4px solid #6848a5;border-radius:14px;padding:19px 22px;margin:26px 0;color:#34363b}.table-wrap{overflow-x:auto;margin:24px 0}.rules{width:100%;border-collapse:collapse;min-width:640px;font-size:.94rem}.rules th,.rules td{border:1px solid #deded9;padding:13px;text-align:left;vertical-align:top}.rules th{background:#fff}.rules td{background:rgba(255,255,255,.5)}.cta{background:linear-gradient(135deg,#181f48,#3a2c7c);color:#e9ebfa;border-radius:18px;padding:30px;margin:42px 0}.cta h3{color:#fff;font-size:1.45rem;margin:0 0 9px}.cta p{color:#c3c8ef;margin-bottom:20px}.btn{display:inline-block;background:#fff;color:#32245f;font-weight:700;padding:13px 21px;border-radius:999px}.btn:hover{text-decoration:none;transform:translateY(-1px)}.sources{display:grid;gap:12px}.sources li{list-style:none;background:#fff;border:1px solid #e1e1dd;border-radius:13px;padding:16px 18px}.sources a{font-weight:700}.sources span{display:block;color:#6e7075;font-size:.88rem;margin-top:4px}.related{border-top:1px solid #d8d8d3;margin-top:36px;padding-top:24px}.related a{display:block;font-weight:700;margin:8px 0}.disc{font-size:.8rem;color:#77797e;border-top:1px solid #d8d8d3;padding-top:18px;margin-top:40px}footer{border-top:1px solid #e4e4e1;background:#fff;padding:34px 0;color:#8a8b90;font-size:.85rem}@media(max-width:680px){.article{padding:34px 20px 60px}.wrap{padding:0 20px}.nav nav a:first-child{display:none}.cta{padding:24px}.lead{font-size:1.1rem}}
+</style>
+<script defer src="/_vercel/insights/script.js"></script>
+<script src="/posthog-analytics.js"></script>
+</head>
+<body>
+<header><div class="wrap nav"><a class="brand" href="/">Testia</a><nav><a href="/">Inicio</a><a href="/#catalogo">Tests</a><a href="/blog">Guías</a></nav></div></header>
+<article class="article">
+  <div class="crumbs"><a href="/blog">Guías</a> › Inteligencia</div>
+  <span class="eyebrow">Inteligencia</span>
+  <div class="meta">Publicado y revisado el 26 de julio de 2026 · 10 min</div>
+  <h1>Escala de CI: media, percentiles y cómo interpretar una puntuación</h1>
+  <p class="lead"><strong>La escala de CI transforma el rendimiento en una prueba de inteligencia en una puntuación comparable con un grupo de referencia.</strong> En muchas escalas modernas, 100 representa la media y 15 puntos una desviación estándar. El resultado indica una posición relativa en ese test y ese baremo: no mide tu valor, tu potencial completo ni todas las formas de inteligencia.</p>
+
+  <div class="note"><strong>Respuesta corta:</strong> una puntuación de CI no es el porcentaje de preguntas acertadas. Es una puntuación estándar. El percentil traduce esa puntuación a una comparación más intuitiva, mientras que el intervalo de confianza recuerda que toda medición contiene incertidumbre.</div>
+
+  <h2>¿Qué significa CI y qué representa su escala?</h2>
+  <p>CI significa <strong>cociente intelectual</strong>. La expresión «coeficiente intelectual» también se usa en español, pero el término técnico tradicional es cociente. La definición de la <a href="https://dictionary.apa.org/iq" target="_blank" rel="noopener noreferrer">American Psychological Association</a> lo presenta como una medida estándar del nivel de inteligencia basada en pruebas psicológicas.</p>
+  <p>El CI original se calculaba comparando edad mental y edad cronológica. Las pruebas modernas suelen emplear un <strong>CI de desviación</strong>: la puntuación se sitúa dentro de la distribución de un grupo normativo comparable, normalmente por edad. Por eso 100 no equivale a «100 aciertos» ni a una capacidad absoluta. Significa estar cerca de la media definida por el baremo de esa prueba.</p>
+  <p>Antes de interpretar cualquier cifra conviene preguntar tres cosas: qué prueba se usó, con qué población se baremó y en qué condiciones se administró. Sin esas referencias, un número aislado aporta mucha menos información de la que parece.</p>
+
+  <h2>¿Por qué la media de CI suele ser 100?</h2>
+  <p>La media 100 es una convención útil para expresar resultados. Muchas escalas fijan además una desviación estándar de 15. Esto permite describir la distancia respecto a la media usando una unidad común, aunque los tests partan de tareas y puntuaciones directas diferentes.</p>
+  <p>Si la distribución normativa se aproxima a una curva normal, alrededor del 68 % de las puntuaciones queda entre 85 y 115 —una desviación estándar a cada lado de la media— y cerca del 95 % entre 70 y 130. Son propiedades del modelo de puntuación, no fronteras naturales entre tipos de persona.</p>
+  <div class="table-wrap"><table class="rules">
+    <thead><tr><th>Puntuación estándar</th><th>Distancia de la media</th><th>Percentil aproximado</th><th>Lectura prudente</th></tr></thead>
+    <tbody>
+      <tr><td>70</td><td>−2 desviaciones</td><td>2</td><td>Rendimiento superior al de aproximadamente el 2 % del grupo normativo.</td></tr>
+      <tr><td>85</td><td>−1 desviación</td><td>16</td><td>Rendimiento superior al de aproximadamente el 16 %.</td></tr>
+      <tr><td>100</td><td>Media</td><td>50</td><td>Punto medio aproximado de la distribución de referencia.</td></tr>
+      <tr><td>115</td><td>+1 desviación</td><td>84</td><td>Rendimiento superior al de aproximadamente el 84 %.</td></tr>
+      <tr><td>130</td><td>+2 desviaciones</td><td>98</td><td>Rendimiento superior al de aproximadamente el 98 %.</td></tr>
+    </tbody>
+  </table></div>
+  <p>La tabla es orientativa para una distribución normal con media 100 y desviación 15. El percentil exacto debe proceder del manual y los baremos del instrumento concreto, sobre todo en los extremos de la escala.</p>
+
+  <h2>¿Qué es el percentil de CI?</h2>
+  <p>El <strong>percentil</strong> expresa la posición relativa de una puntuación. Estar en el percentil 75 significa que el resultado es igual o superior al de aproximadamente el 75 % del grupo normativo y que alrededor del 25 % queda por encima. No significa contestar correctamente el 75 % del test.</p>
+  <p>Los percentiles tampoco avanzan a intervalos iguales. Cerca de la media, unos pocos puntos estándar pueden mover bastante la posición percentilar. En los extremos, la misma diferencia de puntos corresponde a cambios percentilares mucho más pequeños. Por eso no conviene sumar, restar o promediar percentiles como si fueran una escala lineal.</p>
+  <p>Para explicar un resultado, el percentil suele ser más intuitivo que la puntuación estándar. Para comparar cambios o calcular perfiles, los profesionales necesitan además puntuaciones estándar, fiabilidad, error de medida y normas aplicables.</p>
+
+  <h2>¿Qué mide realmente un test de CI?</h2>
+  <p>Depende del instrumento. Una batería amplia puede combinar comprensión verbal, razonamiento fluido, memoria de trabajo, velocidad de procesamiento y habilidades visoespaciales. Una prueba breve quizá mida sobre todo matrices, series o rotación espacial. Dos resultados llamados «CI» no son necesariamente intercambiables si el contenido, el tiempo o el baremo cambian.</p>
+  <p>El <a href="https://doi.org/10.1016/j.intell.2014.01.004" target="_blank" rel="noopener noreferrer">International Cognitive Ability Resource (ICAR)</a>, en el que se inspiran algunos formatos del test de Testia, se desarrolló como recurso público para investigación online. Su validación inicial estudió tareas de series, matrices, razonamiento verbal y rotación tridimensional en muestras grandes. Que un formato esté validado para investigación no convierte automáticamente cualquier adaptación breve en una evaluación clínica.</p>
+  <p>Además, un test cognitivo no mide de forma completa creatividad, conocimiento práctico, motivación, curiosidad, regulación emocional, experiencia o oportunidades educativas. Puede aportar una pieza del perfil, no un retrato total.</p>
+
+  <h2>¿Por qué una puntuación debe leerse como un intervalo?</h2>
+  <p>Ninguna prueba mide sin error. La selección de preguntas, el tamaño y la representatividad de la muestra normativa, la fiabilidad del instrumento y las condiciones del día introducen incertidumbre. Por eso una evaluación formal suele acompañar la puntuación observada de un <strong>intervalo de confianza</strong>.</p>
+  <p>Un trabajo metodológico de <a href="https://doi.org/10.3758/s13428-018-1122-8" target="_blank" rel="noopener noreferrer">Oosterhuis y colaboradores</a> mostró que los intervalos de las puntuaciones normativas deberían considerar tanto el error individual como la incertidumbre de la muestra usada para construir las normas. La idea práctica es sencilla: «112» no debe leerse como una cantidad exacta e inmutable.</p>
+  <p>Los <a href="https://www.testingstandards.net/" target="_blank" rel="noopener noreferrer">Standards for Educational and Psychological Testing</a>, elaborados conjuntamente por AERA, APA y NCME, insisten en interpretar los resultados según la finalidad, la evidencia de validez y las limitaciones del test. Cuanto más importante sea la decisión, menos razonable es apoyarla en una cifra online aislada.</p>
+
+  <h2>¿Por qué puede variar tu resultado entre dos tests?</h2>
+  <ul>
+    <li><strong>Contenido distinto.</strong> Un test verbal favorece habilidades diferentes de uno centrado en matrices o rotación.</li>
+    <li><strong>Baremos diferentes.</strong> La edad, el país, la fecha y la composición de la muestra de referencia cambian la comparación.</li>
+    <li><strong>Duración y techo.</strong> Una prueba breve tiene menos información y puede distinguir peor puntuaciones muy altas o muy bajas.</li>
+    <li><strong>Práctica.</strong> Conocer el formato puede mejorar el rendimiento sin que todas las capacidades cognitivas cambien en la misma medida.</li>
+    <li><strong>Condiciones.</strong> Sueño, atención, estrés, interrupciones, idioma y dispositivo influyen en una sesión concreta.</li>
+    <li><strong>Corrección.</strong> No todas las webs explican cómo convierten aciertos en una escala ni con qué muestra comparan.</li>
+  </ul>
+  <p>Una diferencia pequeña no demuestra por sí sola una mejora o un deterioro. Para estudiar cambios reales hacen falta instrumentos apropiados, condiciones comparables y una interpretación que considere el error de medida.</p>
+
+  <h2>¿Cómo interpretar un resultado de CI online?</h2>
+  <ol>
+    <li><strong>Comprueba el alcance.</strong> ¿Es una estimación recreativa, una herramienta de investigación o una prueba profesional?</li>
+    <li><strong>Mira el percentil junto al CI.</strong> Te ayudará a entender la posición relativa sin confundir puntos con aciertos.</li>
+    <li><strong>Revisa las áreas.</strong> Un perfil verbal, numérico o espacial puede aportar más preguntas útiles que el total.</li>
+    <li><strong>Evita etiquetas rígidas.</strong> Las categorías simplifican una distribución continua y varían entre instrumentos.</li>
+    <li><strong>No tomes decisiones clínicas o educativas solo con esa cifra.</strong> Si existe una necesidad real de evaluación, acude a un profesional cualificado.</li>
+  </ol>
+  <p>En Testia, el resultado es orientativo y está pensado para autoconocimiento. La forma más útil de leerlo es observar qué tipos de problema resultaron más fáciles o difíciles y qué condiciones pudieron influir, no compararte compulsivamente ni convertir el número en identidad.</p>
+
+  <div class="cta">
+    <h3>Explora cinco aptitudes cognitivas</h3>
+    <p>Responde 32 preguntas de razonamiento verbal, numérico, lógico, abstracto y espacial. Recibirás una estimación recreativa de CI y percentil, con sus límites explicados.</p>
+    <a class="btn" href="/test/test-de-ci">Hacer el test de CI →</a>
+  </div>
+
+  <h2>Errores frecuentes al leer la escala de CI</h2>
+  <ul>
+    <li>creer que CI 120 significa acertar el 120 % o tener «20 % más inteligencia» que alguien con 100;</li>
+    <li>tratar un percentil como porcentaje de respuestas correctas;</li>
+    <li>comparar cifras de pruebas diferentes sin revisar sus baremos;</li>
+    <li>ignorar el intervalo de confianza y comunicar solo un número exacto;</li>
+    <li>repetir cuestionarios hasta obtener la puntuación deseada;</li>
+    <li>usar una prueba recreativa para autodiagnosticarse o etiquetar a otra persona;</li>
+    <li>suponer que una puntuación resume creatividad, personalidad, esfuerzo o posibilidades futuras.</li>
+  </ul>
+
+  <h2>Preguntas frecuentes</h2>
+  <h3>¿Cuál es el CI medio?</h3>
+  <p>En muchas escalas modernas, la media normativa se fija en 100 y la desviación estándar en 15. La cifra solo cobra sentido respecto al grupo de referencia y al instrumento utilizados.</p>
+  <h3>¿Qué significa el percentil de CI?</h3>
+  <p>Indica el porcentaje del grupo normativo que obtuvo una puntuación igual o inferior. Percentil 75 no equivale a 75 % de aciertos.</p>
+  <h3>¿CI y percentil son lo mismo?</h3>
+  <p>No. El CI es una puntuación estándar; el percentil es una posición relativa. Una tabla normativa permite relacionarlos para una prueba concreta.</p>
+  <h3>¿Un test de CI online equivale al WAIS?</h3>
+  <p>No. Una evaluación profesional controla la administración, usa materiales y baremos específicos e integra varias puntuaciones con contexto. Un test online breve ofrece, como máximo, una orientación.</p>
+  <h3>¿Por qué puede cambiar mi puntuación?</h3>
+  <p>Por error de medida, atención, sueño, práctica, contenido, dispositivo, tiempo disponible y diferencias entre normas. Una pequeña variación no demuestra por sí sola un cambio de capacidad.</p>
+
+  <h2>Fuentes consultadas</h2>
+  <ul class="sources">
+    <li><a href="https://dictionary.apa.org/iq" target="_blank" rel="noopener noreferrer">APA Dictionary of Psychology — Intelligence quotient</a><span>Definición institucional de CI y transición histórica al CI de desviación.</span></li>
+    <li><a href="https://www.testingstandards.net/" target="_blank" rel="noopener noreferrer">Standards for Educational and Psychological Testing — AERA, APA y NCME</a><span>Marco institucional para el uso, la validez y la interpretación responsable de pruebas.</span></li>
+    <li><a href="https://doi.org/10.1016/j.intell.2014.01.004" target="_blank" rel="noopener noreferrer">Condon y Revelle (2014) — International Cognitive Ability Resource</a><span>Desarrollo y validación inicial de un recurso público de capacidad cognitiva para investigación.</span></li>
+    <li><a href="https://doi.org/10.3758/s13428-018-1122-8" target="_blank" rel="noopener noreferrer">Oosterhuis et al. (2019) — Confidence intervals for normed test scores</a><span>Incertidumbre individual y muestral en puntuaciones normativas y percentiles.</span></li>
+  </ul>
+
+  <div class="related">
+    <strong>Sigue explorando</strong>
+    <a href="/test/test-de-ci">Test de CI online: cinco aptitudes y percentil</a>
+    <a href="/test/test-pensamiento-reflexivo">Test de pensamiento reflexivo: intuición frente a análisis</a>
+    <a href="/test/test-necesidad-de-cognicion">Test de necesidad de cognición: cuánto disfrutas pensando</a>
+    <a href="/blog/honestidad-humildad-personalidad">Honestidad-Humildad: cómo interpretar un rasgo sin etiquetas</a>
+  </div>
+
+  <p class="disc"><strong>Aviso y actualización.</strong> Contenido divulgativo revisado el 26/07/2026. Testia ofrece tests recreativos de autoconocimiento: sus resultados son orientativos y no constituyen diagnóstico, evaluación clínica, dictamen educativo ni medida completa de la inteligencia. Para decisiones importantes, consulta a un profesional cualificado que utilice instrumentos apropiados y baremos pertinentes.</p>
+</article>
+<footer><div class="wrap" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px"><span>© 2026 Testia · Guías y tests de autoconocimiento</span><span>Contenido divulgativo · Sin valor diagnóstico</span></div></footer>
+</body>
+</html>

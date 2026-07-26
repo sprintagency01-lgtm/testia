@@ -7,6 +7,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 - 2026-07-23 — `/blog/lenguajes-del-amor-en-pareja` — keyword principal: `lenguajes del amor en pareja` — secundarias: `cuáles son los cinco lenguajes del amor`, `lenguajes del amor ciencia`, `lenguajes del amor compatibilidad`.
 - 2026-07-24 — `/blog/triada-oscura-personalidad` — keyword principal: `tríada oscura de la personalidad` — secundarias: `qué es la tríada oscura`, `narcisismo maquiavelismo psicopatía`, `tres rasgos oscuros`, `cómo interpretar test tríada oscura`.
 - 2026-07-25 — `/blog/honestidad-humildad-personalidad` — keyword principal: `honestidad-humildad en la personalidad` — secundarias: `qué es honestidad humildad HEXACO`, `facetas sinceridad justicia modestia`, `honestidad humildad vs amabilidad`, `cómo interpretar test honestidad humildad`.
+- 2026-07-26 — `/blog/escala-ci-percentiles` — keyword principal: `escala de CI` — secundarias: `qué significa CI`, `percentil CI`, `CI medio 100`, `cómo interpretar resultado test CI`.
 
 ## Intenciones reservadas por landings
 
