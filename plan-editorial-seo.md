@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-08-17 — `/blog/que-es-la-resiliencia-psicologica` — keyword principal: `qué es la resiliencia psicológica` — secundarias: `cómo se mide la resiliencia`, `resiliencia psicológica significado`, `factores de resiliencia`, `se puede aprender la resiliencia`.
 - 2026-08-16 — `/blog/que-es-la-inteligencia-emocional` — keyword principal: `qué es la inteligencia emocional` — secundarias: `componentes de la inteligencia emocional`, `modelo de habilidad inteligencia emocional`, `inteligencia emocional rasgo`, `cómo se mide la inteligencia emocional`.
 - 2026-07-23 — `/blog/lenguajes-del-amor-en-pareja` — keyword principal: `lenguajes del amor en pareja` — secundarias: `cuáles son los cinco lenguajes del amor`, `lenguajes del amor ciencia`, `lenguajes del amor compatibilidad`.
 - 2026-07-24 — `/blog/triada-oscura-personalidad` — keyword principal: `tríada oscura de la personalidad` — secundarias: `qué es la tríada oscura`, `narcisismo maquiavelismo psicopatía`, `tres rasgos oscuros`, `cómo interpretar test tríada oscura`.
