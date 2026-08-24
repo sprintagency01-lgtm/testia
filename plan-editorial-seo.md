@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-08-24 — `/blog/necesidad-de-cognicion` — keyword principal: `necesidad de cognición` — secundarias: `qué es la necesidad de cognición`, `escala de necesidad de cognición`, `necesidad de cognición e inteligencia`, `necesidad de cognición y pensamiento reflexivo`.
 - 2026-08-23 — `/blog/que-es-la-autoestima` — keyword principal: `qué es la autoestima` — secundarias: `autoestima y autoconcepto diferencias`, `escala de Rosenberg`, `cómo se mide la autoestima`, `la autoestima puede cambiar`.
 - 2026-08-17 — `/blog/que-es-la-resiliencia-psicologica` — keyword principal: `qué es la resiliencia psicológica` — secundarias: `cómo se mide la resiliencia`, `resiliencia psicológica significado`, `factores de resiliencia`, `se puede aprender la resiliencia`.
 - 2026-08-16 — `/blog/que-es-la-inteligencia-emocional` — keyword principal: `qué es la inteligencia emocional` — secundarias: `componentes de la inteligencia emocional`, `modelo de habilidad inteligencia emocional`, `inteligencia emocional rasgo`, `cómo se mide la inteligencia emocional`.
