@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-08-28 — `/blog/escala-panas-afecto-positivo-negativo` — keyword principal: `escala PANAS` — secundarias: `afecto positivo y negativo`, `qué mide PANAS`, `cómo interpretar PANAS`, `test PANAS estado de ánimo`.
 - 2026-08-27 — `/blog/inteligencia-fluida-cristalizada` — keyword principal: `inteligencia fluida y cristalizada` — secundarias: `diferencia entre inteligencia fluida y cristalizada`, `ejemplos inteligencia fluida`, `ejemplos inteligencia cristalizada`, `cómo cambian Gf y Gc con la edad`.
 - 2026-08-26 — `/blog/pensamiento-intuitivo-reflexivo` — keyword principal: `pensamiento intuitivo y reflexivo` — secundarias: `qué es el pensamiento reflexivo`, `test de reflexión cognitiva`, `pensamiento rápido y lento`, `Cognitive Reflection Test`.
 - 2026-08-25 — `/blog/cinco-grandes-rasgos-personalidad` — keyword principal: `cinco grandes rasgos de personalidad` — secundarias: `modelo OCEAN`, `Big Five personalidad`, `cuáles son los cinco grandes rasgos`, `cómo interpretar test Big Five`.
