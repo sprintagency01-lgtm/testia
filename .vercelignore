@@ -9,3 +9,6 @@ tarot-deck/*.jpg
 assets/*.png
 
 .env*.local
+
+scripts
+editorial
