@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-09-14 — `/blog/red-flags-en-una-relacion` — keyword principal: `red flags en una relación según la psicología` — secundarias: `qué es una red flag`, `señales de alerta en pareja`, `red flag vs green flag`, `conductas de control en la pareja`.
 - 2026-09-14 — `/blog/que-mide-un-test-de-ideologia-politica` — keyword principal: `qué mide un test de ideología política` — secundarias: `test de orientación política`, `eje económico y social`, `espectro político explicado`, `cómo interpretar un test político`.
 - 2026-09-02 — `/blog/grit-psicologia-perseverancia` — keyword principal: `grit en psicología` — secundarias: `qué es el grit`, `perseverancia y pasión`, `escala grit`, `determinación psicología`.
 - 2026-08-28 — `/blog/escala-panas-afecto-positivo-negativo` — keyword principal: `escala PANAS` — secundarias: `afecto positivo y negativo`, `qué mide PANAS`, `cómo interpretar PANAS`, `test PANAS estado de ánimo`.

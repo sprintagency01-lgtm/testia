@@ -29,7 +29,9 @@
       "test_slug": "test-eres-la-red-flag",
       "test_id": "redflag",
       "why": "La consulta 'cual es tu red flag test' aparece en posición 8,5 y la landing tiene 61 impresiones; una guía refuerza la intención informativa.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-14",
+      "slug": "red-flags-en-una-relacion"
     },
     {
       "keyword": "teoría de los fundamentos morales",
