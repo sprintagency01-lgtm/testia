@@ -3,16 +3,28 @@
   "topics": [
     {
       "keyword": "qué mide un test de ideología política",
-      "secondary": ["test de orientación política", "eje económico y social", "espectro político explicado", "cómo interpretar un test político"],
+      "secondary": [
+        "test de orientación política",
+        "eje económico y social",
+        "espectro político explicado",
+        "cómo interpretar un test político"
+      ],
       "intent": "Entender qué modelos usan los tests de ideología (ejes económico y social, brújula política) y sus límites.",
       "test_slug": "test-cuanto-facha-eres",
       "test_id": "politico",
       "why": "Es la landing con más tráfico orgánico (13 clics, posición 6 en Search Console) y no tiene guía informativa que la apoye.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-14",
+      "slug": "que-mide-un-test-de-ideologia-politica"
     },
     {
       "keyword": "red flags en una relación según la psicología",
-      "secondary": ["qué es una red flag", "señales de alerta en pareja", "red flag vs green flag", "conductas de control en la pareja"],
+      "secondary": [
+        "qué es una red flag",
+        "señales de alerta en pareja",
+        "red flag vs green flag",
+        "conductas de control en la pareja"
+      ],
       "intent": "Distinguir señales de alerta serias de manías o incompatibilidades, con base en investigación sobre relaciones.",
       "test_slug": "test-eres-la-red-flag",
       "test_id": "redflag",
@@ -21,7 +33,12 @@
     },
     {
       "keyword": "teoría de los fundamentos morales",
-      "secondary": ["fundamentos morales de Haidt", "cuidado justicia lealtad autoridad pureza", "brújula moral qué es", "cómo se mide la moralidad"],
+      "secondary": [
+        "fundamentos morales de Haidt",
+        "cuidado justicia lealtad autoridad pureza",
+        "brújula moral qué es",
+        "cómo se mide la moralidad"
+      ],
       "intent": "Explicar el modelo de fundamentos morales, cómo se mide con cuestionarios y qué no puede decir de una persona.",
       "test_slug": "test-brujula-moral",
       "test_id": "moral",
@@ -30,7 +47,12 @@
     },
     {
       "keyword": "escala de satisfacción con la vida",
-      "secondary": ["SWLS qué es", "cómo se mide la felicidad", "bienestar subjetivo", "diferencia entre felicidad y satisfacción vital"],
+      "secondary": [
+        "SWLS qué es",
+        "cómo se mide la felicidad",
+        "bienestar subjetivo",
+        "diferencia entre felicidad y satisfacción vital"
+      ],
       "intent": "Entender la escala SWLS de Diener, su puntuación y la diferencia entre afecto y satisfacción vital.",
       "test_slug": "test-de-felicidad",
       "test_id": "swls",
@@ -39,7 +61,12 @@
     },
     {
       "keyword": "valores personales de Schwartz",
-      "secondary": ["teoría de los valores humanos", "cuáles son los 10 valores de Schwartz", "test de valores personales", "cómo saber cuáles son mis valores"],
+      "secondary": [
+        "teoría de los valores humanos",
+        "cuáles son los 10 valores de Schwartz",
+        "test de valores personales",
+        "cómo saber cuáles son mis valores"
+      ],
       "intent": "Explicar el círculo de valores de Schwartz, cómo se mide y cómo usarlo para tomar decisiones.",
       "test_slug": "test-de-valores",
       "test_id": "values",
@@ -48,7 +75,12 @@
     },
     {
       "keyword": "maximizador o satisfacedor",
-      "secondary": ["maximizing vs satisficing", "por qué me cuesta tomar decisiones", "paradoja de la elección", "escala de maximización"],
+      "secondary": [
+        "maximizing vs satisficing",
+        "por qué me cuesta tomar decisiones",
+        "paradoja de la elección",
+        "escala de maximización"
+      ],
       "intent": "Explicar la distinción de Schwartz entre maximizar y conformarse, y su relación con la satisfacción tras decidir.",
       "test_slug": "test-maximizador",
       "test_id": "maximizer",
@@ -57,7 +89,12 @@
     },
     {
       "keyword": "modelo RIASEC de Holland",
-      "secondary": ["tipos de personalidad vocacional", "test vocacional cómo funciona", "código Holland", "qué carrera estudiar según mi personalidad"],
+      "secondary": [
+        "tipos de personalidad vocacional",
+        "test vocacional cómo funciona",
+        "código Holland",
+        "qué carrera estudiar según mi personalidad"
+      ],
       "intent": "Explicar los seis tipos de Holland, cómo se calcula el código y qué límites tiene para elegir estudios.",
       "test_slug": "test-vocacional",
       "test_id": "riasec",
@@ -66,7 +103,12 @@
     },
     {
       "keyword": "test de personalidad corto es fiable",
-      "secondary": ["TIPI diez ítems", "test de personalidad rápido", "cuántas preguntas necesita un test de personalidad", "fiabilidad de los tests breves"],
+      "secondary": [
+        "TIPI diez ítems",
+        "test de personalidad rápido",
+        "cuántas preguntas necesita un test de personalidad",
+        "fiabilidad de los tests breves"
+      ],
       "intent": "Explicar qué gana y qué pierde un inventario breve como el TIPI frente a uno largo.",
       "test_slug": "test-de-personalidad-rapido",
       "test_id": "tipi",
@@ -75,7 +117,12 @@
     },
     {
       "keyword": "cómo interpretar un test de personalidad",
-      "secondary": ["qué significa mi resultado de personalidad", "percentil en un test de personalidad", "errores al interpretar un test", "los tests de personalidad son fiables"],
+      "secondary": [
+        "qué significa mi resultado de personalidad",
+        "percentil en un test de personalidad",
+        "errores al interpretar un test",
+        "los tests de personalidad son fiables"
+      ],
       "intent": "Guía transversal sobre percentiles, deseabilidad social, estabilidad y límites de los autoinformes.",
       "test_slug": "test-de-personalidad",
       "test_id": "bigfive",
@@ -84,7 +131,12 @@
     },
     {
       "keyword": "diferencia entre test psicológico y test recreativo",
-      "secondary": ["test psicológico validado", "qué es un test estandarizado", "los tests online son fiables", "quién puede aplicar un test psicológico"],
+      "secondary": [
+        "test psicológico validado",
+        "qué es un test estandarizado",
+        "los tests online son fiables",
+        "quién puede aplicar un test psicológico"
+      ],
       "intent": "Explicar validez, fiabilidad, baremos y por qué un test online de autoconocimiento no es una evaluación clínica.",
       "test_slug": "test-de-ci",
       "test_id": "iq",
