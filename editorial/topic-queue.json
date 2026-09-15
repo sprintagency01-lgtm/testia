@@ -45,7 +45,9 @@
       "test_slug": "test-brujula-moral",
       "test_id": "moral",
       "why": "El test de brújula moral generó un checkout y no tiene guía; el tema tiene búsqueda estable y poca competencia en español.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-15",
+      "slug": "teoria-de-los-fundamentos-morales"
     },
     {
       "keyword": "escala de satisfacción con la vida",
