@@ -61,7 +61,9 @@
       "test_slug": "test-de-felicidad",
       "test_id": "swls",
       "why": "Sin guía; enlaza de forma natural con las guías de PANAS y autoestima ya publicadas.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-16",
+      "slug": "escala-de-satisfaccion-con-la-vida"
     },
     {
       "keyword": "valores personales de Schwartz",
