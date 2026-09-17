@@ -77,7 +77,9 @@
       "test_slug": "test-de-valores",
       "test_id": "values",
       "why": "La landing tiene 28 impresiones en posición 20 sin guía de apoyo; la búsqueda 'cuáles son mis valores' es de cola larga.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-17",
+      "slug": "valores-personales-de-schwartz"
     },
     {
       "keyword": "maximizador o satisfacedor",
