@@ -93,7 +93,9 @@
       "test_slug": "test-maximizador",
       "test_id": "maximizer",
       "why": "Tema con búsqueda de cola larga y casi sin contenido serio en español; test sin guía.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-18",
+      "slug": "maximizador-o-satisfacedor"
     },
     {
       "keyword": "modelo RIASEC de Holland",
@@ -149,6 +151,76 @@
       "test_slug": "test-de-ci",
       "test_id": "iq",
       "why": "El test de CI es el que más lleva al pago; una guía honesta sobre límites refuerza la confianza antes del paywall.",
+      "status": "pending"
+    },
+    {
+      "keyword": "arrepentimiento en la toma de decisiones",
+      "secondary": [
+        "por qué me arrepiento de lo que elijo",
+        "arrepentimiento anticipado",
+        "coste de oportunidad psicología",
+        "cómo dejar de darle vueltas a una decisión"
+      ],
+      "intent": "Entender qué es el arrepentimiento en psicología de la decisión, cuándo aparece y qué lo alimenta tras elegir.",
+      "test_slug": "test-maximizador",
+      "test_id": "maximizer",
+      "why": "Continúa de forma natural la guía de maximización recién publicada y cubre una consulta de cola larga sin competencia fuerte en español.",
+      "status": "pending"
+    },
+    {
+      "keyword": "efecto Barnum en los tests de personalidad",
+      "secondary": [
+        "efecto Forer",
+        "por qué me identifico con el horóscopo",
+        "descripciones vagas que parecen personales",
+        "cómo saber si un test es serio"
+      ],
+      "intent": "Explicar por qué las descripciones genéricas suenan acertadas y cómo distinguir un resultado informativo de uno que encaja con cualquiera.",
+      "test_slug": "test-de-personalidad",
+      "test_id": "bigfive",
+      "why": "Consulta informativa de cola larga, casi sin contenido serio en español, y refuerza la honestidad del sitio antes del paywall.",
+      "status": "pending"
+    },
+    {
+      "keyword": "narcisismo grandioso y vulnerable",
+      "secondary": [
+        "tipos de narcisismo",
+        "diferencia entre narcisismo grandioso y vulnerable",
+        "narcisismo encubierto",
+        "narcisismo rasgo y trastorno"
+      ],
+      "intent": "Distinguir las dos caras del narcisismo como rasgo y separarlas del trastorno clínico.",
+      "test_slug": "test-triada-oscura",
+      "test_id": "darktriad",
+      "why": "La guía de tríada oscura no desglosa los subtipos; es una búsqueda de cola larga con demanda estable.",
+      "status": "pending"
+    },
+    {
+      "keyword": "deseabilidad social en los cuestionarios",
+      "secondary": [
+        "qué es la deseabilidad social",
+        "responder lo que queda bien",
+        "escalas de sinceridad",
+        "sesgos al responder un test"
+      ],
+      "intent": "Explicar por qué la gente se describe mejor de lo que es al responder un autoinforme y cómo se controla ese sesgo.",
+      "test_slug": "test-honestidad-humildad",
+      "test_id": "honesty",
+      "why": "Tema transversal de cola larga que enlaza con casi todas las guías y con la landing de honestidad-humildad, que no tiene guía de apoyo sobre sesgos.",
+      "status": "pending"
+    },
+    {
+      "keyword": "qué es la alexitimia",
+      "secondary": [
+        "dificultad para identificar emociones",
+        "alexitimia y inteligencia emocional",
+        "escala TAS-20",
+        "no sé lo que siento"
+      ],
+      "intent": "Describir la dificultad para identificar y describir emociones, cómo se mide y su relación con la inteligencia emocional.",
+      "test_slug": "test-inteligencia-emocional",
+      "test_id": "ei",
+      "why": "Búsqueda de cola larga con intención claramente informativa y poca competencia de alta autoridad en español; conecta con la guía de inteligencia emocional.",
       "status": "pending"
     }
   ]
