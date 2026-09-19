@@ -109,7 +109,9 @@
       "test_slug": "test-vocacional",
       "test_id": "riasec",
       "why": "Búsqueda estacional alta (orientación académica) y test sin guía.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-19",
+      "slug": "modelo-riasec-de-holland"
     },
     {
       "keyword": "test de personalidad corto es fiable",
