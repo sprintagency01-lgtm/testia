@@ -1,5 +1,6 @@
 // GET /api/verify-payment?session_id=cs_...  -> verifica el pago contra Stripe.
-// Devuelve { paid: true/false, testId }. El resultado solo debe revelarse si paid === true.
+// Devuelve { paid, testId, plan }. plan es "single" (un resultado) o "pass" (todos los tests).
+// El resultado solo debe revelarse si paid === true.
 // Sin dependencias: usa la API REST de Stripe con fetch.
 // Requiere la variable de entorno STRIPE_SECRET_KEY en Vercel.
 module.exports = async (req, res) => {
@@ -9,7 +10,7 @@ module.exports = async (req, res) => {
     return;
   }
   const sid = (req.query && req.query.session_id) || '';
-  if (!sid) {
+  if (!sid || !/^cs_(live|test)_[A-Za-z0-9]+$/.test(sid)) {
     res.status(400).json({ paid: false, error: 'falta session_id' });
     return;
   }
@@ -23,7 +24,8 @@ module.exports = async (req, res) => {
       return;
     }
     const paid = s.payment_status === 'paid';
-    res.status(200).json({ paid: !!paid, testId: (s.metadata && s.metadata.testId) || null });
+    const md = s.metadata || {};
+    res.status(200).json({ paid: !!paid, testId: md.testId || null, plan: md.plan === 'pass' ? 'pass' : 'single' });
   } catch (e) {
     res.status(200).json({ paid: false, error: e.message });
   }

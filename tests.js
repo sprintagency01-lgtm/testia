@@ -240,6 +240,8 @@ window.TESTS = [
  blurb:"Lógica, secuencias y patrones. Descubre tu coeficiente intelectual estimado.",
  instrument:"Estilo ICAR (ítems propios) · escala norm-referenciada", license:"🟢",
  mode:"correct", duration:300, scoring:"iq",
+ premiumTitle:"Ya sabes tu categoría. Descubre tu CI exacto",
+ premiumPitch:"Tu CI estimado con el número, tu percentil frente a la población y el desglose por aptitud con una lectura de cada bloque. La carta compartible se actualiza con tu cifra.",
  interp:{
   verbal:{hi:"Resuelves con soltura analogías, relaciones entre palabras e intrusos semánticos. Es la aptitud más ligada a lo aprendido: vocabulario, lectura y práctica con el lenguaje.",mid:"Aciertas parte de las analogías verbales y fallas cuando la relación es menos evidente. Suele mejorar con lectura variada y con el hábito de preguntarse qué tipo de relación une dos palabras.",lo:"Las relaciones entre palabras te han costado más que otros bloques. Puede deberse a vocabulario, a la prisa o a que el formato de analogía te resulta poco familiar. Es el área que más responde a la práctica."},
   numerico:{hi:"Detectas la regla de una serie numérica con rapidez, incluso cuando combina dos operaciones. Indica facilidad para trabajar con cantidades y patrones.",mid:"Reconoces las series sencillas y te atascas cuando la regla cambia a mitad o mezcla sumas y productos. Un truco útil es calcular las diferencias entre términos antes de buscar la regla.",lo:"Las series numéricas han sido tu bloque más flojo. En un test con tiempo, muchos fallos aquí son de velocidad más que de capacidad: la regla existe, pero cuesta verla con el reloj corriendo."},

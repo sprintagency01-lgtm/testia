@@ -265,7 +265,7 @@
   .lbi .x{position:absolute;top:14px;right:16px;background:rgba(255,255,255,.08);border:1px solid #4b3f86;color:#e9ebfa;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.1rem;font-family:inherit}
   @media(max-width:620px){.lbi{grid-template-columns:1fr;gap:16px;padding:22px}.lbi .cardwrap img{width:58%;margin:0 auto}}
   /* === responsive + a11y === */
-  .pricegrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:stretch;max-width:980px}
+  .pricegrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:stretch;max-width:1080px}
   .panel2{display:grid;grid-template-columns:1.3fr .7fr;gap:34px;align-items:center}
   @media(max-width:720px){.pricegrid{grid-template-columns:1fr}.panel2{grid-template-columns:1fr;gap:18px;text-align:left}.panel2 .r{text-align:left!important}}
   :focus-visible{outline:2.5px solid var(--cobalt);outline-offset:2px;border-radius:6px}
@@ -279,6 +279,11 @@
   .paywallcard .btn{font-size:1.04rem;padding:18px 34px}#resPremium.locked{filter:blur(7px);min-height:220px}
   .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .pwprice{font-family:var(--disp);font-weight:700}
+  .pwalt{margin-top:12px;display:flex;flex-direction:column;gap:6px;align-items:center}.pwalt .btn{font-size:.9rem;padding:13px 22px}.pwalt span{font-size:.8rem;color:var(--mut)}
+  .pwrecover{display:inline-block;margin-top:14px;font-size:.78rem;color:var(--mut);text-decoration:underline;cursor:pointer}
+  .mailbox{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;text-align:left}.mbt{font-family:var(--disp);font-weight:600;font-size:1.05rem}.mailbox p{color:var(--ink3);font-size:.9rem;margin:4px 0 12px;line-height:1.45}
+  .mbrow{display:flex;gap:8px}.mbrow input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line3);border-radius:12px;font:inherit;font-size:.95rem;background:#fff}.mbrow .btn{padding:13px 18px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+  .mbopt{display:flex;gap:8px;font-size:.84rem;color:var(--ink3);margin-top:10px;align-items:center;cursor:pointer}.mbnote{font-size:.74rem;color:var(--mut);margin-top:6px}
   details summary::-webkit-details-marker{display:none}
   details summary::marker{content:""}
   details summary{position:relative;padding-right:30px;outline:none}
@@ -443,7 +448,11 @@
         </details>
         <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
           <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Qué incluye el resultado completo de 1,99 €?</summary>
-          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Tu puntuación en cada dimensión, la interpretación de cada una y tu posición frente a la media. El arquetipo, su descripción y la carta compartible son gratis. Es un pago único por resultado, sin suscripción.</p>
+          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Tu puntuación en cada dimensión y una lectura de qué significa cada una en tu caso; en el test de CI, además, tu número exacto y tu percentil. El arquetipo, su descripción y la carta compartible son gratis. Es un pago único por resultado, sin suscripción.</p>
+        </details>
+        <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
+          <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Qué es el pase de 4,99 €?</summary>
+          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Un pago único que desbloquea el resultado completo de los 23 tests, las veces que quieras. Queda guardado en tu navegador y, si lo pierdes, lo recuperas con el email que usaste al pagar. Sin cuentas ni suscripción.</p>
         </details>
         <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
           <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Esto es un diagnóstico?</summary>
@@ -466,7 +475,8 @@
   "mainEntity": [
     {"@type":"Question","name":"¿En qué se basan los tests?","acceptedAnswer":{"@type":"Answer","text":"Cada test indica el modelo o instrumento que toma como referencia, como Big Five/IPIP, HEXACO, SD3, ECR o RIASEC. Las adaptaciones son divulgativas y no equivalen a administrar la versión original en condiciones profesionales."}},
     {"@type":"Question","name":"¿Guardáis mis respuestas?","acceptedAnswer":{"@type":"Answer","text":"No almacenamos respuestas que te identifiquen. Calculamos tu resultado en el momento y no creamos ningún perfil. Sin cuentas ni registro."}},
-    {"@type":"Question","name":"¿Qué incluye el resultado completo de 1,99 €?","acceptedAnswer":{"@type":"Answer","text":"Tu puntuación en cada dimensión, su interpretación y tu posición frente a la media. El arquetipo, su descripción y la carta compartible son gratis. Pago único por resultado, sin suscripción."}},
+    {"@type":"Question","name":"¿Qué incluye el resultado completo de 1,99 €?","acceptedAnswer":{"@type":"Answer","text":"Tu puntuación en cada dimensión y una lectura de qué significa cada una; en el test de CI, tu número exacto y tu percentil. El arquetipo, su descripción y la carta compartible son gratis. Pago único por resultado, sin suscripción."}},
+    {"@type":"Question","name":"¿Qué es el pase de 4,99 €?","acceptedAnswer":{"@type":"Answer","text":"Un pago único que desbloquea el resultado completo de los 23 tests, las veces que quieras. Se guarda en el navegador y se recupera con el email del pago. Sin cuentas ni suscripción."}},
     {"@type":"Question","name":"¿Esto es un diagnóstico?","acceptedAnswer":{"@type":"Answer","text":"No. Testia es una herramienta de autoconocimiento y entretenimiento; no sustituye una evaluación ni un diagnóstico profesional."}},
     {"@type":"Question","name":"¿Necesito registrarme o instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No. Entras, eliges un test, respondes y ves tu resultado. Funciona en el navegador, en móvil y en ordenador."}}
   ]
@@ -538,6 +548,13 @@
           <button class="btn out" style="padding:15px 18px;font-size:1rem" onclick="restart()">↻</button>
         </div>
         <p class="upper" style="font-size:.72rem;color:var(--mut);text-align:center;margin:14px 0 0">Comparte en feed (4:5) o stories (9:16)</p>
+        <form class="mailbox" id="mailbox" onsubmit="sendResult(event)">
+          <div class="mbt" id="mbTitle">Recíbelo por email</div>
+          <p id="mbLead">Te enviamos este resultado para que no lo pierdas.</p>
+          <div class="mbrow"><input type="email" id="mbEmail" placeholder="tu@email.com" required autocomplete="email" maxlength="120"><button class="btn" type="submit" id="mbBtn" data-analytics-name="Enviar resultado por email">Enviar</button></div>
+          <label class="mbopt"><input type="checkbox" id="mbOpt"> Avísame cuando haya tests nuevos</label>
+          <div class="mbnote">Solo para enviarte el resultado. Sin spam, te das de baja en un clic.</div>
+        </form>
       </div>
     </div></div>
     <div class="wrap">
@@ -580,10 +597,23 @@
           <div class="feat"><span style="color:#1f8a6d">✓</span> Todo lo gratis, más:</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Tu puntuación en cada dimensión</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Interpretación por dimensión</div>
-          <div class="feat"><span style="color:#1f8a6d">✓</span> Comparación frente a la media</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> En el test de CI, tu número y percentil</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Sin suscripción ni cuotas</div>
         </div>
         <button class="btn" style="padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-top:28px" onclick="go('catalog')">Elegir un test →</button>
+      </div>
+      <div class="price">
+        <div class="upper" style="font-size:.72rem;color:var(--mut)">Pase</div>
+        <h3 class="disp" style="font-weight:600;font-size:1.6rem;margin:8px 0 0">Todos los tests</h3>
+        <div class="amt">4,99 €</div>
+        <div style="color:var(--mut);font-size:.86rem;margin-bottom:26px">Pago único · para siempre</div>
+        <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Resultado completo en los 23 tests</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Repite cuando quieras</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Se recupera con el email del pago</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Sin suscripción ni cuotas</div>
+        </div>
+        <button class="btn out" style="padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-top:28px" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Comprar el pase →</button>
       </div>
     </div>
     <div id="footer4"></div>
@@ -630,9 +660,9 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20260920"></script>
+<script src="tests.js?v=20260921"></script>
 <script src="tarot.js"></script>
-<script src="iq.js?v=20260920"></script>
+<script src="iq.js?v=20260921"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -862,11 +892,15 @@ function finish(){
           const c=its.reduce((n,x)=>n+(answers[items.indexOf(x)]===x.a?1:0),0);
           return {lab:T.domains[k], p:its.length?c/its.length*100:0};});
       }
-      r.name=String(iq);r.role="CI · "+cls;r.eyebrow="Tu informe cognitivo";
-      r.desc=`Tu puntuación te sitúa en la categoría «${cls}». Superas a aproximadamente el ${pc.toFixed(0)}% de la población. Abajo, tu desglose por aptitud cognitiva.`;
+      r.name=cls;r.role="Tu CI estimado";r.eyebrow="Tu informe cognitivo";
+      r.desc=`Tu puntuación te sitúa en la categoría «${cls}». El número exacto, tu percentil frente a la población y el desglose por aptitud están en la lectura completa.`;
       r.traits=[cls];r.mono="CI";
-      r.stats=[{v:pc.toFixed(0)+"%",l:"percentil"},{v:`${correct}/${total}`,l:"aciertos"}];
-      r.card={mono:String(iq),name:cls,role:"Coeficiente intelectual",stat:`TOP ${(100-pc).toFixed(0)}% MUNDIAL`};
+      if(r.bars)r.bars.forEach(b=>{b.premium=true;});
+      r.stats=[{v:String(iq),l:"CI estimado"},{v:pc.toFixed(0)+"%",l:"percentil"},{v:`${correct}/${total}`,l:"aciertos"}];
+      r.card={mono:"CI",name:cls,role:"Coeficiente intelectual",stat:cls.toUpperCase()};
+      // Al desbloquear, el resultado y la carta pasan a mostrar el número.
+      r.full={name:String(iq),role:"CI · "+cls,desc:`Tu CI estimado es ${iq}, categoría «${cls}». Superas aproximadamente al ${pc.toFixed(0)}% de la población. Abajo, tu desglose por aptitud cognitiva.`,
+        card:{mono:String(iq),name:cls,role:"Coeficiente intelectual",stat:`TOP ${(100-pc).toFixed(0)}% MUNDIAL`},bars:(r.bars||[]).map(b=>({lab:b.lab,p:b.p}))};
       if(T.interp||T.overallInterp){r.analysis=[];
         if(T.overallInterp&&T.overallInterp[cls])r.analysis.push({lab:'Lectura global',p:pc,band:cls,text:T.overallInterp[cls]});
         if(T.domains&&T.interp)Object.keys(T.domains).forEach(k=>{const its=items.filter(x=>x.d===k);const c=its.reduce((n,x)=>n+(answers[items.indexOf(x)]===x.a?1:0),0);
@@ -946,36 +980,85 @@ function finish(){
   }
   lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length});renderResult(r);go('result');drawCard(r);
   trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:r.name,tier:'free'});
+  try{$('mbOpt').checked=false;}catch(e){}
   if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(lastResult)drawCard(lastResult);});}
   lockResult();
+  checkPass();
 }
 let paywallSeen=false;
 function lockResult(){
   const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
   if(!hasPremium){$('paywall').style.display='none';$('resPremium').classList.remove('locked');return;}
+  const pitch=T.premiumPitch||`Tu puntuación en cada dimensión de «${T.name}» y una lectura de qué significa cada una en tu caso.`;
   $('paywall').innerHTML=`<div class="paywallcard">
     <div class="pwemoji">🔍</div>
-    <h2>Ya conoces tu arquetipo. Desbloquea la lectura completa</h2>
-    <p>Tu puntuación en cada dimensión de «${T.name}» y una lectura de qué significa cada una en tu caso.</p>
-    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock()">Ver mi lectura completa · <span class="pwprice">1,99&nbsp;€</span></button>
+    <h2>${T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
+    <p>${pitch}</p>
+    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">Ver mi lectura completa · <span class="pwprice">1,99&nbsp;€</span></button>
+    <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros 22 tests, para siempre.</span></div>
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción · la carta ya es tuya</div>
+    <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
   $('paywall').style.display='block';
   $('resPremium').classList.add('locked');
+  updateMailbox();
   paywallSeen=false;
   if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
   else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});}
 }
-function revealResult(){$('paywall').style.display='none';$('resPremium').classList.remove('locked');window.scrollTo({top:0,behavior:'smooth'});}
-async function payAndUnlock(){
+function revealResult(){
+  if(lastResult&&lastResult.full){Object.assign(lastResult,lastResult.full);delete lastResult.full;renderResult(lastResult);try{drawCard(lastResult);}catch(e){}}
+  $('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();window.scrollTo({top:0,behavior:'smooth'});}
+function passSid(){try{const p=JSON.parse(localStorage.getItem('atlas_pass'));return p&&p.sid||null;}catch(e){return null;}}
+async function checkPass(){
+  const sid=passSid();if(!sid)return;
+  try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(sid));const d=await r.json();
+    if(d.paid&&d.plan==='pass'){revealResult();trackEvent('pass_unlocked',{test_id:T.id,test_name:T.name});toast('Pase activo: resultado completo desbloqueado ✓');}
+    else{try{localStorage.removeItem('atlas_pass');}catch(e){}}
+  }catch(e){}
+}
+async function recoverPass(){
+  let email=($('mbEmail')&&$('mbEmail').value.trim())||'';
+  if(!email){email=(window.prompt('Escribe el email que usaste al comprar el pase:')||'').trim();}
+  if(!email)return;
+  trackEvent('pass_recover_attempt',{test_id:T&&T.id});
+  toast('Buscando tu pase…');
+  try{const r=await fetch('/api/recover-pass?email='+encodeURIComponent(email));const d=await r.json();
+    if(d.found&&d.sid){try{localStorage.setItem('atlas_pass',JSON.stringify({sid:d.sid}));}catch(e){}await checkPass();}
+    else toast('No encontramos un pase con ese email.');
+  }catch(e){toast('No se pudo comprobar el pase. Inténtalo de nuevo.');}
+}
+function updateMailbox(){
+  const box=$('mailbox');if(!box)return;
+  const full=!$('resPremium').classList.contains('locked');
+  $('mbTitle').textContent=full?'Recibe tu lectura completa por email':'Recíbelo por email';
+  $('mbLead').textContent=full?'Te enviamos el informe completo, con todas las dimensiones, para que lo tengas siempre.':'Te enviamos este resultado para que no lo pierdas.';
+  $('mbBtn').disabled=false;$('mbBtn').textContent='Enviar';
+  try{const e=localStorage.getItem('atlas_email');if(e&&!$('mbEmail').value)$('mbEmail').value=e;}catch(e){}
+}
+async function sendResult(ev){
+  ev.preventDefault();if(!lastResult||!T)return;
+  const email=$('mbEmail').value.trim(),optin=$('mbOpt').checked,tier=$('resPremium').classList.contains('locked')?'free':'full';
+  const r=lastResult,payload={email,optin,testId:T.id,testName:T.name,tier,result:{name:r.name,role:r.role,desc:r.desc,traits:r.traits||[],bars:(r.bars||[]).map(b=>({lab:b.lab,p:b.p,tag:b.tag||''})),stats:r.stats||[],analysis:(r.analysis||[]).map(a=>({lab:a.lab,band:a.band,text:a.text}))}};
+  $('mbBtn').disabled=true;$('mbBtn').textContent='Enviando…';
+  try{const res=await fetch('/api/send-result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await res.json();
+    if(!res.ok||!d.ok)throw new Error(d.error||'error');
+    try{localStorage.setItem('atlas_email',email);}catch(e){}
+    trackEvent('email_submitted',{test_id:T.id,test_name:T.name,tier,optin});
+    $('mbBtn').textContent='Enviado ✓';toast('Te lo hemos enviado. Mira también en promociones o spam.');
+  }catch(e){$('mbBtn').disabled=false;$('mbBtn').textContent='Enviar';toast('No se pudo enviar. Revisa el email e inténtalo de nuevo.');}
+}
+async function payAndUnlock(plan){
+  plan=plan==='pass'?'pass':'single';
   try{
-    trackEvent('checkout_started',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});
+    const testId=T?T.id:'pass',testName=T?T.name:'Pase Testia';
+    trackEvent('checkout_started',{test_id:testId,test_name:testName,plan,price:plan==='pass'?4.99:1.99,currency:'EUR'});
     const res=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({testId:T.id,testName:T.name})});
+      body:JSON.stringify({testId,testName,plan})});
     const data=await res.json();
     if(!data.url) throw new Error(data.error||'sin URL de pago');
     // Asociamos el resultado a ESTA sesión de pago; solo se revelará si el servidor confirma el cobro.
-    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T.id,r:lastResult}));}catch(e){}
+    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan}));}catch(e){}
     window.location.href=data.url;
   }catch(e){
     toast('No se pudo iniciar el pago. Inténtalo de nuevo.');
@@ -987,18 +1070,23 @@ async function handleReturn(){
   if(!sid) return;                       // sin session_id no se desbloquea nada
   let pend=null; try{pend=JSON.parse(localStorage.getItem('atlas_pending'));}catch(e){}
   toast('Verificando tu pago…');
-  let ok=false;
+  let ok=false,plan='single';
   for(let i=0;i<8;i++){                   // el cobro puede tardar un instante en confirmarse: reintentos
     try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(sid));
-      const d=await r.json(); if(d.paid){ok=true;break;}}catch(e){}
+      const d=await r.json(); if(d.paid){ok=true;plan=d.plan==='pass'?'pass':'single';break;}}catch(e){}
     await new Promise(r=>setTimeout(r,1500));
   }
   try{history.replaceState({},'',location.pathname);}catch(e){}
+  if(ok&&plan==='pass'){try{localStorage.setItem('atlas_pass',JSON.stringify({sid}));}catch(e){}}
   if(ok && pend && pend.r && pend.sid===sid){
     T=TESTS.find(t=>t.id===pend.testId)||T;lastResult=pend.r;renderResult(pend.r);go('result');revealResult();try{drawCard(pend.r);}catch(e){}
-    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,revenue:1.99,currency:'EUR'});
+    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:1.99,currency:'EUR'});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
-    toast('¡Pago confirmado! Resultado desbloqueado ✓');
+    toast(plan==='pass'?'¡Pase activo! Resultado completo desbloqueado ✓':'¡Pago confirmado! Resultado desbloqueado ✓');
+  }else if(ok&&plan==='pass'){
+    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR'});
+    try{localStorage.removeItem('atlas_pending');}catch(e){}
+    toast('¡Pase activo! Elige un test: verás el resultado completo.');go('catalog');
   }else{
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
