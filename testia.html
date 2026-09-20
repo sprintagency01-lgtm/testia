@@ -896,7 +896,7 @@ function finish(){
       r.card={mono:String(Math.round(p)),name:b.label,role:T.name,stat:`${Math.round(p)} / 100`};
       if(T.axes&&T.interp){const ax=axisPcts(),AL=T.axisLabels||{};
         const lab=(k,lv)=>(AL[k]&&AL[k][lv])||{lo:'Bajo',mid:'Medio',hi:'Alto'}[lv];
-        r.bars=r.bars.concat(Object.keys(T.axes).map(k=>({lab:T.axes[k],p:ax[k],tag:lab(k,LV3(ax[k]))})));
+        r.bars=r.bars.concat(Object.keys(T.axes).map(k=>({lab:T.axes[k],p:ax[k],tag:lab(k,LV3(ax[k])),premium:true})));
         r.stats=Object.keys(T.axes).map(k=>({v:lab(k,LV3(ax[k])),l:T.axes[k].toLowerCase()}));
         r.analysis=Object.keys(T.axes).map(k=>{const lv=LV3(ax[k]);return {lab:T.axes[k],p:ax[k],band:lab(k,lv),text:(T.interp[k]&&T.interp[k][lv])||''};});
         if(T.combo){const ck=LV3(ax.E)+'-'+LV3(ax.C);r.analysis.push({lab:'Lectura conjunta',p,band:b.label,text:T.combo[ck]||''});}
@@ -1040,7 +1040,7 @@ function drawCardOn(c,r){
   x.fillStyle=colL;x.textAlign='right';x.font='700 22px "Instrument Sans",sans-serif';x.fillText((T&&T.name?T.name:'').toUpperCase().slice(0,24),W-P,116);
   x.strokeStyle='rgba(255,255,255,.12)';x.lineWidth=1;x.beginPath();x.moveTo(P,150);x.lineTo(W-P,150);x.stroke();
   // hero
-  const bars=(r.bars||[]).slice(0,6);
+  const bars=(r.bars||[]).filter(b=>!b.premium).slice(0,6); // la carta es gratis: no pinta barras de pago
   const heroNum=/^\d+$/.test(String(cd.mono||''))&&bars.length!==1, big=heroNum?String(cd.mono):String(cd.name||r.name||''), sub=heroNum?String(cd.name||''):String(cd.role||'');
   x.textAlign='center';
   x.fillStyle=colL;x.font='700 24px "Instrument Sans",sans-serif';x.fillText('MI RESULTADO',W/2,E);
