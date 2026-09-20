@@ -36,7 +36,13 @@ Configúrala en Vercel → Project → Settings → Environment Variables (entor
 
 ## Despliegue
 
-Conectado a Vercel vía Git: **cada `git push` a `main` despliega automáticamente**.
+El proyecto de Vercel **no está conectado a GitHub** (comprobado el 2026-09-20: nueve pushes sin despliegue). Se despliega con la CLI desde la raíz del repo:
+
+```bash
+vercel deploy --prod --yes
+```
+
+La rutina diaria del blog (`scripts/blog-worktree.sh publish`) hace push y despliega ella sola. Si algún día conectas el repo en Vercel → Settings → Git, este paso sobra.
 
 - Asegúrate de que el proyecto de Vercel tiene `STRIPE_SECRET_KEY` configurada y `www.testia.info` como dominio principal; `testia.info` debe redirigir a esa versión.
 - `package.json` está en `.gitignore` a propósito (evita que Vercel intente compilar dependencias nativas). Las funciones de `/api` no usan dependencias, así que el deploy funciona sin instalar nada.

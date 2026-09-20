@@ -27,6 +27,9 @@ case "$cmd" in
     branch="blog/auto-$stamp"
     git -C "$REPO" worktree add --quiet -b "$branch" "$path" origin/main \
       || die "no se pudo crear el árbol de trabajo"
+    # El proyecto de Vercel no está conectado a GitHub: el despliegue lo hace la
+    # CLI desde el árbol. Necesita el enlace al proyecto (.vercel está ignorado por git).
+    [ -d "$REPO/.vercel" ] && cp -R "$REPO/.vercel" "$path/.vercel"
     echo "$path"
     ;;
 
@@ -58,6 +61,13 @@ $fuera"
     git -C "$path" rebase --quiet origin/main || die "el rebase sobre origin/main ha fallado"
     git -C "$path" push --quiet origin HEAD:main || die "el push a main ha fallado"
     echo "publicado: $(git -C "$path" log --oneline -1)"
+
+    # Despliegue a producción. Si falla, el commit ya está en main: basta con
+    # ejecutar `vercel deploy --prod --yes` desde el repositorio principal.
+    [ -d "$path/.vercel" ] || die "falta .vercel en el árbol; publicado en git pero SIN desplegar"
+    (cd "$path" && vercel deploy --prod --yes >/tmp/testia-blog-deploy.log 2>&1) \
+      || die "vercel deploy ha fallado (ver /tmp/testia-blog-deploy.log); publicado en git pero SIN desplegar"
+    echo "desplegado: $(grep -o 'https://www.testia.info[^ ]*' /tmp/testia-blog-deploy.log | head -1 || tail -1 /tmp/testia-blog-deploy.log)"
     ;;
 
   close)
