@@ -272,11 +272,11 @@
   .tk:focus-visible,.card:focus-visible,.acard:focus-visible,.spread:focus-visible{outline-offset:3px}
   /* === paywall (resultado) === */
   .locked{filter:blur(9px);pointer-events:none;user-select:none;opacity:.92;transition:filter .4s ease}
-  .paywallcard{max-width:560px;margin:30px auto 6px;text-align:center;border:1px solid var(--line2);border-radius:22px;background:linear-gradient(180deg,#fff,#f4f6fe);padding:40px 32px;box-shadow:0 24px 60px rgba(23,24,28,.12);position:relative;overflow:hidden}
+  .paywallcard{max-width:560px;margin:34px 0 10px;text-align:center;border:1px solid var(--line2);border-radius:22px;background:linear-gradient(180deg,#fff,#f4f6fe);padding:40px 32px;box-shadow:0 24px 60px rgba(23,24,28,.12);position:relative;overflow:hidden}
   .paywallcard .pwemoji{font-size:2.6rem}
-  .paywallcard h2{font-family:var(--disp);font-weight:600;font-size:1.75rem;letter-spacing:-.02em;margin:8px 0 6px}
+  .paywallcard h2{font-family:var(--disp);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:8px 0 6px}
   .paywallcard p{color:var(--ink3);margin:0 auto 24px;max-width:42ch}
-  .paywallcard .btn{font-size:1.04rem;padding:18px 34px}
+  .paywallcard .btn{font-size:1.04rem;padding:18px 34px}#resPremium.locked{filter:blur(7px);min-height:220px}
   .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .pwprice{font-family:var(--disp);font-weight:700}
   details summary::-webkit-details-marker{display:none}
@@ -443,7 +443,7 @@
         </details>
         <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
           <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Qué incluye el resultado completo de 1,99 €?</summary>
-          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Tu arquetipo y puntuación, la interpretación por cada dimensión, tu posición frente a la media y una carta compartible para feed y stories. Es un pago único por resultado, sin suscripción.</p>
+          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Tu puntuación en cada dimensión, la interpretación de cada una y tu posición frente a la media. El arquetipo, su descripción y la carta compartible son gratis. Es un pago único por resultado, sin suscripción.</p>
         </details>
         <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
           <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Esto es un diagnóstico?</summary>
@@ -466,7 +466,7 @@
   "mainEntity": [
     {"@type":"Question","name":"¿En qué se basan los tests?","acceptedAnswer":{"@type":"Answer","text":"Cada test indica el modelo o instrumento que toma como referencia, como Big Five/IPIP, HEXACO, SD3, ECR o RIASEC. Las adaptaciones son divulgativas y no equivalen a administrar la versión original en condiciones profesionales."}},
     {"@type":"Question","name":"¿Guardáis mis respuestas?","acceptedAnswer":{"@type":"Answer","text":"No almacenamos respuestas que te identifiquen. Calculamos tu resultado en el momento y no creamos ningún perfil. Sin cuentas ni registro."}},
-    {"@type":"Question","name":"¿Qué incluye el resultado completo de 1,99 €?","acceptedAnswer":{"@type":"Answer","text":"Tu arquetipo y puntuación, la interpretación por cada dimensión, tu posición frente a la media y una carta compartible. Pago único por resultado, sin suscripción."}},
+    {"@type":"Question","name":"¿Qué incluye el resultado completo de 1,99 €?","acceptedAnswer":{"@type":"Answer","text":"Tu puntuación en cada dimensión, su interpretación y tu posición frente a la media. El arquetipo, su descripción y la carta compartible son gratis. Pago único por resultado, sin suscripción."}},
     {"@type":"Question","name":"¿Esto es un diagnóstico?","acceptedAnswer":{"@type":"Answer","text":"No. Testia es una herramienta de autoconocimiento y entretenimiento; no sustituye una evaluación ni un diagnóstico profesional."}},
     {"@type":"Question","name":"¿Necesito registrarme o instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No. Entras, eliges un test, respondes y ves tu resultado. Funciona en el navegador, en móvil y en ordenador."}}
   ]
@@ -511,7 +511,6 @@
 <!-- ============ RESULT ============ -->
 <section id="result" class="screen">
   <div style="animation:inFade .5s ease">
-    <div class="wrap"><div id="paywall" style="display:none"></div></div>
     <div class="wrap"><div class="res" id="resBody">
       <div>
         <div class="upper" style="font-size:.72rem;color:var(--mut)" id="resEyebrow">Tu lectura · El espejo</div>
@@ -523,9 +522,12 @@
         <p id="resDesc" style="font-size:1.2rem;color:var(--ink2);line-height:1.55;margin:18px 0 0"></p>
         <div class="chips" id="resTraits"></div>
         <div id="resScience" style="margin-top:16px;font-size:.82rem;color:var(--mut);line-height:1.5;display:none"></div>
-        <div id="resBars"></div>
-        <div class="stats" id="resStats"></div>
-        <div id="resAnalysis"></div>
+        <div id="paywall" style="display:none"></div>
+        <div id="resPremium">
+          <div id="resBars"></div>
+          <div class="stats" id="resStats"></div>
+          <div id="resAnalysis"></div>
+        </div>
       </div>
       <div style="position:sticky;top:96px">
         <div class="cardFrame"><canvas id="idcard" width="1080" height="1350"></canvas></div>
@@ -562,9 +564,9 @@
         <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
           <div class="feat"><span style="color:#1f8a6d">✓</span> Acceso a los 20 tests</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Responde el test completo</div>
-          <div class="feat"><span style="color:#1f8a6d">✓</span> Un adelanto de tu arquetipo</div>
-          <div class="feat" style="color:#c2c2bd"><span>—</span> Tu perfil completo</div>
-          <div class="feat" style="color:#c2c2bd"><span>—</span> Carta compartible</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Tu arquetipo y su descripción</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Carta compartible (feed y stories)</div>
+          <div class="feat" style="color:#c2c2bd"><span>—</span> Puntuación e interpretación por dimensión</div>
         </div>
         <button class="btn out" style="padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-top:28px" onclick="go('catalog')">Explorar los tests</button>
       </div>
@@ -575,10 +577,10 @@
         <div class="amt" style="color:var(--cobalt)">1,99 €</div>
         <div style="color:var(--mut);font-size:.86rem;margin-bottom:26px">Pago único · al instante</div>
         <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
-          <div class="feat"><span style="color:#1f8a6d">✓</span> Tu arquetipo y tu puntuación</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Todo lo gratis, más:</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Tu puntuación en cada dimensión</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Interpretación por dimensión</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Comparación frente a la media</div>
-          <div class="feat"><span style="color:#1f8a6d">✓</span> Carta compartible (feed y stories)</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Sin suscripción ni cuotas</div>
         </div>
         <button class="btn" style="padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;margin-top:28px" onclick="go('catalog')">Elegir un test →</button>
@@ -752,7 +754,7 @@ function likertLabels(t){const m=t.scaleMax;
 function startTest(id){
   T=TESTS.find(t=>t.id===id);if(!T)return;
   trackEvent('test_started',{test_id:T.id,test_name:T.name,question_count:T.items.length});
-  items=T.items;idx=0;answers=new Array(items.length).fill(null);
+  items=T.items;idx=0;answers=new Array(items.length).fill(null);progressSent={};
   const tm=$('timer');
   if(T.mode==='correct'){timeLeft=T.duration||300;startedAt=Date.now();tm.style.display='inline';clearInterval(timerId);timerId=setInterval(tick,1000);updTimer();}
   else{tm.style.display='none';clearInterval(timerId);}
@@ -761,9 +763,11 @@ function startTest(id){
 }
 function tick(){timeLeft--;updTimer();if(timeLeft<=0){clearInterval(timerId);finish();}}
 function updTimer(){const m=String(Math.floor(timeLeft/60)).padStart(2,'0'),s=String(timeLeft%60).padStart(2,'0');const t=$('timer');t.textContent=`⏱ ${m}:${s}`;t.classList.toggle('low',timeLeft<=30);}
+let progressSent={};
 function renderItem(){
   const it=items[idx],cat=CATS[TEST_CAT[T.id]];
   if(!it)return;
+  {const q=Math.floor(idx/items.length*4)*25;if(q>0&&q<100&&!progressSent[q]){progressSent[q]=true;trackEvent('test_progress',{test_id:T.id,test_name:T.name,progress:q,question_index:idx+1,question_count:items.length});}}
   $('qcount').textContent=`Pregunta ${idx+1} de ${items.length}`;
   $('qbig').textContent=String(idx+1).padStart(2,'0');
   $('qbar').style.width=(idx/items.length*100)+'%';
@@ -917,21 +921,28 @@ function finish(){
     }
   }
   lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length});renderResult(r);go('result');drawCard(r);
+  trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:r.name,tier:'free'});
   if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(lastResult)drawCard(lastResult);});}
   lockResult();
 }
+let paywallSeen=false;
 function lockResult(){
+  const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
+  if(!hasPremium){$('paywall').style.display='none';$('resPremium').classList.remove('locked');return;}
   $('paywall').innerHTML=`<div class="paywallcard">
-    <div class="pwemoji">✨</div>
-    <h2>¡Genial! Ya tenemos tu resultado</h2>
-    <p>Has completado «${T.name}». Desbloquea tu resultado completo, tu carta compartible y tu posición frente a la media.</p>
-    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock()">Desbloquear resultado · <span class="pwprice">1,99&nbsp;€</span></button>
-    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción</div>
+    <div class="pwemoji">🔍</div>
+    <h2>Ya conoces tu arquetipo. Desbloquea la lectura completa</h2>
+    <p>Tu puntuación en cada dimensión, qué significa cada una en tu caso y dónde te sitúas frente a la media de quienes han hecho «${T.name}».</p>
+    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock()">Ver mi lectura completa · <span class="pwprice">1,99&nbsp;€</span></button>
+    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción · la carta ya es tuya</div>
   </div>`;
   $('paywall').style.display='block';
-  $('resBody').classList.add('locked');
+  $('resPremium').classList.add('locked');
+  paywallSeen=false;
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
+  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});}
 }
-function revealResult(){$('paywall').style.display='none';$('resBody').classList.remove('locked');window.scrollTo({top:0,behavior:'smooth'});}
+function revealResult(){$('paywall').style.display='none';$('resPremium').classList.remove('locked');window.scrollTo({top:0,behavior:'smooth'});}
 async function payAndUnlock(){
   try{
     trackEvent('checkout_started',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});

@@ -28,7 +28,7 @@
     api_host: HOST,
     defaults: '2026-05-30',
     person_profiles: 'identified_only',
-    persistence: 'memory',
+    persistence: 'localStorage',
     autocapture: false,
     capture_pageview: true,
     capture_pageleave: true,
