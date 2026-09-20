@@ -125,7 +125,9 @@
       "test_slug": "test-de-personalidad-rapido",
       "test_id": "tipi",
       "why": "Test sin guía; conecta con la guía de Big Five y responde una duda frecuente de cola larga.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-20",
+      "slug": "test-de-personalidad-corto-es-fiable"
     },
     {
       "keyword": "cómo interpretar un test de personalidad",
