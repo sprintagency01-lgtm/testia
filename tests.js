@@ -240,6 +240,22 @@ window.TESTS = [
  blurb:"Lógica, secuencias y patrones. Descubre tu coeficiente intelectual estimado.",
  instrument:"Estilo ICAR (ítems propios) · escala norm-referenciada", license:"🟢",
  mode:"correct", duration:300, scoring:"iq",
+ interp:{
+  verbal:{hi:"Resuelves con soltura analogías, relaciones entre palabras e intrusos semánticos. Es la aptitud más ligada a lo aprendido: vocabulario, lectura y práctica con el lenguaje.",mid:"Aciertas parte de las analogías verbales y fallas cuando la relación es menos evidente. Suele mejorar con lectura variada y con el hábito de preguntarse qué tipo de relación une dos palabras.",lo:"Las relaciones entre palabras te han costado más que otros bloques. Puede deberse a vocabulario, a la prisa o a que el formato de analogía te resulta poco familiar. Es el área que más responde a la práctica."},
+  numerico:{hi:"Detectas la regla de una serie numérica con rapidez, incluso cuando combina dos operaciones. Indica facilidad para trabajar con cantidades y patrones.",mid:"Reconoces las series sencillas y te atascas cuando la regla cambia a mitad o mezcla sumas y productos. Un truco útil es calcular las diferencias entre términos antes de buscar la regla.",lo:"Las series numéricas han sido tu bloque más flojo. En un test con tiempo, muchos fallos aquí son de velocidad más que de capacidad: la regla existe, pero cuesta verla con el reloj corriendo."},
+  logico:{hi:"Manejas bien silogismos y deducciones: separas lo que se afirma de lo que parece que se afirma. Es la base del razonamiento formal.",mid:"Aciertas las deducciones directas y dudas cuando hay dobles negaciones o cuantificadores como «algunos». Es normal: son los ítems donde más falla la gente.",lo:"Los ítems de lógica formal te han resultado difíciles. Suele deberse a leer con el significado cotidiano en vez de con el literal. Practicar con silogismos mejora este bloque bastante rápido."},
+  abstracto:{hi:"Encuentras el patrón en matrices y secuencias de figuras sin apoyo verbal. Es la aptitud más cercana a lo que los tests llaman inteligencia fluida: razonar con material nuevo.",mid:"Resuelves las matrices con una sola regla y fallas cuando se combinan dos, como rotación más cambio de relleno. Fijarte en una propiedad cada vez ayuda.",lo:"El razonamiento con figuras abstractas ha sido tu bloque más difícil. Este tipo de ítem depende poco de lo aprendido y mucho de la atención al detalle bajo presión de tiempo."},
+  espacial:{hi:"Rotas figuras mentalmente y distingues una rotación de un reflejo con seguridad. Es una aptitud asociada a orientación, dibujo técnico y montaje.",mid:"Aciertas las rotaciones sencillas y confundes rotación con reflejo en los ángulos grandes. Es el error típico: la figura reflejada parece girada.",lo:"La rotación mental te ha costado más que el resto. Es una de las aptitudes más entrenables: mapas, puzles y juegos de construcción la mejoran de forma medible."}
+ },
+ overallInterp:{
+  "Muy superior":"Tu puntuación estimada supera a la que obtiene alrededor del 97 % de las personas en este tipo de prueba. Es una estimación con 32 ítems y reloj: un CI formal se mide con una batería más larga aplicada por un profesional. El desglose por aptitud te dice más que la cifra.",
+  "Superior":"Estás claramente por encima de la media. Con 32 ítems el margen de error es de varios puntos, así que trata el número como un rango y mira dónde destacas y dónde no.",
+  "Medio-alto":"Por encima de la media, dentro del rango donde se sitúa buena parte de las personas con estudios superiores. El desglose importa más que la cifra: probablemente hay un bloque que tira hacia arriba y otro que frena.",
+  "Medio":"En la zona central, donde se sitúa la mitad de la población. Es el resultado más común y no dice nada sobre tu capacidad en tareas concretas. Fíjate en el desglose: los perfiles medios suelen tener una aptitud claramente superior a las demás.",
+  "Medio-bajo":"Algo por debajo de la media en esta prueba concreta. Antes de darle importancia, mira cuántas preguntas dejaste sin responder y cuánto tiempo te sobró: en tests con reloj la velocidad pesa mucho y no es lo mismo que la capacidad.",
+  "Límite":"Por debajo de la media en esta prueba. Un resultado así en un test online rápido no permite ninguna conclusión: cansancio, distracción, tiempo o no conocer el formato bajan mucho la puntuación. Si te preocupa, una evaluación profesional es la única forma seria de saberlo.",
+  "Bajo":"Muy por debajo de la media en esta prueba. En un test online con reloj esto suele reflejar tiempo, distracción o formato, no capacidad. Si quieres una medida real, la única vía es una evaluación profesional con una batería completa."
+ },
  items:[
   {q:"¿Qué número continúa la serie?  2, 4, 8, 16, …",o:["20","24","32","30"],a:2},
   {q:"Serie de Fibonacci:  1, 1, 2, 3, 5, 8, …",o:["11","13","12","15"],a:1},
@@ -270,13 +286,18 @@ window.TESTS = [
  blurb:"Seis acertijos con trampa. ¿Te fías de tu instinto o paras a pensar?",
  instrument:"Cognitive Reflection Test (Frederick, 2005) · ítems nuevos", license:"🟢",
  mode:"correct", duration:240, scoring:"crt",
+ interp:{
+  lo:"Has respondido casi todos los acertijos con la primera respuesta que llega. No es falta de capacidad: estos problemas están diseñados para que la respuesta intuitiva parezca obvia, y la mayoría de la gente cae en varios. Lo que sugiere tu patrón es que, ante un problema con pinta de fácil, confirmas rápido en lugar de comprobar. En el día a día eso ahorra tiempo; en decisiones con números, precios o plazos, conviene una segunda pasada.",
+  mid:"Has parado a pensar en algunos acertijos y en otros te ha ganado la primera impresión. Es el patrón más frecuente: la reflexión se activa cuando algo te chirría, no de forma sistemática. Mira abajo cuáles te pillaron: suelen ser los que tienen números «redondos» que invitan a una operación simple.",
+  hi:"Has detectado la trampa en la mayoría de los acertijos. Eso indica que, ante una respuesta que parece obvia, tu reflejo es comprobarla antes de darla. En la investigación original este patrón se asocia con menos sesgos en decisiones con probabilidades y dinero. No significa ser más inteligente: significa desconfiar de lo fácil cuando toca."
+ },
  items:[
-  {q:"Un boli y una libreta cuestan 2,20 € en total. La libreta cuesta 2 € más que el boli. ¿Cuánto cuesta el boli?",o:["20 céntimos","10 céntimos","11 céntimos","1,10 €"],a:1},
-  {q:"Si 4 máquinas tardan 4 minutos en fabricar 4 piezas, ¿cuánto tardan 100 máquinas en fabricar 100 piezas?",o:["100 min","4 min","20 min","25 min"],a:1},
-  {q:"Unos nenúfares duplican su superficie cada día y cubren un estanque en 48 días. ¿Cuántos días tardan en cubrir la mitad?",o:["24 días","47 días","12 días","46 días"],a:1},
-  {q:"En una carrera adelantas al que iba en segunda posición. ¿En qué posición vas ahora?",o:["1.ª","2.ª","3.ª","No se puede saber"],a:1},
-  {q:"Una camiseta cuesta 30 €. Le aplican un 50% de descuento y luego otro 10% en caja. ¿Cuánto pagas?",o:["12 €","13,50 €","13 €","15 €"],a:1},
-  {q:"Un caracol sube 3 m de día y resbala 2 m de noche en un pozo de 10 m. ¿En cuántos días sale?",o:["8 días","10 días","5 días","7 días"],a:0}
+  {q:"Un boli y una libreta cuestan 2,20 € en total. La libreta cuesta 2 € más que el boli. ¿Cuánto cuesta el boli?",o:["20 céntimos","10 céntimos","11 céntimos","1,10 €"],a:1,i:0,why:"La respuesta rápida es 20 céntimos, pero entonces la libreta costaría 2,20 € y el total 2,40 €. Si el boli cuesta 10 céntimos, la libreta cuesta 2,10 € y suman 2,20 €. El cerebro resta 2 del total y se queda tan ancho."},
+  {q:"Si 4 máquinas tardan 4 minutos en fabricar 4 piezas, ¿cuánto tardan 100 máquinas en fabricar 100 piezas?",o:["100 min","4 min","20 min","25 min"],a:1,i:0,why:"Cada máquina tarda 4 minutos en hacer una pieza. Con 100 máquinas y 100 piezas, cada una hace la suya en esos mismos 4 minutos. La trampa es la simetría de los números: 4-4-4 invita a responder 100-100-100."},
+  {q:"Unos nenúfares duplican su superficie cada día y cubren un estanque en 48 días. ¿Cuántos días tardan en cubrir la mitad?",o:["24 días","47 días","12 días","46 días"],a:1,i:0,why:"Si la superficie se duplica cada día, el día anterior a cubrirlo todo estaba a la mitad: el día 47. La intuición divide 48 entre dos porque «la mitad» pide dividir, pero aquí el crecimiento es exponencial, no lineal."},
+  {q:"En una carrera adelantas al que iba en segunda posición. ¿En qué posición vas ahora?",o:["1.ª","2.ª","3.ª","No se puede saber"],a:1,i:0,why:"Si adelantas al segundo, ocupas su puesto: segundo. El primero sigue por delante. La palabra «adelantar» activa la idea de ganar y salta directo a la primera posición."},
+  {q:"Una camiseta cuesta 30 €. Le aplican un 50% de descuento y luego otro 10% en caja. ¿Cuánto pagas?",o:["12 €","13,50 €","13 €","15 €"],a:1,i:0,why:"Los descuentos no se suman: el 50 % deja la camiseta en 15 € y el 10 % se aplica sobre esos 15, no sobre 30. Pagas 13,50 €. Sumar 50 y 10 para llegar a 12 € es la respuesta automática."},
+  {q:"Un caracol sube 3 m de día y resbala 2 m de noche en un pozo de 10 m. ¿En cuántos días sale?",o:["8 días","10 días","5 días","7 días"],a:0,i:1,why:"Avanza 1 metro neto por día, así que al final del día 7 está a 7 metros. El día 8 sube 3 metros, llega a 10 y sale antes de resbalar. Dividir 10 entre 1 metro neto olvida que el último tramo no tiene noche."}
  ]
 },
 
@@ -702,6 +723,27 @@ window.TESTS = [
  instrument:"Escala de conservadurismo de Wilson-Patterson + ejes económico y social", license:"🟢",
  mode:"likert", scaleMax:5,
  scales:{S:"Posición política"},
+ axes:{E:"Eje económico",C:"Eje social"},
+ axisLabels:{E:{lo:"Izquierda",mid:"Centro",hi:"Derecha"},C:{lo:"Progresista",mid:"Centro",hi:"Conservador"}},
+ interp:{
+  E:{lo:"En lo económico te inclinas por un Estado con peso: impuestos progresivos, servicios públicos amplios y regulación de precios o mercados cuando crees que fallan. Sueles ver la desigualdad como un problema que la política debe corregir, no como un resultado natural.",
+     mid:"En lo económico no compras el paquete completo de ningún lado. Aceptas el mercado como motor, pero quieres red pública en sanidad, educación o vivienda. Tus respuestas cambian según el tema, lo que suele indicar que decides caso a caso más que por identidad.",
+     hi:"En lo económico priorizas la libertad de empresa, impuestos contenidos y menos regulación. Tiendes a pensar que la riqueza la crean las personas y las empresas, y que el Estado debe intervenir lo mínimo. Las ayudas te generan más dudas que confianza."},
+  C:{lo:"En lo social defiendes la diversidad, los derechos de las minorías y la apertura a la inmigración. Te fías poco de la autoridad como valor en sí y ves la tradición como algo revisable. La reinserción te convence más que el castigo.",
+     mid:"En lo social combinas apertura y prudencia. Puedes apoyar derechos civiles y a la vez valorar el orden, la familia o la seguridad. No te define un bloque cultural: pesas cada tema por separado.",
+     hi:"En lo social valoras el orden, la tradición y la identidad nacional. Te preocupa que los cambios culturales vayan demasiado rápido y prefieres reglas claras y autoridad respetada. La inmigración y la seguridad pesan en tu forma de ver la sociedad."}
+ },
+ combo:{
+  "lo-lo":"Izquierda en los dos ejes. Es el perfil progresista clásico: Estado fuerte y sociedad abierta. Tu voto y tu conversación suelen ir de la mano, y probablemente te reconoces en la izquierda sin matices.",
+  "lo-mid":"Izquierda económica con posiciones sociales moderadas. Tu prioridad es el reparto y lo público; en cultura y costumbres pides prudencia. Es un perfil frecuente en la socialdemocracia de barrio y en votantes que no se sienten cómodos con el discurso identitario.",
+  "lo-hi":"Perfil cruzado: izquierda económica y conservador social. Quieres un Estado que proteja y reparta, y a la vez orden, tradición y fronteras claras. Este cruce no cabe en el eje único izquierda-derecha y explica por qué tu puntuación global sale más al centro de lo que sientes. Es una combinación real y bastante común, aunque tenga poca representación en los partidos.",
+  "mid-lo":"Centro económico y progresista social. Aceptas el mercado con red pública, y en valores estás claramente en la apertura. Es el perfil liberal-progresista: te importan más los derechos civiles que la batalla fiscal.",
+  "mid-mid":"Centro en los dos ejes. No es indecisión: evalúas tema a tema. El riesgo de este perfil es que ningún discurso te represente del todo; la ventaja es que puedes hablar con casi todo el mundo.",
+  "mid-hi":"Centro económico y conservador social. Pragmático con el dinero público, firme en orden y tradición. Es el perfil de derecha moderada de toda la vida: seguridad y valores por delante de la ideología económica.",
+  "hi-lo":"Perfil cruzado: derecha económica y progresista social. Libertad en el mercado y libertad en las costumbres. Es el perfil liberal en sentido estricto, minoritario en España y difícil de encajar en un solo partido; por eso tu puntuación global se acerca al centro.",
+  "hi-mid":"Derecha económica con posiciones sociales moderadas. Tu eje principal es el económico: menos impuestos, menos regulación. En cultura no compras el paquete conservador entero. Es un perfil frecuente en el centro-derecha urbano.",
+  "hi-hi":"Derecha en los dos ejes: mercado libre, orden y tradición. Perfil conservador coherente, sin tensiones internas entre lo económico y lo social. Probablemente sabes exactamente qué votas y por qué."
+ },
  result:{type:"single",bands:[
    {min:0,label:"Izquierda radical",emoji:"✊",desc:"Marx te ficharía sin entrevista. Estado fuerte, reparto y a desmontar el sistema; el statu quo te da urticaria."},
    {min:20,label:"Izquierda",emoji:"🌹",desc:"Tienes claro de qué lado de la barricada estás: lo público, los derechos sociales y la igualdad por bandera."},
@@ -712,28 +754,28 @@ window.TESTS = [
    {min:82,label:"Derecha radical",emoji:"🇪🇸",desc:"Facha confirmado y a mucha honra, dirías tú. Si sonara un himno de fondo ahora mismo, no te extrañaría lo más mínimo."}
  ]},
  items:[
-  {t:"El Estado debería bajar los impuestos aunque eso reduzca los servicios públicos.",s:"S"},
-  {t:"La sanidad y la educación funcionan mejor con competencia privada.",s:"S"},
-  {t:"Los ricos no deberían pagar un porcentaje de impuestos mayor que el resto.",s:"S"},
-  {t:"Las ayudas sociales hacen que mucha gente prefiera no trabajar.",s:"S"},
-  {t:"Las empresas crean la riqueza; hay que regularlas lo menos posible.",s:"S"},
-  {t:"La inmigración descontrolada amenaza nuestra cultura.",s:"S"},
-  {t:"Hoy se respeta demasiado poco a la autoridad y a la policía.",s:"S"},
-  {t:"Los valores tradicionales y la familia son la base de la sociedad.",s:"S"},
-  {t:"Hay demasiada corrección política.",s:"S"},
-  {t:"El patriotismo y el orgullo nacional son virtudes que cultivar.",s:"S"},
-  {t:"Las penas de cárcel deberían ser más duras.",s:"S"},
-  {t:"El Estado debería garantizar una renta básica a todo el mundo.",s:"S",r:true},
-  {t:"Los servicios públicos deberían ampliarse aunque suban los impuestos.",s:"S",r:true},
-  {t:"Las grandes fortunas deberían pagar un impuesto especial.",s:"S",r:true},
-  {t:"La vivienda es un derecho y el Estado debe controlar su precio.",s:"S",r:true},
-  {t:"Acoger refugiados es una obligación moral.",s:"S",r:true},
-  {t:"El matrimonio y la adopción de parejas del mismo sexo deben estar plenamente normalizados.",s:"S",r:true},
-  {t:"El aborto debería ser un derecho libre y gratuito.",s:"S",r:true},
-  {t:"La diversidad cultural enriquece a un país.",s:"S",r:true},
-  {t:"Hay que priorizar la reinserción del delincuente frente al castigo.",s:"S",r:true},
-  {t:"El feminismo ha mejorado la sociedad.",s:"S",r:true},
-  {t:"Proteger el medio ambiente justifica limitar cierta actividad económica.",s:"S",r:true}
+  {t:"El Estado debería bajar los impuestos aunque eso reduzca los servicios públicos.",s:"S",ax:"E"},
+  {t:"La sanidad y la educación funcionan mejor con competencia privada.",s:"S",ax:"E"},
+  {t:"Los ricos no deberían pagar un porcentaje de impuestos mayor que el resto.",s:"S",ax:"E"},
+  {t:"Las ayudas sociales hacen que mucha gente prefiera no trabajar.",s:"S",ax:"E"},
+  {t:"Las empresas crean la riqueza; hay que regularlas lo menos posible.",s:"S",ax:"E"},
+  {t:"La inmigración descontrolada amenaza nuestra cultura.",s:"S",ax:"C"},
+  {t:"Hoy se respeta demasiado poco a la autoridad y a la policía.",s:"S",ax:"C"},
+  {t:"Los valores tradicionales y la familia son la base de la sociedad.",s:"S",ax:"C"},
+  {t:"Hay demasiada corrección política.",s:"S",ax:"C"},
+  {t:"El patriotismo y el orgullo nacional son virtudes que cultivar.",s:"S",ax:"C"},
+  {t:"Las penas de cárcel deberían ser más duras.",s:"S",ax:"C"},
+  {t:"El Estado debería garantizar una renta básica a todo el mundo.",s:"S",ax:"E",r:true},
+  {t:"Los servicios públicos deberían ampliarse aunque suban los impuestos.",s:"S",ax:"E",r:true},
+  {t:"Las grandes fortunas deberían pagar un impuesto especial.",s:"S",ax:"E",r:true},
+  {t:"La vivienda es un derecho y el Estado debe controlar su precio.",s:"S",ax:"E",r:true},
+  {t:"Acoger refugiados es una obligación moral.",s:"S",ax:"C",r:true},
+  {t:"El matrimonio y la adopción de parejas del mismo sexo deben estar plenamente normalizados.",s:"S",ax:"C",r:true},
+  {t:"El aborto debería ser un derecho libre y gratuito.",s:"S",ax:"C",r:true},
+  {t:"La diversidad cultural enriquece a un país.",s:"S",ax:"C",r:true},
+  {t:"Hay que priorizar la reinserción del delincuente frente al castigo.",s:"S",ax:"C",r:true},
+  {t:"El feminismo ha mejorado la sociedad.",s:"S",ax:"C",r:true},
+  {t:"Proteger el medio ambiente justifica limitar cierta actividad económica.",s:"S",ax:"E",r:true}
  ]
 },
 

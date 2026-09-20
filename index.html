@@ -630,9 +630,9 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js"></script>
+<script src="tests.js?v=20260920"></script>
 <script src="tarot.js"></script>
-<script src="iq.js"></script>
+<script src="iq.js?v=20260920"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -817,6 +817,10 @@ function scalePcts(){const sum={},mn={},mx={};Object.keys(T.scales).forEach(k=>{
     else{const adj=it.r?(T.scaleMax+1-v):v;sum[s]+=adj;mn[s]+=1;mx[s]+=T.scaleMax;}});
   const pct={};Object.keys(T.scales).forEach(k=>pct[k]=mx[k]>mn[k]?(sum[k]-mn[k])/(mx[k]-mn[k])*100:0);return pct;}
 function band(bands,p){let b=bands[0];for(const x of bands)if(p>=x.min)b=x;return b;}
+function axisPcts(){const sum={},mn={},mx={};Object.keys(T.axes).forEach(k=>{sum[k]=mn[k]=mx[k]=0;});
+  items.forEach((it,i)=>{const s=it.ax,v=answers[i];if(!s||v==null||!(s in sum))return;const adj=it.r?(T.scaleMax+1-v):v;sum[s]+=adj;mn[s]+=1;mx[s]+=T.scaleMax;});
+  const pct={};Object.keys(T.axes).forEach(k=>pct[k]=mx[k]>mn[k]?(sum[k]-mn[k])/(mx[k]-mn[k])*100:0);return pct;}
+const LV3=p=>p<40?'lo':p<=60?'mid':'hi';
 
 /* ----- veredictos ilustrativos ----- */
 const ARCHE={
@@ -863,11 +867,24 @@ function finish(){
       r.traits=[cls];r.mono="CI";
       r.stats=[{v:pc.toFixed(0)+"%",l:"percentil"},{v:`${correct}/${total}`,l:"aciertos"}];
       r.card={mono:String(iq),name:cls,role:"Coeficiente intelectual",stat:`TOP ${(100-pc).toFixed(0)}% MUNDIAL`};
+      if(T.interp||T.overallInterp){r.analysis=[];
+        if(T.overallInterp&&T.overallInterp[cls])r.analysis.push({lab:'Lectura global',p:pc,band:cls,text:T.overallInterp[cls]});
+        if(T.domains&&T.interp)Object.keys(T.domains).forEach(k=>{const its=items.filter(x=>x.d===k);const c=its.reduce((n,x)=>n+(answers[items.indexOf(x)]===x.a?1:0),0);
+          const p=its.length?c/its.length*100:0,bn=p>=66?'Alto':p>=40?'Medio':'Bajo',key=p>=66?'hi':p>=40?'mid':'lo';
+          r.analysis.push({lab:`${T.domains[k]} · ${c}/${its.length}`,p,band:bn,text:(T.interp[k]&&T.interp[k][key])||''});});
+        const mm=Math.floor(secs/60),ss=secs%60,left=T.duration-secs;
+        r.analysis.push({lab:'Tiempo empleado',p:secs/T.duration*100,band:`${mm} min ${ss} s`,text:left>60?`Has usado ${mm} minutos de ${Math.round(T.duration/60)}. La estimación premia ligeramente terminar antes con aciertos; si te sobró tiempo y fallaste, los fallos son de razonamiento, no de prisa.`:`Has usado casi todo el tiempo disponible (${Math.round(T.duration/60)} minutos). Parte de los fallos pueden ser de velocidad más que de razonamiento: en una segunda pasada sin reloj, la puntuación suele subir.`});
+      }
     }else{
       const b=correct<=1?["Intuitivo","Te fías de tu instinto: rápido, pero la trampa te pilla."]:correct<=3?["Mixto","Combinas instinto y reflexión según la pregunta."]:["Reflexivo","Paras a pensar antes de responder. La trampa no te pilla."];
       r.name=`${correct}/${items.length}`;r.role="Estilo de pensamiento";r.desc=b[1];r.traits=[b[0]];r.mono=initials(b[0]);
       r.stats=[{v:`${correct}/${items.length}`,l:'aciertos reflexivos'}];
       r.card={mono:`${correct}/${items.length}`,name:b[0],role:'Estilo de pensamiento',stat:b[0].toUpperCase()};
+      if(T.interp){const key=correct<=1?'lo':correct<=3?'mid':'hi';
+        r.analysis=[{lab:'Tu patrón',p:correct/items.length*100,band:b[0],text:T.interp[key]}].concat(items.map((it,i)=>{
+          const ok=answers[i]===it.a,intu=it.i!==undefined&&answers[i]===it.i,none=answers[i]==null;
+          return {lab:`Acertijo ${i+1}`,p:ok?100:0,band:ok?'Reflexivo':intu?'Intuitivo':none?'Sin responder':'Otra respuesta',
+            text:`«${it.q}» `+(ok?'Acertaste. ':intu?`Elegiste «${it.o[it.i]}», la respuesta que primero viene a la cabeza. `:none?'No llegaste a responder. ':`Elegiste «${it.o[answers[i]]}». `)+(it.why||'')};}));}
     }
   }else{
     const pct=scalePcts();
@@ -877,6 +894,13 @@ function finish(){
       r.bars=[{lab:Object.values(T.scales)[0],p}];
       r.stats=[{v:Math.round(p)+'/100',l:'tu puntuación'}];
       r.card={mono:String(Math.round(p)),name:b.label,role:T.name,stat:`${Math.round(p)} / 100`};
+      if(T.axes&&T.interp){const ax=axisPcts(),AL=T.axisLabels||{};
+        const lab=(k,lv)=>(AL[k]&&AL[k][lv])||{lo:'Bajo',mid:'Medio',hi:'Alto'}[lv];
+        r.bars=r.bars.concat(Object.keys(T.axes).map(k=>({lab:T.axes[k],p:ax[k],tag:lab(k,LV3(ax[k]))})));
+        r.stats=Object.keys(T.axes).map(k=>({v:lab(k,LV3(ax[k])),l:T.axes[k].toLowerCase()}));
+        r.analysis=Object.keys(T.axes).map(k=>{const lv=LV3(ax[k]);return {lab:T.axes[k],p:ax[k],band:lab(k,lv),text:(T.interp[k]&&T.interp[k][lv])||''};});
+        if(T.combo){const ck=LV3(ax.E)+'-'+LV3(ax.C);r.analysis.push({lab:'Lectura conjunta',p,band:b.label,text:T.combo[ck]||''});}
+      }
     }else if(R.type==='profileBars'){
       const keys=Object.keys(T.scales),arr=keys.map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const showArr=R.topOnly?arr.slice(0,R.topOnly):arr;
@@ -986,14 +1010,14 @@ function renderResult(r){
   $('resRole').textContent=r.role;$('resDesc').textContent=r.desc;
   $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
   {const sci=$('resScience');if(sci){if(T&&T.instrument){sci.style.display='block';sci.innerHTML='<span style="font-weight:600;color:var(--ink3)">Referencia metodológica:</span> '+T.instrument;}else{sci.style.display='none';}}}
-  if(r.bars){$('resBars').innerHTML=`<div class="bars">${r.bars.map(b=>{const tag=b.p>=66?'Alto':b.p>=40?'Medio':'Bajo';
+  if(r.bars){$('resBars').innerHTML=`<div class="bars">${r.bars.map(b=>{const tag=b.tag||(b.p>=66?'Alto':b.p>=40?'Medio':'Bajo');
     return `<div class="barrow"><div class="bl"><span>${b.lab}</span><span class="tg">${tag} · ${Math.round(b.p)}%</span></div><div class="btrack"><i data-w="${b.p}" style="background:linear-gradient(90deg,${r.accent},${hexA(r.accent,.55)})"></i></div></div>`;}).join('')}</div>`;
     setTimeout(()=>document.querySelectorAll('#resBars .btrack>i').forEach(i=>i.style.width=i.dataset.w+'%'),120);
   }else $('resBars').innerHTML='';
   $('resStats').innerHTML=(r.stats||[]).map(s=>`<div class="st"><div class="v" style="color:${r.accent}">${s.v}</div><div class="l">${s.l}</div></div>`).join('');
   if(r.analysis&&r.analysis.length){
     $('resAnalysis').innerHTML=`<div class="analysis"><div class="ahead">Análisis por dimensión</div>${r.analysis.map(a=>{
-      const bc=a.band==='Alto'?'#1f8a6d':a.band==='Bajo'?'#b8434c':'#6e7075';
+      const bc=(a.band==='Alto'||a.band==='Reflexivo')?'#1f8a6d':(a.band==='Bajo'||a.band==='Intuitivo')?'#b8434c':'#6e7075';
       return `<div class="ana-card"><div class="atop"><span class="alab">${a.lab}</span><span class="aband" style="color:${bc}">${a.band} · ${Math.round(a.p)}%</span></div><p>${a.text}</p></div>`;}).join('')}</div>`;
   }else $('resAnalysis').innerHTML='';
 }
