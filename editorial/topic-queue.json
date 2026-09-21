@@ -141,7 +141,9 @@
       "test_slug": "test-de-personalidad",
       "test_id": "bigfive",
       "why": "Consulta informativa amplia que enlaza con casi todas las guías existentes; refuerza la autoridad temática del blog.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-21",
+      "slug": "como-interpretar-un-test-de-personalidad"
     },
     {
       "keyword": "diferencia entre test psicológico y test recreativo",

@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-09-21 — `/blog/como-interpretar-un-test-de-personalidad` — keyword principal: `cómo interpretar un test de personalidad` — secundarias: `qué significa mi resultado de personalidad`, `percentil en un test de personalidad`, `errores al interpretar un test`, `los tests de personalidad son fiables`.
 - 2026-09-20 — `/blog/test-de-personalidad-corto-es-fiable` — keyword principal: `test de personalidad corto es fiable` — secundarias: `TIPI diez ítems`, `test de personalidad rápido`, `cuántas preguntas necesita un test de personalidad`, `fiabilidad de los tests breves`.
 - 2026-09-19 — `/blog/modelo-riasec-de-holland` — keyword principal: `modelo RIASEC de Holland` — secundarias: `tipos de personalidad vocacional`, `test vocacional cómo funciona`, `código Holland`, `qué carrera estudiar según mi personalidad`.
 - 2026-09-18 — `/blog/maximizador-o-satisfacedor` — keyword principal: `maximizador o satisfacedor` — secundarias: `maximizing vs satisficing`, `por qué me cuesta tomar decisiones`, `paradoja de la elección`, `escala de maximización`.
