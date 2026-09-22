@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-09-22 — `/blog/diferencia-entre-test-psicologico-y-recreativo` — keyword principal: `diferencia entre test psicológico y test recreativo` — secundarias: `test psicológico validado`, `qué es un test estandarizado`, `los tests online son fiables`, `quién puede aplicar un test psicológico`.
 - 2026-09-21 — `/blog/como-interpretar-un-test-de-personalidad` — keyword principal: `cómo interpretar un test de personalidad` — secundarias: `qué significa mi resultado de personalidad`, `percentil en un test de personalidad`, `errores al interpretar un test`, `los tests de personalidad son fiables`.
 - 2026-09-20 — `/blog/test-de-personalidad-corto-es-fiable` — keyword principal: `test de personalidad corto es fiable` — secundarias: `TIPI diez ítems`, `test de personalidad rápido`, `cuántas preguntas necesita un test de personalidad`, `fiabilidad de los tests breves`.
 - 2026-09-19 — `/blog/modelo-riasec-de-holland` — keyword principal: `modelo RIASEC de Holland` — secundarias: `tipos de personalidad vocacional`, `test vocacional cómo funciona`, `código Holland`, `qué carrera estudiar según mi personalidad`.

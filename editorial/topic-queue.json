@@ -157,7 +157,9 @@
       "test_slug": "test-de-ci",
       "test_id": "iq",
       "why": "El test de CI es el que más lleva al pago; una guía honesta sobre límites refuerza la confianza antes del paywall.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-22",
+      "slug": "diferencia-entre-test-psicologico-y-recreativo"
     },
     {
       "keyword": "arrepentimiento en la toma de decisiones",
