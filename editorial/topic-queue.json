@@ -173,7 +173,9 @@
       "test_slug": "test-maximizador",
       "test_id": "maximizer",
       "why": "Continúa de forma natural la guía de maximización recién publicada y cubre una consulta de cola larga sin competencia fuerte en español.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-23",
+      "slug": "arrepentimiento-en-la-toma-de-decisiones"
     },
     {
       "keyword": "efecto Barnum en los tests de personalidad",
@@ -229,6 +231,76 @@
       "test_slug": "test-inteligencia-emocional",
       "test_id": "ei",
       "why": "Búsqueda de cola larga con intención claramente informativa y poca competencia de alta autoridad en español; conecta con la guía de inteligencia emocional.",
+      "status": "pending"
+    },
+    {
+      "keyword": "por qué me cuesta madrugar aunque duerma bien",
+      "secondary": [
+        "cronotipo tardío",
+        "retraso de fase del sueño",
+        "madrugar siendo búho",
+        "horario interno y despertador"
+      ],
+      "intent": "Entender por qué el reloj interno puede ir desfasado del horario social aunque las horas de sueño sean suficientes.",
+      "test_slug": "test-cronotipo",
+      "test_id": "chronotype",
+      "why": "Consulta de cola larga con intención claramente informativa; la guía de cronotipo no responde esta pregunta concreta y el test no tiene contenido de apoyo sobre el desfase con el horario laboral.",
+      "status": "pending"
+    },
+    {
+      "keyword": "fatiga por compasión",
+      "secondary": [
+        "qué es la fatiga por compasión",
+        "desgaste por empatía",
+        "empatía y agotamiento",
+        "cuidar sin quemarse"
+      ],
+      "intent": "Describir el desgaste que aparece al implicarse de forma sostenida en el malestar ajeno y en qué se diferencia del agotamiento laboral.",
+      "test_slug": "test-de-empatia",
+      "test_id": "empathy",
+      "why": "La guía de tipos de empatía no cubre el coste de la empatía afectiva; es una búsqueda estable, de cola larga y con poca competencia de alta autoridad en español.",
+      "status": "pending"
+    },
+    {
+      "keyword": "autoestima contingente",
+      "secondary": [
+        "autoestima que depende de los logros",
+        "fuentes de autoestima",
+        "autoestima frágil",
+        "autoestima estable e inestable"
+      ],
+      "intent": "Explicar por qué una autoestima alta puede ser inestable cuando depende de condiciones externas, y cómo se distingue de una estable.",
+      "test_slug": "test-de-autoestima",
+      "test_id": "selfesteem",
+      "why": "La guía de autoestima explica qué es y cómo se mide, pero no la distinción entre nivel y estabilidad; consulta de cola larga sin contenido serio en español.",
+      "status": "pending"
+    },
+    {
+      "keyword": "crecimiento postraumático",
+      "secondary": [
+        "qué es el crecimiento postraumático",
+        "cambios tras una experiencia dura",
+        "resiliencia y crecimiento",
+        "escala de crecimiento postraumático"
+      ],
+      "intent": "Distinguir el crecimiento postraumático de la resiliencia y explicar qué se ha observado y qué no sobre los cambios tras una adversidad.",
+      "test_slug": "test-de-resiliencia",
+      "test_id": "resilience",
+      "why": "Complementa la guía de resiliencia sin solaparse con ella y responde una búsqueda informativa de cola larga; requiere tono descriptivo por tocar salud mental.",
+      "status": "pending"
+    },
+    {
+      "keyword": "necesidad de cierre cognitivo",
+      "secondary": [
+        "qué es la necesidad de cierre",
+        "tolerancia a la ambigüedad",
+        "no soportar la incertidumbre",
+        "decidir rápido para dejar de dudar"
+      ],
+      "intent": "Explicar la tendencia a buscar una respuesta firme cuanto antes y su diferencia con disfrutar o no del esfuerzo de pensar.",
+      "test_slug": "test-necesidad-de-cognicion",
+      "test_id": "ncs",
+      "why": "Se confunde a menudo con la necesidad de cognición ya publicada, pero es un constructo distinto; búsqueda de cola larga con competencia baja en español.",
       "status": "pending"
     }
   ]
