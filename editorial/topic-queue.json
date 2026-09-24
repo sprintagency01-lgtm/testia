@@ -189,7 +189,9 @@
       "test_slug": "test-de-personalidad",
       "test_id": "bigfive",
       "why": "Consulta informativa de cola larga, casi sin contenido serio en español, y refuerza la honestidad del sitio antes del paywall.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-24",
+      "slug": "efecto-barnum-en-los-tests-de-personalidad"
     },
     {
       "keyword": "narcisismo grandioso y vulnerable",

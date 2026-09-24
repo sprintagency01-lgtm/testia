@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-09-24 — `/blog/efecto-barnum-en-los-tests-de-personalidad` — keyword principal: `efecto Barnum en los tests de personalidad` — secundarias: `efecto Forer`, `por qué me identifico con el horóscopo`, `descripciones vagas que parecen personales`, `cómo saber si un test es serio`.
 - 2026-09-23 — `/blog/arrepentimiento-en-la-toma-de-decisiones` — keyword principal: `arrepentimiento en la toma de decisiones` — secundarias: `por qué me arrepiento de lo que elijo`, `arrepentimiento anticipado`, `coste de oportunidad psicología`, `cómo dejar de darle vueltas a una decisión`.
 - 2026-09-22 — `/blog/diferencia-entre-test-psicologico-y-recreativo` — keyword principal: `diferencia entre test psicológico y test recreativo` — secundarias: `test psicológico validado`, `qué es un test estandarizado`, `los tests online son fiables`, `quién puede aplicar un test psicológico`.
 - 2026-09-21 — `/blog/como-interpretar-un-test-de-personalidad` — keyword principal: `cómo interpretar un test de personalidad` — secundarias: `qué significa mi resultado de personalidad`, `percentil en un test de personalidad`, `errores al interpretar un test`, `los tests de personalidad son fiables`.
