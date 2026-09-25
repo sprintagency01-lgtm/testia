@@ -205,7 +205,9 @@
       "test_slug": "test-triada-oscura",
       "test_id": "darktriad",
       "why": "La guía de tríada oscura no desglosa los subtipos; es una búsqueda de cola larga con demanda estable.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-25",
+      "slug": "narcisismo-grandioso-y-vulnerable"
     },
     {
       "keyword": "deseabilidad social en los cuestionarios",
