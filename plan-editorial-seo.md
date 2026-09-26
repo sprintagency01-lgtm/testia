@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-09-26 — `/blog/deseabilidad-social-en-los-cuestionarios` — keyword principal: `deseabilidad social en los cuestionarios` — secundarias: `qué es la deseabilidad social`, `responder lo que queda bien`, `escalas de sinceridad`, `sesgos al responder un test`.
 - 2026-09-25 — `/blog/narcisismo-grandioso-y-vulnerable` — keyword principal: `narcisismo grandioso y vulnerable` — secundarias: `tipos de narcisismo`, `diferencia entre narcisismo grandioso y vulnerable`, `narcisismo encubierto`, `narcisismo rasgo y trastorno`.
 - 2026-09-24 — `/blog/efecto-barnum-en-los-tests-de-personalidad` — keyword principal: `efecto Barnum en los tests de personalidad` — secundarias: `efecto Forer`, `por qué me identifico con el horóscopo`, `descripciones vagas que parecen personales`, `cómo saber si un test es serio`.
 - 2026-09-23 — `/blog/arrepentimiento-en-la-toma-de-decisiones` — keyword principal: `arrepentimiento en la toma de decisiones` — secundarias: `por qué me arrepiento de lo que elijo`, `arrepentimiento anticipado`, `coste de oportunidad psicología`, `cómo dejar de darle vueltas a una decisión`.

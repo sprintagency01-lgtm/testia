@@ -221,7 +221,9 @@
       "test_slug": "test-honestidad-humildad",
       "test_id": "honesty",
       "why": "Tema transversal de cola larga que enlaza con casi todas las guías y con la landing de honestidad-humildad, que no tiene guía de apoyo sobre sesgos.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-26",
+      "slug": "deseabilidad-social-en-los-cuestionarios"
     },
     {
       "keyword": "qué es la alexitimia",
