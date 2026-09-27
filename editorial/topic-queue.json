@@ -237,7 +237,9 @@
       "test_slug": "test-inteligencia-emocional",
       "test_id": "ei",
       "why": "Búsqueda de cola larga con intención claramente informativa y poca competencia de alta autoridad en español; conecta con la guía de inteligencia emocional.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-27",
+      "slug": "que-es-la-alexitimia"
     },
     {
       "keyword": "por qué me cuesta madrugar aunque duerma bien",
