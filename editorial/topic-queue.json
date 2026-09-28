@@ -253,7 +253,9 @@
       "test_slug": "test-cronotipo",
       "test_id": "chronotype",
       "why": "Consulta de cola larga con intención claramente informativa; la guía de cronotipo no responde esta pregunta concreta y el test no tiene contenido de apoyo sobre el desfase con el horario laboral.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-28",
+      "slug": "por-que-me-cuesta-madrugar"
     },
     {
       "keyword": "fatiga por compasión",
@@ -309,6 +311,76 @@
       "test_slug": "test-necesidad-de-cognicion",
       "test_id": "ncs",
       "why": "Se confunde a menudo con la necesidad de cognición ya publicada, pero es un constructo distinto; búsqueda de cola larga con competencia baja en español.",
+      "status": "pending"
+    },
+    {
+      "keyword": "mentalidad de crecimiento y mentalidad fija",
+      "secondary": [
+        "qué es la mentalidad de crecimiento",
+        "Carol Dweck mindset",
+        "teorías implícitas de la inteligencia",
+        "mentalidad de crecimiento evidencia"
+      ],
+      "intent": "Explicar la idea de Dweck sobre creencias acerca de si las capacidades cambian, qué ha replicado la investigación y qué no.",
+      "test_slug": "test-de-determinacion",
+      "test_id": "grit",
+      "why": "Tema vecino del grit que la guía existente no cubre; búsqueda informativa estable y permite un tono honesto sobre réplicas con efectos pequeños.",
+      "status": "pending"
+    },
+    {
+      "keyword": "persona altamente sensible qué dice la ciencia",
+      "secondary": [
+        "alta sensibilidad de procesamiento sensorial",
+        "PAS Elaine Aron",
+        "alta sensibilidad y neuroticismo",
+        "ser muy sensible es un rasgo"
+      ],
+      "intent": "Describir el constructo de sensibilidad de procesamiento sensorial, cómo se mide y cómo se relaciona con los cinco grandes rasgos.",
+      "test_slug": "test-de-personalidad",
+      "test_id": "bigfive",
+      "why": "Consulta de cola larga con mucho contenido divulgativo poco riguroso en español; una guía con fuentes enlaza de forma natural con la guía de Big Five.",
+      "status": "pending"
+    },
+    {
+      "keyword": "bienestar hedónico y eudaimónico",
+      "secondary": [
+        "diferencia entre placer y sentido",
+        "qué es el bienestar psicológico",
+        "modelo de Ryff",
+        "felicidad hedónica"
+      ],
+      "intent": "Distinguir el bienestar basado en placer y satisfacción del basado en sentido y crecimiento, y cómo se mide cada uno.",
+      "test_slug": "test-de-felicidad",
+      "test_id": "swls",
+      "why": "Complementa la guía de satisfacción con la vida sin solaparse; búsqueda académica de cola larga con poca competencia de alta autoridad.",
+      "status": "pending"
+    },
+    {
+      "keyword": "diferencia entre rumiación y reflexión",
+      "secondary": [
+        "qué es la rumiación mental",
+        "darle vueltas a las cosas",
+        "autofocalización",
+        "rumiación y estado de ánimo"
+      ],
+      "intent": "Explicar por qué pensar sobre uno mismo puede ayudar o empeorar el ánimo según se haga desde la reflexión o desde la rumiación.",
+      "test_slug": "test-estado-de-animo",
+      "test_id": "panas",
+      "why": "Búsqueda informativa de cola larga que conecta con la guía de PANAS; requiere tono descriptivo por tocar salud mental.",
+      "status": "pending"
+    },
+    {
+      "keyword": "sesgo de confirmación en el día a día",
+      "secondary": [
+        "qué es el sesgo de confirmación",
+        "ejemplos de sesgo de confirmación",
+        "por qué solo vemos lo que confirma lo que pensamos",
+        "cómo reducir el sesgo de confirmación"
+      ],
+      "intent": "Explicar el sesgo de confirmación con ejemplos cotidianos y su relación con el pensamiento reflexivo.",
+      "test_slug": "test-pensamiento-reflexivo",
+      "test_id": "crt",
+      "why": "Enlaza con la guía de pensamiento intuitivo y reflexivo; la cola larga 'en el día a día' evita competir con enciclopedias por el término corto.",
       "status": "pending"
     }
   ]
