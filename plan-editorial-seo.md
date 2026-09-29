@@ -43,5 +43,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 - `/test/test-triada-oscura` — `test de tríada oscura`, `test rasgos oscuros`.
 - `/test/test-honestidad-humildad` — `test de honestidad humildad`, `test de bondad`, `test de maldad`, `test de humildad`, `test si soy buena persona`.
 - `/test/test-de-celos` — `test de celos`, `test de celos pareja`, `test de si soy celosa`, `test de si soy celoso`.
+- `/test/test-persona-dificil` — `test de persona difícil`, `test persona difícil`, `difficult person test`.
+- `/test/test-estilos-de-amor` — `test de estilos de amor`, `test estilo de amor`, `test de tipos de amor`.
 - `/test/test-de-ci` — `test de CI online`.
 - `/test/test-lenguaje-del-amor` — `test lenguaje del amor`.

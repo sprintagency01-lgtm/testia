@@ -866,7 +866,7 @@ window.TESTS = [
  mode:"likert", scaleMax:5,
  prompt:"Piensa en tu pareja actual o, si ahora no tienes, en tu última relación.",
  hideCardBars:true,
- freeTraits:["👀 Celos en pareja"],
+ freeTraits:["Celos en pareja"],
  premiumTitle:"Ya conoces tu nivel. Descubre de qué están hechos tus celos",
  premiumPitch:"Los celos tienen tres caras: lo que piensas, lo que sientes y lo que haces. No todas desgastan igual una relación. Mira tu puntuación en cada una y qué significa en tu caso.",
  scales:{C:"Pensamientos",E:"Emociones",B:"Conductas"},
@@ -901,6 +901,108 @@ window.TESTS = [
   {t:"Llamo o aparezco sin avisar para ver qué está haciendo mi pareja.",s:"B"},
   {t:"Le pido a mi pareja que no quede con ciertas personas.",s:"B"},
   {t:"Dejo que mi pareja haga su vida sin pedirle explicaciones.",s:"B",r:true}
+ ]
+},
+
+/* 25. PERSONA DIFÍCIL — estructura del antagonismo (Sleep, Crowe, Carter, Lynam y Miller, 2021), ítems propios */
+{
+ id:"dificil", name:"¿Eres una persona difícil?", emoji:"🧨", cat:"Personalidad",
+ blurb:"Siete rasgos que complican el trato con los demás, de la insensibilidad a la manipulación. ¿Cuánto cuesta llevarse bien contigo?",
+ instrument:"Estructura del antagonismo (Sleep, Crowe, Carter, Lynam y Miller, 2021) · ítems propios", license:"🟢",
+ mode:"likert", scaleMax:5,
+ hideCardBars:true,
+ freeTraits:["Trato con los demás"],
+ premiumTitle:"Ya sabes cuánto. Descubre qué te hace difícil",
+ premiumPitch:"La dificultad se reparte en siete rasgos: insensibilidad, grandiosidad, agresividad, desconfianza, manipulación, dominancia y gusto por el riesgo. Mira tu puntuación en cada uno y qué significa en tu caso.",
+ scales:{CAL:"Insensibilidad",GRA:"Grandiosidad",AGR:"Agresividad",SUS:"Desconfianza",MAN:"Manipulación",DOM:"Dominancia",RIS:"Gusto por el riesgo"},
+ result:{type:"profileBars",overall:true,overallLabel:"Persona difícil"},
+ interp:{
+  CAL:{hi:"Te afectan poco los problemas de los demás y te cuesta ponerte en su lugar. A corto plazo te protege; a largo plazo es de lo que más aleja a la gente.",mid:"Tienes empatía, pero no siempre la sacas: depende de quién sea y de si crees que se lo ha buscado.",lo:"Te importa de verdad cómo están los demás. Es el rasgo que más suaviza el trato."},
+  GRA:{hi:"Te ves por encima de la media y esperas que se note. La confianza ayuda; el problema llega cuando los demás sienten que los miras desde arriba.",mid:"Sabes lo que vales y te gusta que se reconozca, sin llegar a creerte más que nadie.",lo:"No te pones por encima de nadie. Tu autoestima no depende de destacar."},
+  AGR:{hi:"Cuando algo te molesta, reaccionas fuerte y a veces contra la persona equivocada. Es el rasgo que más se nota en el día a día de quien convive contigo.",mid:"Pierdes los nervios de vez en cuando, como casi todo el mundo, pero no es tu forma habitual de responder.",lo:"Te cuesta mucho perder las formas. Incluso en una discusión, mantienes el tono."},
+  SUS:{hi:"Te fías poco de las intenciones ajenas y sueles esperar lo peor. Te protege de que te engañen, pero hace que a la gente le cueste acercarse.",mid:"Das confianza, aunque con reservas: primero observas y luego te abres.",lo:"Das el beneficio de la duda. Esperas lo mejor de los demás hasta que te demuestran lo contrario."},
+  MAN:{hi:"Sabes qué decir a cada persona para conseguir lo que quieres. Es una habilidad social potente, pero cuando se nota, rompe la confianza de golpe.",mid:"A veces adornas las cosas para salirte con la tuya, sin que sea tu forma habitual de tratar a la gente.",lo:"Vas de frente. Pides lo que quieres sin rodeos y no juegas con la gente."},
+  DOM:{hi:"Te gusta llevar la voz cantante y te cuesta ceder. En un equipo puedes tirar del resto, pero también dejarlos sin espacio.",mid:"Tomas el mando cuando hace falta, pero sabes dejar que decidan otros.",lo:"No necesitas imponerte. Escuchas y cedes con facilidad, quizá a veces demasiado."},
+  RIS:{hi:"Buscas emociones fuertes y te aburre lo tranquilo. Da energía, pero puede arrastrar a quien está contigo a situaciones que no ha elegido.",mid:"Te gusta algo de emoción, pero no a cualquier precio.",lo:"Prefieres lo seguro y lo previsible. A quien te rodea le das tranquilidad."}
+ },
+ items:[
+  {t:"Los problemas de los demás no suelen ser asunto mío.",s:"CAL"},
+  {t:"Me cuesta sentir lástima por quien se ha metido solo en un lío.",s:"CAL"},
+  {t:"Me afecta ver que alguien lo está pasando mal.",s:"CAL",r:true},
+  {t:"Creo que merezco más reconocimiento del que recibo.",s:"GRA"},
+  {t:"Hago la mayoría de las cosas mejor que la gente que me rodea.",s:"GRA"},
+  {t:"No me considero más especial que los demás.",s:"GRA",r:true},
+  {t:"Si alguien me provoca, se lo devuelvo.",s:"AGR"},
+  {t:"Cuando estoy de mal humor, lo pago con quien tengo cerca.",s:"AGR"},
+  {t:"Aunque me lleven la contraria, me cuesta perder los nervios.",s:"AGR",r:true},
+  {t:"Si alguien es amable conmigo, me pregunto qué quiere a cambio.",s:"SUS"},
+  {t:"La mayoría de la gente se aprovecharía de mí si pudiera.",s:"SUS"},
+  {t:"Suelo dar a los demás el beneficio de la duda.",s:"SUS",r:true},
+  {t:"Sé decir a cada persona lo que quiere oír para conseguir lo que busco.",s:"MAN"},
+  {t:"Exagero o adorno la verdad si me conviene.",s:"MAN"},
+  {t:"Prefiero pedir las cosas claramente antes que darles la vuelta para convencer.",s:"MAN",r:true},
+  {t:"En un grupo, me gusta que se haga lo que yo digo.",s:"DOM"},
+  {t:"Me cuesta ceder en una discusión aunque no tenga toda la razón.",s:"DOM"},
+  {t:"Me siento a gusto dejando que otros tomen las decisiones.",s:"DOM",r:true},
+  {t:"Hago cosas arriesgadas solo por la emoción.",s:"RIS"},
+  {t:"Si todo va demasiado tranquilo, me aburro y busco algo de acción.",s:"RIS"},
+  {t:"Prefiero ir a lo seguro antes que arriesgarme.",s:"RIS",r:true}
+ ]
+},
+
+/* 26. ESTILOS DE AMOR — Love Attitudes Scale (Hendrick y Hendrick, 1986; forma breve 1998), ítems propios */
+{
+ id:"lovestyles", name:"Tu estilo de amor", emoji:"💞", cat:"Relaciones",
+ blurb:"Pasión, amistad, cabeza, juego, intensidad o entrega. Descubre los seis estilos de amor y cuál manda en tu forma de querer.",
+ instrument:"Love Attitudes Scale, forma breve (Hendrick, Hendrick y Dicke, 1998) · ítems propios", license:"🟢",
+ mode:"likert", scaleMax:5,
+ prompt:"Piensa en tu pareja actual o, si ahora no tienes, en tu última relación.",
+ hideCardBars:true,
+ premiumTitle:"Ya sabes tu estilo principal. Descubre tu mezcla completa",
+ premiumPitch:"Nadie quiere con un solo estilo. Mira cuánto tienes de cada uno de los seis y qué dice cada uno de tu forma de querer.",
+ scales:{ERO:"Pasión (Eros)",LUD:"Juego (Ludus)",STO:"Amistad (Storge)",PRA:"Sentido práctico (Pragma)",MAN:"Intensidad (Manía)",AGA:"Entrega (Ágape)"},
+ result:{type:"profileBars"},
+ topDesc:{
+  ERO:"Te enamoras de golpe y con todo: química, atracción y la sensación de haber encontrado a alguien especial. Para ti una relación sin pasión se queda coja.",
+  LUD:"Para ti el amor es un juego que se disfruta mejor sin prisas ni ataduras. Te divierte la seducción y te cuesta ponerle etiqueta a lo que tienes.",
+  STO:"Tu amor nace despacio y de la amistad. No necesitas fuegos artificiales: te enamoran la complicidad, la confianza y tener a tu mejor persona al lado.",
+  PRA:"Quieres con el corazón, pero eliges con la cabeza. Antes de comprometerte miras si esa persona encaja con tu vida, tus valores y tus planes.",
+  MAN:"Cuando quieres, quieres a todo o nada. Vives el amor con mucha intensidad y los altibajos de la relación te afectan más que a la mayoría.",
+  AGA:"Tu forma de querer es darlo todo. La felicidad de tu pareja va antes que la tuya, y cedes mucho con tal de verla bien."
+ },
+ interp:{
+  ERO:{hi:"La pasión y la atracción son el motor de tu forma de querer. En los estudios de Hendrick es el estilo que más se asocia con satisfacción en pareja. El reto es que la relación siga viva cuando baja la intensidad del principio.",mid:"Valoras la química, pero no lo es todo: para ti la atracción suma, aunque no decide sola.",lo:"La pasión no es lo que más pesa en cómo quieres. Te enganchan más la confianza, la estabilidad o el proyecto común que el flechazo."},
+  LUD:{hi:"Disfrutas de la seducción y te cuesta el compromiso exclusivo. En los estudios, este estilo se asocia con relaciones menos satisfactorias cuando la otra persona busca algo serio. Dejar claro lo que buscas evita malentendidos.",mid:"Tienes un punto juguetón y valoras tu libertad, pero no huyes del compromiso cuando alguien te importa.",lo:"No juegas con la gente: cuando estás con alguien, estás de verdad. El compromiso no te agobia."},
+  STO:{hi:"El cariño tranquilo, la amistad y la confianza son tu base. Es un amor que aguanta bien el paso del tiempo, aunque a veces echa de menos algo de chispa.",mid:"Valoras la amistad en la pareja, sin que sea la única pieza: también necesitas atracción o un proyecto común.",lo:"No necesitas que tu pareja sea tu mejor amistad. Buscas otras cosas en el amor, como la pasión o la estabilidad."},
+  PRA:{hi:"Eliges pareja con criterio: valores, planes de vida, estabilidad. Te protege de relaciones que no encajan, aunque a veces la cabeza frena al corazón más de la cuenta.",mid:"Tienes en cuenta si alguien encaja con tu vida, pero no lo conviertes en una lista de requisitos.",lo:"No haces cuentas cuando te enamoras. Te guías más por lo que sientes que por si esa persona encaja con tus planes."},
+  MAN:{hi:"Vives el amor con intensidad y con miedo a perderlo: las dudas y los silencios te afectan mucho. Es el estilo que más se asocia con celos y malestar en pareja. Trabajar la seguridad en ti ayuda más que buscar pruebas en la otra persona.",mid:"A veces la relación te genera inquietud o necesidad de confirmación, sin que te domine.",lo:"Quieres sin angustia. Las dudas puntuales no te quitan el sueño ni el equilibrio."},
+  AGA:{hi:"Te entregas sin esperar nada a cambio y pones a tu pareja por delante. Es una forma muy generosa de querer; solo conviene vigilar que no acabe borrando tus propias necesidades.",mid:"Das mucho en pareja, pero sin olvidarte de ti: también esperas reciprocidad.",lo:"Quieres, pero no a costa de ti. Tu cariño no pasa por sacrificarte y esperas que el esfuerzo sea mutuo."}
+ },
+ items:[
+  {t:"Entre mi pareja y yo hubo química desde el primer momento.",s:"ERO"},
+  {t:"Sentí una atracción física muy fuerte al conocer a mi pareja.",s:"ERO"},
+  {t:"Siento que mi pareja y yo encajamos de una forma especial.",s:"ERO"},
+  {t:"Nuestra relación tiene mucha pasión.",s:"ERO"},
+  {t:"Prefiero no comprometerme demasiado con una sola persona.",s:"LUD"},
+  {t:"Me gusta más el juego de la seducción que la relación en sí.",s:"LUD"},
+  {t:"Alguna vez he tenido a dos personas interesadas en mí sin que lo supieran entre ellas.",s:"LUD"},
+  {t:"Lo que mi pareja no sabe de mí no le hace daño.",s:"LUD"},
+  {t:"El mejor amor nace de una amistad.",s:"STO"},
+  {t:"Mi pareja es, ante todo, mi mejor amistad.",s:"STO"},
+  {t:"Mi relación fue creciendo poco a poco, sin un flechazo.",s:"STO"},
+  {t:"Necesito conocer bien a alguien antes de enamorarme.",s:"STO"},
+  {t:"Antes de comprometerme, pienso si esa persona encaja con mis planes de vida.",s:"PRA"},
+  {t:"Me importa que mi pareja tenga una situación estable.",s:"PRA"},
+  {t:"Tener valores y objetivos parecidos pesa más para mí que la atracción.",s:"PRA"},
+  {t:"Pienso en cómo sería esa persona como compañía para toda la vida.",s:"PRA"},
+  {t:"Si noto que mi pareja no está pendiente de mí, me pongo muy mal.",s:"MAN"},
+  {t:"Cuando me enamoro, me cuesta pensar en otra cosa.",s:"MAN"},
+  {t:"Si mi pareja me ignora un tiempo, hago tonterías para llamar su atención.",s:"MAN"},
+  {t:"Me cuesta dormir si tengo dudas sobre lo que siente mi pareja.",s:"MAN"},
+  {t:"Prefiero sufrir yo antes que ver sufrir a mi pareja.",s:"AGA"},
+  {t:"Pongo las necesidades de mi pareja por delante de las mías.",s:"AGA"},
+  {t:"Haría casi cualquier sacrificio por la felicidad de mi pareja.",s:"AGA"},
+  {t:"Aguantaría mucho con tal de que mi pareja sea feliz.",s:"AGA"}
  ]
 }
 
@@ -1094,6 +1196,45 @@ window.SEO_CONTENT = {
     {title:"Measuring romantic jealousy: Validation of the multidimensional jealousy scale in Australian samples",url:"https://doi.org/10.1111/j.1742-9536.2011.00026.x",note:"Validación posterior de la escala y su estructura en tres factores."}
    ],
    relatedIds:["attachment","lovelang","redflag"]},
+ dificil:{slug:"test-persona-dificil", seoTitle:"Test de persona difícil: ¿eres difícil de tratar? 21 preguntas | Testia", h1:"Test de persona difícil",
+   metaDesc:"Test de persona difícil: 21 preguntas sobre los siete rasgos que complican el trato con los demás, según la investigación sobre antagonismo. Gratis.",
+   intro:"¿Cuesta llevarse bien contigo? La investigación sobre antagonismo identifica siete rasgos que hacen difícil a una persona: insensibilidad, grandiosidad, agresividad, desconfianza, manipulación, dominancia y gusto por el riesgo. Descubre cuánto tienes de cada uno.",
+   learn:["Tu nivel general de persona difícil","Los siete rasgos que complican el trato","Cuál de ellos pesa más en tu caso","Carta de resultado para compartir"],
+   overview:[{label:"Mide",text:"Siete rasgos de antagonismo en el trato con los demás."},{label:"Formato",text:"21 afirmaciones; tres por cada rasgo."},{label:"Límite",text:"No detecta trastornos de la personalidad ni sustituye una evaluación."}],
+   sections:[
+    {title:"Qué es una persona difícil según la psicología",body:"En psicología de la personalidad, lo que en el día a día llamamos persona difícil se estudia como antagonismo: el polo opuesto a la amabilidad. En 2021, Sleep y su equipo analizaron cientos de preguntas de distintos cuestionarios y encontraron siete rasgos que lo componen: insensibilidad, grandiosidad, agresividad, desconfianza, manipulación, dominancia y búsqueda de riesgo."},
+    {title:"Por qué no basta con una sola cifra",body:"Dos personas igual de difíciles pueden serlo por motivos muy distintos. Una desconfía de todo el mundo; otra necesita imponerse en cada conversación. Por eso el test te da un nivel general y, además, tu perfil en los siete rasgos."}
+   ],
+   faqs:[
+    {q:"¿Es el mismo test que el Difficult Person Test viral?",a:"No. Aquel test lo publicó IDRlabs. Este usa preguntas propias inspiradas en la misma línea de investigación sobre antagonismo y en los siete rasgos que identificaron Sleep y su equipo."},
+    {q:"¿Un resultado alto significa que soy mala persona?",a:"No. Describe tendencias en el trato con los demás, que cambian según el contexto y se pueden trabajar. No mide tus valores ni tu forma de actuar en cada situación."},
+    {q:"¿En qué se diferencia de la tríada oscura?",a:"La tríada oscura mide tres rasgos concretos: maquiavelismo, narcisismo y psicopatía. Este test mira el trato cotidiano con siete rasgos más amplios, como la desconfianza o la dominancia."},
+    {q:"¿Puedo cambiar estos rasgos?",a:"Los rasgos de personalidad son bastante estables, pero la conducta sí se puede trabajar. Saber qué rasgo te complica más el trato es un buen punto de partida."}
+   ],
+   sources:[
+    {title:"Uncovering the structure of antagonism",url:"https://pubmed.ncbi.nlm.nih.gov/34323587/",note:"Sleep, Crowe, Carter, Lynam y Miller (2021) identifican siete rasgos que componen el antagonismo."}
+   ],
+   relatedIds:["darktriad","honesty","redflag"]},
+ lovestyles:{slug:"test-estilos-de-amor", seoTitle:"Test de estilos de amor: descubre cómo quieres (6 estilos) | Testia", h1:"Test de estilos de amor",
+   metaDesc:"Test de estilos de amor basado en la escala de Hendrick: 24 preguntas para saber si amas con pasión, amistad, cabeza, juego, intensidad o entrega. Gratis.",
+   intro:"¿Te enamoras de golpe o poco a poco? ¿Con la cabeza o a todo o nada? El sociólogo John Alan Lee describió seis estilos de amor y Clyde y Susan Hendrick crearon la escala para medirlos. Descubre cuál manda en tu forma de querer.",
+   learn:["Tu estilo de amor principal","Cuánto tienes de cada uno de los seis estilos","Qué dice cada estilo de tu forma de querer","Carta de resultado para compartir"],
+   overview:[{label:"Mide",text:"Seis estilos de amor: pasión, juego, amistad, sentido práctico, intensidad y entrega."},{label:"Formato",text:"24 afirmaciones; cuatro por cada estilo."},{label:"Límite",text:"Describe actitudes ante el amor, no evalúa tu relación."}],
+   sections:[
+    {title:"Cuáles son los seis estilos de amor",body:"Eros es el amor apasionado y de flechazo. Ludus, el amor como juego, sin ataduras. Storge, el amor que nace de la amistad. Pragma, el amor con cabeza, que busca encaje en valores y planes. Manía, el amor intenso y posesivo. Ágape, el amor entregado y altruista."},
+    {title:"¿Se puede tener más de un estilo?",body:"Sí, y es lo habitual. Casi todo el mundo combina varios estilos con distinta intensidad, y la mezcla puede cambiar con la edad o según la relación. Por eso el resultado te da un estilo principal y tu perfil en los seis."}
+   ],
+   faqs:[
+    {q:"¿Puedo hacer el test si no tengo pareja?",a:"Sí. Responde pensando en tu última relación o en cómo sueles vivir el amor. El resultado describe tus actitudes, no una relación concreta."},
+    {q:"¿Hay un estilo de amor mejor que otro?",a:"No hay uno correcto, pero los estudios asocian más la pasión y la entrega con satisfacción en pareja, y más el juego y la intensidad con relaciones problemáticas."},
+    {q:"¿Qué diferencia hay con los lenguajes del amor?",a:"Los lenguajes del amor hablan de cómo expresas y recibes cariño. Los estilos de amor hablan de qué buscas en una relación y cómo la vives."},
+    {q:"¿En qué se basa el test?",a:"En la teoría de John Alan Lee y en la escala de actitudes hacia el amor de Clyde y Susan Hendrick, con preguntas propias y una finalidad divulgativa."}
+   ],
+   sources:[
+    {title:"A theory and method of love",url:"https://doi.org/10.1037/0022-3514.50.2.392",note:"Hendrick y Hendrick (1986) presentan la escala de actitudes hacia el amor basada en los estilos de Lee."},
+    {title:"The Love Attitudes Scale: Short Form",url:"https://doi.org/10.1177/0265407598152001",note:"Versión breve de 24 ítems, cuatro por estilo (Hendrick, Hendrick y Dicke, 1998)."}
+   ],
+   relatedIds:["lovelang","attachment","celos"]},
 };
 
 /* Mapa de profesiones para el test vocacional (RIASEC) */

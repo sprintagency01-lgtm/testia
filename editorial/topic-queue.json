@@ -288,6 +288,34 @@
       "status": "pending"
     },
     {
+      "keyword": "qué es una persona difícil según la psicología",
+      "secondary": [
+        "rasgos de una persona difícil",
+        "antagonismo en psicología",
+        "cómo tratar a una persona difícil",
+        "difficult person test en español"
+      ],
+      "intent": "Explicar el antagonismo y los siete rasgos que identificaron Sleep y su equipo (2021), cómo se manifiestan en el trato diario y qué no significa puntuar alto.",
+      "test_slug": "test-persona-dificil",
+      "test_id": "dificil",
+      "why": "'test de persona difícil' es la segunda sugerencia de Google en 'test de p'. Test lanzado el 2026-09-29 sin guía de apoyo.",
+      "status": "pending"
+    },
+    {
+      "keyword": "los 6 estilos de amor de John Lee",
+      "secondary": [
+        "eros ludus storge pragma mania agape",
+        "tipos de amor en psicología",
+        "estilos de amor de Hendrick",
+        "cuál es mi estilo de amor"
+      ],
+      "intent": "Explicar los seis estilos de amor de Lee, cómo los mide la escala de Hendrick y qué dicen los estudios sobre cada uno.",
+      "test_slug": "test-estilos-de-amor",
+      "test_id": "lovestyles",
+      "why": "'test de estilos de amor' aparece en el autocompletado de 'test de e' y sube en Trends. Complementa la guía de lenguajes del amor sin pisarla.",
+      "status": "pending"
+    },
+    {
       "keyword": "autoestima contingente",
       "secondary": [
         "autoestima que depende de los logros",

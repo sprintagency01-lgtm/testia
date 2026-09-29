@@ -76,7 +76,7 @@
   .heroRow{display:flex;align-items:center;gap:15px;padding:12px 2px;border-top:1px solid #ebedf3;cursor:pointer}
   .heroRow:hover{opacity:.62}
   .mono{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-  .mono svg{width:21px;height:21px;display:block}
+  .mono svg{width:21px;height:21px;display:block}#resMono{display:flex;align-items:center;justify-content:center}#resMono svg{width:28px;height:28px}
   /* sections */
   .secHead{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:13px;margin-bottom:24px}
   .secHead .l{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
@@ -664,9 +664,9 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20260930"></script>
+<script src="tests.js?v=20260930b"></script>
 <script src="tarot.js"></script>
-<script src="iq.js?v=20260930"></script>
+<script src="iq.js?v=20260930b"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -683,15 +683,19 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",
+const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
-  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",
+  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",
   moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
-  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"bolt"};
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle"};
 const ICONS={
+  eye:["M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z","M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"],
+  warn:["M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"],
+  puzzle:["M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"],
+  flag:["M3 3v1.5M3 21v-6m0 0 2.77-.693a9 9 0 0 1 6.208.682l.108.054a9 9 0 0 0 6.086.71l3.114-.732a48.524 48.524 0 0 1-.005-10.499l-3.11.732a9 9 0 0 1-6.085-.711l-.108-.054a9 9 0 0 0-6.208-.682L3 4.5M3 15V4.5"],
   user:["M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"],
   bolt:["M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"],
   heart:["M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"],
@@ -863,15 +867,21 @@ const ARCHE={
   darktriad:{MAQ:'El estratega en la sombra',NAR:'La estrella del show',PSI:'El que no tiene freno'},
   moral:{CUI:'El alma compasiva',JUS:'El justiciero',LEA:'El incondicional',AUT:'El guardián del orden',PUR:'El idealista'},
   values:{AUT:'El espíritu libre',EST:'El buscador de emociones',HED:'El amante del placer',LOG:'El triunfador',POD:'El ambicioso',SEG:'El que busca refugio',CON:'El que sigue las reglas',TRA:'El guardián de tradiciones',BEN:'El protector de los suyos',UNI:'El alma universal'},
+  lovestyles:{ERO:'Amor de flechazo',LUD:'Amor sin ataduras',STO:'Amor de mejores amigos',PRA:'Amor con cabeza',MAN:'Amor a todo o nada',AGA:'Amor sin condiciones'},
   lovelang:{PAL:'El de las palabras',TIE:'El del tiempo juntos',REG:'El de los detalles',ACT:'El de los hechos',CON:'El del contacto'},
 };
 const PANAS_V={pos:{name:'Días luminosos',desc:'Ahora mismo domina tu afecto positivo: energía, entusiasmo y buen ánimo por encima de lo negativo.'},neg:{name:'Días grises',desc:'Ahora mismo pesa más tu afecto negativo. Es un estado, no una sentencia: date margen y cuídate.'}};
 const OVERALL_TIERS={
   celos:[
-    {min:0,name:'Zen total',desc:'Los celos apenas aparecen en tu forma de querer. Confías sin necesidad de comprobar y un rival imaginario no te quita el sueño.'},
-    {min:30,name:'Celos de serie',desc:'Sientes celos cuando la situación los provoca, como casi todo el mundo, pero no dirigen tu relación.'},
-    {min:50,name:'Radar encendido',desc:'Los celos aparecen a menudo y a veces se convierten en dudas que dan vueltas o en ganas de comprobar.'},
-    {min:70,name:'Celos al mando',desc:'Los celos ocupan mucho espacio en tu forma de querer. Merece la pena mirarlo con calma, por ti y por tu relación.'}],
+    {min:0,name:'Confianza blindada',desc:'Los celos apenas aparecen en tu forma de querer. Confías sin necesidad de comprobar y un rival imaginario no te quita el sueño.'},
+    {min:30,name:'Celos justos y necesarios',desc:'Sientes celos cuando la situación lo pide, como casi todo el mundo, pero no mandan en tu relación.'},
+    {min:50,name:'Detective a media jornada',desc:'Los celos aparecen a menudo y a veces te llevan a darle vueltas o a comprobar cosas que en el fondo no necesitas saber.'},
+    {min:70,name:'Detective a jornada completa',desc:'Los celos ocupan mucho espacio: sospechas, malestar y ganas de vigilar. No es una condena, pero merece la pena mirarlo con calma, por ti y por tu relación.'}],
+  dificil:[
+    {min:0,name:'Un trozo de pan',desc:'Eres de las personas con las que es fácil llevarse bien: empatía, buen trato y cero ganas de imponerte. Solo cuida que nadie se aproveche.'},
+    {min:30,name:'Tienes tu punto',desc:'Tienes carácter, pero nada que no se lleve bien. Algún rasgo asoma de vez en cuando, como en casi todo el mundo.'},
+    {min:50,name:'Hueso duro de roer',desc:'Hay que saber llevarte. Varios de los rasgos que complican el trato aparecen con fuerza y la gente de tu alrededor lo nota.'},
+    {min:68,name:'Difícil nivel experto',desc:'Tratar contigo es un deporte de riesgo: muchos de los rasgos que hacen difícil a una persona puntúan alto en ti. No es una condena, es un punto de partida.'}],
   honesty:[
     {min:0,name:'Trepa de manual',desc:'Lo tuyo es mirar por ti, cueste lo que cueste a los demás. La gente haría bien en contar la vuelta delante de ti.'},
     {min:40,name:'Honesto con matices',desc:'Ni santo ni villano: tan decente como la media, con algún atajo de vez en cuando.'},
@@ -958,7 +968,7 @@ function finish(){
         r.name=t.name;r.role='Tu balance emocional';r.desc=t.desc;r.mono=initials(t.name);
         r.card={mono:initials(t.name),name:t.name,role:'Balance emocional',stat:pct.POS>=pct.NEG?'EN POSITIVO':'EN NEGATIVO'};
       }else{const top=arr[0];const arche=(ARCHE[T.id]&&ARCHE[T.id][top.k])||top.lab;
-        r.name=arche;r.role=top.lab;r.desc=`Tu rasgo más marcado es «${top.lab}». Así se reparte tu perfil completo:`;r.mono=initials(top.lab);
+        r.name=arche;r.role=top.lab;r.desc=(T.topDesc&&T.topDesc[top.k])||`Tu rasgo más marcado es «${top.lab}». Así se reparte tu perfil completo:`;r.mono=initials(top.lab);
         r.card={mono:initials(top.lab),name:arche,role:top.lab,stat:`${top.lab.toUpperCase()} ${Math.round(top.p)}%`};
       }
       r.traits=arr.slice(0,3).map(x=>x.lab);r.bars=showArr;
@@ -1107,23 +1117,23 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={politico:['moral','values'],honesty:['darktriad','values'],darktriad:['honesty','redflag'],moral:['politico','values'],
+const NEXT_TEST={politico:['moral','values'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
   iq:['crt','ncs'],crt:['iq','ncs'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
-  values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['attachment','celos'],
-  redflag:['celos','attachment'],celos:['attachment','redflag'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
+  values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],
+  redflag:['celos','attachment'],celos:['lovestyles','attachment'],dificil:['darktriad','redflag'],lovestyles:['lovelang','celos'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
 function renderNext(){
   const box=$('nextBox');if(!box||!T)return;
   const ids=(NEXT_TEST[T.id]||[]).filter(id=>TESTS.some(t=>t.id===id));
   if(!ids.length){box.innerHTML='';return;}
   box.innerHTML=`<div class="nexth">Tu siguiente test</div><div class="nextsub">Gratis y sin registro. Encaja con lo que acabas de descubrir.</div>`+
     ids.map(id=>{const t=TESTS.find(x=>x.id===id),n=(t.items||[]).length;
-      return `<button class="nextcard" type="button" data-analytics-name="Siguiente test: ${t.name.replace(/"/g,'')}" onclick="goNextTest('${id}')"><span class="ne">${t.emoji||'✦'}</span><span><b>${t.name}</b><small>${t.blurb||''}${n?` · ${n} preguntas`:''}</small></span><span class="go">→</span></button>`;}).join('');
+      return `<button class="nextcard" type="button" data-analytics-name="Siguiente test: ${t.name.replace(/"/g,'')}" onclick="goNextTest('${id}')"><span class="mono" ${monoBox(id)}>${svgIcon(ICON_OF[id]||'user',CATS[TEST_CAT[id]].color)}</span><span><b>${t.name}</b><small>${t.blurb||''}${n?` · ${n} preguntas`:''}</small></span><span class="go">→</span></button>`;}).join('');
 }
 function goNextTest(id){trackEvent('next_test_clicked',{from_test:T&&T.id,to_test:id});startTest(id);}
 function renderResult(r){
   $('resEyebrow').textContent=r.eyebrow;
-  const m=$('resMono');m.style.background=`linear-gradient(135deg,${hexA(r.accent,.2)},${hexA(r.accent,.08)})`;m.style.color=r.accent;m.textContent=r.mono||'';
+  const m=$('resMono');m.style.background=`linear-gradient(135deg,${hexA(r.accent,.2)},${hexA(r.accent,.08)})`;m.style.color=r.accent;m.innerHTML=svgIcon((T&&ICON_OF[T.id])||'user',r.accent);
   const n=$('resName');n.textContent=r.name;n.style.color=r.accent;
   $('resRole').textContent=r.role;$('resDesc').textContent=r.desc;
   $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
