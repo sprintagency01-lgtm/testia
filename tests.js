@@ -1,5 +1,5 @@
 /* ============================================================
-   TESTIA — Banco de los 20 tests
+   TESTIA — Banco de tests
    Cada test se basa en un instrumento psicométrico validado.
    Para instrumentos con licencia restringida, los ítems están
    redactados de forma original midiendo el mismo constructo.
@@ -856,6 +856,52 @@ window.TESTS = [
   {t:"Me alegro de verdad de los logros de mi pareja.",s:"S",r:true},
   {t:"Afronto los problemas hablando, no desapareciendo.",s:"S",r:true}
  ]
+},
+
+/* 24. CELOS — Multidimensional Jealousy Scale (Pfeiffer y Wong, 1989), ítems propios */
+{
+ id:"celos", name:"Test de celos", emoji:"👀", cat:"Relaciones",
+ blurb:"¿Te quedas en el pinchazo o acabas mirando el móvil? Tus celos en tres dimensiones: pensamientos, emociones y conductas.",
+ instrument:"Multidimensional Jealousy Scale (Pfeiffer y Wong, 1989) · ítems propios", license:"🟢",
+ mode:"likert", scaleMax:5,
+ prompt:"Piensa en tu pareja actual o, si ahora no tienes, en tu última relación.",
+ hideCardBars:true,
+ freeTraits:["👀 Celos en pareja"],
+ premiumTitle:"Ya conoces tu nivel. Descubre de qué están hechos tus celos",
+ premiumPitch:"Los celos tienen tres caras: lo que piensas, lo que sientes y lo que haces. No todas desgastan igual una relación. Mira tu puntuación en cada una y qué significa en tu caso.",
+ scales:{C:"Pensamientos",E:"Emociones",B:"Conductas"},
+ result:{type:"profileBars",overall:true,overallLabel:"Nivel de celos"},
+ interp:{
+  C:{hi:"Tienes a menudo pensamientos de sospecha sobre tu pareja, aunque no haya pruebas. Es la cara de los celos que la investigación asocia con peor satisfacción en la relación, porque la duda se alimenta sola: cuanto más vueltas le das, más señales encuentras. Separar lo que sabes de lo que imaginas es el primer paso.",
+     mid:"Las dudas aparecen a veces, en situaciones concretas, pero no se instalan. Es un nivel habitual. Fíjate en qué las dispara: si se repite un patrón, suele hablar más de tu historia que de tu pareja.",
+     lo:"Rara vez sospechas de tu pareja sin motivo. Tu confianza no depende de comprobar ni de saberlo todo, algo que los estudios relacionan con relaciones más satisfactorias."},
+  E:{hi:"Te afectan mucho las situaciones en las que tu pareja muestra interés por otra persona. Es la cara más común de los celos y, por sí sola, no suele dañar la relación: es una reacción emocional ante algo que vives como amenaza. Lo que cuenta es qué haces después con esa emoción.",
+     mid:"Sientes celos cuando la situación los provoca, con una intensidad parecida a la de la mayoría. Es la parte de los celos que suele ir ligada al compromiso con la relación.",
+     lo:"Pocas situaciones te despiertan celos. Puede reflejar mucha seguridad en la relación o una implicación emocional más contenida. Solo tú sabes cuál de las dos pesa más."},
+  B:{hi:"Los celos te llevan a actuar: revisar, preguntar, vigilar o limitar con quién queda tu pareja. Es la cara que más desgasta una relación y la que más se acerca al control. Si te reconoces aquí, merece la pena hablarlo en pareja o con un profesional: la confianza no se construye comprobando.",
+     mid:"De vez en cuando compruebas o pides explicaciones. No es raro, pero conviene vigilar la frecuencia: estas conductas tienden a crecer porque calman la inquietud en el momento.",
+     lo:"No vigilas ni controlas a tu pareja. Aunque sientas celos, no los conviertes en comprobaciones, que es justo lo que más protege a una relación."}
+ },
+ items:[
+  {t:"Sospecho que mi pareja podría estar viéndose con otra persona a escondidas.",s:"C"},
+  {t:"Me pregunto a menudo si mi pareja se siente atraída por alguien de su entorno.",s:"C"},
+  {t:"Si mi pareja se retrasa sin avisar, lo primero que pienso es que está con otra persona.",s:"C"},
+  {t:"Me da vueltas la idea de que alguien pueda interesarle más que yo.",s:"C"},
+  {t:"Cuando mi pareja habla con entusiasmo de alguien, empiezo a imaginar cosas.",s:"C"},
+  {t:"Confío en mi pareja aunque no sepa en todo momento dónde está ni con quién.",s:"C",r:true},
+  {t:"Me molestaría mucho ver a mi pareja coqueteando con otra persona.",s:"E"},
+  {t:"Me siento mal cuando mi pareja presta mucha atención a alguien atractivo.",s:"E"},
+  {t:"Si en una fiesta mi pareja se ríe mucho con otra persona, me cambia el humor.",s:"E"},
+  {t:"Me inquieta que mi pareja mantenga la amistad con una expareja.",s:"E"},
+  {t:"Me duele que mi pareja cuente a otras personas cosas que a mí no me cuenta.",s:"E"},
+  {t:"Que mi pareja tenga una amistad muy cercana con otra persona no me afecta.",s:"E",r:true},
+  {t:"He mirado el móvil de mi pareja sin que lo supiera.",s:"B"},
+  {t:"Pregunto a mi pareja con quién ha estado cuando no estábamos juntos.",s:"B"},
+  {t:"Reviso a quién sigue o qué le gusta a mi pareja en redes sociales.",s:"B"},
+  {t:"Llamo o aparezco sin avisar para ver qué está haciendo mi pareja.",s:"B"},
+  {t:"Le pido a mi pareja que no quede con ciertas personas.",s:"B"},
+  {t:"Dejo que mi pareja haga su vida sin pedirle explicaciones.",s:"B",r:true}
+ ]
 }
 
 ];
@@ -868,8 +914,8 @@ window.SEO_CONTENT = {
  tipi:{slug:"test-de-personalidad-rapido", metaDesc:"Test de personalidad rápido en 10 preguntas (TIPI): tu perfil de los 5 grandes rasgos en un minuto. Gratis y al instante.",
    intro:"Tu perfil de personalidad en versión exprés: diez preguntas, un minuto, los cinco grandes rasgos. Ideal cuando tienes prisa pero quieres una pista fiable de cómo eres.",
    learn:["Tu perfil en los 5 grandes rasgos","El rasgo que más te define","Un retrato rápido de tu carácter","Resultado y carta para compartir"]},
- honesty:{slug:"test-honestidad-humildad", seoTitle:"Test de Honestidad-Humildad (HEXACO) online | Testia", h1:"Test de Honestidad-Humildad",
-   metaDesc:"Test de Honestidad-Humildad basado en HEXACO: 12 preguntas sobre sinceridad, justicia, modestia y desapego material. Sin registro.",
+ honesty:{slug:"test-honestidad-humildad", seoTitle:"Test de humildad y bondad: ¿eres buena persona? | Testia", h1:"Test de Honestidad-Humildad",
+   metaDesc:"Test de bondad y humildad basado en HEXACO: 12 preguntas sobre sinceridad, justicia, modestia y codicia para ver si eres tan buena persona como crees.",
    intro:"Explora la dimensión Honestidad-Humildad del modelo HEXACO: sinceridad, justicia, modestia y poco interés por obtener estatus o ventajas a costa de otros. No decide si eres «buena persona»; describe tendencias concretas de personalidad.",
    learn:["Tu nivel de honestidad y humildad","Tu puntuación en sinceridad, justicia y modestia","Si priorizas el estatus o la integridad","Tu carta de resultado"],
    overview:[
@@ -1028,6 +1074,26 @@ window.SEO_CONTENT = {
  redflag:{slug:"test-eres-la-red-flag", metaDesc:"Test: ¿eres tú la red flag de la relación? 20 preguntas honestas para descubrir si el patrón de tus dramas eres tú. Gratis online.",
    intro:"Siempre culpas a tus ex, ¿verdad? Este test responde la pregunta incómoda: ¿y si el denominador común de tus relaciones eres tú? Control, manipulación y huida, sin piedad.",
    learn:["Tu nivel de 'red flag' en pareja","Los patrones que repites sin darte cuenta","Una lectura honesta (y con humor)","Carta de resultado para compartir"]},
+ celos:{slug:"test-de-celos", seoTitle:"Test de celos: ¿eres una persona celosa? 18 preguntas | Testia", h1:"Test de celos",
+   metaDesc:"Test de celos en pareja: 18 preguntas sobre pensamientos, emociones y conductas de celos, inspirado en la escala de Pfeiffer y Wong. Gratis y sin registro.",
+   intro:"¿Tus celos se quedan en un pinchazo o acaban en mirar el móvil? Este test separa los celos en pensamientos, emociones y conductas, como la escala multidimensional de Pfeiffer y Wong, para que veas qué forma toman en tu caso.",
+   learn:["Tu nivel general de celos","Si tus celos son de pensamiento, de emoción o de conducta","Qué cara de los celos desgasta más una relación","Carta de resultado para compartir"],
+   overview:[{label:"Mide",text:"Celos cognitivos, emocionales y conductuales en pareja."},{label:"Formato",text:"18 afirmaciones; seis por cada dimensión."},{label:"Límite",text:"No evalúa tu relación ni detecta violencia o trastornos."}],
+   sections:[
+    {title:"Qué tipos de celos existen",body:"La escala multidimensional de Pfeiffer y Wong distingue tres caras de los celos. Los cognitivos son las sospechas y dudas sobre la fidelidad de la pareja. Los emocionales, el malestar ante situaciones en las que aparece un posible rival. Los conductuales, lo que se hace para comprobar o controlar: revisar el móvil, preguntar, vigilar redes."},
+    {title:"¿Sentir celos es malo?",body:"Sentir celos ante una amenaza concreta es una emoción común y no daña la relación por sí sola. Los estudios apuntan a que lo que más se asocia con relaciones insatisfactorias son las sospechas constantes y las conductas de vigilancia. Por eso el test separa las tres dimensiones en lugar de darte una sola cifra."}
+   ],
+   faqs:[
+    {q:"¿Puedo hacer el test si no tengo pareja?",a:"Sí. Responde pensando en tu última relación. El resultado describe cómo sueles vivir los celos, no el estado de una relación concreta."},
+    {q:"¿Qué nivel de celos es normal?",a:"Casi todo el mundo siente celos emocionales en algunas situaciones. Lo que conviene vigilar es que las sospechas sean frecuentes sin motivo o que los celos se conviertan en conductas de control."},
+    {q:"¿Los celos son una prueba de amor?",a:"No necesariamente. Los celos emocionales pueden ir ligados al compromiso, pero vigilar o controlar a la pareja no demuestra cariño y suele desgastar la confianza."},
+    {q:"¿Qué hago si los celos de mi pareja me hacen sentir controlado?",a:"Habla de ello y busca apoyo si lo necesitas. Si sientes miedo o control, en España el 016 atiende de forma gratuita y la llamada no aparece en la factura."}
+   ],
+   sources:[
+    {title:"Multidimensional Jealousy",url:"https://doi.org/10.1177/026540758900600203",note:"Artículo de Pfeiffer y Wong que presenta la escala de celos cognitivos, emocionales y conductuales."},
+    {title:"Measuring romantic jealousy: Validation of the multidimensional jealousy scale in Australian samples",url:"https://doi.org/10.1111/j.1742-9536.2011.00026.x",note:"Validación posterior de la escala y su estructura en tres factores."}
+   ],
+   relatedIds:["attachment","lovelang","redflag"]},
 };
 
 /* Mapa de profesiones para el test vocacional (RIASEC) */

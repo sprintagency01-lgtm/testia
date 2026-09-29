@@ -346,7 +346,7 @@
           <p class="lead" style="margin:26px 0 0">Hazte los tests y descúbrete. Más de 20 experiencias inspiradas en modelos publicados para explorar quién eres, cómo piensas y por qué haces lo que haces.</p>
           <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:36px">
             <button class="btn lg" data-analytics-name="Empezar test destacado" onclick="startTest(FLAGSHIP)">Conócete ahora →</button>
-            <a onclick="go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver los 20 tests</a>
+            <a onclick="go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver todos los tests</a>
           </div>
           <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.8rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--mut)">
             <span>✓ Sin registro</span><span>✓ +20 tests</span><span>✓ Método explicado</span>
@@ -455,7 +455,7 @@
         </details>
         <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
           <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Qué es el pase de 4,99 €?</summary>
-          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Un pago único que desbloquea el resultado completo de los 23 tests, las veces que quieras. Queda guardado en tu navegador y, si lo pierdes, lo recuperas con el email que usaste al pagar. Sin cuentas ni suscripción.</p>
+          <p style="margin:12px 0 0;color:var(--ink3);line-height:1.6">Un pago único que desbloquea el resultado completo de todos los tests, las veces que quieras. Queda guardado en tu navegador y, si lo pierdes, lo recuperas con el email que usaste al pagar. Sin cuentas ni suscripción.</p>
         </details>
         <details style="background:#faf9f6;border:1px solid var(--line);border-radius:14px;padding:18px 22px">
           <summary style="cursor:pointer;font-weight:600;font-size:1.05rem;list-style:none">¿Esto es un diagnóstico?</summary>
@@ -479,7 +479,7 @@
     {"@type":"Question","name":"¿En qué se basan los tests?","acceptedAnswer":{"@type":"Answer","text":"Cada test indica el modelo o instrumento que toma como referencia, como Big Five/IPIP, HEXACO, SD3, ECR o RIASEC. Las adaptaciones son divulgativas y no equivalen a administrar la versión original en condiciones profesionales."}},
     {"@type":"Question","name":"¿Guardáis mis respuestas?","acceptedAnswer":{"@type":"Answer","text":"No almacenamos respuestas que te identifiquen. Calculamos tu resultado en el momento y no creamos ningún perfil. Sin cuentas ni registro."}},
     {"@type":"Question","name":"¿Qué incluye el resultado completo de 1,99 €?","acceptedAnswer":{"@type":"Answer","text":"Tu puntuación en cada dimensión y una lectura de qué significa cada una; en el test de CI, tu número exacto y tu percentil. El arquetipo, su descripción y la carta compartible son gratis. Pago único por resultado, sin suscripción."}},
-    {"@type":"Question","name":"¿Qué es el pase de 4,99 €?","acceptedAnswer":{"@type":"Answer","text":"Un pago único que desbloquea el resultado completo de los 23 tests, las veces que quieras. Se guarda en el navegador y se recupera con el email del pago. Sin cuentas ni suscripción."}},
+    {"@type":"Question","name":"¿Qué es el pase de 4,99 €?","acceptedAnswer":{"@type":"Answer","text":"Un pago único que desbloquea el resultado completo de todos los tests, las veces que quieras. Se guarda en el navegador y se recupera con el email del pago. Sin cuentas ni suscripción."}},
     {"@type":"Question","name":"¿Esto es un diagnóstico?","acceptedAnswer":{"@type":"Answer","text":"No. Testia es una herramienta de autoconocimiento y entretenimiento; no sustituye una evaluación ni un diagnóstico profesional."}},
     {"@type":"Question","name":"¿Necesito registrarme o instalar algo?","acceptedAnswer":{"@type":"Answer","text":"No. Entras, eliges un test, respondes y ves tu resultado. Funciona en el navegador, en móvil y en ordenador."}}
   ]
@@ -583,7 +583,7 @@
         <div class="amt">0 €</div>
         <div style="color:var(--mut);font-size:.86rem;margin-bottom:26px">Sin registro, siempre</div>
         <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
-          <div class="feat"><span style="color:#1f8a6d">✓</span> Acceso a los 20 tests</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Acceso a todos los tests</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Responde el test completo</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Tu arquetipo y su descripción</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Carta compartible (feed y stories)</div>
@@ -612,7 +612,7 @@
         <div class="amt">4,99 €</div>
         <div style="color:var(--mut);font-size:.86rem;margin-bottom:26px">Pago único · para siempre</div>
         <div style="display:grid;gap:13px;flex:1;font-size:.98rem">
-          <div class="feat"><span style="color:#1f8a6d">✓</span> Resultado completo en los 23 tests</div>
+          <div class="feat"><span style="color:#1f8a6d">✓</span> Resultado completo en todos los tests</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Repite cuando quieras</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Se recupera con el email del pago</div>
           <div class="feat"><span style="color:#1f8a6d">✓</span> Sin suscripción ni cuotas</div>
@@ -664,9 +664,9 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20260929"></script>
+<script src="tests.js?v=20260930"></script>
 <script src="tarot.js"></script>
-<script src="iq.js?v=20260929"></script>
+<script src="iq.js?v=20260930"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -686,7 +686,7 @@ const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","biene
 const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
-  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",
+  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",
   moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
@@ -867,6 +867,11 @@ const ARCHE={
 };
 const PANAS_V={pos:{name:'Días luminosos',desc:'Ahora mismo domina tu afecto positivo: energía, entusiasmo y buen ánimo por encima de lo negativo.'},neg:{name:'Días grises',desc:'Ahora mismo pesa más tu afecto negativo. Es un estado, no una sentencia: date margen y cuídate.'}};
 const OVERALL_TIERS={
+  celos:[
+    {min:0,name:'Zen total',desc:'Los celos apenas aparecen en tu forma de querer. Confías sin necesidad de comprobar y un rival imaginario no te quita el sueño.'},
+    {min:30,name:'Celos de serie',desc:'Sientes celos cuando la situación los provoca, como casi todo el mundo, pero no dirigen tu relación.'},
+    {min:50,name:'Radar encendido',desc:'Los celos aparecen a menudo y a veces se convierten en dudas que dan vueltas o en ganas de comprobar.'},
+    {min:70,name:'Celos al mando',desc:'Los celos ocupan mucho espacio en tu forma de querer. Merece la pena mirarlo con calma, por ti y por tu relación.'}],
   honesty:[
     {min:0,name:'Trepa de manual',desc:'Lo tuyo es mirar por ti, cueste lo que cueste a los demás. La gente haría bien en contar la vuelta delante de ti.'},
     {min:40,name:'Honesto con matices',desc:'Ni santo ni villano: tan decente como la media, con algún atajo de vez en cuando.'},
@@ -986,6 +991,8 @@ function finish(){
         return {lab,p,band:bn,text:(T.interp[k]&&T.interp[k][key])||''};}); }
     }
   }
+  if(T.hideCardBars&&r.bars)r.bars.forEach(b=>{b.premium=true;});
+  if(T.freeTraits)r.traits=T.freeTraits.slice(); // no adelantar gratis el orden de las dimensiones
   lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length});renderResult(r);go('result');drawCard(r);
   trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:r.name,tier:'free'});
   try{$('mbOpt').checked=false;}catch(e){}
@@ -1004,7 +1011,7 @@ function lockResult(){
     <h2>${(tz&&tz.title)||T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
     <p>${pitch}</p>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">Ver mi lectura completa · <span class="pwprice">1,99&nbsp;€</span></button>
-    <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros 22 tests, para siempre.</span></div>
+    <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción · la carta ya es tuya</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
@@ -1103,8 +1110,8 @@ async function handleReturn(){
 const NEXT_TEST={politico:['moral','values'],honesty:['darktriad','values'],darktriad:['honesty','redflag'],moral:['politico','values'],
   iq:['crt','ncs'],crt:['iq','ncs'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
-  values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','redflag'],chronotype:['bigfive','grit'],lovelang:['attachment','redflag'],
-  redflag:['attachment','darktriad'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
+  values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['attachment','celos'],
+  redflag:['celos','attachment'],celos:['attachment','redflag'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
 function renderNext(){
   const box=$('nextBox');if(!box||!T)return;
   const ids=(NEXT_TEST[T.id]||[]).filter(id=>TESTS.some(t=>t.id===id));

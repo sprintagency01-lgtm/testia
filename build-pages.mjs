@@ -1,5 +1,16 @@
-/* Genera una landing SEO por test en /test/<slug>.html + sitemap.xml + robots.txt
-   Uso: node build-pages.mjs   (re-ejecútalo si cambias textos en tests.js) */
+/* Genera landings SEO en /test/<slug>.html y actualiza sitemap.xml + robots.txt.
+
+   MODO SEGURO (por defecto): solo crea las landings que todavía no existen.
+   Las landings publicadas tienen retoques a mano (enlaces a guías del blog que
+   añade la rutina diaria, textos corregidos), así que NO se sobrescriben.
+
+     node build-pages.mjs                 crea las landings que falten
+     node build-pages.mjs celos honesty   regenera esas landings (por id de test)
+     node build-pages.mjs --all           regenera TODAS (pierde los retoques a mano)
+     node build-pages.mjs --dry           dice qué haría, sin escribir nada
+
+   El sitemap se fusiona: conserva todas las URL existentes (blog incluido) con su
+   lastmod, añade las nuevas y pone la fecha de hoy solo a las landings escritas. */
 import fs from "node:fs";
 
 const DOMAIN = "https://www.testia.info";
@@ -20,7 +31,7 @@ const CATS = {
   profesional:{name:"Profesional y decisiones",color:"#1f8a6d"}, relaciones:{name:"Relaciones y emociones",color:"#b8434c"},
   bienestar:{name:"Valores y bienestar",color:"#e0892f"},
 };
-const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones"};
+const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones"};
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const mins = t => t.mode==="correct" ? Math.round((t.duration||300)/60) : Math.max(2, Math.round(t.items.length*0.13));
 const PAYMENT_FAQ = {
@@ -128,15 +139,40 @@ ${faqs.length?`  <section><h2>Preguntas frecuentes</h2><div class="faq">${faqs.m
 }
 
 fs.mkdirSync("test", {recursive:true});
-let urls = [`${DOMAIN}/`,`${DOMAIN}/blog`,`${DOMAIN}/blog/lenguajes-del-amor-en-pareja`];
-for (const t of TESTS){
-  const s = SEO[t.id]; if(!s){console.warn("sin SEO:",t.id);continue;}
-  fs.writeFileSync(`test/${s.slug}.html`, page(t));
-  urls.push(`${DOMAIN}/test/${s.slug}`);
+const args = process.argv.slice(2);
+const DRY = args.includes("--dry"), ALL = args.includes("--all");
+const ONLY = new Set(args.filter(a => !a.startsWith("--")));
+for (const id of ONLY) if (!TESTS.some(t => t.id === id)) { console.error(`No existe el test «${id}».`); process.exit(1); }
+
+// Sitemap actual: url -> lastmod, en su orden.
+const sitemap = new Map();
+if (fs.existsSync("sitemap.xml")) {
+  for (const m of fs.readFileSync("sitemap.xml", "utf8").matchAll(/<url><loc>([^<]+)<\/loc>(?:<lastmod>([^<]+)<\/lastmod>)?<\/url>/g)) sitemap.set(m[1], m[2] || "");
 }
 const today = new Date().toISOString().slice(0,10);
-fs.writeFileSync("sitemap.xml",
- `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`+
- urls.map(u=>`  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).join("\n")+`\n</urlset>\n`);
-fs.writeFileSync("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${DOMAIN}/sitemap.xml\n`);
-console.log(`Generadas ${TESTS.length} páginas en /test/, sitemap.xml (${urls.length} URLs) y robots.txt`);
+const ensure = (u, d) => { if (!sitemap.has(u)) sitemap.set(u, d || today); };
+ensure(`${DOMAIN}/`); ensure(`${DOMAIN}/blog`);
+for (const f of fs.existsSync("blog") ? fs.readdirSync("blog").filter(f => f.endsWith(".html")).sort() : [])
+  ensure(`${DOMAIN}/blog/${f.replace(/\.html$/, "")}`);
+
+const written = [], skipped = [];
+for (const t of TESTS){
+  const s = SEO[t.id]; if(!s){console.warn("sin SEO:",t.id);continue;}
+  const file = `test/${s.slug}.html`, url = `${DOMAIN}/test/${s.slug}`;
+  const exists = fs.existsSync(file);
+  const write = ALL || ONLY.has(t.id) || (!exists && ONLY.size === 0);
+  if (write) {
+    if (!DRY) fs.writeFileSync(file, page(t));
+    written.push(file); sitemap.set(url, today);
+  } else {
+    skipped.push(file); ensure(url, today);
+  }
+}
+if (!DRY) {
+  fs.writeFileSync("sitemap.xml",
+   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`+
+   [...sitemap].map(([u,d])=>`  <url><loc>${u}</loc>${d?`<lastmod>${d}</lastmod>`:""}</url>`).join("\n")+`\n</urlset>\n`);
+  fs.writeFileSync("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${DOMAIN}/sitemap.xml\n`);
+}
+console.log(`${DRY?"[simulación] ":""}Escritas ${written.length} landings${written.length?": "+written.join(", "):""}. Sin tocar: ${skipped.length}. Sitemap: ${sitemap.size} URLs.`);
+if (ALL) console.warn("Aviso: --all sobrescribe los retoques a mano de las landings publicadas.");
