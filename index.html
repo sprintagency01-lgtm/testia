@@ -283,6 +283,9 @@
   .pwrecover{display:inline-block;margin-top:14px;font-size:.78rem;color:var(--mut);text-decoration:underline;cursor:pointer}
   .mailbox{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;text-align:left}.mbt{font-family:var(--disp);font-weight:600;font-size:1.05rem}.mailbox p{color:var(--ink3);font-size:.9rem;margin:4px 0 12px;line-height:1.45}
   .mbrow{display:flex;gap:8px}.mbrow input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line3);border-radius:12px;font:inherit;font-size:.95rem;background:#fff}.mbrow .btn{padding:13px 18px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
+  .nextbox{margin-top:18px}.nexth{font-family:var(--disp);font-weight:600;font-size:1.05rem}.nextsub{color:var(--ink3);font-size:.86rem;margin:2px 0 10px}
+  .nextcard{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 15px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s}
+  .nextcard:hover{border-color:var(--cobalt)}.nextcard .ne{font-size:1.45rem;line-height:1}.nextcard b{display:block;font-size:.96rem}.nextcard small{display:block;font-size:.8rem;color:var(--ink3);line-height:1.35;margin-top:2px}.nextcard .go{margin-left:auto;color:var(--cobalt);font-weight:700;padding-left:6px}
   .mbopt{display:flex;gap:8px;font-size:.84rem;color:var(--ink3);margin-top:10px;align-items:center;cursor:pointer}.mbnote{font-size:.74rem;color:var(--mut);margin-top:6px}
   details summary::-webkit-details-marker{display:none}
   details summary::marker{content:""}
@@ -555,6 +558,7 @@
           <label class="mbopt"><input type="checkbox" id="mbOpt"> Avísame cuando haya tests nuevos</label>
           <div class="mbnote">Solo para enviarte el resultado. Sin spam, te das de baja en un clic.</div>
         </form>
+        <div class="nextbox" id="nextBox"></div>
       </div>
     </div></div>
     <div class="wrap">
@@ -660,9 +664,9 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20260921"></script>
+<script src="tests.js?v=20260929"></script>
 <script src="tarot.js"></script>
-<script src="iq.js?v=20260921"></script>
+<script src="iq.js?v=20260929"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -934,6 +938,10 @@ function finish(){
         r.stats=Object.keys(T.axes).map(k=>({v:lab(k,LV3(ax[k])),l:T.axes[k].toLowerCase()}));
         r.analysis=Object.keys(T.axes).map(k=>{const lv=LV3(ax[k]);return {lab:T.axes[k],p:ax[k],band:lab(k,lv),text:(T.interp[k]&&T.interp[k][lv])||''};});
         if(T.combo){const ck=LV3(ax.E)+'-'+LV3(ax.C);r.analysis.push({lab:'Lectura conjunta',p,band:b.label,text:T.combo[ck]||''});}
+        const O={lo:0,mid:1,hi:2},gap=Math.abs(O[LV3(ax.E)]-O[LV3(ax.C)]);
+        r.teaser=gap===2?{kind:'cruzado',title:`Tu «${b.label}» esconde un perfil cruzado`,pitch:'En economía tiras hacia un lado y en valores hacia el contrario. Por eso tu nota global sale más al centro de lo que probablemente sientes. Descubre cuál es cuál y qué perfil forma esa combinación.'}
+          :gap===1?{kind:'parcial',title:'Tu economía y tus valores no dicen lo mismo',pitch:'Uno de tus dos ejes está más marcado que el otro. Descubre en cuál estás más a la izquierda o más a la derecha, cuánto, y qué perfil sale al combinarlos.'}
+          :{kind:'coherente',title:'Tus dos ejes apuntan al mismo sitio',pitch:'En tu caso, economía y valores van en la misma dirección. Mira cuánto en cada eje y qué dice de ti la lectura conjunta de los dos.'};
       }
     }else if(R.type==='profileBars'){
       const keys=Object.keys(T.scales),arr=keys.map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
@@ -989,10 +997,11 @@ let paywallSeen=false;
 function lockResult(){
   const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
   if(!hasPremium){$('paywall').style.display='none';$('resPremium').classList.remove('locked');return;}
-  const pitch=T.premiumPitch||`Tu puntuación en cada dimensión de «${T.name}» y una lectura de qué significa cada una en tu caso.`;
+  const tz=lastResult&&lastResult.teaser;
+  const pitch=(tz&&tz.pitch)||T.premiumPitch||`Tu puntuación en cada dimensión de «${T.name}» y una lectura de qué significa cada una en tu caso.`;
   $('paywall').innerHTML=`<div class="paywallcard">
     <div class="pwemoji">🔍</div>
-    <h2>${T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
+    <h2>${(tz&&tz.title)||T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
     <p>${pitch}</p>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">Ver mi lectura completa · <span class="pwprice">1,99&nbsp;€</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros 22 tests, para siempre.</span></div>
@@ -1003,8 +1012,8 @@ function lockResult(){
   $('resPremium').classList.add('locked');
   updateMailbox();
   paywallSeen=false;
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
-  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR'});}
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic'});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
+  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic'});}
 }
 function revealResult(){
   if(lastResult&&lastResult.full){Object.assign(lastResult,lastResult.full);delete lastResult.full;renderResult(lastResult);try{drawCard(lastResult);}catch(e){}}
@@ -1091,6 +1100,20 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
+const NEXT_TEST={politico:['moral','values'],honesty:['darktriad','values'],darktriad:['honesty','redflag'],moral:['politico','values'],
+  iq:['crt','ncs'],crt:['iq','ncs'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
+  selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
+  values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','redflag'],chronotype:['bigfive','grit'],lovelang:['attachment','redflag'],
+  redflag:['attachment','darktriad'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
+function renderNext(){
+  const box=$('nextBox');if(!box||!T)return;
+  const ids=(NEXT_TEST[T.id]||[]).filter(id=>TESTS.some(t=>t.id===id));
+  if(!ids.length){box.innerHTML='';return;}
+  box.innerHTML=`<div class="nexth">Tu siguiente test</div><div class="nextsub">Gratis y sin registro. Encaja con lo que acabas de descubrir.</div>`+
+    ids.map(id=>{const t=TESTS.find(x=>x.id===id),n=(t.items||[]).length;
+      return `<button class="nextcard" type="button" data-analytics-name="Siguiente test: ${t.name.replace(/"/g,'')}" onclick="goNextTest('${id}')"><span class="ne">${t.emoji||'✦'}</span><span><b>${t.name}</b><small>${t.blurb||''}${n?` · ${n} preguntas`:''}</small></span><span class="go">→</span></button>`;}).join('');
+}
+function goNextTest(id){trackEvent('next_test_clicked',{from_test:T&&T.id,to_test:id});startTest(id);}
 function renderResult(r){
   $('resEyebrow').textContent=r.eyebrow;
   const m=$('resMono');m.style.background=`linear-gradient(135deg,${hexA(r.accent,.2)},${hexA(r.accent,.08)})`;m.style.color=r.accent;m.textContent=r.mono||'';
@@ -1108,6 +1131,7 @@ function renderResult(r){
       const bc=(a.band==='Alto'||a.band==='Reflexivo')?'#1f8a6d':(a.band==='Bajo'||a.band==='Intuitivo')?'#b8434c':'#6e7075';
       return `<div class="ana-card"><div class="atop"><span class="alab">${a.lab}</span><span class="aband" style="color:${bc}">${a.band} · ${Math.round(a.p)}%</span></div><p>${a.text}</p></div>`;}).join('')}</div>`;
   }else $('resAnalysis').innerHTML='';
+  renderNext();
 }
 function restart(){if(T)startTest(T.id);}
 

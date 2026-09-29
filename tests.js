@@ -890,10 +890,10 @@ window.SEO_CONTENT = {
     {title:"The HEXACO Personality Inventory — descripción de escalas",url:"https://hexaco.org/scaledescriptions",note:"Descripción del modelo y de las facetas de Honestidad-Humildad."}
    ],
    relatedIds:["darktriad","values","bigfive"]},
- darktriad:{slug:"test-triada-oscura", seoTitle:"Test de Tríada Oscura online: conoce tus rasgos | Testia", h1:"Test de Tríada Oscura",
-   metaDesc:"Test de Tríada Oscura online: 18 preguntas sobre maquiavelismo, narcisismo y psicopatía subclínica, inspirado en el modelo SD3.",
+ darktriad:{slug:"test-triada-oscura", seoTitle:"Test de rasgos oscuros: tríada oscura en 18 preguntas | Testia", h1:"Test de Tríada Oscura",
+   metaDesc:"Test completo de rasgos oscuros: mide maquiavelismo, narcisismo y psicopatía con 18 preguntas inspiradas en el SD3. Responde gratis y ve tu perfil al momento.",
    intro:"Maquiavelismo, narcisismo y psicopatía subclínica: los tres rasgos del lado oscuro de la personalidad. ¿Cuánta sombra llevas dentro? Una experiencia divulgativa inspirada en el modelo SD3.",
-   learn:["Tu nivel en los 3 rasgos oscuros","Cuál de ellos predomina en ti","Cómo te sitúas frente a la media","Carta de resultado para compartir"],
+   learn:["Tu nivel en los 3 rasgos oscuros","Cuál de ellos predomina en ti","Cuál de los tres pesa más en tu perfil","Carta de resultado para compartir"],
    overview:[
     {label:"Mide",text:"Maquiavelismo, narcisismo y psicopatía subclínica."},
     {label:"Formato",text:"18 afirmaciones; seis por cada rasgo evaluado."},
