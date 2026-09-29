@@ -269,7 +269,9 @@
       "test_slug": "test-de-empatia",
       "test_id": "empathy",
       "why": "La guía de tipos de empatía no cubre el coste de la empatía afectiva; es una búsqueda estable, de cola larga y con poca competencia de alta autoridad en español.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-29",
+      "slug": "que-es-la-fatiga-por-compasion"
     },
     {
       "keyword": "autoestima contingente",

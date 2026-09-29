@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-09-29 — `/blog/que-es-la-fatiga-por-compasion` — keyword principal: `fatiga por compasión` — secundarias: `qué es la fatiga por compasión`, `desgaste por empatía`, `empatía y agotamiento`, `cuidar sin quemarse`.
 - 2026-09-28 — `/blog/por-que-me-cuesta-madrugar` — keyword principal: `por qué me cuesta madrugar aunque duerma bien` — secundarias: `cronotipo tardío`, `retraso de fase del sueño`, `madrugar siendo búho`, `horario interno y despertador`.
 - 2026-09-27 — `/blog/que-es-la-alexitimia` — keyword principal: `qué es la alexitimia` — secundarias: `dificultad para identificar emociones`, `alexitimia y inteligencia emocional`, `escala TAS-20`, `no sé lo que siento`.
 - 2026-09-26 — `/blog/deseabilidad-social-en-los-cuestionarios` — keyword principal: `deseabilidad social en los cuestionarios` — secundarias: `qué es la deseabilidad social`, `responder lo que queda bien`, `escalas de sinceridad`, `sesgos al responder un test`.
