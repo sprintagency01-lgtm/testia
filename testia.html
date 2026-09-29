@@ -276,7 +276,7 @@
   .paywallcard .pwemoji{font-size:2.6rem}
   .paywallcard h2{font-family:var(--disp);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:8px 0 6px}
   .paywallcard p{color:var(--ink3);margin:0 auto 24px;max-width:42ch}
-  .paywallcard .btn{font-size:1.04rem;padding:18px 34px}#resPremium.locked{filter:blur(7px);min-height:220px}
+  .paywallcard .btn{font-size:1.04rem;padding:18px 34px}#resPremium.locked{filter:blur(7px);min-height:220px}#resBody.hardlock .hl{filter:blur(9px);pointer-events:none;user-select:none;opacity:.9}#resBody.hardlock #paywall .paywallcard{margin-top:0}
   .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .pwprice{font-family:var(--disp);font-weight:700}
   .pwalt{margin-top:12px;display:flex;flex-direction:column;gap:6px;align-items:center}.pwalt .btn{font-size:.9rem;padding:13px 22px}.pwalt span{font-size:.8rem;color:var(--mut)}
@@ -542,7 +542,7 @@
           <div id="resAnalysis"></div>
         </div>
       </div>
-      <div style="position:sticky;top:96px">
+      <div id="resSide" style="position:sticky;top:96px">
         <div class="cardFrame"><canvas id="idcard" width="1080" height="1350"></canvas></div>
         <div style="display:flex;gap:10px;margin-top:16px">
           <button class="btn" style="flex:1;padding:15px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em" onclick="shareCard()">Compartir</button>
@@ -1004,35 +1004,63 @@ function finish(){
   if(T.hideCardBars&&r.bars)r.bars.forEach(b=>{b.premium=true;});
   if(T.freeTraits)r.traits=T.freeTraits.slice(); // no adelantar gratis el orden de las dimensiones
   lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length});renderResult(r);go('result');drawCard(r);
-  trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:r.name,tier:'free'});
+  const pwv=paywallVariant();
+  trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:r.name,tier:pwv==='hard'?'locked':'free',paywall_variant:pwv});
   try{$('mbOpt').checked=false;}catch(e){}
   if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(lastResult)drawCard(lastResult);});}
-  lockResult();
+  lockResult(pwv);
   checkPass();
 }
 let paywallSeen=false;
-function lockResult(){
+/* === Experimento: posición del muro de pago ===
+   Bandera de PostHog «testia-paywall-position»: control = arquetipo gratis y muro sobre el análisis;
+   hard = muro antes del resultado, todo borroso. Forzar para revisar: ?pw=hard o ?pw=control (solo esa sesión, sin contar como exposición). */
+const PW_FLAG='testia-paywall-position';
+let PW_VARIANT='control';
+// Se lee al cargar: la app limpia la URL antes de que termine el test.
+(function(){try{const q=new URLSearchParams(location.search).get('pw');if(q==='hard'||q==='control')sessionStorage.setItem('atlas_pw_force',q);if(q==='off')sessionStorage.removeItem('atlas_pw_force');}catch(e){}})();
+function paywallVariant(){
+  let v=null,forced=false;
+  try{v=sessionStorage.getItem('atlas_pw_force');forced=!!v;}catch(e){}
+  if(!v){try{const ph=window.posthog;if(ph&&typeof ph.getFeatureFlag==='function'){const f=ph.getFeatureFlag(PW_FLAG);if(f==='hard'||f==='control'){v=f;try{localStorage.setItem('atlas_pw',f);}catch(e){}}}}catch(e){}}
+  if(!v){try{v=localStorage.getItem('atlas_pw');}catch(e){}}
+  if(v!=='hard')v='control';
+  PW_VARIANT=v;
+  try{if(window.posthog&&posthog.register)posthog.register({paywall_variant:v,paywall_variant_forced:forced});}catch(e){}
+  return v;
+}
+function setHardLock(on){
+  const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
+  body.classList.toggle('hardlock',on);
+  if(on){left.insertBefore(pw,left.firstElementChild);}else{left.insertBefore(pw,$('resPremium'));}
+  [...left.children].forEach(el=>el.classList.toggle('hl',on&&el!==pw));
+  if(side)[...side.children].forEach(el=>el.classList.toggle('hl',on&&el.id!=='nextBox'));
+}
+function lockResult(v){
+  v=v||PW_VARIANT;const hard=v==='hard';
   const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
-  if(!hasPremium){$('paywall').style.display='none';$('resPremium').classList.remove('locked');return;}
-  const tz=lastResult&&lastResult.teaser;
+  setHardLock(hard);
+  if(!hasPremium&&!hard){$('paywall').style.display='none';$('resPremium').classList.remove('locked');return;}
+  const tz=hard?{kind:'hard',title:'Tu resultado está listo',pitch:`Has completado «${T.name}». Desbloquea tu resultado completo: tu perfil, lo que significa cada dimensión y tu carta para compartir.`}:(lastResult&&lastResult.teaser);
   const pitch=(tz&&tz.pitch)||T.premiumPitch||`Tu puntuación en cada dimensión de «${T.name}» y una lectura de qué significa cada una en tu caso.`;
   $('paywall').innerHTML=`<div class="paywallcard">
     <div class="pwemoji">🔍</div>
     <h2>${(tz&&tz.title)||T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
     <p>${pitch}</p>
-    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">Ver mi lectura completa · <span class="pwprice">1,99&nbsp;€</span></button>
+    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">1,99&nbsp;€</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
-    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción · la carta ya es tuya</div>
+    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
   $('paywall').style.display='block';
   $('resPremium').classList.add('locked');
   updateMailbox();
   paywallSeen=false;
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic'});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
-  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic'});}
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
+  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});}
 }
 function revealResult(){
+  setHardLock(false);
   if(lastResult&&lastResult.full){Object.assign(lastResult,lastResult.full);delete lastResult.full;renderResult(lastResult);try{drawCard(lastResult);}catch(e){}}
   $('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();window.scrollTo({top:0,behavior:'smooth'});}
 function passSid(){try{const p=JSON.parse(localStorage.getItem('atlas_pass'));return p&&p.sid||null;}catch(e){return null;}}
@@ -1078,13 +1106,13 @@ async function payAndUnlock(plan){
   plan=plan==='pass'?'pass':'single';
   try{
     const testId=T?T.id:'pass',testName=T?T.name:'Pase Testia';
-    trackEvent('checkout_started',{test_id:testId,test_name:testName,plan,price:plan==='pass'?4.99:1.99,currency:'EUR'});
+    trackEvent('checkout_started',{test_id:testId,test_name:testName,plan,price:plan==='pass'?4.99:1.99,currency:'EUR',paywall_variant:PW_VARIANT});
     const res=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({testId,testName,plan})});
     const data=await res.json();
     if(!data.url) throw new Error(data.error||'sin URL de pago');
     // Asociamos el resultado a ESTA sesión de pago; solo se revelará si el servidor confirma el cobro.
-    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan}));}catch(e){}
+    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan,pwv:PW_VARIANT}));}catch(e){}
     window.location.href=data.url;
   }catch(e){
     toast('No se pudo iniciar el pago. Inténtalo de nuevo.');
@@ -1106,11 +1134,11 @@ async function handleReturn(){
   if(ok&&plan==='pass'){try{localStorage.setItem('atlas_pass',JSON.stringify({sid}));}catch(e){}}
   if(ok && pend && pend.r && pend.sid===sid){
     T=TESTS.find(t=>t.id===pend.testId)||T;lastResult=pend.r;renderResult(pend.r);go('result');revealResult();try{drawCard(pend.r);}catch(e){}
-    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:1.99,currency:'EUR'});
+    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:1.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast(plan==='pass'?'¡Pase activo! Resultado completo desbloqueado ✓':'¡Pago confirmado! Resultado desbloqueado ✓');
   }else if(ok&&plan==='pass'){
-    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR'});
+    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast('¡Pase activo! Elige un test: verás el resultado completo.');go('catalog');
   }else{
