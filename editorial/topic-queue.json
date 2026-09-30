@@ -285,7 +285,9 @@
       "test_slug": "test-de-celos",
       "test_id": "celos",
       "why": "'test de celos' es la primera sugerencia de Google en 'test de c' y el test se lanza el 2026-09-30 sin guía de apoyo. Evitar el foco en 'test' (intención transaccional de la landing).",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-09-30",
+      "slug": "tipos-de-celos-en-la-pareja"
     },
     {
       "keyword": "qué es una persona difícil según la psicología",
