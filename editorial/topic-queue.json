@@ -301,7 +301,9 @@
       "test_slug": "test-persona-dificil",
       "test_id": "dificil",
       "why": "'test de persona difícil' es la segunda sugerencia de Google en 'test de p'. Test lanzado el 2026-09-29 sin guía de apoyo.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-05",
+      "slug": "que-es-una-persona-dificil"
     },
     {
       "keyword": "los 6 estilos de amor de John Lee",
