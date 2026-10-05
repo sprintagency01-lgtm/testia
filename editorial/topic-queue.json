@@ -317,7 +317,9 @@
       "test_slug": "test-estilos-de-amor",
       "test_id": "lovestyles",
       "why": "'test de estilos de amor' aparece en el autocompletado de 'test de e' y sube en Trends. Complementa la guía de lenguajes del amor sin pisarla.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-05",
+      "slug": "estilos-de-amor-de-john-lee"
     },
     {
       "keyword": "autoestima contingente",

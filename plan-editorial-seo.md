@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-10-05 — `/blog/estilos-de-amor-de-john-lee` — keyword principal: `los 6 estilos de amor de John Lee` — secundarias: `eros ludus storge pragma mania agape`, `tipos de amor en psicología`, `estilos de amor de Hendrick`, `cuál es mi estilo de amor`.
 - 2026-10-05 — `/blog/que-es-una-persona-dificil` — keyword principal: `qué es una persona difícil según la psicología` — secundarias: `rasgos de una persona difícil`, `antagonismo en psicología`, `cómo tratar a una persona difícil`, `persona difícil y tríada oscura`.
 - 2026-09-30 — `/blog/tipos-de-celos-en-la-pareja` — keyword principal: `tipos de celos en la pareja` — secundarias: `celos cognitivos emocionales y conductuales`, `cuándo los celos son un problema`, `celos sanos y celos tóxicos`, `cómo saber si soy una persona celosa`.
 - 2026-09-29 — `/blog/que-es-la-fatiga-por-compasion` — keyword principal: `fatiga por compasión` — secundarias: `qué es la fatiga por compasión`, `desgaste por empatía`, `empatía y agotamiento`, `cuidar sin quemarse`.
