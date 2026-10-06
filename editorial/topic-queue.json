@@ -333,7 +333,9 @@
       "test_slug": "test-de-autoestima",
       "test_id": "selfesteem",
       "why": "La guía de autoestima explica qué es y cómo se mide, pero no la distinción entre nivel y estabilidad; consulta de cola larga sin contenido serio en español.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-06",
+      "slug": "autoestima-contingente"
     },
     {
       "keyword": "crecimiento postraumático",
