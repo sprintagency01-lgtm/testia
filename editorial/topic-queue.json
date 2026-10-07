@@ -349,7 +349,9 @@
       "test_slug": "test-de-resiliencia",
       "test_id": "resilience",
       "why": "Complementa la guía de resiliencia sin solaparse con ella y responde una búsqueda informativa de cola larga; requiere tono descriptivo por tocar salud mental.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-07",
+      "slug": "crecimiento-postraumatico"
     },
     {
       "keyword": "necesidad de cierre cognitivo",
