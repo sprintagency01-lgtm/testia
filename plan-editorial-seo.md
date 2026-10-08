@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-10-08 — `/blog/necesidad-de-cierre-cognitivo` — keyword principal: `necesidad de cierre cognitivo` — secundarias: `qué es la necesidad de cierre`, `tolerancia a la ambigüedad`, `no soportar la incertidumbre`, `decidir rápido para dejar de dudar`.
 - 2026-10-07 — `/blog/crecimiento-postraumatico` — keyword principal: `crecimiento postraumático` — secundarias: `qué es el crecimiento postraumático`, `cambios tras una experiencia dura`, `resiliencia y crecimiento`, `escala de crecimiento postraumático`.
 - 2026-10-06 — `/blog/autoestima-contingente` — keyword principal: `autoestima contingente` — secundarias: `autoestima que depende de los logros`, `fuentes de autoestima`, `autoestima frágil`, `autoestima estable e inestable`.
 - 2026-10-05 — `/blog/estilos-de-amor-de-john-lee` — keyword principal: `los 6 estilos de amor de John Lee` — secundarias: `eros ludus storge pragma mania agape`, `tipos de amor en psicología`, `estilos de amor de Hendrick`, `cuál es mi estilo de amor`.

@@ -365,7 +365,9 @@
       "test_slug": "test-necesidad-de-cognicion",
       "test_id": "ncs",
       "why": "Se confunde a menudo con la necesidad de cognición ya publicada, pero es un constructo distinto; búsqueda de cola larga con competencia baja en español.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-08",
+      "slug": "necesidad-de-cierre-cognitivo"
     },
     {
       "keyword": "mentalidad de crecimiento y mentalidad fija",
