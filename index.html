@@ -124,7 +124,7 @@
   .figseq{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
   .figcell{width:72px;height:72px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
   .figcell.q{font-family:var(--disp);font-weight:700;font-size:2rem;color:var(--cobalt);border:2px dashed var(--line3);border-radius:12px}
-  .fig{width:72px;height:72px;display:block}
+  .fig{width:72px;height:72px;display:block}.wfig{width:100%;max-width:400px;height:auto;display:block;margin:0 auto}.memstage{min-height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}.memdigit{font-family:var(--disp);font-weight:700;font-size:clamp(4rem,16vw,7rem);line-height:1;color:var(--cobalt)}.memwords{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 18px;font-family:var(--disp);font-weight:600;font-size:1.15rem;max-width:520px;width:100%}.memwords span{padding:10px 8px;border:1px solid var(--line);border-radius:12px;background:#fff}.memhint{font-size:.85rem;color:var(--mut)}.memcount{font-family:var(--disp);font-weight:700;font-size:1.3rem;color:var(--ink3)}.recall{display:flex;flex-direction:column;gap:10px;max-width:420px}.recall input{font-family:var(--disp);font-size:2rem;letter-spacing:.35em;padding:16px 18px;border:1.5px solid var(--line3);border-radius:14px;width:100%;background:#fff}.recall input:focus{outline:none;border-color:var(--cobalt)}.recall small{color:var(--mut);font-size:.85rem}
   .figopts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
   @media(max-width:560px){.figopts{grid-template-columns:repeat(2,1fr)}}
   .figopt{position:relative;cursor:pointer;border:2px solid var(--line);background:#fff;border-radius:14px;padding:18px 10px;display:flex;align-items:center;justify-content:center;transition:border-color .14s,background .14s}
@@ -664,9 +664,10 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20260930b"></script>
+<script src="tests.js?v=20261008"></script>
 <script src="tarot.js"></script>
-<script src="iq.js?v=20260930b"></script>
+<script src="iq.js?v=20261008"></script>
+<script src="cognitive.js?v=20261008"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -683,15 +684,18 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",
+const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",memoria:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
   attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",
   moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
-  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle"};
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake"};
 const ICONS={
+  squares:["M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"],
+  search:["m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"],
+  cake:["M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.871c1.355 0 2.697.056 4.024.166C17.155 8.51 18 9.473 18 10.608v2.513M15 8.25v-1.5m-6 1.5v-1.5m12 9.75-1.5.75a3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0 3.354 3.354 0 0 0-3 0 3.354 3.354 0 0 1-3 0L3 16.5m15-3.379a48.474 48.474 0 0 0-6-.371c-2.032 0-4.034.126-6 .371m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.169c0 .621-.504 1.125-1.125 1.125H4.125A1.125 1.125 0 0 1 3 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 0 1 6 13.12M12.265 3.11a.375.375 0 1 1-.53 0L12 2.845l.265.265Zm-3 0a.375.375 0 1 1-.53 0L9 2.845l.265.265Zm6 0a.375.375 0 1 1-.53 0L15 2.845l.265.265Z"],
   eye:["M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z","M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"],
   warn:["M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"],
   puzzle:["M14.25 6.087c0-.355.186-.676.401-.959.221-.29.349-.634.349-1.003 0-1.036-1.007-1.875-2.25-1.875s-2.25.84-2.25 1.875c0 .369.128.713.349 1.003.215.283.401.604.401.959v0a.64.64 0 0 1-.657.643 48.39 48.39 0 0 1-4.163-.3c.186 1.613.293 3.25.315 4.907a.656.656 0 0 1-.658.663v0c-.355 0-.676-.186-.959-.401a1.647 1.647 0 0 0-1.003-.349c-1.036 0-1.875 1.007-1.875 2.25s.84 2.25 1.875 2.25c.369 0 .713-.128 1.003-.349.283-.215.604-.401.959-.401v0c.31 0 .555.26.532.57a48.039 48.039 0 0 1-.642 5.056c1.518.19 3.058.309 4.616.354a.64.64 0 0 0 .657-.643v0c0-.355-.186-.676-.401-.959a1.647 1.647 0 0 1-.349-1.003c0-1.035 1.008-1.875 2.25-1.875 1.243 0 2.25.84 2.25 1.875 0 .369-.128.713-.349 1.003-.215.283-.4.604-.4.959v0c0 .333.277.599.61.58a48.1 48.1 0 0 0 5.427-.63 48.05 48.05 0 0 0 .582-4.717.532.532 0 0 0-.533-.57v0c-.355 0-.676.186-.959.401-.29.221-.634.349-1.003.349-1.035 0-1.875-1.007-1.875-2.25s.84-2.25 1.875-2.25c.37 0 .713.128 1.003.349.283.215.604.401.96.401v0a.656.656 0 0 0 .658-.663 48.422 48.422 0 0 0-.37-5.36c-1.886.342-3.81.574-5.766.689a.578.578 0 0 1-.61-.58v0Z"],
@@ -727,7 +731,7 @@ let T=null, items=[], idx=0, answers=[], startedAt=0, timeLeft=0, timerId=null, 
 function $(id){return document.getElementById(id);}
 
 /* ----- navigation ----- */
-function go(s){clearInterval(timerId);document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(s).classList.add('active');window.scrollTo({top:0});}
+function go(s){clearInterval(timerId);try{clearTimeout(memTimer);}catch(e){}memActive=false;document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(s).classList.add('active');window.scrollTo({top:0});}
 
 /* ----- catalog / home build ----- */
 function cardHTML(t,showCat){
@@ -791,20 +795,62 @@ function likertLabels(t){const m=t.scaleMax;
   return Array.from({length:m},(_,i)=>String(i+1));}
 function startTest(id){
   T=TESTS.find(t=>t.id===id);if(!T)return;
+  if(typeof T.regen==='function'){try{T.items=T.regen();}catch(e){}}
+  clearTimeout(memTimer);memSeen={};itemStart={};rts={};
   trackEvent('test_started',{test_id:T.id,test_name:T.name,question_count:T.items.length});
   items=T.items;idx=0;answers=new Array(items.length).fill(null);progressSent={};
   const tm=$('timer');
-  if(T.mode==='correct'){timeLeft=T.duration||300;startedAt=Date.now();tm.style.display='inline';clearInterval(timerId);timerId=setInterval(tick,1000);updTimer();}
+  startedAt=Date.now();
+  if(T.mode==='correct'&&!T.noTimer){timeLeft=T.duration||300;tm.style.display='inline';tm.classList.remove('low');updTimer();}
   else{tm.style.display='none';clearInterval(timerId);}
   if(T.prompt){$('qprompt').style.display='block';$('qprompt').textContent=T.prompt;}else $('qprompt').style.display='none';
-  go('quiz');renderItem();
+  go('quiz');
+  // El reloj se arranca después de go(), que limpia cualquier intervalo al cambiar de pantalla.
+  if(T.mode==='correct'&&!T.noTimer){clearInterval(timerId);timerId=setInterval(tick,1000);}
+  renderItem();
 }
-function tick(){timeLeft--;updTimer();if(timeLeft<=0){clearInterval(timerId);finish();}}
+// Solo los tests con hardTimer terminan al llegar a cero; en el resto la cuenta atrás es orientativa.
+function tick(){timeLeft--;if(timeLeft<=0){timeLeft=0;updTimer();clearInterval(timerId);if(T&&T.hardTimer)finish();return;}updTimer();}
 function updTimer(){const m=String(Math.floor(timeLeft/60)).padStart(2,'0'),s=String(timeLeft%60).padStart(2,'0');const t=$('timer');t.textContent=`⏱ ${m}:${s}`;t.classList.toggle('low',timeLeft<=30);}
 let progressSent={};
+let memTimer=null,memSeen={},itemStart={},rts={},memActive=false;
+function renderMemorize(it){
+  // Fases de memorizar antes de la pregunta: lista de palabras y/o secuencia de dígitos de uno en uno.
+  memActive=true;const phases=it.mem;let ph=memSeen[idx]===undefined?0:memSeen[idx];
+  $('nextBtn').style.visibility='hidden';$('prevBtn').style.visibility='hidden';
+  const run=()=>{
+    if(ph>=phases.length){memActive=false;memSeen[idx]=true;$('nextBtn').style.visibility='visible';renderItem();return;}
+    const P=phases[ph];$('qtext').textContent=P.title||'Memoriza';
+    if(P.list){let left=Math.round(P.ms/1000);
+      const paint=()=>{$('opts').innerHTML=`<div class="memstage"><div class="memwords">${P.list.map(w=>`<span>${w}</span>`).join('')}</div><div class="memcount">${left}</div><div class="memhint">Empezamos con los números cuando termine la cuenta atrás.</div></div>`;};
+      paint();const tickW=()=>{left--;if(left<=0){ph++;memSeen[idx]=ph;run();return;}paint();memTimer=setTimeout(tickW,1000);};memTimer=setTimeout(tickW,1000);
+    }else{let k=-1;
+      const step=()=>{k++;if(k>=P.seq.length){$('opts').innerHTML=`<div class="memstage"><div class="memhint">…</div></div>`;memTimer=setTimeout(()=>{ph++;memSeen[idx]=ph;run();},350);return;}
+        $('opts').innerHTML=`<div class="memstage"><div class="memdigit">${P.seq[k]}</div><div class="memhint">${k+1} de ${P.seq.length}</div></div>`;
+        memTimer=setTimeout(()=>{$('opts').innerHTML=`<div class="memstage"><div class="memdigit" style="opacity:0">0</div><div class="memhint">${k+1} de ${P.seq.length}</div></div>`;memTimer=setTimeout(step,180);},Math.max(300,P.ms-180));};
+      $('opts').innerHTML=`<div class="memstage"><div class="memhint">Atención…</div></div>`;memTimer=setTimeout(step,700);
+    }
+  };
+  run();
+}
 function renderItem(){
   const it=items[idx],cat=CATS[TEST_CAT[T.id]];
   if(!it)return;
+  if(it.mem&&memSeen[idx]!==true){
+    $('qcount').textContent=`Pregunta ${idx+1} de ${items.length}`;$('qbig').textContent=String(idx+1).padStart(2,'0');$('qbar').style.width=(idx/items.length*100)+'%';
+    renderMemorize(it);return;
+  }
+  if(itemStart[idx]===undefined)itemStart[idx]=Date.now();
+  if(it.input){
+    $('qcount').textContent=`Pregunta ${idx+1} de ${items.length}`;$('qbig').textContent=String(idx+1).padStart(2,'0');$('qbar').style.width=(idx/items.length*100)+'%';
+    $('qtext').textContent=it.q;
+    $('opts').innerHTML=`<div class="recall"><input id="recallIn" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="12" aria-label="Escribe los números" value="${answers[idx]||''}"><small>Escribe solo los números, sin espacios. Pulsa Enter o Siguiente para continuar.</small></div>`;
+    const inp=$('recallIn');inp.addEventListener('input',()=>{inp.value=inp.value.replace(/[^0-9]/g,'');answers[idx]=inp.value?inp.value:null;$('nextBtn').disabled=answers[idx]===null;});
+    setTimeout(()=>{try{inp.focus();}catch(e){}},50);
+    $('prevBtn').style.visibility='hidden';$('nextBtn').style.visibility='visible';$('nextBtn').disabled=answers[idx]===null;
+    $('nextBtn').textContent=idx===items.length-1?'Ver resultado →':'Siguiente →';
+    return;
+  }
   {const q=Math.floor(idx/items.length*4)*25;if(q>0&&q<100&&!progressSent[q]){progressSent[q]=true;trackEvent('test_progress',{test_id:T.id,test_name:T.name,progress:q,question_index:idx+1,question_count:items.length});}}
   $('qcount').textContent=`Pregunta ${idx+1} de ${items.length}`;
   $('qbig').textContent=String(idx+1).padStart(2,'0');
@@ -820,7 +866,7 @@ function renderItem(){
     const prompt=it.svg?`<div class="figprompt">${it.svg}</div>`:'';
     $('opts').innerHTML=prompt+`<div class="olist">${opts.map((o,i)=>`<div class="orow ${answers[idx]===o.v?'on':''}" role="button" tabindex="0" onclick="pick(${o.v})"><span class="k">${keys[i]}</span><span>${o.l}</span></div>`).join('')}</div>`;
   }
-  $('prevBtn').style.visibility=idx===0?'hidden':'visible';
+  $('prevBtn').style.visibility=(idx===0||T.noBack)?'hidden':'visible';$('nextBtn').style.visibility='visible';
   $('nextBtn').disabled=answers[idx]===null;
   $('nextBtn').textContent=idx===items.length-1?'Ver resultado →':'Siguiente →';
 }
@@ -837,13 +883,15 @@ function renderScale(it){
 }
 function scaleCap(t){const e=$('scaleCap');if(e&&answers[idx]==null)e.textContent=t;}
 function pick(v){
+  if(memActive)return;
+  if(rts[idx]===undefined&&itemStart[idx])rts[idx]=Date.now()-itemStart[idx];
   answers[idx]=v;renderItem();
-  if(T.mode!=='correct'&&idx<items.length-1){const at=idx,tid=T.id;setTimeout(()=>{
+  if((T.mode!=='correct'||T.autoAdvance)&&idx<items.length-1){const at=idx,tid=T.id;setTimeout(()=>{
     if(T&&T.id===tid&&idx===at&&answers[at]!=null&&$('quiz').classList.contains('active')){idx++;renderItem();window.scrollTo({top:0,behavior:'smooth'});}
   },320);}
 }
-function next(){if(answers[idx]===null)return;if(idx<items.length-1){idx++;renderItem();window.scrollTo({top:0});}else finish();}
-function prev(){if(idx>0){idx--;renderItem();window.scrollTo({top:0});}}
+function next(){if(memActive||answers[idx]===null)return;if(idx<items.length-1){idx++;renderItem();window.scrollTo({top:0});}else finish();}
+function prev(){if(memActive||T.noBack)return;if(idx>0){idx--;renderItem();window.scrollTo({top:0});}}
 
 /* ----- scoring ----- */
 function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
@@ -871,6 +919,22 @@ const ARCHE={
   lovelang:{PAL:'El de las palabras',TIE:'El del tiempo juntos',REG:'El de los detalles',ACT:'El de los hechos',CON:'El del contacto'},
 };
 const PANAS_V={pos:{name:'Días luminosos',desc:'Ahora mismo domina tu afecto positivo: energía, entusiasmo y buen ánimo por encima de lo negativo.'},neg:{name:'Días grises',desc:'Ahora mismo pesa más tu afecto negativo. Es un estado, no una sentencia: date margen y cuídate.'}};
+const MEM_TIERS=[
+  {min:0,name:'Memoria de pez',desc:'Las secuencias y las palabras se te escapan rápido. No es un juicio sobre tu inteligencia: la memoria inmediata depende mucho de la atención y de la estrategia de ese momento.'},
+  {min:30,name:'Memoria de andar por casa',desc:'Retienes lo justo para el día a día, aunque las secuencias largas y las palabras sueltas se te resisten.'},
+  {min:50,name:'Disco duro en forma',desc:'Tu memoria inmediata funciona bien: retienes secuencias de buen tamaño y aguantas las distracciones.'},
+  {min:70,name:'Memoria de elefante',desc:'Retienes mucho y durante el tiempo suficiente, incluso con tareas de por medio.'}];
+const ATT_TIERS=[
+  {min:0,name:'Mente en modo avión',desc:'Hoy la atención se te ha ido por las ramas: palabras que engañan, símbolos que se parecen y el reloj corriendo.'},
+  {min:40,name:'Atención intermitente',desc:'Te concentras a ratos: aciertas bastante, pero algún despiste o la prisa te cuestan puntos.'},
+  {min:60,name:'Foco estable',desc:'Mantienes la atención con pocas distracciones, incluso con trampas visuales y contra el reloj.'},
+  {min:80,name:'Ojo de halcón',desc:'Rápido y preciso a la vez: detectas lo que importa y no te dejas engañar por lo automático.'}];
+const AGE_TIERS=[
+  {min:0,name:'Alma adolescente',desc:'Vives al día, con intensidad y sin demasiados planes. Tu mente va más ligera de equipaje que tu DNI.'},
+  {min:20,name:'Mente de veintitantos',desc:'Ganas de hacer cosas, planes con gente y una relación con la responsabilidad que todavía se está ajustando.'},
+  {min:30,name:'Mente de treinta y tantos',desc:'Equilibrio entre disfrutar y tener la vida organizada. Sabes lo que te gusta y lo que no.'},
+  {min:45,name:'Mente de medio siglo',desc:'Calma, criterio y poco interés por las modas. Prefieres lo que funciona a lo que se lleva.'},
+  {min:60,name:'Alma vieja',desc:'Rutinas, orden y una paciencia envidiable. Tu mente lleva años de ventaja a tu calendario.'}];
 const OVERALL_TIERS={
   celos:[
     {min:0,name:'Confianza blindada',desc:'Los celos apenas aparecen en tu forma de querer. Confías sin necesidad de comprobar y un rival imaginario no te quita el sueño.'},
@@ -928,6 +992,43 @@ function finish(){
         const mm=Math.floor(secs/60),ss=secs%60,left=T.duration-secs;
         r.analysis.push({lab:'Tiempo empleado',p:secs/T.duration*100,band:`${mm} min ${ss} s`,text:left>60?`Has usado ${mm} minutos de ${Math.round(T.duration/60)}. La estimación premia ligeramente terminar antes con aciertos; si te sobró tiempo y fallaste, los fallos son de razonamiento, no de prisa.`:`Has usado casi todo el tiempo disponible (${Math.round(T.duration/60)} minutos). Parte de los fallos pueden ser de velocidad más que de razonamiento: en una segunda pasada sin reloj, la puntuación suele subir.`});
       }
+    }else if(T.scoring==='memory'){
+      const span=d=>{let m=0;items.forEach((it,i)=>{if(it.d===d&&answers[i]!=null&&String(answers[i])===it.a)m=Math.max(m,it.len);});return m;};
+      const fwd=span('DF')||3,bwd=span('DB')||2,wr=items.filter(it=>it.d==='WR'),wc=wr.reduce((n,it)=>n+(answers[items.indexOf(it)]===it.a?1:0),0),half=wr.length/2;
+      const cl=x=>Math.max(0,Math.min(1,x)),pF=cl((fwd-3)/6),pB=cl((bwd-2)/5),pW=cl((wc-half)/half),comp=Math.round(100*(pF+pB+pW)/3),tier=band(MEM_TIERS,comp);
+      const lv=(v,hi,mid)=>v>=hi?['hi','Alto']:v>=mid?['mid','Medio']:['lo','Bajo'],lF=lv(fwd,8,5),lB=lv(bwd,6,4),lW=lv(wc,7,5);
+      r.eyebrow='Tu informe de memoria';r.name=tier.name;r.role='Tu memoria';r.mono='MEM';r.traits=[tier.name];
+      r.desc=tier.desc+' Cuántos dígitos retienes exactamente, tu puntuación y el desglose por prueba están en la lectura completa.';
+      r.bars=[{lab:T.domains.DF,p:pF*100,tag:`${fwd} dígitos`,premium:true},{lab:T.domains.DB,p:pB*100,tag:`${bwd} dígitos`,premium:true},{lab:T.domains.WR,p:pW*100,tag:`${wc}/${wr.length}`,premium:true}];
+      r.stats=[{v:String(fwd),l:'dígitos en orden'},{v:String(bwd),l:'dígitos al revés'},{v:`${comp}/100`,l:'puntuación'}];
+      r.analysis=[{lab:'Lectura global',p:comp,band:tier.name,text:`Has retenido ${fwd} dígitos en orden directo y ${bwd} al revés, y has reconocido ${wc} de ${wr.length} palabras tras la distracción. La mayoría de los adultos retiene entre cinco y nueve dígitos en orden directo, y uno o dos menos al revés.`},
+        {lab:`${T.domains.DF} · ${fwd} dígitos`,p:pF*100,band:lF[1],text:T.interp.DF[lF[0]]},
+        {lab:`${T.domains.DB} · ${bwd} dígitos`,p:pB*100,band:lB[1],text:T.interp.DB[lB[0]]},
+        {lab:`${T.domains.WR} · ${wc}/${wr.length}`,p:pW*100,band:lW[1],text:T.interp.WR[lW[0]]}];
+      r.card={mono:'MEM',name:tier.name,role:'Test de memoria',stat:tier.name.toUpperCase()};
+      r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
+      r.full={name:`${fwd} dígitos`,role:`Memoria · ${tier.name}`,desc:`Retienes ${fwd} dígitos en orden directo y ${bwd} al revés, y reconociste ${wc} de ${wr.length} palabras. Tu puntuación de memoria es ${comp} sobre 100.`,
+        card:{mono:String(fwd),name:tier.name,role:'Dígitos que retienes',stat:`MEMORIA ${comp}/100`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
+    }else if(T.scoring==='attention'){
+      const dur=T.duration||240,secs=Math.min(dur,Math.round((Date.now()-startedAt)/1000)),total=items.length,acc=correct/total;
+      const by=d=>{let c=0,n=0;items.forEach((it,i)=>{if(it.d===d){n++;if(answers[i]===it.a)c++;}});return {c,n,p:n?c/n:0};};
+      const ST=by('ST'),BV=by('BV'),OD=by('OD'),speed=Math.max(0,(dur-secs)/dur),score=Math.round(100*acc*(0.85+0.15*speed)),tier=band(ATT_TIERS,score);
+      const rtAvg=f=>{const v=[];items.forEach((it,i)=>{if(it.d==='ST'&&f(it)&&answers[i]===it.a&&rts[i])v.push(rts[i]);});return v.length?v.reduce((a,b)=>a+b,0)/v.length:null;};
+      const rc=rtAvg(it=>it.congruent),ri=rtAvg(it=>!it.congruent),stroop=(rc!==null&&ri!==null)?Math.round(ri-rc):null;
+      const lv=p=>p>=0.85?['hi','Alto']:p>=0.6?['mid','Medio']:['lo','Bajo'],mm=Math.floor(secs/60),ss=secs%60,blank=answers.filter(a=>a===null).length;
+      r.eyebrow='Tu informe de atención';r.name=tier.name;r.role='Tu atención';r.mono='ATN';r.traits=[tier.name];
+      r.desc=tier.desc+' Tu índice exacto, tus aciertos por prueba y tu efecto Stroop están en la lectura completa.';
+      r.bars=[{lab:T.domains.ST,p:ST.p*100,tag:`${ST.c}/${ST.n}`,premium:true},{lab:T.domains.BV,p:BV.p*100,tag:`${BV.c}/${BV.n}`,premium:true},{lab:T.domains.OD,p:OD.p*100,tag:`${OD.c}/${OD.n}`,premium:true}];
+      r.stats=[{v:`${score}/100`,l:'índice de atención'},{v:`${correct}/${total}`,l:'aciertos'},{v:`${mm}:${String(ss).padStart(2,'0')}`,l:'tiempo'}];
+      r.analysis=[{lab:'Lectura global',p:score,band:tier.name,text:`Has acertado ${correct} de ${total} pruebas en ${mm} min ${ss} s${blank?` y te quedaron ${blank} sin responder`:''}. El índice combina sobre todo tus aciertos y, en menor medida, tu velocidad.`},
+        {lab:`${T.domains.ST} · ${ST.c}/${ST.n}`,p:ST.p*100,band:lv(ST.p)[1],text:T.interp.ST[lv(ST.p)[0]]},
+        {lab:`${T.domains.BV} · ${BV.c}/${BV.n}`,p:BV.p*100,band:lv(BV.p)[1],text:T.interp.BV[lv(BV.p)[0]]},
+        {lab:`${T.domains.OD} · ${OD.c}/${OD.n}`,p:OD.p*100,band:lv(OD.p)[1],text:T.interp.OD[lv(OD.p)[0]]}];
+      if(stroop!==null)r.analysis.push({lab:'Tu efecto Stroop',p:Math.max(0,Math.min(100,stroop/15)),band:stroop>0?`+${stroop} ms`:`${stroop} ms`,text:stroop>150?`Con las palabras que engañan tardaste de media ${stroop} milisegundos más que con las que coinciden con su color. Es el coste de frenar la lectura automática, y es normal notarlo.`:`Apenas notaste el efecto Stroop: respondiste casi igual de rápido con las palabras que engañan que con las que no.`});
+      r.card={mono:'ATN',name:tier.name,role:'Test de atención',stat:tier.name.toUpperCase()};
+      r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
+      r.full={name:String(score),role:`Índice de atención · ${tier.name}`,desc:`Tu índice de atención es ${score} sobre 100: ${correct} aciertos de ${total} en ${mm} min ${ss} s.`,
+        card:{mono:String(score),name:tier.name,role:'Índice de atención',stat:`${correct}/${total} ACIERTOS`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
     }else{
       const b=correct<=1?["Intuitivo","Te fías de tu instinto: rápido, pero la trampa te pilla."]:correct<=3?["Mixto","Combinas instinto y reflexión según la pregunta."]:["Reflexivo","Paras a pensar antes de responder. La trampa no te pilla."];
       r.name=`${correct}/${items.length}`;r.role="Estilo de pensamiento";r.desc=b[1];r.traits=[b[0]];r.mono=initials(b[0]);
@@ -940,8 +1041,23 @@ function finish(){
             text:`«${it.q}» `+(ok?'Acertaste. ':intu?`Elegiste «${it.o[it.i]}», la respuesta que primero viene a la cabeza. `:none?'No llegaste a responder. ':`Elegiste «${it.o[answers[i]]}». `)+(it.why||'')};}));}
     }
   }else{
-    const pct=scalePcts();
-    if(R.type==='single'){
+    const pct=R.type==='mentalage'?{}:scalePcts();
+    if(R.type==='mentalage'){
+      const keys=Object.keys(T.scales),area={};
+      keys.forEach(k=>{const v=[];items.forEach((it,i)=>{if(it.s===k&&answers[i]!=null)v.push(answers[i]);});area[k]=v.length?v.reduce((a,b)=>a+b,0)/v.length:30;});
+      const all=answers.filter(x=>x!=null),age=Math.round(all.reduce((a,b)=>a+b,0)/Math.max(1,all.length)),tier=band(AGE_TIERS,age);
+      const toP=a=>Math.max(0,Math.min(100,(a-12)/(70-12)*100)),L=a=>a<28?'lo':a<=45?'mid':'hi';
+      const sorted=keys.slice().sort((a,b)=>area[a]-area[b]),young=T.scales[sorted[0]],old=T.scales[sorted[sorted.length-1]];
+      r.eyebrow='Tu edad mental';r.name=tier.name;r.role='Tu edad mental';r.mono='EDAD';r.traits=[tier.name];
+      r.desc=tier.desc+' Tu edad exacta y cuántos años tiene tu mente en cada área están en la lectura completa.';
+      r.bars=keys.map(k=>({lab:T.scales[k],p:toP(area[k]),tag:`${Math.round(area[k])} años`,premium:true}));
+      r.stats=[{v:String(age),l:'años de edad mental'},{v:`${Math.round(area[sorted[0]])}`,l:`años en ${young.toLowerCase()}`},{v:`${Math.round(area[sorted[sorted.length-1]])}`,l:`años en ${old.toLowerCase()}`}];
+      r.analysis=[{lab:'Lectura global',p:toP(age),band:`${age} años`,text:`Tu mente tiene ${age} años. El área que más te rejuvenece es «${young}» y la que más años te suma, «${old}».`}]
+        .concat(keys.map(k=>({lab:`${T.scales[k]} · ${Math.round(area[k])} años`,p:toP(area[k]),band:`${Math.round(area[k])} años`,text:T.interp[k][L(area[k])]})));
+      r.card={mono:'EDAD',name:tier.name,role:'Edad mental',stat:tier.name.toUpperCase()};
+      r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
+      r.full={name:`${age} años`,role:`Edad mental · ${tier.name}`,desc:`Tu mente tiene ${age} años. ${tier.desc}`,card:{mono:String(age),name:tier.name,role:'Años de edad mental',stat:'EDAD MENTAL'},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
+    }else if(R.type==='single'){
       const p=pct[Object.keys(T.scales)[0]],b=band(R.bands,p);
       r.name=b.label;r.role=T.name;r.desc=b.desc;r.mono=initials(b.label);r.traits=[b.emoji+' '+Object.values(T.scales)[0]];
       r.bars=[{lab:Object.values(T.scales)[0],p}];
@@ -1146,7 +1262,7 @@ async function handleReturn(){
   }
 }
 const NEXT_TEST={politico:['moral','values'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
-  iq:['crt','ncs'],crt:['iq','ncs'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
+  iq:['memoria','atencion'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],
   redflag:['celos','attachment'],celos:['lovestyles','attachment'],dificil:['darktriad','redflag'],lovestyles:['lovelang','celos'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
@@ -1167,14 +1283,14 @@ function renderResult(r){
   $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
   {const sci=$('resScience');if(sci){if(T&&T.instrument){sci.style.display='block';sci.innerHTML='<span style="font-weight:600;color:var(--ink3)">Referencia metodológica:</span> '+T.instrument;}else{sci.style.display='none';}}}
   if(r.bars){$('resBars').innerHTML=`<div class="bars">${r.bars.map(b=>{const tag=b.tag||(b.p>=66?'Alto':b.p>=40?'Medio':'Bajo');
-    return `<div class="barrow"><div class="bl"><span>${b.lab}</span><span class="tg">${tag} · ${Math.round(b.p)}%</span></div><div class="btrack"><i data-w="${b.p}" style="background:linear-gradient(90deg,${r.accent},${hexA(r.accent,.55)})"></i></div></div>`;}).join('')}</div>`;
+    return `<div class="barrow"><div class="bl"><span>${b.lab}</span><span class="tg">${b.hidePct?tag:`${tag} · ${Math.round(b.p)}%`}</span></div><div class="btrack"><i data-w="${b.p}" style="background:linear-gradient(90deg,${r.accent},${hexA(r.accent,.55)})"></i></div></div>`;}).join('')}</div>`;
     setTimeout(()=>document.querySelectorAll('#resBars .btrack>i').forEach(i=>i.style.width=i.dataset.w+'%'),120);
   }else $('resBars').innerHTML='';
   $('resStats').innerHTML=(r.stats||[]).map(s=>`<div class="st"><div class="v" style="color:${r.accent}">${s.v}</div><div class="l">${s.l}</div></div>`).join('');
   if(r.analysis&&r.analysis.length){
     $('resAnalysis').innerHTML=`<div class="analysis"><div class="ahead">Análisis por dimensión</div>${r.analysis.map(a=>{
       const bc=(a.band==='Alto'||a.band==='Reflexivo')?'#1f8a6d':(a.band==='Bajo'||a.band==='Intuitivo')?'#b8434c':'#6e7075';
-      return `<div class="ana-card"><div class="atop"><span class="alab">${a.lab}</span><span class="aband" style="color:${bc}">${a.band} · ${Math.round(a.p)}%</span></div><p>${a.text}</p></div>`;}).join('')}</div>`;
+      return `<div class="ana-card"><div class="atop"><span class="alab">${a.lab}</span><span class="aband" style="color:${bc}">${a.hidePct?a.band:`${a.band} · ${Math.round(a.p)}%`}</span></div><p>${a.text}</p></div>`;}).join('')}</div>`;
   }else $('resAnalysis').innerHTML='';
   renderNext();
 }
@@ -1390,6 +1506,8 @@ function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');cle
 document.addEventListener('keydown',e=>{
   if($('lbox').classList.contains('on')){if(e.key==='Escape')closeCard();return;}
   if(!$('quiz').classList.contains('active'))return;
+  if(memActive)return;
+  if(e.target&&e.target.tagName==='INPUT'){if(e.key==='Enter'&&!$('nextBtn').disabled){next();e.preventDefault();}return;}
   if(e.key>='1'&&e.key<='8'){const els=$('opts').querySelectorAll('.dot,.orow,.figopt'),el=els[parseInt(e.key,10)-1];if(el){el.click();e.preventDefault();}}
   else if(e.key==='Enter'||e.key==='ArrowRight'){if(!$('nextBtn').disabled){next();e.preventDefault();}}
   else if(e.key==='ArrowLeft'){if(idx>0){prev();e.preventDefault();}}

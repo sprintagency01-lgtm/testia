@@ -370,6 +370,48 @@
       "slug": "necesidad-de-cierre-cognitivo"
     },
     {
+      "keyword": "cuántos números puede recordar una persona",
+      "secondary": [
+        "amplitud de memoria",
+        "memoria de trabajo",
+        "el número mágico 7 más o menos 2",
+        "prueba de dígitos inversos"
+      ],
+      "intent": "Explicar la amplitud de memoria (Miller, Cowan), la diferencia entre memoria a corto plazo y de trabajo, y qué miden las pruebas de dígitos.",
+      "test_slug": "test-de-memoria",
+      "test_id": "memoria",
+      "why": "'test de memoria' tiene demanda en el autocompletado. Test lanzado el 2026-10-08 sin guía; el CI demostró que los tests con número convierten.",
+      "status": "pending"
+    },
+    {
+      "keyword": "qué es el efecto Stroop",
+      "secondary": [
+        "test de Stroop",
+        "atención selectiva",
+        "por qué cuesta decir el color de una palabra",
+        "test de atención y concentración"
+      ],
+      "intent": "Explicar el efecto Stroop, la atención selectiva y la búsqueda visual, y por qué un test online no diagnostica TDAH.",
+      "test_slug": "test-de-atencion",
+      "test_id": "atencion",
+      "why": "'test de atención' y 'test de stroop' aparecen en el autocompletado. Test lanzado el 2026-10-08 sin guía.",
+      "status": "pending"
+    },
+    {
+      "keyword": "qué es la edad subjetiva",
+      "secondary": [
+        "edad mental significado",
+        "por qué nos sentimos más jóvenes",
+        "edad mental de Binet",
+        "cuántos años aparento por dentro"
+      ],
+      "intent": "Explicar el concepto histórico de edad mental (Binet) y la investigación sobre edad subjetiva (Rubin y Berntsen, 2006), dejando claro que el test es de entretenimiento.",
+      "test_slug": "test-edad-mental",
+      "test_id": "edadmental",
+      "why": "'test de edad mental' es la segunda sugerencia en 'test de e'. Test lanzado el 2026-10-08 sin guía.",
+      "status": "pending"
+    },
+    {
       "keyword": "mentalidad de crecimiento y mentalidad fija",
       "secondary": [
         "qué es la mentalidad de crecimiento",

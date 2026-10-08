@@ -1004,6 +1004,76 @@ window.TESTS = [
   {t:"Haría casi cualquier sacrificio por la felicidad de mi pareja.",s:"AGA"},
   {t:"Aguantaría mucho con tal de que mi pareja sea feliz.",s:"AGA"}
  ]
+},
+
+/* 27. MEMORIA — amplitud de dígitos (directa e inversa) y reconocimiento de palabras; ítems generados en cognitive.js */
+{
+ id:"memoria", name:"Test de memoria", emoji:"🧩", cat:"Inteligencia",
+ blurb:"¿Cuántos números retienes de un vistazo? Dígitos en orden y al revés, y palabras que tendrás que recordar tras una distracción.",
+ instrument:"Pruebas clásicas de amplitud de dígitos y reconocimiento (Miller, 1956; Cowan, 2001) · ítems propios", license:"🟢",
+ mode:"correct", scoring:"memory", noTimer:true, noBack:true, autoAdvance:true,
+ premiumTitle:"Ya sabes cómo es tu memoria. Descubre cuántos dígitos retienes",
+ premiumPitch:"Tu amplitud exacta en orden directo e inverso, cuántas palabras reconociste y una puntuación de 0 a 100, con lo que significa cada parte. Tu carta se actualiza con tu cifra.",
+ domains:{DF:"Orden directo",DB:"Orden inverso",WR:"Palabras"},
+ interp:{
+  DF:{hi:"Retienes secuencias largas sin esfuerzo. Es la capacidad que usas para recordar un número de teléfono o un código mientras lo escribes.",mid:"Tu amplitud está en el rango habitual de la población adulta, que suele moverse entre cinco y nueve elementos según el clásico trabajo de Miller.",lo:"Las secuencias largas se te escapan. Muchas veces es cuestión de estrategia: agrupar los números de dos en dos o de tres en tres ayuda mucho."},
+  DB:{hi:"Manipulas la información mientras la recuerdas, no solo la guardas. Es la parte de la memoria de trabajo más ligada al razonamiento.",mid:"Le das la vuelta a secuencias medias con soltura. Es normal quedarse uno o dos dígitos por debajo del orden directo.",lo:"Invertir secuencias te cuesta: exige guardar y operar a la vez. Es la tarea más exigente del test y la que más mejora con práctica."},
+  WR:{hi:"Reconoces casi todas las palabras aunque hayas hecho otras tareas entre medias: tu memoria resiste bien la interferencia.",mid:"Reconoces la mayoría de las palabras, aunque alguna se pierde por el camino o se confunde con otra parecida.",lo:"Las palabras se borran cuando haces otra cosa entre medias. Repetirlas por dentro o inventar una historia con ellas ayuda a fijarlas."}
+ },
+ items:[]
+},
+
+/* 28. ATENCIÓN — Stroop, búsqueda visual y símbolo distinto contra el reloj; ítems generados en cognitive.js */
+{
+ id:"atencion", name:"Test de atención", emoji:"🎯", cat:"Inteligencia",
+ blurb:"Colores que engañan, letras escondidas y símbolos que no encajan, contra el reloj. ¿Cuánto aguanta tu foco?",
+ instrument:"Efecto Stroop (Stroop, 1935) y búsqueda visual (Treisman y Gelade, 1980) · ítems propios", license:"🟢",
+ mode:"correct", scoring:"attention", duration:240, hardTimer:true, noBack:true, autoAdvance:true,
+ premiumTitle:"Ya sabes cómo es tu atención. Descubre tu índice exacto",
+ premiumPitch:"Tu índice de atención de 0 a 100, tus aciertos en cada prueba, el tiempo que tardaste y cuánto te frenó el efecto Stroop. Tu carta se actualiza con tu cifra.",
+ domains:{ST:"Colores que engañan",BV:"Búsqueda visual",OD:"Símbolo distinto"},
+ interp:{
+  ST:{hi:"Frenas la lectura automática y te quedas con el color. Es la base del control de la atención: ignorar lo que salta a la vista para centrarte en lo que importa.",mid:"Aciertas casi siempre, aunque la palabra escrita te despista en algún caso. Es el efecto Stroop y le pasa a todo el mundo.",lo:"La palabra se impone al color con facilidad. Leer es tan automático que cuesta frenarlo; en tareas así ayuda ir un poco más despacio."},
+  BV:{hi:"Rastreas con método y no se te escapa ninguna. Contar símbolos parecidos exige recorrer la cuadrícula en orden, y lo haces bien.",mid:"Encuentras casi todos los objetivos, con algún despiste entre letras que se parecen mucho, como la b y la d.",lo:"Se te escapan objetivos entre símbolos parecidos. Recorrer la cuadrícula fila a fila en lugar de saltar con la vista suele mejorar mucho el resultado."},
+  OD:{hi:"Detectas lo que no encaja casi de un vistazo. Es atención al detalle en estado puro.",mid:"Encuentras el símbolo distinto en la mayoría de los casos, aunque los pares más parecidos te hacen dudar.",lo:"Los pares de símbolos muy parecidos te cuestan. Es normal con prisa: la vista completa lo que espera ver."}
+ },
+ items:[]
+},
+
+/* 29. EDAD MENTAL — entretenimiento; inspirado en la investigación sobre edad subjetiva (Rubin y Berntsen, 2006) */
+{
+ id:"edadmental", name:"¿Cuál es tu edad mental?", emoji:"🎂", cat:"Personalidad",
+ blurb:"Ocio, tecnología, responsabilidades y emociones: 16 preguntas para saber cuántos años tiene tu mente.",
+ instrument:"Test de entretenimiento inspirado en la investigación sobre edad subjetiva (Rubin y Berntsen, 2006) · ítems propios", license:"🟢",
+ mode:"choice",
+ premiumTitle:"Ya sabes tu etapa. Descubre tu edad mental exacta",
+ premiumPitch:"Tu edad mental en años y cuántos tiene tu mente en el ocio, la tecnología, las responsabilidades y las emociones. Tu carta se actualiza con tu cifra.",
+ scales:{OCI:"Ocio y planes",TEC:"Gustos y tecnología",RES:"Responsabilidades",EMO:"Emociones y relaciones"},
+ result:{type:"mentalage"},
+ interp:{
+  OCI:{lo:"Tus planes tienen espíritu joven: espontaneidad, gente y noche. Te cargas de energía saliendo.",mid:"Combinas planes sociales con tu espacio. Te gusta salir, pero también volver a una hora razonable.",hi:"Disfrutas del ocio tranquilo y previsible. Para ti un buen plan es uno que no te deja sin energía al día siguiente."},
+  TEC:{lo:"Vas a la última: lo nuevo te llega antes que a nadie y te mueves por las redes con soltura.",mid:"Usas la tecnología con criterio: pruebas lo nuevo, pero no te dejas arrastrar por cada moda.",hi:"Te quedas con lo que funciona. Las modas digitales te pillan con poco interés y bastante escepticismo."},
+  RES:{lo:"La vida adulta todavía te pilla con poco entrenamiento: papeles, horarios y ahorro van a su ritmo.",mid:"Tienes lo importante bajo control, aunque sin obsesionarte con la organización.",hi:"Eres la persona organizada del grupo: papeles en orden, rutinas claras y el ahorro como prioridad."},
+  EMO:{lo:"Vives las emociones a tope: intensidad, impulsos y poca paciencia con la incertidumbre.",mid:"Gestionas las emociones con bastante equilibrio, aunque alguna vez te ganan el impulso o el drama.",hi:"Te tomas las cosas con calma y perspectiva. Pocas cosas consiguen sacarte de quicio."}
+ },
+ items:[
+  {t:"Un viernes por la noche perfecto es…",s:"OCI",opts:[{l:"Salir hasta que cierren",v:19},{l:"Cenar con amigos y volver a una hora decente",v:33},{l:"Sofá, manta y una serie",v:42},{l:"Cena tranquila y a dormir pronto",v:58}]},
+  {t:"¿Cómo planeas unas vacaciones?",s:"OCI",opts:[{l:"Sobre la marcha, ya veremos",v:21},{l:"Vuelo barato y lo demás allí",v:27},{l:"Todo reservado con antelación",v:41},{l:"Al sitio de siempre, que ya lo conozco",v:60}]},
+  {t:"Un domingo a las diez de la mañana…",s:"OCI",opts:[{l:"Sigo durmiendo",v:18},{l:"Preparando un brunch con amigos",v:28},{l:"Haciendo la compra",v:44},{l:"Ya he paseado y leído el periódico",v:62}]},
+  {t:"Cuando quedas con amigos, lo normal es…",s:"OCI",opts:[{l:"Grupo grande y lo que surja",v:20},{l:"Unos pocos en el bar de siempre",v:30},{l:"Comida en casa de alguien",v:43},{l:"Un café a media mañana",v:60}]},
+  {t:"Para escuchar música…",s:"TEC",opts:[{l:"Lo que suena en TikTok esta semana",v:16},{l:"Listas según el momento del día",v:27},{l:"Discos enteros de mis grupos de siempre",v:42},{l:"La radio",v:63}]},
+  {t:"Te llega un audio de tres minutos…",s:"TEC",opts:[{l:"Lo escucho a doble velocidad",v:22},{l:"Lo escucho cuando pueda",v:32},{l:"Hubiera preferido una llamada",v:47},{l:"Que me lo cuenten en persona",v:60}]},
+  {t:"Una app nueva que usa todo el mundo…",s:"TEC",opts:[{l:"La tenía antes que nadie",v:18},{l:"La pruebo a ver qué tal",v:28},{l:"Espero a ver si dura",v:44},{l:"No me hace falta",v:62}]},
+  {t:"Tus fotos acaban sobre todo…",s:"TEC",opts:[{l:"En stories que desaparecen",v:17},{l:"En el móvil, cientos para elegir una",v:26},{l:"En una carpeta por viajes",v:41},{l:"Impresas o en un álbum",v:63}]},
+  {t:"Las facturas y los papeles…",s:"RES",opts:[{l:"¿Qué facturas?",v:17},{l:"Los hago cuando me avisan",v:25},{l:"Domiciliado y organizado",v:40},{l:"Archivados por años",v:60}]},
+  {t:"Entre semana te acuestas…",s:"RES",opts:[{l:"Después de las dos",v:19},{l:"Hacia la una",v:26},{l:"Antes de medianoche",v:40},{l:"A las once como muy tarde",v:58}]},
+  {t:"Si se estropea algo en casa…",s:"RES",opts:[{l:"Llamo a mi familia",v:17},{l:"Busco un tutorial",v:27},{l:"Llamo a alguien de confianza",v:42},{l:"Tengo herramientas y sé usarlas",v:55}]},
+  {t:"Ahorrar es…",s:"RES",opts:[{l:"Algo para el futuro lejano",v:18},{l:"Lo intento cada mes",v:29},{l:"Tengo un colchón y objetivos",v:42},{l:"Lo primero, y comparo precios",v:60}]},
+  {t:"Si alguien tarda horas en contestarte…",s:"EMO",opts:[{l:"Miro su última conexión",v:17},{l:"Me extraña, pero sigo a lo mío",v:29},{l:"Estará a otra cosa",v:42},{l:"Ni me doy cuenta",v:58}]},
+  {t:"En una discusión…",s:"EMO",opts:[{l:"Tengo que ganarla",v:18},{l:"Digo lo que pienso y luego me arrepiento",v:26},{l:"Intento entender a la otra persona",v:40},{l:"Elijo mis batallas",v:58}]},
+  {t:"Para ti el amor es sobre todo…",s:"EMO",opts:[{l:"Intensidad y mariposas",v:19},{l:"Alguien con quien divertirme",v:26},{l:"Un equipo para construir algo",v:38},{l:"Compañía, calma y cariño",v:58}]},
+  {t:"Cuando algo sale mal…",s:"EMO",opts:[{l:"Drama durante días",v:17},{l:"Me desahogo con amigos y paso página",v:27},{l:"Busco qué puedo aprender",v:41},{l:"Lo relativizo: he visto cosas peores",v:60}]}
+ ]
 }
 
 ];
@@ -1246,3 +1316,284 @@ window.RIASEC_CAREERS = {
  E:["Empresa y dirección","Marketing","Ventas","Emprendimiento","Derecho"],
  C:["Administración y finanzas","Contabilidad","Logística","Análisis financiero","Gestión de datos"]
 };
+
+/* ===== Landings completas (octubre 2026) =====
+   Mismo patrón que la del test de CI: qué das exactamente, en qué se basa,
+   qué límites tiene y preguntas frecuentes reales. Todas las fuentes se han
+   comprobado contra doi.org. Se aplica encima de SEO_CONTENT. */
+(function(){
+const S=window.SEO_CONTENT, put=(id,o)=>{S[id]=Object.assign(S[id]||{},o);};
+const src=(title,doi,note)=>({title,url:doi.startsWith('http')?doi:`https://doi.org/${doi}`,note});
+
+put('memoria',{slug:"test-de-memoria",seoTitle:"Test de memoria online: ¿cuántos dígitos recuerdas? | Testia",h1:"Test de memoria",
+ metaDesc:"Test de memoria online: recuerda secuencias de números en orden directo e inverso y reconoce palabras. Descubre tu amplitud de memoria. Gratis y sin registro.",
+ intro:"¿Cuántos números puedes retener de un vistazo? Este test mide tu memoria inmediata con tres pruebas clásicas de la psicología: dígitos en orden directo, dígitos al revés y reconocimiento de palabras tras una distracción.",
+ learn:["Cuántos dígitos retienes en orden directo e inverso","Si reconoces las palabras tras una distracción","Una puntuación de memoria de 0 a 100","Carta de resultado con tu cifra"],
+ overview:[{label:"Mide",text:"Memoria inmediata y memoria de trabajo con dígitos y palabras."},{label:"Formato",text:"19 pruebas: escribir secuencias y reconocer palabras; unos 5 minutos."},{label:"Límite",text:"No evalúa la memoria a largo plazo ni detecta problemas de memoria."}],
+ sections:[
+  {title:"Qué es la amplitud de memoria",body:"La amplitud de memoria es la cantidad de elementos que puedes retener justo después de verlos. En 1956, George Miller describió que la mayoría de los adultos retiene entre cinco y nueve elementos sueltos. Revisiones posteriores, como la de Nelson Cowan, matizan que sin agrupar la información la capacidad real ronda cuatro unidades: por eso agrupar los números de dos en dos o de tres en tres ayuda tanto."},
+  {title:"Por qué hay dígitos al revés",body:"Repetir una secuencia en el mismo orden mide sobre todo cuánto puedes guardar. Repetirla al revés exige guardar y operar a la vez, y por eso se usa para estudiar la memoria de trabajo, la que sostienes mientras razonas. Lo habitual es recordar uno o dos dígitos menos al revés que en orden directo."}],
+ faqs:[
+  {q:"¿Cuántos dígitos recuerda una persona normal?",a:"En orden directo, la mayoría de los adultos retiene entre cinco y nueve. Al revés suele ser uno o dos menos. Este test te da tu amplitud en las dos versiones."},
+  {q:"¿Es fiable un test de memoria online?",a:"Da una estimación orientativa. El cansancio, las distracciones o el dispositivo influyen, así que conviene repetirlo en otro momento si el resultado te sorprende."},
+  {q:"¿Se puede mejorar la memoria?",a:"Las estrategias, como agrupar números o crear asociaciones, mejoran mucho el rendimiento en tareas concretas. Dormir bien y reducir distracciones también ayuda."},
+  {q:"¿Sirve para detectar problemas de memoria?",a:"No. Es una prueba divulgativa. Si los olvidos te preocupan o afectan a tu día a día, consulta con un profesional sanitario."}],
+ sources:[src("The magical number seven, plus or minus two","10.1037/h0043158","Miller (1956): el estudio clásico sobre los límites de la memoria inmediata."),src("The magical number 4 in short-term memory","10.1017/S0140525X01003922","Cowan (2001): revisión que sitúa la capacidad real en torno a cuatro unidades.")],
+ relatedIds:["atencion","iq","ncs"]});
+
+put('atencion',{slug:"test-de-atencion",seoTitle:"Test de atención y concentración online: efecto Stroop | Testia",h1:"Test de atención y concentración",
+ metaDesc:"Test de atención y concentración online: colores que engañan, letras escondidas y símbolos distintos contra el reloj. Mide tu índice de atención. Gratis.",
+ intro:"¿Cuánto aguanta tu foco? Tres pruebas contra el reloj: decir el color de una palabra que nombra otro color, contar letras entre letras parecidas y encontrar el símbolo que no encaja.",
+ learn:["Tu índice de atención de 0 a 100","Cuánto te frena el efecto Stroop","Tus aciertos en cada prueba y tu tiempo","Carta de resultado con tu cifra"],
+ overview:[{label:"Mide",text:"Atención selectiva, búsqueda visual y control de la interferencia."},{label:"Formato",text:"20 pruebas con un máximo de 4 minutos."},{label:"Límite",text:"No diagnostica TDAH ni ningún otro problema de atención."}],
+ sections:[
+  {title:"Qué es el efecto Stroop",body:"En 1935, John Ridley Stroop observó que se tarda más en decir el color de la tinta cuando la palabra nombra otro color, por ejemplo «ROJO» escrito en azul. Leer es tan automático que hay que frenarlo para responder bien. Es una de las tareas más estudiadas de la psicología para medir el control de la atención."},
+  {title:"Cómo se calcula tu índice",body:"El índice combina aciertos y velocidad. La mayor parte sale de la proporción de respuestas correctas y una parte menor premia terminar antes con buena precisión. Además, el informe compara cuánto tardas en las palabras que engañan frente a las que no: esa diferencia es tu efecto Stroop."}],
+ faqs:[
+  {q:"¿Este test detecta el TDAH?",a:"No. Mide tu rendimiento en tres tareas de atención en un momento concreto. El TDAH solo puede valorarlo un profesional con una evaluación completa."},
+  {q:"¿Qué es una buena puntuación?",a:"El índice va de 0 a 100 y depende de tus aciertos y tu velocidad. No es una comparación con la población: sirve para ver tu rendimiento y compararte contigo mismo si repites el test."},
+  {q:"¿Por qué cuenta el tiempo?",a:"Porque mantener la atención es hacerlo bien y sin perder ritmo. Aun así, pesan mucho más los aciertos que la velocidad."},
+  {q:"¿Puedo repetirlo?",a:"Sí. Cada vez se generan pruebas nuevas, así que no te sirve memorizar las respuestas."}],
+ sources:[src("Studies of interference in serial verbal reactions","10.1037/h0054651","Stroop (1935): el experimento original del efecto Stroop."),src("Half a century of research on the Stroop effect","10.1037/0033-2909.109.2.163","MacLeod (1991): revisión de cincuenta años de investigación."),src("A feature-integration theory of attention","10.1016/0010-0285(80)90005-5","Treisman y Gelade (1980): base teórica de las tareas de búsqueda visual.")],
+ relatedIds:["memoria","iq","crt"]});
+
+put('edadmental',{slug:"test-edad-mental",seoTitle:"Test de edad mental: ¿cuántos años tiene tu mente? | Testia",h1:"Test de edad mental",
+ metaDesc:"Test de edad mental: 16 preguntas sobre ocio, tecnología, responsabilidades y emociones para descubrir cuántos años tiene tu mente. Gratis y sin registro.",
+ intro:"¿Tu cabeza va por delante o por detrás de tu DNI? Responde 16 preguntas sobre cómo te diviertes, cómo usas la tecnología, cómo te organizas y cómo gestionas las emociones, y descubre cuántos años tiene tu mente.",
+ learn:["Tu edad mental en años","Cuántos años tiene tu mente en cuatro áreas","Qué áreas te hacen más joven o más mayor","Carta de resultado con tu cifra"],
+ overview:[{label:"Mide",text:"Hábitos y actitudes que suelen asociarse a distintas etapas de la vida."},{label:"Formato",text:"16 preguntas de elección; unos 3 minutos."},{label:"Límite",text:"Es entretenimiento: no mide madurez psicológica ni capacidad mental."}],
+ sections:[
+  {title:"Qué significa edad mental en este test",body:"El término lo popularizaron Alfred Binet y Théodore Simon a principios del siglo XX para comparar el rendimiento de los niños con el esperado para su edad. Aquí se usa en sentido divulgativo: cada respuesta se asocia a la edad en la que ese hábito o actitud es más típico, y la media de tus respuestas da tu edad mental."},
+  {title:"La edad que sentimos",body:"La psicología estudia algo parecido con el nombre de edad subjetiva: los años que una persona siente que tiene. Rubin y Berntsen encontraron que, a partir de los cuarenta, la mayoría de la gente se siente alrededor de un 20 % más joven de lo que es. Este test no mide eso exactamente, pero juega con la misma idea."}],
+ faqs:[
+  {q:"¿Es un test científico?",a:"No. Es un test de entretenimiento inspirado en la investigación sobre edad subjetiva. Sirve para pensar en tus hábitos, no para medir tu madurez."},
+  {q:"¿Puede salirme una edad mayor que la mía?",a:"Sí. Si te organizas mucho, te gustan los planes tranquilos y relativizas los problemas, tu edad mental puede superar a la de tu DNI."},
+  {q:"¿Qué edad mental es mejor?",a:"Ninguna. Una edad mental joven suele ir con espontaneidad y energía; una mayor, con calma y organización. Cada perfil tiene sus ventajas."},
+  {q:"¿Por qué cambia si lo repito?",a:"Porque tus respuestas dependen del momento. Es normal que el resultado se mueva algunos años de una vez a otra."}],
+ sources:[src("People over forty feel 20% younger than their age: Subjective age across the lifespan","10.3758/BF03193996","Rubin y Berntsen (2006): investigación sobre la edad que sentimos frente a la que tenemos.")],
+ relatedIds:["memoria","bigfive","chronotype"]});
+
+put('politico',{
+ learn:["Tu posición en el eje izquierda-derecha","Tu peso económico y social","Si tu perfil es cruzado entre economía y valores","Una carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Tu posición política en dos ejes: económico y social."},{label:"Formato",text:"22 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"No predice tu voto ni te encaja en ningún partido."}],
+ sections:[
+  {title:"Qué mide el test de facha",body:"Combina dos ejes. El económico va de más Estado y reparto a más mercado y menos impuestos. El social va del progresismo al conservadurismo en temas como inmigración, tradición o seguridad. Se inspira en la escala de conservadurismo de Wilson y Patterson y en los tests políticos de dos ejes."},
+  {title:"Cómo interpretar tu resultado",body:"La puntuación global va de 0, la izquierda, a 100, la derecha. El mismo número puede esconder perfiles muy distintos: alguien de izquierdas en economía y conservador en lo social puede salir de centro. Por eso el informe separa los dos ejes y te dice si tu perfil es cruzado."}],
+ faqs:[
+  {q:"¿Qué significa salir de centro?",a:"Puede que tus posiciones sean moderadas en todo o que se compensen: izquierda en un eje y derecha en el otro. La lectura por ejes lo distingue."},
+  {q:"¿Puedo ser de izquierdas en economía y conservador en lo social?",a:"Sí, es un perfil bastante común. Se llama perfil cruzado y no encaja en el eje único izquierda-derecha."},
+  {q:"¿El resultado me dice a quién votar?",a:"No. Describe tus respuestas sobre temas concretos, no tu afinidad con partidos ni candidatos."},
+  {q:"¿Es un test en serio?",a:"Los nombres de los resultados tienen humor, pero las afirmaciones tratan debates políticos reales y el cálculo se basa en escalas publicadas."}],
+ sources:[src("A New Measure of Conservatism","10.1111/j.2044-8260.1968.tb00568.x","Wilson y Patterson (1968): escala de conservadurismo en la que se inspira el test.")]});
+
+put('redflag',{
+ overview:[{label:"Mide",text:"Conductas en pareja que suelen generar conflicto: control, celos, orgullo, desaparecer."},{label:"Formato",text:"20 afirmaciones; unos 3 minutos."},{label:"Límite",text:"Es una escala propia y en clave de humor; no evalúa relaciones ni detecta maltrato."}],
+ sections:[
+  {title:"Qué es una red flag",body:"Una red flag es una señal de alarma en una relación: una conducta que avisa de problemas futuros. Este test le da la vuelta a la pregunta habitual y la apunta hacia ti: celos, control, orgullo, desaparecer en los conflictos o no reconocer errores."},
+  {title:"Cómo leer tu resultado",body:"Un resultado alto no significa que seas mala pareja: señala patrones que suelen generar conflicto y que se pueden cambiar. Fíjate en qué afirmaciones te has reconocido más, porque ahí está la parte útil del test."}],
+ faqs:[
+  {q:"¿Es un test científico?",a:"Es una escala propia con humor, pensada para reflexionar. Recoge conductas que la investigación sobre pareja relaciona con conflicto, como los celos y el control, pero no es un instrumento validado."},
+  {q:"¿Qué hago si me reconozco en muchas?",a:"Elige una conducta concreta y háblala con tu pareja. Si los conflictos se repiten, la terapia de pareja o individual ayuda."},
+  {q:"¿Y si la red flag es mi pareja?",a:"Si sientes miedo, control o aislamiento, busca apoyo. En España, el 016 atiende de forma gratuita y la llamada no aparece en la factura."},
+  {q:"¿Puedo hacerlo si no tengo pareja?",a:"Sí. Responde pensando en tus relaciones anteriores."}]});
+
+put('swls',{
+ overview:[{label:"Mide",text:"Tu satisfacción global con la vida, según tu propio criterio."},{label:"Formato",text:"5 afirmaciones de la escala de Diener; 1 minuto."},{label:"Límite",text:"No mide tu estado de ánimo de hoy ni detecta depresión."}],
+ sections:[
+  {title:"Qué es la escala de satisfacción con la vida",body:"La creó Ed Diener con su equipo en 1985 y es una de las medidas de bienestar más usadas en investigación. Son cinco afirmaciones con las que valoras tu vida en conjunto según tus propios criterios, no según los de nadie más."},
+  {title:"Satisfacción y estado de ánimo no son lo mismo",body:"La satisfacción vital es un juicio sobre tu vida en conjunto. El estado de ánimo es lo que sientes estos días. Puedes estar en una mala semana y valorar bien tu vida, o al revés. Para medir el ánimo, usa el test de estado de ánimo."}],
+ faqs:[
+  {q:"¿Qué mide exactamente?",a:"Cuánto se acerca tu vida a lo que consideras ideal y si estás satisfecho con ella en conjunto."},
+  {q:"¿Bastan cinco preguntas?",a:"Para un juicio global, sí. La escala se diseñó corta a propósito y funciona bien en estudios con miles de personas."},
+  {q:"¿Puede cambiar mi resultado?",a:"Sí. La satisfacción vital es bastante estable, pero cambia con lo que pasa en tu vida."},
+  {q:"¿Qué hago si sale muy bajo?",a:"Habla con alguien de confianza y, si el malestar dura, con un profesional. Si tienes pensamientos de hacerte daño, en España el 024 atiende las 24 horas."}],
+ sources:[src("The Satisfaction With Life Scale","10.1207/s15327752jpa4901_13","Diener, Emmons, Larsen y Griffin (1985): artículo original de la escala.")]});
+
+put('attachment',{
+ overview:[{label:"Mide",text:"Ansiedad y evitación en las relaciones de pareja."},{label:"Formato",text:"24 afirmaciones; unos 4 minutos."},{label:"Límite",text:"Describe tendencias; no diagnostica ni etiqueta tu relación."}],
+ sections:[
+  {title:"Los cuatro estilos de apego adulto",body:"Combinando dos dimensiones salen cuatro estilos. Seguro: poca ansiedad y poca evitación. Ansioso: miedo al abandono y necesidad de confirmación. Evitativo: incomodidad con la intimidad. Temeroso: las dos cosas a la vez. El test se inspira en el cuestionario ECR-R de Fraley, Waller y Brennan."},
+  {title:"Por qué dos ejes y no una etiqueta",body:"Dos personas con el mismo estilo pueden estar muy lejos entre sí. Por eso el resultado te da tu puntuación en ansiedad y en evitación, además del estilo que resulta de combinarlas."}],
+ faqs:[
+  {q:"¿Puede cambiar el estilo de apego?",a:"Sí. Es bastante estable, pero cambia con relaciones seguras, experiencias nuevas o terapia."},
+  {q:"¿Es lo mismo que el apego en la infancia?",a:"No exactamente. El apego adulto se inspira en esa teoría, pero mide cómo vives hoy tus relaciones de pareja."},
+  {q:"¿Cuál es el mejor estilo?",a:"El seguro se asocia a relaciones más satisfactorias, pero ningún estilo es una condena: todos se pueden trabajar."},
+  {q:"¿Puedo hacerlo sin pareja?",a:"Sí. Responde pensando en cómo te sueles sentir en tus relaciones."}],
+ sources:[src("An item response theory analysis of self-report measures of adult attachment","10.1037/0022-3514.78.2.350","Fraley, Waller y Brennan (2000): origen del cuestionario ECR-R.")]});
+
+put('riasec',{
+ overview:[{label:"Mide",text:"Tus intereses en seis áreas: realista, investigadora, artística, social, emprendedora y convencional."},{label:"Formato",text:"48 actividades que valoras; unos 6 minutos."},{label:"Límite",text:"Mide intereses, no aptitudes; orienta pero no decide por ti."}],
+ sections:[
+  {title:"Qué es el modelo RIASEC de Holland",body:"John Holland propuso que los intereses profesionales se agrupan en seis tipos y que las personas se sienten más satisfechas en entornos que encajan con su combinación. Es el modelo en el que se basan muchos servicios públicos de orientación, como el O*NET Interest Profiler del Departamento de Trabajo de Estados Unidos."},
+  {title:"Cómo leer tu código de tres letras",body:"Tu código son las iniciales de tus tres intereses más altos, en orden. Por ejemplo, SAI significa social, artístico e investigador. Las profesiones que comparten tus dos primeras letras suelen ser las que más encajan."}],
+ faqs:[
+  {q:"¿Qué es el código Holland?",a:"Las tres letras de tus intereses dominantes dentro de los seis tipos del modelo RIASEC."},
+  {q:"¿Me dice qué carrera estudiar?",a:"Te da pistas sobre qué entornos te pueden gustar. Conviene combinarlo con tus aptitudes, tus valores y las salidas reales."},
+  {q:"¿Intereses y aptitudes son lo mismo?",a:"No. Puedes interesarte por algo en lo que todavía no eres bueno, y al revés. Este test mide lo primero."},
+  {q:"¿Cambian los intereses con la edad?",a:"Son bastante estables desde la adolescencia tardía, pero pueden cambiar con la experiencia."}],
+ sources:[src("The development, evolution, and status of Holland's theory of vocational personalities","10.1037/a0018213","Nauta (2010): revisión de la teoría de Holland."),src("O*NET Interest Profiler","https://www.onetcenter.org/IP.html","Herramienta pública de intereses RIASEC en la que se inspiran las actividades.")]});
+
+put('bigfive',{
+ learn:["Tu puntuación en los 5 grandes rasgos","Qué rasgo domina tu forma de ser","Tu nivel en cada dimensión, de bajo a alto","Una carta de resultado lista para compartir"],
+ overview:[{label:"Mide",text:"Apertura, responsabilidad, extraversión, amabilidad y estabilidad emocional."},{label:"Formato",text:"50 afirmaciones del banco público IPIP; unos 7 minutos."},{label:"Límite",text:"Describe rasgos; no clasifica en tipos ni detecta trastornos."}],
+ sections:[
+  {title:"Qué son los cinco grandes rasgos",body:"El modelo de los cinco grandes resume la personalidad en cinco dimensiones que aparecen una y otra vez en estudios de distintos países. Este test usa los marcadores de Lewis Goldberg del banco público IPIP, una de las formas más usadas de medirlos en investigación."},
+  {title:"Por qué no es un test de tipos",body:"A diferencia del MBTI o las 16 personalidades, los cinco grandes no te meten en una caja. Cada rasgo es una escala y casi todo el mundo está en algún punto intermedio. Por eso el resultado es un perfil, no una etiqueta de cuatro letras."}],
+ faqs:[
+  {q:"¿En qué se diferencia del MBTI o de 16 personalidades?",a:"Esos tests clasifican en tipos. Los cinco grandes miden dimensiones continuas y son el modelo con más respaldo en la investigación."},
+  {q:"¿La personalidad cambia con los años?",a:"Es bastante estable, pero cambia poco a poco: con la edad suelen subir la responsabilidad, la amabilidad y la estabilidad emocional."},
+  {q:"¿Qué significa puntuar bajo en estabilidad emocional?",a:"Que tiendes a sentir con más intensidad la preocupación, el estrés o la tristeza. No es un diagnóstico."},
+  {q:"¿Es fiable?",a:"Los marcadores IPIP tienen buena fiabilidad en investigación. Como todo autoinforme, depende de que respondas con sinceridad."}],
+ sources:[src("The development of markers for the Big-Five factor structure","10.1037/1040-3590.4.1.26","Goldberg (1992): origen de los marcadores de los cinco grandes."),src("International Personality Item Pool (IPIP)","https://ipip.ori.org/","Banco público de ítems de personalidad del que salen las afirmaciones.")],
+ guide:{url:"/blog/cinco-grandes-rasgos-personalidad",title:"Guía de los cinco grandes",text:"Personalidad"}});
+
+put('empathy',{
+ overview:[{label:"Mide",text:"Tu empatía en el trato diario: entender y sentir lo que viven los demás."},{label:"Formato",text:"12 afirmaciones; unos 2 minutos."},{label:"Límite",text:"No diagnostica autismo ni ningún otro trastorno."}],
+ sections:[
+  {title:"Qué es la empatía en psicología",body:"Se suelen distinguir dos partes. La empatía cognitiva es entender lo que piensa o siente otra persona. La emocional es contagiarte de lo que siente. Se pueden tener en distinta medida: alguien puede entender muy bien a los demás sin implicarse emocionalmente."},
+  {title:"En qué se basa el test",body:"Se inspira en el cociente de empatía de Simon Baron-Cohen y Sally Wheelwright, un cuestionario muy usado para medir la empatía en adultos. Las afirmaciones son propias y el resultado es orientativo."}],
+ faqs:[
+  {q:"¿Se puede tener demasiada empatía?",a:"Absorber el malestar ajeno sin límites puede agotar. Lo sano suele ser comprender y acompañar sin cargar con todo."},
+  {q:"¿Empatía y simpatía son lo mismo?",a:"No. La simpatía es sentir pena o cariño por alguien; la empatía es ponerte en su lugar."},
+  {q:"¿Se puede entrenar la empatía?",a:"Sí. Escuchar sin interrumpir, preguntar cómo está la otra persona y leer ficción son prácticas que ayudan."},
+  {q:"¿Un resultado bajo significa autismo?",a:"No. Este test no diagnostica nada. Solo un profesional puede valorar el autismo con una evaluación completa."}],
+ sources:[src("The Empathy Quotient","10.1023/B:JADD.0000022607.19833.00","Baron-Cohen y Wheelwright (2004): cuestionario en el que se inspira el test.")]});
+
+put('values',{
+ learn:["Tus valores dominantes","Qué te mueve de verdad al decidir","Qué valores entran en tensión en ti","Carta de resultado"],
+ overview:[{label:"Mide",text:"Los diez valores básicos de la teoría de Shalom Schwartz."},{label:"Formato",text:"20 retratos de personas con los que te comparas; unos 3 minutos."},{label:"Límite",text:"Ordena tus prioridades; no dice si tus valores son buenos o malos."}],
+ sections:[
+  {title:"La teoría de los valores de Schwartz",body:"Shalom Schwartz identificó diez valores que aparecen en culturas de todo el mundo, como la autodirección, el logro, la seguridad o la benevolencia. Se ordenan en un círculo: los que están cerca son compatibles y los opuestos entran en tensión, como la aventura frente a la seguridad."},
+  {title:"Cómo leer tu perfil",body:"Lo importante no es cuánto valoras cada cosa, sino el orden. Tus valores más altos son los que pesan cuando tienes que elegir. Si dos valores opuestos te salen altos, es probable que vivas esa tensión en tus decisiones."}],
+ faqs:[
+  {q:"¿Qué son los valores personales?",a:"Objetivos generales que guían lo que haces y cómo juzgas lo que hacen los demás, como la libertad, la seguridad o ayudar a otros."},
+  {q:"¿Por qué hay valores opuestos?",a:"Porque perseguir uno dificulta otro: buscar emociones nuevas choca con buscar estabilidad, por ejemplo."},
+  {q:"¿Los valores cambian con el tiempo?",a:"Son bastante estables, pero cambian con la edad y las etapas: con los años suelen ganar peso la seguridad y la tradición."},
+  {q:"¿Para qué sirve conocerlos?",a:"Para entender por qué algunas decisiones te cuestan y elegir trabajos o relaciones que encajen con lo que te importa."}],
+ sources:[src("An Overview of the Schwartz Theory of Basic Values","10.9707/2307-0919.1116","Schwartz (2012): resumen de la teoría de los diez valores básicos.")]});
+
+put('maximizer',{
+ overview:[{label:"Mide",text:"Si buscas la mejor opción posible o te conformas con una suficiente."},{label:"Formato",text:"6 afirmaciones de la versión breve de la escala; 1 minuto."},{label:"Límite",text:"Describe un estilo de decisión, no tu inteligencia ni tu éxito."}],
+ sections:[
+  {title:"Maximizar o conformarse",body:"El economista Herbert Simon llamó satisficing a elegir la primera opción suficientemente buena. Barry Schwartz y su equipo estudiaron el estilo contrario, maximizar: comparar todas las opciones hasta dar con la mejor."},
+  {title:"Qué dice la investigación",body:"En los estudios de Schwartz, quienes más maximizan declaran más arrepentimiento y menos satisfacción con sus elecciones, aunque a veces consigan mejores resultados objetivos. Saber en qué decisiones merece la pena maximizar ahorra mucho desgaste."}],
+ faqs:[
+  {q:"¿Es malo ser maximizador?",a:"No necesariamente. Ayuda en decisiones importantes, pero en las pequeñas suele costar tiempo y satisfacción."},
+  {q:"¿Por qué me cuesta tanto decidir?",a:"Si maximizas, cada opción descartada se siente como una pérdida. Ponerte un límite de opciones o de tiempo ayuda."},
+  {q:"¿Se puede cambiar?",a:"Sí. Elegir conscientemente en qué temas te conformas con lo suficiente reduce mucho el agobio."},
+  {q:"¿Qué es un satisfacedor?",a:"Alguien que elige la primera opción que cumple sus criterios y no sigue buscando."}],
+ sources:[src("Maximizing versus satisficing: Happiness is a matter of choice","10.1037/0022-3514.83.5.1178","Schwartz y otros (2002): estudios originales sobre maximizar y conformarse.")]});
+
+put('moral',{
+ learn:["Tu peso en los 5 fundamentos morales","Qué valor moral pesa más en ti","Cómo se ordenan tus cinco fundamentos","Carta de resultado"],
+ overview:[{label:"Mide",text:"Cinco fundamentos morales: cuidado, justicia, lealtad, autoridad y pureza."},{label:"Formato",text:"15 afirmaciones; unos 3 minutos."},{label:"Límite",text:"No mide si eres buena persona ni tu ideología."}],
+ sections:[
+  {title:"Qué es la teoría de los fundamentos morales",body:"Jonathan Haidt, Jesse Graham y su equipo propusieron que nuestros juicios morales se apoyan en varios fundamentos intuitivos: cuidar a los demás, la justicia, la lealtad al grupo, el respeto a la autoridad y la pureza. Todo el mundo los tiene, pero no con el mismo peso."},
+  {title:"Por qué discutimos sobre lo moral",body:"Dos personas pueden estar en desacuerdo porque dan importancia a fundamentos distintos. En la investigación de Graham y otros, las personas progresistas pesan más el cuidado y la justicia, y las conservadoras reparten el peso más entre los cinco."}],
+ faqs:[
+  {q:"¿Qué fundamento es el más importante?",a:"Ninguno es superior. El test muestra cuál pesa más en tus juicios."},
+  {q:"¿Tiene relación con la ideología?",a:"Sí, en parte. Los estudios encuentran diferencias entre progresistas y conservadores, aunque hay mucha variación individual."},
+  {q:"¿Por qué no aparece la libertad?",a:"Algunas versiones de la teoría añaden la libertad como sexto fundamento. Este test usa los cinco originales."},
+  {q:"¿Es un test de ética?",a:"No. Describe tus intuiciones morales, no si actúas bien o mal."}],
+ sources:[src("Mapping the moral domain","10.1037/a0021847","Graham y otros (2011): desarrollo del cuestionario de fundamentos morales.")]});
+
+put('grit',{
+ intro:"Explora tu perseverancia y la consistencia de tus intereses ante metas a largo plazo, dos componentes del grit estudiado en psicología. ¿Cómo respondes cuando un proyecto se complica?",
+ overview:[{label:"Mide",text:"Perseverancia del esfuerzo y consistencia de intereses."},{label:"Formato",text:"10 afirmaciones; unos 2 minutos."},{label:"Límite",text:"No predice el éxito ni mide talento."}],
+ sections:[
+  {title:"Qué es el grit",body:"Angela Duckworth y su equipo definieron el grit como la combinación de perseverancia y constancia en metas a largo plazo. Se mide con autoinformes como la escala original de 12 preguntas o la versión breve de 8."},
+  {title:"Qué dice la investigación",body:"Las asociaciones del grit con el rendimiento existen, pero son modestas y se solapan con la responsabilidad. La perseverancia suele aportar más información que la constancia de intereses. Persistir sirve cuando la meta sigue valiendo la pena."}],
+ faqs:[
+  {q:"¿El grit es lo mismo que la fuerza de voluntad?",a:"No. La fuerza de voluntad se refiere a resistir impulsos en el momento; el grit, a sostener objetivos durante años."},
+  {q:"¿Se puede aumentar?",a:"La perseverancia mejora con metas con sentido, hábitos y apoyo. La personalidad cambia despacio, pero la conducta sí se entrena."},
+  {q:"¿Abandonar una meta es tener poco grit?",a:"No necesariamente. Dejar algo que ya no tiene sentido puede ser la decisión acertada."},
+  {q:"¿Predice el éxito?",a:"No a nivel individual. Los estudios encuentran asociaciones medias, no garantías."}],
+ sources:[src("Grit: Perseverance and passion for long-term goals","10.1037/0022-3514.92.6.1087","Duckworth y otros (2007): estudio original del grit."),src("Development and Validation of the Short Grit Scale (Grit–S)","10.1080/00223890802634290","Duckworth y Quinn (2009): versión breve de la escala.")]});
+
+put('tipi',{
+ overview:[{label:"Mide",text:"Los cinco grandes rasgos con dos frases por rasgo."},{label:"Formato",text:"10 afirmaciones; 1 minuto."},{label:"Límite",text:"Es una foto rápida: menos precisa que un inventario largo."}],
+ sections:[
+  {title:"Qué es el TIPI",body:"El Ten-Item Personality Inventory lo publicaron Gosling, Rentfrow y Swann en 2003 para medir los cinco grandes rasgos cuando no hay tiempo para un cuestionario largo. Usa dos frases por rasgo, una en cada sentido."},
+  {title:"Cuándo usar un test corto o uno largo",body:"El corto sirve para hacerte una idea general en un minuto. Si quieres un perfil más preciso de cada rasgo, el test de personalidad completo de 50 preguntas da una medida más fiable."}],
+ faqs:[
+  {q:"¿Es fiable un test de diez preguntas?",a:"Para una visión general, sí: sus autores encontraron buena coincidencia con cuestionarios más largos. Para detalles finos, mejor el test completo."},
+  {q:"¿Qué diferencia hay con el test completo?",a:"Mide lo mismo, los cinco grandes, pero con menos precisión por rasgo."},
+  {q:"¿Por qué solo dos frases por rasgo?",a:"Para que sea muy rápido. Cada rasgo tiene una frase a favor y otra en contra para compensar respuestas automáticas."},
+  {q:"¿Puedo repetirlo?",a:"Sí. Es normal que el resultado varíe un poco de una vez a otra."}],
+ sources:[src("A very brief measure of the Big-Five personality domains","10.1016/S0092-6566(03)00046-1","Gosling, Rentfrow y Swann (2003): artículo original del TIPI.")]});
+
+put('ei',{
+ overview:[{label:"Mide",text:"Percepción, uso y gestión de las emociones propias y ajenas."},{label:"Formato",text:"16 afirmaciones; unos 3 minutos."},{label:"Límite",text:"Es un autoinforme: mide cómo te ves, no tu habilidad medida con tareas."}],
+ sections:[
+  {title:"Qué es la inteligencia emocional",body:"Peter Salovey y John Mayer la definieron como la capacidad de percibir, comprender y gestionar las emociones. Nicola Schutte y su equipo crearon en 1998 una escala basada en ese modelo, en la que se inspira este test."},
+  {title:"Habilidad o forma de verte",body:"Hay dos maneras de medirla: con tareas que tienen respuestas correctas o con autoinformes sobre cómo te ves. Este test es del segundo tipo, así que refleja tu percepción de tus propias habilidades emocionales."}],
+ faqs:[
+  {q:"¿Se puede mejorar la inteligencia emocional?",a:"Sí. Ponerle nombre a lo que sientes, pararte antes de reaccionar y preguntar a los demás cómo están son hábitos que se entrenan."},
+  {q:"¿Es más importante que el CI?",a:"La investigación no respalda esa afirmación popular. Las dos cosas aportan, en ámbitos distintos."},
+  {q:"¿Qué significa cada dimensión?",a:"Percepción es darte cuenta de las emociones; uso, aprovecharlas para pensar; y gestión, regular las tuyas y las de los demás."},
+  {q:"¿Por qué es un autoinforme?",a:"Porque es rápido y útil para reflexionar. Su límite es que depende de lo bien que te conozcas."}],
+ sources:[src("Development and validation of a measure of emotional intelligence","10.1016/S0191-8869(98)00001-4","Schutte y otros (1998): escala en la que se inspira el test.")]});
+
+put('chronotype',{
+ overview:[{label:"Mide",text:"Tu preferencia horaria natural: matutina, intermedia o vespertina."},{label:"Formato",text:"5 preguntas de la versión reducida del cuestionario; 1 minuto."},{label:"Límite",text:"No diagnostica trastornos del sueño."}],
+ sections:[
+  {title:"Qué es el cronotipo",body:"Es la hora del día en la que tu cuerpo prefiere estar activo y descansar. Este test usa la versión reducida que Ana Adan y Helena Almirall hicieron en 1991 del cuestionario de matutinidad de Horne y Östberg."},
+  {title:"Alondras, búhos y el resto",body:"Las alondras rinden mejor temprano y los búhos por la tarde y la noche. La mayoría de la gente está en un punto intermedio. Ninguno es mejor; el problema aparece cuando tus horarios van contra tu reloj."}],
+ faqs:[
+  {q:"¿Se puede cambiar el cronotipo?",a:"Solo en parte. La luz por la mañana y los horarios regulares lo adelantan un poco, pero la tendencia de fondo se mantiene."},
+  {q:"¿Cambia con la edad?",a:"Sí. En la adolescencia se retrasa y con los años se va adelantando."},
+  {q:"¿Qué es el jet lag social?",a:"La diferencia entre tus horarios de sueño entre semana y en fin de semana. Cuanto mayor, más se parece a cambiar de huso horario cada semana."},
+  {q:"¿Qué hago si soy búho y madrugo?",a:"Luz natural nada más levantarte, cenar antes y evitar pantallas a última hora ayudan a reducir el desfase."}],
+ sources:[src("Horne & Östberg morningness-eveningness questionnaire: A reduced scale","10.1016/0191-8869(91)90110-W","Adan y Almirall (1991): versión reducida del cuestionario.")]});
+
+put('resilience',{
+ overview:[{label:"Mide",text:"Tu capacidad percibida de recuperarte tras un revés."},{label:"Formato",text:"6 afirmaciones; 1 minuto."},{label:"Límite",text:"No evalúa traumas ni tu salud mental."}],
+ sections:[
+  {title:"Qué mide la escala breve de resiliencia",body:"Bruce Smith y su equipo crearon en 2008 una escala de seis preguntas centrada en una sola idea: la capacidad de recuperarse del estrés y volver al equilibrio. Este test se inspira en ella."},
+  {title:"Resiliencia no es aguantarlo todo",body:"Ser resiliente no significa no sufrir ni hacerlo todo solo. Significa recuperarte con el tiempo, a menudo apoyándote en otras personas."}],
+ faqs:[
+  {q:"¿La resiliencia se aprende?",a:"En buena parte, sí. Las relaciones de apoyo, dormir bien y enfrentarse a dificultades asumibles la refuerzan."},
+  {q:"¿Ser resiliente es no sufrir?",a:"No. Las personas resilientes sufren igual; lo que cambia es cómo se recuperan."},
+  {q:"¿Qué hago si me sale baja?",a:"Busca apoyo en personas de confianza y, si el malestar dura, en un profesional."},
+  {q:"¿En qué se diferencia del grit?",a:"El grit trata de perseguir metas largas; la resiliencia, de recuperarse tras un golpe."}],
+ sources:[src("The brief resilience scale: Assessing the ability to bounce back","10.1080/10705500802222972","Smith y otros (2008): artículo original de la escala.")]});
+
+put('ncs',{
+ overview:[{label:"Mide",text:"Cuánto disfrutas pensando y resolviendo problemas complejos."},{label:"Formato",text:"6 afirmaciones de la versión breve NCS-6; 1 minuto."},{label:"Límite",text:"No mide inteligencia: mide motivación por pensar."}],
+ sections:[
+  {title:"Qué es la necesidad de cognición",body:"John Cacioppo y Richard Petty la describieron en 1982 como la tendencia a disfrutar del esfuerzo mental. Este test usa la versión de seis preguntas validada por Coelho, Hanel y Wolf."},
+  {title:"Pensar mucho no es pensar mejor",body:"Puntuar alto significa que te gusta darle vueltas a las cosas, no que aciertes más. Quien puntúa bajo prefiere atajos y soluciones prácticas, algo útil en muchas situaciones."}],
+ faqs:[
+  {q:"¿Es lo mismo que ser inteligente?",a:"No. Se relacionan en parte, pero mide las ganas de pensar, no la capacidad."},
+  {q:"¿Qué ventajas tiene puntuar alto?",a:"En los estudios sobre persuasión, estas personas analizan más los argumentos y se dejan llevar menos por señales superficiales."},
+  {q:"¿Y puntuar bajo?",a:"Tomas decisiones más rápidas y gastas menos energía en problemas que no lo necesitan."},
+  {q:"¿Por qué solo seis preguntas?",a:"La versión breve conserva buena parte de la información de la escala larga de 18 preguntas."}],
+ sources:[src("The need for cognition","10.1037/0022-3514.42.1.116","Cacioppo y Petty (1982): artículo original del concepto."),src("The Very Efficient Assessment of Need for Cognition: Developing a Six-Item Version","10.1177/1073191118793208","Coelho, Hanel y Wolf: versión de seis preguntas.")]});
+
+put('selfesteem',{
+ seoTitle:"Test de autoestima de Rosenberg online: 10 preguntas | Testia",
+ overview:[{label:"Mide",text:"Cómo te valoras a ti mismo de forma global."},{label:"Formato",text:"10 afirmaciones de la escala de Rosenberg; 2 minutos."},{label:"Límite",text:"No diagnostica depresión ni otros problemas."}],
+ sections:[
+  {title:"Qué es la escala de Rosenberg",body:"Morris Rosenberg la creó en 1965 y sigue siendo la medida de autoestima más usada del mundo. Son diez afirmaciones sobre cómo te valoras en general, la mitad en positivo y la mitad en negativo. Tiene validación en español con estudiantes universitarios."},
+  {title:"Autoestima alta no es creerse superior",body:"La autoestima sana es aceptarte y valorarte sin necesidad de compararte. Sentirse por encima de los demás se parece más al narcisismo, que es otra cosa."}],
+ faqs:[
+  {q:"¿Se puede mejorar la autoestima?",a:"Sí. Hablarte con más amabilidad, cumplir pequeños compromisos contigo y rodearte de personas que te tratan bien ayuda."},
+  {q:"¿Autoestima y narcisismo son lo mismo?",a:"No. La autoestima es valorarte; el narcisismo implica necesidad de admiración y sentirse superior."},
+  {q:"¿Cambia con el tiempo?",a:"Sí. Es bastante estable, pero cambia con las experiencias y suele crecer de la adolescencia a la edad adulta."},
+  {q:"¿Qué hago si me sale muy baja?",a:"Habla con alguien de confianza y, si te afecta en el día a día, con un profesional. Si tienes pensamientos de hacerte daño, en España el 024 atiende las 24 horas."}],
+ sources:[src("The Rosenberg Self-Esteem Scale: Translation and Validation in University Students","10.1017/s1138741600006727","Martín-Albo y otros (2007): validación española de la escala.")],
+ guide:{url:"/blog/que-es-la-autoestima",title:"Guía de autoestima",text:"Qué es y cómo se mide"}});
+
+put('crt',{
+ overview:[{label:"Mide",text:"Si frenas la respuesta intuitiva para comprobarla antes de darla."},{label:"Formato",text:"6 acertijos con trampa; unos 4 minutos."},{label:"Límite",text:"No mide la inteligencia general."}],
+ sections:[
+  {title:"Qué es el test de reflexión cognitiva",body:"Shane Frederick lo publicó en 2005 con tres acertijos en los que la primera respuesta que viene a la cabeza es incorrecta. El más famoso es el del bate y la pelota. Este test usa seis acertijos nuevos con la misma lógica."},
+  {title:"Pensamiento intuitivo y reflexivo",body:"La psicología distingue entre un pensamiento rápido y automático y otro lento y deliberado. El test mide si, ante una respuesta que parece obvia, te paras a comprobarla."}],
+ faqs:[
+  {q:"¿Cuál es el acertijo más famoso?",a:"Un bate y una pelota cuestan 1,10 euros y el bate cuesta un euro más que la pelota. Mucha gente responde 10 céntimos, pero la pelota cuesta 5."},
+  {q:"¿Y si ya conocía algún acertijo?",a:"Las preguntas de este test son nuevas, pero conocer el formato ayuda. Tenlo en cuenta al leer tu resultado."},
+  {q:"¿Ser intuitivo es malo?",a:"No. La intuición es rápida y casi siempre acierta en lo cotidiano; solo falla en problemas diseñados para engañarla."},
+  {q:"¿Tiene relación con el CI?",a:"En parte. Frederick encontró relación con otras medidas cognitivas, pero mide sobre todo el hábito de comprobar."}],
+ sources:[src("Cognitive Reflection and Decision Making","10.1257/089533005775196732","Frederick (2005): artículo original del test de reflexión cognitiva.")],
+ guide:{url:"/blog/pensamiento-intuitivo-reflexivo",title:"Guía: intuición y reflexión",text:"Cómo interpretar el CRT"}});
+})();

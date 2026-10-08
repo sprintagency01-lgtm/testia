@@ -24,6 +24,11 @@ if (fs.existsSync("iq.js")) {
   const iqCode = fs.readFileSync("iq.js", "utf8").replace(/window\./g, "win.");
   new Function("win", iqCode)(win);
 }
+// Tests cognitivos con ítems generados (memoria, atención): sin esto la landing no sabría cuántas preguntas tienen.
+if (fs.existsSync("cognitive.js")) {
+  const cgCode = fs.readFileSync("cognitive.js", "utf8").replace(/\bW\.TESTS\b/g, "win.TESTS").replace(/const W = window;/, "const W = win;").replace(/window\./g, "win.");
+  new Function("win", cgCode)(win);
+}
 const TESTS = win.TESTS, SEO = win.SEO_CONTENT;
 
 const CATS = {
@@ -31,7 +36,7 @@ const CATS = {
   profesional:{name:"Profesional y decisiones",color:"#1f8a6d"}, relaciones:{name:"Relaciones y emociones",color:"#b8434c"},
   bienestar:{name:"Valores y bienestar",color:"#e0892f"},
 };
-const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones"};
+const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad"};
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const mins = t => t.mode==="correct" ? Math.round((t.duration||300)/60) : Math.max(2, Math.round(t.items.length*0.13));
 const PAYMENT_FAQ = {
@@ -162,7 +167,22 @@ for (const t of TESTS){
   const exists = fs.existsSync(file);
   const write = ALL || ONLY.has(t.id) || (!exists && ONLY.size === 0);
   if (write) {
-    if (!DRY) fs.writeFileSync(file, page(t));
+    let html = page(t);
+    // Al regenerar una landing publicada se conservan los párrafos que la rutina del blog
+    // añade a mano bajo la entradilla (enlace a la guía de ese test).
+    if (exists) {
+      const old = fs.readFileSync(file, "utf8");
+      const m = old.match(/<p class="lead">[\s\S]*?<\/p>([\s\S]*?)<div class="meta">/);
+      const kept = m ? (m[1].match(/<p style="color:#54565c[^"]*"[^>]*>[\s\S]*?<\/p>/g) || []) : [];
+      if (kept.length) html = html.replace(/(<p class="lead">[\s\S]*?<\/p>)/, `$1\n  ${kept.join("\n  ")}`);
+      // Otras veces la rutina lo añade al final de «Sobre este test», antes del aviso.
+      const m2 = old.match(/condiciones profesionales\.<\/p>([\s\S]*?)<div class="note">/);
+      const kept2 = m2 ? (m2[1].match(/<p style="color:#54565c[^"]*"[^>]*>[\s\S]*?<\/p>/g) || []) : [];
+      if (kept2.length) html = html.replace(/(condiciones profesionales\.<\/p>)/, `$1\n  ${kept2.join("\n  ")}`);
+      const lost = [...new Set([...old.matchAll(/href="(\/blog\/[^"]+)"/g)].map(x => x[1]))].filter(u => !html.includes(`href="${u}"`));
+      if (lost.length) { console.error(`${file}: se perderían enlaces a ${lost.join(", ")}. No se escribe.`); process.exitCode = 1; skipped.push(file); continue; }
+    }
+    if (!DRY) fs.writeFileSync(file, html);
     written.push(file); sitemap.set(url, today);
   } else {
     skipped.push(file); ensure(url, today);
