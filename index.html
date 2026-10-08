@@ -664,7 +664,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261008"></script>
+<script src="tests.js?v=20261009"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -796,7 +796,7 @@ function likertLabels(t){const m=t.scaleMax;
 function startTest(id){
   T=TESTS.find(t=>t.id===id);if(!T)return;
   if(typeof T.regen==='function'){try{T.items=T.regen();}catch(e){}}
-  clearTimeout(memTimer);memSeen={};itemStart={};rts={};
+  clearTimeout(memTimer);memSeen={};itemStart={};rts={};hiddenMs=0;hiddenSince=null;
   trackEvent('test_started',{test_id:T.id,test_name:T.name,question_count:T.items.length});
   items=T.items;idx=0;answers=new Array(items.length).fill(null);progressSent={};
   const tm=$('timer');
@@ -810,10 +810,22 @@ function startTest(id){
   renderItem();
 }
 // Solo los tests con hardTimer terminan al llegar a cero; en el resto la cuenta atrás es orientativa.
-function tick(){timeLeft--;if(timeLeft<=0){timeLeft=0;updTimer();clearInterval(timerId);if(T&&T.hardTimer)finish();return;}updTimer();}
-function updTimer(){const m=String(Math.floor(timeLeft/60)).padStart(2,'0'),s=String(timeLeft%60).padStart(2,'0');const t=$('timer');t.textContent=`⏱ ${m}:${s}`;t.classList.toggle('low',timeLeft<=30);}
+function elapsedS(){return Math.max(0,Math.round((Date.now()-startedAt)/1000));}
+function tick(){
+  if(!T)return;
+  timeLeft=(T.duration||300)-elapsedS();
+  if(timeLeft<=0&&T.hardTimer){timeLeft=0;updTimer();clearInterval(timerId);finish();return;}
+  updTimer();
+}
+function updTimer(){const t=$('timer'),over=timeLeft<0,v=Math.abs(timeLeft),m=String(Math.floor(v/60)).padStart(2,'0'),s=String(v%60).padStart(2,'0');
+  // Sin límite estricto (CI, reflexión): al llegar a cero se muestra el tiempo extra en lugar de cortar.
+  t.textContent=over?`⏱ +${m}:${s}`:`⏱ ${m}:${s}`;t.classList.toggle('low',timeLeft<=30);}
 let progressSent={};
-let memTimer=null,memSeen={},itemStart={},rts={},memActive=false;
+let memTimer=null,memSeen={},itemStart={},rts={},memActive=false,hiddenMs=0,hiddenSince=null;
+document.addEventListener('visibilitychange',()=>{
+  if(!T||!$('quiz')||!$('quiz').classList.contains('active'))return;
+  if(document.hidden){hiddenSince=Date.now();}else{if(hiddenSince){hiddenMs+=Date.now()-hiddenSince;hiddenSince=null;}if(T.mode==='correct'&&!T.noTimer)tick();}
+});
 function renderMemorize(it){
   // Fases de memorizar antes de la pregunta: lista de palabras y/o secuencia de dígitos de uno en uno.
   memActive=true;const phases=it.mem;let ph=memSeen[idx]===undefined?0:memSeen[idx];
@@ -989,8 +1001,11 @@ function finish(){
         if(T.domains&&T.interp)Object.keys(T.domains).forEach(k=>{const its=items.filter(x=>x.d===k);const c=its.reduce((n,x)=>n+(answers[items.indexOf(x)]===x.a?1:0),0);
           const p=its.length?c/its.length*100:0,bn=p>=66?'Alto':p>=40?'Medio':'Bajo',key=p>=66?'hi':p>=40?'mid':'lo';
           r.analysis.push({lab:`${T.domains[k]} · ${c}/${its.length}`,p,band:bn,text:(T.interp[k]&&T.interp[k][key])||''});});
-        const mm=Math.floor(secs/60),ss=secs%60,left=T.duration-secs;
-        r.analysis.push({lab:'Tiempo empleado',p:secs/T.duration*100,band:`${mm} min ${ss} s`,text:left>60?`Has usado ${mm} minutos de ${Math.round(T.duration/60)}. La estimación premia ligeramente terminar antes con aciertos; si te sobró tiempo y fallaste, los fallos son de razonamiento, no de prisa.`:`Has usado casi todo el tiempo disponible (${Math.round(T.duration/60)} minutos). Parte de los fallos pueden ser de velocidad más que de razonamiento: en una segunda pasada sin reloj, la puntuación suele subir.`});
+        const real=elapsedS(),mm=Math.floor(real/60),ss=real%60,lim=Math.round(T.duration/60),left=T.duration-real;
+        r.analysis.push({lab:'Tiempo empleado',p:Math.min(100,real/T.duration*100),band:`${mm} min ${ss} s`,hidePct:true,
+          text:real>T.duration?`Has tardado ${mm} minutos, más que los ${lim} de referencia. El test no te corta, pero con más tiempo es más fácil acertar y la estimación ya no suma bonificación por rapidez: toma tu cifra como orientativa, quizá algo por encima de la que darías con reloj.`
+            :left>60?`Has usado ${mm} minutos de los ${lim} de referencia. La estimación premia ligeramente terminar antes con aciertos; si te sobró tiempo y fallaste, los fallos son de razonamiento, no de prisa.`
+            :`Has usado casi todo el tiempo de referencia (${lim} minutos). Parte de los fallos pueden ser de velocidad más que de razonamiento: en una segunda pasada sin prisa, la puntuación suele subir.`});
       }
     }else if(T.scoring==='memory'){
       const span=d=>{let m=0;items.forEach((it,i)=>{if(it.d===d&&answers[i]!=null&&String(answers[i])===it.a)m=Math.max(m,it.len);});return m;};
@@ -1119,7 +1134,9 @@ function finish(){
   }
   if(T.hideCardBars&&r.bars)r.bars.forEach(b=>{b.premium=true;});
   if(T.freeTraits)r.traits=T.freeTraits.slice(); // no adelantar gratis el orden de las dimensiones
-  lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length});renderResult(r);go('result');drawCard(r);
+  {if(hiddenSince){hiddenMs+=Date.now()-hiddenSince;hiddenSince=null;}}
+  const durS=elapsedS(),hidS=Math.round(hiddenMs/1000);
+  lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length,duration_s:durS,hidden_s:hidS,active_s:Math.max(0,durS-hidS),over_limit:!!(T.duration&&!T.noTimer&&durS>T.duration)});renderResult(r);go('result');drawCard(r);
   const pwv=paywallVariant();
   trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:r.name,tier:pwv==='hard'?'locked':'free',paywall_variant:pwv});
   try{$('mbOpt').checked=false;}catch(e){}

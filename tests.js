@@ -1140,7 +1140,7 @@ window.SEO_CONTENT = {
    learn:["Tu puntuación estimada en una escala de media 100","Tu percentil orientativo","Un desglose por las 5 aptitudes cognitivas","Carta de resultado para compartir"],
    overview:[
     {label:"Mide",text:"Razonamiento verbal, numérico, lógico, abstracto y espacial."},
-    {label:"Formato",text:"32 problemas con un límite aproximado de 15 minutos."},
+    {label:"Formato",text:"32 problemas; unos 15 minutos de referencia, sin cortarte si necesitas más."},
     {label:"Límite",text:"Es una estimación online; no equivale al WAIS ni a una prueba supervisada."}
    ],
    sections:[
