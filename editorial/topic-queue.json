@@ -381,7 +381,9 @@
       "test_slug": "test-de-memoria",
       "test_id": "memoria",
       "why": "'test de memoria' tiene demanda en el autocompletado. Test lanzado el 2026-10-08 sin guía; el CI demostró que los tests con número convierten.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-09",
+      "slug": "cuantos-numeros-puede-recordar-una-persona"
     },
     {
       "keyword": "qué es el efecto Stroop",
