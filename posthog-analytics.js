@@ -39,6 +39,11 @@
   document.addEventListener('click', function (event) {
     var target = event.target.closest && event.target.closest('a,button,[role="button"]');
     if (!target) return;
+    // Las respuestas de los tests no se registran: en los tests políticos serían opinión política.
+    // composedPath se fija al empezar el clic: la app repinta las respuestas antes de que llegue aquí.
+    var path = event.composedPath ? event.composedPath() : [];
+    for (var i = 0; i < path.length; i++) { if (path[i] && path[i].id === 'opts') return; }
+    if (target.closest('#opts')) return;
     var href = target.getAttribute('href') || '';
     var label = target.getAttribute('data-analytics-name') ||
       target.getAttribute('aria-label') ||

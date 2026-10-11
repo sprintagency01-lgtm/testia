@@ -720,7 +720,7 @@ window.TESTS = [
 
 /* 21. POLÍTICO — eje izquierda/derecha (Wilson-Patterson + ejes eco/social) */
 {
- id:"politico", name:"¿Cuánto facha eres?", emoji:"🇪🇸", cat:"Sociedad",
+ id:"politico", name:"¿Cuánto facha eres?", emoji:"🇪🇸", cat:"Sociedad", sensitive:true,
  blurb:"Tu posición real en el eje izquierda–derecha, sin postureo. 22 preguntas y un número del que no podrás esconderte.",
  instrument:"Escala de conservadurismo de Wilson-Patterson + ejes económico y social", license:"🟢",
  mode:"likert", scaleMax:5,
@@ -1073,6 +1073,47 @@ window.TESTS = [
   {t:"En una discusión…",s:"EMO",opts:[{l:"Tengo que ganarla",v:18},{l:"Digo lo que pienso y luego me arrepiento",v:26},{l:"Intento entender a la otra persona",v:40},{l:"Elijo mis batallas",v:58}]},
   {t:"Para ti el amor es sobre todo…",s:"EMO",opts:[{l:"Intensidad y mariposas",v:19},{l:"Alguien con quien divertirme",v:26},{l:"Un equipo para construir algo",v:38},{l:"Compañía, calma y cariño",v:58}]},
   {t:"Cuando algo sale mal…",s:"EMO",opts:[{l:"Drama durante días",v:17},{l:"Me desahogo con amigos y paso página",v:27},{l:"Busco qué puedo aprender",v:41},{l:"Lo relativizo: he visto cosas peores",v:60}]}
+ ]
+},
+
+/* 30. ¿A QUÉ PARTIDO VOTARÍAS? — afinidad electoral (posiciones asignadas por Testia, revisadas en octubre de 2026) */
+{
+ id:"partido", name:"¿A qué partido votarías?", emoji:"🗳️", cat:"Sociedad",
+ blurb:"26 afirmaciones sobre impuestos, vivienda, inmigración, territorio y más. Descubre con qué partido coincides: PP, PSOE, Vox, Sumar o Podemos.",
+ instrument:"Test de afinidad electoral · posiciones de PP, PSOE, Vox, Sumar y Podemos asignadas por Testia a partir de programas de 2023, votaciones en el Congreso y declaraciones públicas (revisión de octubre de 2026)", license:"🟢",
+ mode:"likert", scaleMax:5, sensitive:true,
+ premiumTitle:"Ya sabes tu partido más afín. Descubre el ranking completo",
+ premiumPitch:"Tu afinidad con los cinco partidos, en qué temas coincides con cada uno y las afirmaciones en las que más te alejas de tu favorito.",
+ parties:{PP:"PP",PSOE:"PSOE",VOX:"Vox",SUMAR:"Sumar",PODEMOS:"Podemos"},
+ topics:{ECO:"Impuestos",VIV:"Vivienda y trabajo",SOC:"Derechos sociales",INM:"Inmigración",TER:"Modelo territorial",INS:"Instituciones",AMB:"Energía y clima",EXT:"Defensa y exterior",SER:"Servicios públicos"},
+ result:{type:"party"},
+ items:[
+  {t:"Las grandes fortunas deben pagar un impuesto especial.",s:"ECO",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"Habría que suprimir el impuesto de sucesiones en toda España.",s:"ECO",pos:{PP:2,PSOE:-1,VOX:2,SUMAR:-2,PODEMOS:-2}},
+  {t:"Hay que bajar impuestos aunque eso obligue a recortar gasto público.",s:"ECO",pos:{PP:1,PSOE:-1,VOX:2,SUMAR:-2,PODEMOS:-2}},
+  {t:"El Estado debe poder limitar el precio del alquiler en las zonas más tensionadas.",s:"VIV",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"Hay que reducir por ley la jornada laboral a 37,5 horas sin bajar el sueldo.",s:"VIV",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"La ley de eutanasia debe mantenerse.",s:"SOC",pos:{PP:-1,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"El aborto debe ser un derecho libre en las primeras semanas de embarazo.",s:"SOC",pos:{PP:1,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"Hay que mantener una ley específica contra la violencia de género.",s:"SOC",pos:{PP:1,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"La ley trans, que permite cambiar el sexo en el registro con la propia declaración, es un avance.",s:"SOC",pos:{PP:-2,PSOE:1,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"La regularización extraordinaria de inmigrantes que ya viven y trabajan en España es una buena medida.",s:"INM",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"Hay que expulsar a los inmigrantes que entran en España de forma irregular.",s:"INM",pos:{PP:1,PSOE:-1,VOX:2,SUMAR:-2,PODEMOS:-2}},
+  {t:"La ley de amnistía del procés fue una decisión acertada.",s:"TER",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"Debería permitirse un referéndum pactado sobre la independencia de Cataluña.",s:"TER",pos:{PP:-2,PSOE:-2,VOX:-2,SUMAR:0,PODEMOS:2}},
+  {t:"Las comunidades autónomas tienen demasiado poder; habría que recentralizar competencias.",s:"TER",pos:{PP:-1,PSOE:-2,VOX:2,SUMAR:-2,PODEMOS:-2}},
+  {t:"España debería votar en referéndum si quiere monarquía o república.",s:"INS",pos:{PP:-2,PSOE:-2,VOX:-2,SUMAR:1,PODEMOS:2}},
+  {t:"La Ley de Memoria Democrática debe mantenerse.",s:"INS",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"El Gobierno de coalición de PSOE y Sumar está haciendo una buena gestión.",s:"INS",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:1,PODEMOS:-1}},
+  {t:"España debería alargar la vida de sus centrales nucleares más allá de 2035.",s:"AMB",pos:{PP:2,PSOE:-1,VOX:2,SUMAR:-2,PODEMOS:-2}},
+  {t:"La lucha contra el cambio climático justifica limitar algunas actividades económicas.",s:"AMB",pos:{PP:0,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"España debe aumentar su gasto en defensa.",s:"EXT",pos:{PP:1,PSOE:1,VOX:2,SUMAR:-2,PODEMOS:-2}},
+  {t:"España debe mantener el embargo de armas a Israel.",s:"EXT",pos:{PP:-2,PSOE:2,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"España debe seguir enviando armas a Ucrania.",s:"EXT",pos:{PP:2,PSOE:2,VOX:1,SUMAR:1,PODEMOS:-2}},
+  {t:"España debería salir de la OTAN.",s:"EXT",pos:{PP:-2,PSOE:-2,VOX:-2,SUMAR:0,PODEMOS:2}},
+  {t:"Hay que reducir los conciertos con colegios privados para reforzar la escuela pública.",s:"SER",pos:{PP:-2,PSOE:1,VOX:-2,SUMAR:2,PODEMOS:2}},
+  {t:"Encargar servicios de la sanidad pública a la privada ayuda a reducir las listas de espera.",s:"SER",pos:{PP:2,PSOE:-1,VOX:1,SUMAR:-2,PODEMOS:-2}},
+  {t:"Las corridas de toros no deberían recibir ningún apoyo público.",s:"SER",pos:{PP:-2,PSOE:0,VOX:-2,SUMAR:2,PODEMOS:2}}
  ]
 }
 
@@ -1596,4 +1637,26 @@ put('crt',{
   {q:"¿Tiene relación con el CI?",a:"En parte. Frederick encontró relación con otras medidas cognitivas, pero mide sobre todo el hábito de comprobar."}],
  sources:[src("Cognitive Reflection and Decision Making","10.1257/089533005775196732","Frederick (2005): artículo original del test de reflexión cognitiva.")],
  guide:{url:"/blog/pensamiento-intuitivo-reflexivo",title:"Guía: intuición y reflexión",text:"Cómo interpretar el CRT"}});
+})();
+
+/* ===== Test de afinidad electoral (octubre 2026) ===== */
+(function(){
+window.SEO_CONTENT.partido={slug:"test-a-que-partido-votar",seoTitle:"Test: ¿a qué partido votar en España? Afinidad con 5 partidos | Testia",h1:"Test: ¿a qué partido votar?",
+ metaDesc:"Test de afinidad electoral: 26 afirmaciones para saber con qué partido coincides más entre PP, PSOE, Vox, Sumar y Podemos. Gratis, anónimo y sin registro.",
+ intro:"¿Con qué partido coincides de verdad? Responde 26 afirmaciones sobre impuestos, vivienda, inmigración, territorio, derechos y política exterior, y compara tus respuestas con las posiciones de PP, PSOE, Vox, Sumar y Podemos.",
+ learn:["Tu partido más afín y tu porcentaje de coincidencia","Tu afinidad con los cinco partidos","En qué temas coincides con cada uno","Carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Cuánto coinciden tus opiniones con las posiciones públicas de cinco partidos."},{label:"Formato",text:"26 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"No es una recomendación de voto ni una encuesta."}],
+ sections:[
+  {title:"Cómo hemos asignado las posiciones",body:"Para cada afirmación, Testia ha asignado la postura de cada partido en una escala de cinco puntos, de muy en contra a muy a favor. Nos basamos en sus programas para las elecciones generales de 2023, en cómo han votado en el Congreso y en declaraciones públicas de sus líderes, revisadas en octubre de 2026. Cuando un partido no tiene una postura clara, la marcamos como neutral. Las posiciones cambian, así que conviene contrastarlas con los programas de la próxima campaña."},
+  {title:"Cómo se calcula tu afinidad",body:"Comparamos cada respuesta con la postura de cada partido: coincidir del todo suma el máximo y estar en el extremo opuesto no suma nada. Tu afinidad con un partido es la media de las 26 comparaciones. Si respondes muchas afirmaciones con «Neutral», los partidos con posturas más moderadas salen algo favorecidos; el resultado te avisa si es tu caso."}],
+ faqs:[
+  {q:"¿Por qué solo cinco partidos?",a:"Son los partidos de ámbito estatal con más representación en el Congreso. Los partidos autonómicos, como ERC, Junts, PNV, Bildu o BNG, solo se presentan en parte del territorio y sus posiciones dependen mucho de cada comunidad."},
+  {q:"¿Es una recomendación de voto?",a:"No. Es una herramienta para comparar tus opiniones con las posturas de los partidos en temas concretos. Votar depende también de otras cosas, como la confianza en los candidatos o la gestión."},
+  {q:"¿Se guardan mis respuestas o mi resultado?",a:"No. El cálculo se hace en tu navegador. Testia no registra tus respuestas ni el partido que te sale, y no ofrece enviar este resultado por email."},
+  {q:"¿Cada cuánto se revisan las posiciones?",a:"Cuando un partido cambia de postura en una votación importante o presenta un programa nuevo. La última revisión es de octubre de 2026."}],
+ sources:[
+  {title:"El Congreso rechaza la reducción de la jornada laboral con los votos de PP, Vox y Junts",url:"https://www.deia.eus/politica/2025/09/10/congreso-rechaza-reduccion-jornada-laboral-10069855.html",note:"Votación del 10 de septiembre de 2025, usada para la afirmación sobre la jornada de 37,5 horas."},
+  {title:"El Congreso español aprueba el embargo de armas a Israel",url:"https://es.euronews.com/2025/10/08/el-congreso-espanol-aprueba-el-embargo-de-armas-a-israel-con-el-apoyo-de-podemos",note:"Votación del 8 de octubre de 2025: PP y Vox en contra; PSOE, Sumar y Podemos a favor."},
+  {title:"Podemos pide a Sánchez que retire a España de la OTAN",url:"https://www.infobae.com/espana/agencias/2025/02/28/podemos-pide-a-sanchez-que-retire-a-espana-de-la-otan/",note:"Postura de Podemos sobre la OTAN."}],
+ relatedIds:["politico","values","moral"]};
 })();

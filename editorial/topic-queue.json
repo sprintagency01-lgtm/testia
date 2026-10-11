@@ -402,6 +402,20 @@
       "slug": "que-es-el-efecto-stroop"
     },
     {
+      "keyword": "cómo funcionan los test de a qué partido votar",
+      "secondary": [
+        "test de afinidad electoral",
+        "brújula electoral",
+        "qué partido me representa",
+        "posiciones de los partidos en España"
+      ],
+      "intent": "Explicar cómo funcionan las herramientas de afinidad electoral, cómo se asignan las posiciones de los partidos, sus límites y por qué no son una recomendación de voto. Tono estrictamente neutral, sin valorar a ningún partido.",
+      "test_slug": "test-a-que-partido-votar",
+      "test_id": "partido",
+      "why": "Test lanzado el 2026-10-11. La guía explica la metodología, que es lo que da credibilidad a un test político y lo que citan los asistentes de IA.",
+      "status": "pending"
+    },
+    {
       "keyword": "qué es la edad subjetiva",
       "secondary": [
         "edad mental significado",
