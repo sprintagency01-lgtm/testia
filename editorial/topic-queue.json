@@ -397,7 +397,9 @@
       "test_slug": "test-de-atencion",
       "test_id": "atencion",
       "why": "'test de atención' y 'test de stroop' aparecen en el autocompletado. Test lanzado el 2026-10-08 sin guía.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-11",
+      "slug": "que-es-el-efecto-stroop"
     },
     {
       "keyword": "qué es la edad subjetiva",
