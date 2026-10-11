@@ -56,6 +56,6 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 - `/test/test-de-memoria` — `test de memoria`, `test de memoria online`, `test de memoria gratis`.
 - `/test/test-de-atencion` — `test de atención`, `test de atención y concentración`, `test de stroop`.
 - `/test/test-edad-mental` — `test de edad mental`, `test edad mental gratis`, `cuál es mi edad mental`.
-- `/test/test-a-que-partido-votar` — `test a qué partido votar`, `test de partidos políticos`, `test afinidad política`, `a quién votar test`.
+- `/test/test-a-que-partido-votar-en-espana` — `test a qué partido votar`, `test de partidos políticos`, `test afinidad política`, `a quién votar test`.
 - `/test/test-de-ci` — `test de CI online`.
 - `/test/test-lenguaje-del-amor` — `test lenguaje del amor`.

@@ -1,0 +1,85 @@
+# Testia
+
+> Testia (testia.info) es una web española de tests de personalidad, inteligencia, relaciones y valores. Cada test se inspira en un instrumento publicado o en investigación citada en su página, es gratuito de responder y sin registro, y muestra un resultado orientativo. El informe completo de cada test cuesta 1,99 € (pago único) y existe un pase de 4,99 € para todos los tests. No son evaluaciones clínicas ni diagnósticos.
+
+Datos útiles:
+- Idioma: español. Público: España y Latinoamérica.
+- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción.
+- Privacidad: los tests políticos no registran respuestas ni resultados.
+
+## Tests
+
+- [Test de Personalidad](https://www.testia.info/test/test-de-personalidad): Haz el test de personalidad de los 5 grandes rasgos (Big Five), el modelo más validado por la ciencia. Gratis, sin registro, resultado al instante.
+- [Personalidad Exprés](https://www.testia.info/test/test-de-personalidad-rapido): Test de personalidad rápido en 10 preguntas (TIPI): tu perfil de los 5 grandes rasgos en un minuto. Gratis y al instante.
+- [Test de Honestidad-Humildad](https://www.testia.info/test/test-honestidad-humildad): Test de bondad y humildad basado en HEXACO: 12 preguntas sobre sinceridad, justicia, modestia y codicia para ver si eres tan buena persona como crees.
+- [Test de Tríada Oscura](https://www.testia.info/test/test-triada-oscura): Test completo de rasgos oscuros: mide maquiavelismo, narcisismo y psicopatía con 18 preguntas inspiradas en el SD3. Responde gratis y ve tu perfil al momento.
+- [Tu brújula moral](https://www.testia.info/test/test-brujula-moral): Test de tu brújula moral (Moral Foundations de Haidt): los 5 pilares que guían lo que para ti está bien o mal. Gratis online.
+- [Test de CI online](https://www.testia.info/test/test-de-ci): Test de CI online de 32 preguntas: aptitud verbal, numérica, lógica, abstracta y espacial. Responde gratis y sin registro.
+- [Test de pensamiento reflexivo](https://www.testia.info/test/test-pensamiento-reflexivo): Test de pensamiento reflexivo (CRT): seis acertijos para descubrir si respondes por intuición o analizas antes de decidir. Gratis online.
+- [¿Te gusta pensar?](https://www.testia.info/test/test-necesidad-de-cognicion): Test de necesidad de cognición (NCS): ¿cuánto disfrutas pensando? Descubre si eres un pensador o un pragmático. Gratis.
+- [Test Vocacional](https://www.testia.info/test/test-vocacional): Test vocacional gratis (modelo RIASEC de Holland): descubre qué estudiar o a qué dedicarte según tus intereses. Resultado al instante.
+- [Inteligencia Emocional](https://www.testia.info/test/test-inteligencia-emocional): Test de inteligencia emocional gratis: percibir, usar y gestionar emociones (propias y ajenas). Resultado al instante online.
+- [Tu nivel de empatía](https://www.testia.info/test/test-de-empatia): Test de empatía gratis (Empathy Quotient): ¿cuánto sientes lo que sienten los demás? Descúbrelo al instante online.
+- [Test de Autoestima](https://www.testia.info/test/test-de-autoestima): Test de autoestima gratis (escala de Rosenberg), el estándar de oro con 50 años de respaldo. Resultado al instante y sin registro.
+- [Test de Determinación](https://www.testia.info/test/test-de-determinacion): Test de determinación o 'grit' (Duckworth): mide tu pasión y perseverancia hacia metas a largo plazo. Gratis online.
+- [¿Cómo de feliz eres?](https://www.testia.info/test/test-de-felicidad): Test de satisfacción con la vida (escala SWLS de Diener): ¿cómo de feliz eres? 5 preguntas, validado en decenas de países.
+- [Test PANAS de estado de ánimo](https://www.testia.info/test/test-estado-de-animo): Cuestionario PANAS de 16 emociones: explora por separado tu afecto positivo y negativo reciente. Responde gratis y sin registro.
+- [¿Cuánto aguantas?](https://www.testia.info/test/test-de-resiliencia): Test de resiliencia (Brief Resilience Scale): ¿cuánto aguantas y te recuperas de los golpes de la vida? Gratis online.
+- [Tus valores](https://www.testia.info/test/test-de-valores): Test de valores personales (modelo de Schwartz): los 10 valores humanos básicos que guían tus decisiones. Gratis online.
+- [¿Maximizador o conformista?](https://www.testia.info/test/test-maximizador): Test de estilo de decisión (Maximization Scale): ¿maximizador o conformista? Descubre por qué te cuesta (o no) decidir.
+- [Tu estilo de apego](https://www.testia.info/test/test-de-apego): Test de estilo de apego (ECR-R): cómo te vinculas en pareja en dos ejes, ansiedad y evitación. Gratis y al instante.
+- [¿Búho o alondra?](https://www.testia.info/test/test-cronotipo): Test de cronotipo (rMEQ): ¿búho o alondra? Descubre si tu cuerpo funciona mejor de día o de noche. Gratis online.
+- [¿Cuánto facha eres?](https://www.testia.info/test/test-cuanto-facha-eres): Test político: ¿cuánto facha eres? Descubre tu posición real en el eje izquierda-derecha con 22 preguntas. Gratis, sin registro y al instante.
+- [Test de lenguajes del amor](https://www.testia.info/test/test-lenguaje-del-amor): Test de lenguajes del amor: 20 preguntas para explorar palabras, tiempo, detalles, actos de servicio y contacto físico. Sin registro.
+- [¿Eres tú la red flag?](https://www.testia.info/test/test-eres-la-red-flag): Test: ¿eres tú la red flag de la relación? 20 preguntas honestas para descubrir si el patrón de tus dramas eres tú. Gratis online.
+- [Test de celos](https://www.testia.info/test/test-de-celos): Test de celos en pareja: 18 preguntas sobre pensamientos, emociones y conductas de celos, inspirado en la escala de Pfeiffer y Wong. Gratis y sin registro.
+- [Test de persona difícil](https://www.testia.info/test/test-persona-dificil): Test de persona difícil: 21 preguntas sobre los siete rasgos que complican el trato con los demás, según la investigación sobre antagonismo. Gratis.
+- [Test de estilos de amor](https://www.testia.info/test/test-estilos-de-amor): Test de estilos de amor basado en la escala de Hendrick: 24 preguntas para saber si amas con pasión, amistad, cabeza, juego, intensidad o entrega. Gratis.
+- [Test de memoria](https://www.testia.info/test/test-de-memoria): Test de memoria online: recuerda secuencias de números en orden directo e inverso y reconoce palabras. Descubre tu amplitud de memoria. Gratis y sin registro.
+- [Test de atención y concentración](https://www.testia.info/test/test-de-atencion): Test de atención y concentración online: colores que engañan, letras escondidas y símbolos distintos contra el reloj. Mide tu índice de atención. Gratis.
+- [Test de edad mental](https://www.testia.info/test/test-edad-mental): Test de edad mental: 16 preguntas sobre ocio, tecnología, responsabilidades y emociones para descubrir cuántos años tiene tu mente. Gratis y sin registro.
+- [Test: ¿a qué partido votar en España?](https://www.testia.info/test/test-a-que-partido-votar-en-espana): Test gratuito para saber a qué partido votar en España: 26 afirmaciones y tu afinidad con PP, PSOE, Vox, Sumar y Podemos. Actualizado en octubre de 2026.
+
+## Guías
+
+- [Arrepentimiento en la toma de decisiones: por qué aparece](https://www.testia.info/blog/arrepentimiento-en-la-toma-de-decisiones)
+- [Autoestima contingente: cuando tu valor depende de los logros](https://www.testia.info/blog/autoestima-contingente)
+- [Cinco grandes rasgos de personalidad: modelo OCEAN](https://www.testia.info/blog/cinco-grandes-rasgos-personalidad)
+- [Cómo interpretar un test de personalidad: guía práctica](https://www.testia.info/blog/como-interpretar-un-test-de-personalidad)
+- [Crecimiento postraumático: qué es y qué dice la investigación](https://www.testia.info/blog/crecimiento-postraumatico)
+- [Cuántos números puede recordar una persona: amplitud de memoria](https://www.testia.info/blog/cuantos-numeros-puede-recordar-una-persona)
+- [Deseabilidad social en los cuestionarios: qué es y cómo se controla](https://www.testia.info/blog/deseabilidad-social-en-los-cuestionarios)
+- [Diferencia entre test psicológico y test recreativo](https://www.testia.info/blog/diferencia-entre-test-psicologico-y-recreativo)
+- [Efecto Barnum en los tests de personalidad: por qué aciertan](https://www.testia.info/blog/efecto-barnum-en-los-tests-de-personalidad)
+- [Escala de CI: media, percentiles y significado](https://www.testia.info/blog/escala-ci-percentiles)
+- [Escala de satisfacción con la vida (SWLS): qué mide y cómo se lee](https://www.testia.info/blog/escala-de-satisfaccion-con-la-vida)
+- [Escala PANAS: afecto positivo y negativo](https://www.testia.info/blog/escala-panas-afecto-positivo-negativo)
+- [Los 6 estilos de amor de John Lee: eros, ludus, storge y más](https://www.testia.info/blog/estilos-de-amor-de-john-lee)
+- [Grit en psicología: perseverancia, escala y límites](https://www.testia.info/blog/grit-psicologia-perseverancia)
+- [Honestidad-Humildad en la personalidad: qué es](https://www.testia.info/blog/honestidad-humildad-personalidad)
+- [Inteligencia fluida y cristalizada: diferencias](https://www.testia.info/blog/inteligencia-fluida-cristalizada)
+- [Lenguajes del amor en pareja: qué dice la ciencia](https://www.testia.info/blog/lenguajes-del-amor-en-pareja)
+- [Maximizador o satisfacedor: qué dice tu forma de decidir](https://www.testia.info/blog/maximizador-o-satisfacedor)
+- [Modelo RIASEC de Holland: los seis tipos de intereses](https://www.testia.info/blog/modelo-riasec-de-holland)
+- [Narcisismo grandioso y vulnerable: diferencias y cómo se miden](https://www.testia.info/blog/narcisismo-grandioso-y-vulnerable)
+- [Necesidad de cierre cognitivo: qué es, cómo actúa y cómo se mide](https://www.testia.info/blog/necesidad-de-cierre-cognitivo)
+- [Necesidad de cognición: qué es y cómo se mide](https://www.testia.info/blog/necesidad-de-cognicion)
+- [Pensamiento intuitivo y reflexivo: diferencias y CRT](https://www.testia.info/blog/pensamiento-intuitivo-reflexivo)
+- [Por qué me cuesta madrugar aunque duerma bien: el reloj interno](https://www.testia.info/blog/por-que-me-cuesta-madrugar)
+- [Qué es el cronotipo: alondra, búho y continuo](https://www.testia.info/blog/que-es-el-cronotipo)
+- [Qué es el efecto Stroop y por qué cuesta decir el color de una palabra](https://www.testia.info/blog/que-es-el-efecto-stroop)
+- [Qué es la alexitimia: señales, cómo se mide y qué no es](https://www.testia.info/blog/que-es-la-alexitimia)
+- [Qué es la autoestima y cómo se mide](https://www.testia.info/blog/que-es-la-autoestima)
+- [Fatiga por compasión: qué es y en qué se diferencia del burnout](https://www.testia.info/blog/que-es-la-fatiga-por-compasion)
+- [Qué es la inteligencia emocional: modelos y habilidades](https://www.testia.info/blog/que-es-la-inteligencia-emocional)
+- [Qué es la resiliencia psicológica y cómo se mide](https://www.testia.info/blog/que-es-la-resiliencia-psicologica)
+- [Qué es una persona difícil según la psicología: los 7 rasgos](https://www.testia.info/blog/que-es-una-persona-dificil)
+- [Qué mide un test de ideología política y cómo interpretarlo](https://www.testia.info/blog/que-mide-un-test-de-ideologia-politica)
+- [Red flags en una relación: qué son y cómo distinguirlas](https://www.testia.info/blog/red-flags-en-una-relacion)
+- [Teoría de los fundamentos morales: qué mide y cómo se interpreta](https://www.testia.info/blog/teoria-de-los-fundamentos-morales)
+- [Test de personalidad corto: ¿es fiable uno de 10 preguntas?](https://www.testia.info/blog/test-de-personalidad-corto-es-fiable)
+- [Tipos de apego adulto: ansiedad y evitación](https://www.testia.info/blog/tipos-de-apego-adulto)
+- [Tipos de celos en la pareja: cognitivos, emocionales y conductuales](https://www.testia.info/blog/tipos-de-celos-en-la-pareja)
+- [Tipos de empatía: cognitiva, emocional y compasiva](https://www.testia.info/blog/tipos-de-empatia)
+- [Tríada oscura de la personalidad: qué es](https://www.testia.info/blog/triada-oscura-personalidad)
+- [Valores personales de Schwartz: los 10 valores y su círculo](https://www.testia.info/blog/valores-personales-de-schwartz)

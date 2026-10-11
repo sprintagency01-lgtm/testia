@@ -1078,8 +1078,8 @@ window.TESTS = [
 
 /* 30. ¿A QUÉ PARTIDO VOTARÍAS? — afinidad electoral (posiciones asignadas por Testia, revisadas en octubre de 2026) */
 {
- id:"partido", name:"¿A qué partido votarías?", emoji:"🗳️", cat:"Sociedad",
- blurb:"26 afirmaciones sobre impuestos, vivienda, inmigración, territorio y más. Descubre con qué partido coincides: PP, PSOE, Vox, Sumar o Podemos.",
+ id:"partido", name:"¿A qué partido votar en España?", emoji:"🗳️", cat:"Sociedad",
+ blurb:"26 afirmaciones sobre impuestos, vivienda, inmigración, territorio y más. Descubre con qué partido coincides en España: PP, PSOE, Vox, Sumar o Podemos.",
  instrument:"Test de afinidad electoral · posiciones de PP, PSOE, Vox, Sumar y Podemos asignadas por Testia a partir de programas de 2023, votaciones en el Congreso y declaraciones públicas (revisión de octubre de 2026)", license:"🟢",
  mode:"likert", scaleMax:5, sensitive:true,
  premiumTitle:"Ya sabes tu partido más afín. Descubre el ranking completo",
@@ -1641,22 +1641,37 @@ put('crt',{
 
 /* ===== Test de afinidad electoral (octubre 2026) ===== */
 (function(){
-window.SEO_CONTENT.partido={slug:"test-a-que-partido-votar",seoTitle:"Test: ¿a qué partido votar en España? Afinidad con 5 partidos | Testia",h1:"Test: ¿a qué partido votar?",
- metaDesc:"Test de afinidad electoral: 26 afirmaciones para saber con qué partido coincides más entre PP, PSOE, Vox, Sumar y Podemos. Gratis, anónimo y sin registro.",
- intro:"¿Con qué partido coincides de verdad? Responde 26 afirmaciones sobre impuestos, vivienda, inmigración, territorio, derechos y política exterior, y compara tus respuestas con las posiciones de PP, PSOE, Vox, Sumar y Podemos.",
- learn:["Tu partido más afín y tu porcentaje de coincidencia","Tu afinidad con los cinco partidos","En qué temas coincides con cada uno","Carta de resultado para compartir"],
- overview:[{label:"Mide",text:"Cuánto coinciden tus opiniones con las posiciones públicas de cinco partidos."},{label:"Formato",text:"26 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"No es una recomendación de voto ni una encuesta."}],
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+window.SEO_CONTENT.partido={slug:"test-a-que-partido-votar-en-espana",seoTitle:"Test: ¿a qué partido votar en España? Afinidad con 5 partidos | Testia",h1:"Test: ¿a qué partido votar en España?",
+ metaDesc:"Test gratuito para saber a qué partido votar en España: 26 afirmaciones y tu afinidad con PP, PSOE, Vox, Sumar y Podemos. Actualizado en octubre de 2026.",
+ intro:"Este test de afinidad electoral de Testia compara tus respuestas a 26 afirmaciones con las posiciones de los cinco partidos estatales con más escaños en el Congreso: PP, PSOE, Vox, Sumar y Podemos. Es gratuito, anónimo y tarda unos 3 minutos. Las posiciones se revisaron en octubre de 2026 y están publicadas abajo.",
+ updated:"octubre de 2026",updatedISO:"2026-10-11",
+ learn:["Tu partido más afín en España y tu porcentaje de coincidencia","Tu afinidad con PP, PSOE, Vox, Sumar y Podemos","En qué temas coincides con cada partido","Carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Cuánto coinciden tus opiniones con las posiciones públicas de cinco partidos españoles."},{label:"Formato",text:"26 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"No es una recomendación de voto ni una encuesta."}],
  sections:[
-  {title:"Cómo hemos asignado las posiciones",body:"Para cada afirmación, Testia ha asignado la postura de cada partido en una escala de cinco puntos, de muy en contra a muy a favor. Nos basamos en sus programas para las elecciones generales de 2023, en cómo han votado en el Congreso y en declaraciones públicas de sus líderes, revisadas en octubre de 2026. Cuando un partido no tiene una postura clara, la marcamos como neutral. Las posiciones cambian, así que conviene contrastarlas con los programas de la próxima campaña."},
-  {title:"Cómo se calcula tu afinidad",body:"Comparamos cada respuesta con la postura de cada partido: coincidir del todo suma el máximo y estar en el extremo opuesto no suma nada. Tu afinidad con un partido es la media de las 26 comparaciones. Si respondes muchas afirmaciones con «Neutral», los partidos con posturas más moderadas salen algo favorecidos; el resultado te avisa si es tu caso."}],
+  {title:"¿Qué partidos incluye el test?",body:"Incluye los cinco partidos de ámbito estatal con más representación en el Congreso de los Diputados: Partido Popular (PP), Partido Socialista Obrero Español (PSOE), Vox, Sumar y Podemos. Los partidos autonómicos, como ERC, Junts, PNV, EH Bildu o BNG, no aparecen porque solo se presentan en parte de España y sus posiciones dependen mucho de cada comunidad."},
+  {title:"Cómo hemos asignado las posiciones",body:"Para cada afirmación, Testia ha asignado la postura de cada partido en una escala de cinco puntos, de muy en contra a muy a favor. Nos basamos en sus programas para las elecciones generales de 2023, en cómo han votado en el Congreso y en declaraciones públicas de sus líderes, revisadas en octubre de 2026. Cuando un partido no tiene una postura clara, la marcamos como neutral. La tabla completa está más abajo para que puedas comprobarla."},
+  {title:"Cómo se calcula tu afinidad",body:"Comparamos cada respuesta con la postura de cada partido: coincidir del todo suma el máximo y estar en el extremo opuesto no suma nada. Tu afinidad con un partido es la media de las 26 comparaciones, expresada en porcentaje. Si respondes muchas afirmaciones con «Neutral», los partidos con posturas más moderadas salen algo favorecidos; el resultado te avisa si es tu caso."}],
+ positionsTable:{title:"Posiciones de PP, PSOE, Vox, Sumar y Podemos en cada afirmación",
+  intro:"Esta es la postura que hemos asignado a cada partido en las 26 afirmaciones del test, revisada en octubre de 2026.",
+  note:"Fuentes: programas de las elecciones generales de 2023, votaciones en el Congreso de los Diputados y declaraciones públicas. Las posiciones pueden cambiar; contrástalas con los programas de la próxima campaña."},
  faqs:[
-  {q:"¿Por qué solo cinco partidos?",a:"Son los partidos de ámbito estatal con más representación en el Congreso. Los partidos autonómicos, como ERC, Junts, PNV, Bildu o BNG, solo se presentan en parte del territorio y sus posiciones dependen mucho de cada comunidad."},
-  {q:"¿Es una recomendación de voto?",a:"No. Es una herramienta para comparar tus opiniones con las posturas de los partidos en temas concretos. Votar depende también de otras cosas, como la confianza en los candidatos o la gestión."},
+  {q:"¿Cómo saber a qué partido votar en España?",a:"Una forma es comparar tus opiniones con las posiciones de los partidos en temas concretos, como hace este test con 26 afirmaciones. El resultado te dice con qué partido coincides más, pero la decisión también depende de otros factores, como los candidatos o la gestión."},
+  {q:"¿Qué partidos incluye el test?",a:"PP, PSOE, Vox, Sumar y Podemos, los cinco partidos de ámbito estatal con más representación en el Congreso."},
+  {q:"¿Es una recomendación de voto?",a:"No. Es una herramienta para comparar tus opiniones con las posturas de los partidos. No recomienda votar a nadie ni es una encuesta."},
+  {q:"¿Es gratis?",a:"Sí. Responder y ver tu partido más afín es gratis y no requiere registro. El ranking completo con todos los partidos se puede desbloquear por 1,99 €."},
+  {q:"¿Cuánto se tarda?",a:"Unos 3 minutos: son 26 afirmaciones de acuerdo o desacuerdo."},
   {q:"¿Se guardan mis respuestas o mi resultado?",a:"No. El cálculo se hace en tu navegador. Testia no registra tus respuestas ni el partido que te sale, y no ofrece enviar este resultado por email."},
-  {q:"¿Cada cuánto se revisan las posiciones?",a:"Cuando un partido cambia de postura en una votación importante o presenta un programa nuevo. La última revisión es de octubre de 2026."}],
+  {q:"¿Sirve para las próximas elecciones generales?",a:"Sirve para conocer tu afinidad con las posiciones actuales de los partidos. Antes de unas elecciones conviene repetirlo cuando los partidos publiquen sus nuevos programas; revisaremos las posiciones entonces."},
+  {q:"¿En qué se diferencia del test de ideología política?",a:"El test de ideología sitúa tus opiniones en los ejes económico y social. Este compara tus respuestas con partidos concretos de España."}],
  sources:[
-  {title:"El Congreso rechaza la reducción de la jornada laboral con los votos de PP, Vox y Junts",url:"https://www.deia.eus/politica/2025/09/10/congreso-rechaza-reduccion-jornada-laboral-10069855.html",note:"Votación del 10 de septiembre de 2025, usada para la afirmación sobre la jornada de 37,5 horas."},
+  {title:"El Congreso rechaza la reducción de la jornada laboral con los votos de PP, Vox y Junts",url:"https://www.deia.eus/politica/2025/09/10/congreso-rechaza-reduccion-jornada-laboral-10069855.html",note:"Votación del 10 de septiembre de 2025 sobre la jornada de 37,5 horas."},
   {title:"El Congreso español aprueba el embargo de armas a Israel",url:"https://es.euronews.com/2025/10/08/el-congreso-espanol-aprueba-el-embargo-de-armas-a-israel-con-el-apoyo-de-podemos",note:"Votación del 8 de octubre de 2025: PP y Vox en contra; PSOE, Sumar y Podemos a favor."},
-  {title:"Podemos pide a Sánchez que retire a España de la OTAN",url:"https://www.infobae.com/espana/agencias/2025/02/28/podemos-pide-a-sanchez-que-retire-a-espana-de-la-otan/",note:"Postura de Podemos sobre la OTAN."}],
+  {title:"El Gobierno prorroga Almaraz hasta 2030",url:"https://www.libertaddigital.com/libremercado/2026-08-14/el-gobierno-prorroga-la-vida-de-la-central-nuclear-de-almaraz-hasta-2030-7448580/",note:"Agosto de 2026: prórroga de Almaraz, con el cierre nuclear general en 2035."},
+  {title:"Feijóo se compromete a derogar la Ley de Memoria Democrática",url:"https://www.que.es/2026/07/14/feijoo-derogar-ley-memoria-democratica-primer-consejo/",note:"Julio de 2026: postura del PP sobre la Ley de Memoria Democrática."},
+  {title:"Podemos pide a Sánchez que retire a España de la OTAN",url:"https://www.infobae.com/espana/agencias/2025/02/28/podemos-pide-a-sanchez-que-retire-a-espana-de-la-otan/",note:"Postura de Podemos sobre la OTAN."},
+  {title:"Aborto, eutanasia y el PP de Feijóo",url:"https://www.elindependiente.com/espana/2025/05/19/aborto-eutanasia-vientres-de-alquiler-el-pp-mas-conservador-quiere-fijar-el-rumbo-moral-a-feijoo-en-el-congreso-de-julio/",note:"Postura del PP sobre la ley de plazos del aborto y la eutanasia."}],
+ ld:{"spatialCoverage":{"@type":"Country","name":"España"},"audience":{"@type":"Audience","geographicArea":{"@type":"Country","name":"España"}},
+  "about":[{"@type":"PoliticalParty","name":"Partido Popular","sameAs":W("Partido_Popular")},{"@type":"PoliticalParty","name":"Partido Socialista Obrero Español","sameAs":W("Partido_Socialista_Obrero_Español")},{"@type":"PoliticalParty","name":"Vox","sameAs":W("Vox_(partido_político)")},{"@type":"PoliticalParty","name":"Sumar","sameAs":W("Sumar_(partido_político)")},{"@type":"PoliticalParty","name":"Podemos","sameAs":W("Podemos_(partido_político)")}]},
  relatedIds:["politico","values","moral"]};
 })();

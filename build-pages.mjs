@@ -59,8 +59,21 @@ h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.7rem
 .content p{color:#54565c;margin:0;max-width:70ch}.faq{display:grid;gap:12px}.faq details{background:#fff;border:1px solid #e6e6e3;border-radius:14px;padding:17px 20px}.faq summary{cursor:pointer;font-weight:600}.faq p{color:#54565c;margin:10px 0 0}
 .sources{display:grid;gap:10px}.sources li{list-style:none;background:#fff;border:1px solid #e6e6e3;border-radius:12px;padding:15px 18px}.sources a{font-weight:600;color:#2f4bd6;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}.sources span{display:block;color:#6e7075;font-size:.88rem;margin-top:3px}
 .note{font-size:.86rem;color:#6e7075;background:#fff;border:1px solid #e6e6e3;border-radius:14px;padding:20px;margin-top:18px}
+  .updated{font-size:.84rem;color:#6e7075;margin-top:10px}.updated time{font-weight:600;color:#34363b}
+.ptwrap{overflow-x:auto;margin:6px 0 0;border:1px solid #e6e6e3;border-radius:14px;background:#fff}.ptable{width:100%;border-collapse:collapse;font-size:.86rem;min-width:640px}
+.ptable th,.ptable td{padding:10px 12px;border-bottom:1px solid #eeeeeb;text-align:left;vertical-align:top}.ptable th{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:#6e7075;background:#fafaf8}
+.ptable td.v{text-align:center;white-space:nowrap;font-weight:600}.ptable td:first-child,.ptable th:first-child{min-width:240px;position:sticky;left:0;background:#fff;box-shadow:1px 0 0 #eeeeeb}.ptable th:first-child{background:#fafaf8}.ptable .t{font-size:.7rem;color:#9a9b9f;display:block;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.ptable .p2{color:#1f8a6d}.ptable .p1{color:#3fa585}.ptable .p0{color:#9a9b9f}.ptable .n1{color:#c76b73}.ptable .n2{color:#b8434c}.ptnote{font-size:.84rem;color:#6e7075;margin-top:10px}
 footer{border-top:1px solid #e4e4e1;background:#fff;margin-top:60px;padding:34px 0;color:#9a9b9f;font-size:.85rem}footer a{color:#6e7075}`;
 
+const POS_LABEL={"-2":["Muy en contra","n2"],"-1":["En contra","n1"],"0":["Neutral","p0"],"1":["A favor","p1"],"2":["Muy a favor","p2"]};
+function positionsTable(t,s){
+  const P=Object.keys(t.parties);
+  const rows=t.items.map(it=>`<tr><td><span class="t">${esc(t.topics?.[it.s]||"")}</span>${esc(it.t)}</td>${P.map(k=>{const [l,c]=POS_LABEL[String(it.pos[k])];return `<td class="v ${c}">${l}</td>`;}).join("")}</tr>`).join("");
+  return `  <section><h2>${esc(s.positionsTable.title)}</h2><p style="color:#54565c;margin:0 0 14px">${esc(s.positionsTable.intro)}</p>
+  <div class="ptwrap"><table class="ptable"><thead><tr><th>Afirmación</th>${P.map(k=>`<th>${esc(t.parties[k])}</th>`).join("")}</tr></thead><tbody>${rows}</tbody></table></div>
+  <p class="ptnote">${esc(s.positionsTable.note||"")}</p></section>`;
+}
 function page(t){
   const s=SEO[t.id], cat=CATS[TEST_CAT[t.id]], url=`${DOMAIN}/test/${s.slug}`;
   const pageName=s.h1||t.name, title=s.seoTitle||`${t.name} — test online con base científica | Testia`;
@@ -74,7 +87,9 @@ function page(t){
      "isAccessibleForFree":true,"inLanguage":"es","timeRequired":`PT${mins(t)}M`,
      "numberOfQuestions":t.items.length,
      ...(s.sources?.length?{"citation":s.sources.map(x=>x.url)}:{}),
-     "provider":{"@type":"Organization","name":"Testia","url":DOMAIN}},
+     "provider":{"@type":"Organization","name":"Testia","url":DOMAIN},
+     ...(s.updatedISO?{"dateModified":s.updatedISO}:{}),
+     ...(s.ld||{})},
     {"@type":"BreadcrumbList","itemListElement":[
       {"@type":"ListItem","position":1,"name":"Inicio","item":`${DOMAIN}/`},
       {"@type":"ListItem","position":2,"name":cat.name,"item":`${DOMAIN}/#catalogo`},
@@ -108,7 +123,8 @@ function page(t){
   <p class="lead">${esc(s.intro)}</p>
   <div class="meta"><span class="chip">${t.items.length} preguntas</span><span class="chip">~${mins(t)} min</span><span class="chip">Sin registro</span><span class="chip">Cuestionario gratis</span></div>
   <div><a class="btn" style="background:linear-gradient(135deg,#3a57e8,#2840c4)" href="/?start=${t.id}" aria-label="Responder ${esc(pageName)} gratis">Responder gratis →</a><a class="btn alt" href="/#catalogo">Ver todos los tests</a></div>
-  <p class="cta-note"><strong>Sin suscripción:</strong> responde gratis y desbloquea el informe completo solo si quieres, por 1,99 €.</p>
+${s.updated?`  <p class="updated">Actualizado: <time datetime="${esc(s.updatedISO||"")}">${esc(s.updated)}</time></p>
+`:""}  <p class="cta-note"><strong>Sin suscripción:</strong> responde gratis y desbloquea el informe completo solo si quieres, por 1,99 €.</p>
 
 ${s.overview?.length?`  <dl class="overview">${s.overview.map(x=>`<div><dt>${esc(x.label)}</dt><dd>${esc(x.text)}</dd></div>`).join("")}</dl>`:""}
 
@@ -123,6 +139,8 @@ ${s.overview?.length?`  <dl class="overview">${s.overview.map(x=>`<div><dt>${esc
   </div>
 
 ${s.sections?.map(x=>`  <section class="content"><h2>${esc(x.title)}</h2><p>${esc(x.body)}</p></section>`).join("\n")||""}
+
+${t.parties&&s.positionsTable?positionsTable(t,s):""}
 
 ${s.guide?`  <section><h2>Guía relacionada</h2><div class="rel"><a href="${esc(s.guide.url)}">${esc(s.guide.title)}<span>${esc(s.guide.text)}</span></a></div></section>`:""}
 
@@ -193,6 +211,28 @@ if (!DRY) {
    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`+
    [...sitemap].map(([u,d])=>`  <url><loc>${u}</loc>${d?`<lastmod>${d}</lastmod>`:""}</url>`).join("\n")+`\n</urlset>\n`);
   fs.writeFileSync("robots.txt", `User-agent: *\nAllow: /\nSitemap: ${DOMAIN}/sitemap.xml\n`);
+  // llms.txt (llmstxt.org): resumen del sitio para asistentes de IA, regenerado en cada ejecución.
+  const titleOf = f => (fs.readFileSync(f, "utf8").match(/<title>([^<]+)<\/title>/)?.[1] || "").replace(/\s*\|\s*Testia$/, "");
+  const guides = fs.existsSync("blog") ? fs.readdirSync("blog").filter(f => f.endsWith(".html")).sort().map(f => `- [${titleOf("blog/" + f)}](${DOMAIN}/blog/${f.replace(/\.html$/, "")})`) : [];
+  const testsMd = TESTS.filter(t => SEO[t.id] && fs.existsSync(`test/${SEO[t.id].slug}.html`))
+    .map(t => `- [${SEO[t.id].h1 || t.name}](${DOMAIN}/test/${SEO[t.id].slug}): ${SEO[t.id].metaDesc || t.blurb}`);
+  fs.writeFileSync("llms.txt", `# Testia
+
+> Testia (testia.info) es una web española de tests de personalidad, inteligencia, relaciones y valores. Cada test se inspira en un instrumento publicado o en investigación citada en su página, es gratuito de responder y sin registro, y muestra un resultado orientativo. El informe completo de cada test cuesta 1,99 € (pago único) y existe un pase de 4,99 € para todos los tests. No son evaluaciones clínicas ni diagnósticos.
+
+Datos útiles:
+- Idioma: español. Público: España y Latinoamérica.
+- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción.
+- Privacidad: los tests políticos no registran respuestas ni resultados.
+
+## Tests
+
+${testsMd.join("\n")}
+
+## Guías
+
+${guides.join("\n")}
+`);
 }
 console.log(`${DRY?"[simulación] ":""}Escritas ${written.length} landings${written.length?": "+written.join(", "):""}. Sin tocar: ${skipped.length}. Sitemap: ${sitemap.size} URLs.`);
 if (ALL) console.warn("Aviso: --all sobrescribe los retoques a mano de las landings publicadas.");

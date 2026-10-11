@@ -17,7 +17,7 @@ cmd="${1:-}"
 die() { echo "blog-worktree: $1" >&2; exit 1; }
 
 # Ficheros que una guía nueva puede tocar. Cualquier otro cambio aborta la publicación.
-ALLOWED='^(blog/[^/]+\.html$|blog\.html$|sitemap\.xml$|plan-editorial-seo\.md$|editorial/topic-queue\.json$|test/[^/]+\.html$)'
+ALLOWED='^(blog/[^/]+\.html$|blog\.html$|sitemap\.xml$|llms\.txt$|robots\.txt$|plan-editorial-seo\.md$|editorial/topic-queue\.json$|test/[^/]+\.html$)'
 
 case "$cmd" in
   open)
@@ -38,6 +38,8 @@ case "$cmd" in
     [ -d "$path" ] || die "ruta no válida: $path"
     [ -n "$msg" ] || die "falta el mensaje de commit"
 
+    # Regenera llms.txt y completa el sitemap con la guía nueva (modo seguro: no toca landings publicadas).
+    (cd "$path" && node build-pages.mjs >/dev/null) || die "build-pages ha fallado"
     fuera="$(git -C "$path" status --porcelain --untracked-files=all | awk '{print $2}' \
       | grep -Ev "$ALLOWED" || true)"
     if [ -n "$fuera" ]; then
@@ -53,7 +55,7 @@ $fuera"
     node "$REPO/scripts/validate-blog.mjs" "$path" "$nuevo" || die "la validación de la guía ha fallado"
     (cd "$path" && node validate-pages.mjs) || die "la validación de las landings ha fallado"
 
-    git -C "$path" add -A -- blog blog.html sitemap.xml plan-editorial-seo.md editorial/topic-queue.json test
+    git -C "$path" add -A -- blog blog.html sitemap.xml llms.txt robots.txt plan-editorial-seo.md editorial/topic-queue.json test
     git -C "$path" -c user.name="Testia Blog" -c user.email="noreply@testia.info" \
       commit --quiet -m "$msg"
 
