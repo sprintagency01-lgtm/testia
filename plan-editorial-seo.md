@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-10-12 — `/blog/por-que-me-siento-mas-joven-de-lo-que-soy` — keyword principal: `por qué me siento más joven de lo que soy` — secundarias: `edad subjetiva`, `por qué nos sentimos más jóvenes`, `diferencia entre edad mental y edad subjetiva`, `cómo calcular la edad subjetiva`.
 - 2026-10-11 — `/blog/que-es-el-efecto-stroop` — keyword principal: `qué es el efecto Stroop` — secundarias: `atención selectiva`, `por qué cuesta decir el color de una palabra`, `interferencia Stroop`, `búsqueda visual`.
 - 2026-10-09 — `/blog/cuantos-numeros-puede-recordar-una-persona` — keyword principal: `cuántos números puede recordar una persona` — secundarias: `amplitud de memoria`, `memoria de trabajo`, `el número mágico 7 más o menos 2`, `prueba de dígitos inversos`.
 - 2026-10-08 — `/blog/necesidad-de-cierre-cognitivo` — keyword principal: `necesidad de cierre cognitivo` — secundarias: `qué es la necesidad de cierre`, `tolerancia a la ambigüedad`, `no soportar la incertidumbre`, `decidir rápido para dejar de dudar`.

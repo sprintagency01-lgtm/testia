@@ -416,18 +416,20 @@
       "status": "pending"
     },
     {
-      "keyword": "qué es la edad subjetiva",
+      "keyword": "por qué me siento más joven de lo que soy",
       "secondary": [
-        "edad mental significado",
+        "edad subjetiva",
         "por qué nos sentimos más jóvenes",
-        "edad mental de Binet",
-        "cuántos años aparento por dentro"
+        "diferencia entre edad mental y edad subjetiva",
+        "cómo calcular la edad subjetiva"
       ],
       "intent": "Explicar el concepto histórico de edad mental (Binet) y la investigación sobre edad subjetiva (Rubin y Berntsen, 2006), dejando claro que el test es de entretenimiento.",
       "test_slug": "test-edad-mental",
       "test_id": "edadmental",
-      "why": "'test de edad mental' es la segunda sugerencia en 'test de e'. Test lanzado el 2026-10-08 sin guía.",
-      "status": "pending"
+      "why": "Consulta situacional de nueve palabras con una SERP fragmentada entre prensa, tests y divulgación; permite una respuesta basada en metaanálisis sin competir por la definición genérica. El test se lanzó el 2026-10-08 sin guía.",
+      "status": "done",
+      "published": "2026-10-12",
+      "slug": "por-que-me-siento-mas-joven-de-lo-que-soy"
     },
     {
       "keyword": "mentalidad de crecimiento y mentalidad fija",
