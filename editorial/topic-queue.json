@@ -413,7 +413,9 @@
       "test_slug": "test-a-que-partido-votar-en-espana",
       "test_id": "partido",
       "why": "Test lanzado el 2026-10-11. La guía explica la metodología, que es lo que da credibilidad a un test político y lo que citan los asistentes de IA.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-13",
+      "slug": "como-funcionan-los-test-de-a-que-partido-votar"
     },
     {
       "keyword": "por qué me siento más joven de lo que soy",
