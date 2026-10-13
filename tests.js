@@ -764,7 +764,7 @@ window.TESTS = [
   {t:"La inmigración descontrolada amenaza nuestra cultura.",s:"S",ax:"C"},
   {t:"Hoy se respeta demasiado poco a la autoridad y a la policía.",s:"S",ax:"C"},
   {t:"Los valores tradicionales y la familia son la base de la sociedad.",s:"S",ax:"C"},
-  {t:"Hay demasiada corrección política.",s:"S",ax:"C"},
+  {t:"Hoy en día hay que medir demasiado lo que se dice por miedo a ofender.",s:"S",ax:"C"},
   {t:"El patriotismo y el orgullo nacional son virtudes que cultivar.",s:"S",ax:"C"},
   {t:"Las penas de cárcel deberían ser más duras.",s:"S",ax:"C"},
   {t:"El Estado debería garantizar una renta básica a todo el mundo.",s:"S",ax:"E",r:true},
