@@ -664,7 +664,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261013"></script>
+<script src="tests.js?v=20261015"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -1067,8 +1067,14 @@ function finish(){
       const POS={'-2':'muy en contra','-1':'en contra','0':'en una postura neutral','1':'a favor','2':'muy a favor'};
       const tps=Object.keys(topic[top]).sort((a,b)=>topic[top][b]-topic[top][a]);
       const diffs=items.map((it,i)=>({it,u:ans[i]})).filter(x=>x.u!==null).map(x=>({...x,d:Math.abs(x.u-x.it.pos[top])})).filter(x=>x.d>=2).sort((a,b)=>b.d-a.d).slice(0,3);
-      r.eyebrow='Tu afinidad electoral';r.name=lab(top);r.role='Tu partido más afín';r.mono=String(pc);r.traits=[`${pc} % de coincidencia`];
-      r.desc=`Coincides en un ${pc} % con ${lab(top)}. Tu afinidad con el resto de partidos, en qué temas coincides con cada uno y dónde te alejas de ${lab(top)} están en la lectura completa.`;
+      // Orientación izquierda-derecha gratis; el partido se desbloquea. Cada afirmación pesa según cuánto separa a los partidos de izquierda y de derecha.
+      const LR={PODEMOS:-1,SUMAR:-0.8,PSOE:-0.4,PP:0.5,VOX:1},lrm=Object.values(LR).reduce((a,b)=>a+b,0)/P.length;
+      let lrn=0,lrd=0;items.forEach((it,i)=>{if(ans[i]===null)return;const d=P.reduce((s,k)=>s+it.pos[k]*(LR[k]-lrm),0);lrn+=ans[i]*d;lrd+=2*Math.abs(d);});
+      const lr=Math.round((lrd?lrn/lrd:0)*100),lra=Math.abs(lr),side=lr<0?'izquierda':'derecha';
+      const ori=lra<10?'Centro':lra<35?(lr<0?'Centroizquierda':'Centroderecha'):lra<70?(lr<0?'Izquierda':'Derecha'):(lr<0?'Muy de izquierdas':'Muy de derechas');
+      const oriTxt=lra<10?'Estás en el centro':`Estás un ${lra} % a la ${side}`;
+      r.eyebrow='Tu orientación política';r.name=oriTxt;r.role=ori;r.mono=String(lra);r.traits=[ori,`Partido más afín: ${pc} % de coincidencia`];
+      r.desc=`${oriTxt}. Hay un partido con el que coincides en un ${pc} %. Desbloquea cuál es, tu afinidad con PP, PSOE, Vox, Sumar y Podemos, y en qué temas coincides y te alejas de cada uno.`;
       r.bars=rank.map(k=>({lab:lab(k),p:aff[k],tag:`${Math.round(aff[k])} %`,premium:true,hidePct:true}));
       r.stats=[{v:`${pc} %`,l:lab(top)},{v:`${Math.round(aff[second])} %`,l:lab(second)},{v:`${Math.round(aff[rank[rank.length-1]])} %`,l:lab(rank[rank.length-1])}];
       r.analysis=[
@@ -1078,7 +1084,10 @@ function finish(){
           text:diffs.length?diffs.map(x=>`«${x.it.t}» Tú estás ${POS[x.u]} y ${lab(top)}, ${POS[x.it.pos[top]]}.`).join(' '):`No hay ninguna afirmación en la que estés claramente enfrentado a ${lab(top)}.`}
       ].concat(rank.slice(1).map(k=>{const t2=Object.keys(topic[k]).sort((a,b)=>topic[k][b]-topic[k][a]);
         return {lab:`${lab(k)} · ${Math.round(aff[k])} %`,band:`${Math.round(aff[k])} %`,p:aff[k],hidePct:true,text:`Con ${lab(k)} coincides más en ${T.topics[t2[0]].toLowerCase()} y menos en ${T.topics[t2[t2.length-1]].toLowerCase()}.`};}));
-      r.card={mono:String(pc),name:lab(top),role:'Partido más afín',stat:`${pc} % DE COINCIDENCIA`};
+      r.card={mono:lra<10?'0':String(lra),name:ori,role:'Orientación política',stat:lra<10?'EN EL CENTRO':`${lra} % A LA ${side.toUpperCase()}`};
+      r.full={name:lab(top),role:`Tu partido más afín · ${ori}`,
+        desc:`Coincides en un ${pc} % con ${lab(top)}. ${oriTxt}. Abajo, tu afinidad con el resto de partidos, en qué temas coincides con cada uno y dónde te alejas de ${lab(top)}.`,
+        traits:[`${pc} % de coincidencia`,ori],card:{mono:String(pc),name:lab(top),role:'Partido más afín',stat:`${pc} % DE COINCIDENCIA`}};
     }else if(R.type==='mentalage'){
       const keys=Object.keys(T.scales),area={};
       keys.forEach(k=>{const v=[];items.forEach((it,i)=>{if(it.s===k&&answers[i]!=null)v.push(answers[i]);});area[k]=v.length?v.reduce((a,b)=>a+b,0)/v.length:30;});

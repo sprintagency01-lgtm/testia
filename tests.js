@@ -1082,8 +1082,8 @@ window.TESTS = [
  blurb:"26 afirmaciones sobre impuestos, vivienda, inmigración, territorio y más. Descubre con qué partido coincides en España: PP, PSOE, Vox, Sumar o Podemos.",
  instrument:"Test de afinidad electoral · posiciones de PP, PSOE, Vox, Sumar y Podemos asignadas por Testia a partir de programas de 2023, votaciones en el Congreso y declaraciones públicas (revisión de octubre de 2026)", license:"🟢",
  mode:"likert", scaleMax:5, sensitive:true,
- premiumTitle:"Ya sabes tu partido más afín. Descubre el ranking completo",
- premiumPitch:"Tu afinidad con los cinco partidos, en qué temas coincides con cada uno y las afirmaciones en las que más te alejas de tu favorito.",
+ premiumTitle:"Ya sabes tu orientación. Descubre qué partido te representa",
+ premiumPitch:"Tu partido más afín, tu afinidad con PP, PSOE, Vox, Sumar y Podemos, en qué temas coincides con cada uno y las afirmaciones en las que más te alejas de tu favorito.",
  parties:{PP:"PP",PSOE:"PSOE",VOX:"Vox",SUMAR:"Sumar",PODEMOS:"Podemos"},
  topics:{ECO:"Impuestos",VIV:"Vivienda y trabajo",SOC:"Derechos sociales",INM:"Inmigración",TER:"Modelo territorial",INS:"Instituciones",AMB:"Energía y clima",EXT:"Defensa y exterior",SER:"Servicios públicos"},
  result:{type:"party"},
@@ -1643,10 +1643,10 @@ put('crt',{
 (function(){
 const W=n=>`https://es.wikipedia.org/wiki/${n}`;
 window.SEO_CONTENT.partido={slug:"test-a-que-partido-votar-en-espana",seoTitle:"Test: ¿a qué partido votar en España? Afinidad con 5 partidos | Testia",h1:"Test: ¿a qué partido votar en España?",
- metaDesc:"Test gratuito para saber a qué partido votar en España: 26 afirmaciones y tu afinidad con PP, PSOE, Vox, Sumar y Podemos. Actualizado en octubre de 2026.",
- intro:"Este test de afinidad electoral de Testia compara tus respuestas a 26 afirmaciones con las posiciones de los cinco partidos estatales con más escaños en el Congreso: PP, PSOE, Vox, Sumar y Podemos. Es gratuito, anónimo y tarda unos 3 minutos. Las posiciones se revisaron en octubre de 2026 y están publicadas abajo.",
+ metaDesc:"Test para saber a qué partido votar en España: 26 afirmaciones y tu afinidad con PP, PSOE, Vox, Sumar y Podemos. Actualizado en octubre de 2026.",
+ intro:"Este test de afinidad electoral de Testia compara tus respuestas a 26 afirmaciones con las posiciones de los cinco partidos estatales con más escaños en el Congreso: PP, PSOE, Vox, Sumar y Podemos. Responder es gratis y anónimo, y tarda unos 3 minutos. Las posiciones se revisaron en octubre de 2026 y están publicadas abajo.",
  updated:"octubre de 2026",updatedISO:"2026-10-11",
- learn:["Tu partido más afín en España y tu porcentaje de coincidencia","Tu afinidad con PP, PSOE, Vox, Sumar y Podemos","En qué temas coincides con cada partido","Carta de resultado para compartir"],
+ learn:["Tu orientación política: cuánto estás a la izquierda o a la derecha","Tu partido más afín en España y tu porcentaje de coincidencia","Tu afinidad con PP, PSOE, Vox, Sumar y Podemos","En qué temas coincides con cada partido","Carta de resultado para compartir"],
  overview:[{label:"Mide",text:"Cuánto coinciden tus opiniones con las posiciones públicas de cinco partidos españoles."},{label:"Formato",text:"26 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"No es una recomendación de voto ni una encuesta."}],
  sections:[
   {title:"¿Qué partidos incluye el test?",body:"Incluye los cinco partidos de ámbito estatal con más representación en el Congreso de los Diputados: Partido Popular (PP), Partido Socialista Obrero Español (PSOE), Vox, Sumar y Podemos. Los partidos autonómicos, como ERC, Junts, PNV, EH Bildu o BNG, no aparecen porque solo se presentan en parte de España y sus posiciones dependen mucho de cada comunidad."},
@@ -1659,7 +1659,7 @@ window.SEO_CONTENT.partido={slug:"test-a-que-partido-votar-en-espana",seoTitle:"
   {q:"¿Cómo saber a qué partido votar en España?",a:"Una forma es comparar tus opiniones con las posiciones de los partidos en temas concretos, como hace este test con 26 afirmaciones. El resultado te dice con qué partido coincides más, pero la decisión también depende de otros factores, como los candidatos o la gestión."},
   {q:"¿Qué partidos incluye el test?",a:"PP, PSOE, Vox, Sumar y Podemos, los cinco partidos de ámbito estatal con más representación en el Congreso."},
   {q:"¿Es una recomendación de voto?",a:"No. Es una herramienta para comparar tus opiniones con las posturas de los partidos. No recomienda votar a nadie ni es una encuesta."},
-  {q:"¿Es gratis?",a:"Sí. Responder y ver tu partido más afín es gratis y no requiere registro. El ranking completo con todos los partidos se puede desbloquear por 1,99 €."},
+  {q:"¿Es gratis?",a:"Responder y ver tu orientación política, cuánto estás a la izquierda o a la derecha, es gratis y no requiere registro. Tu partido más afín y tu afinidad con los cinco partidos se desbloquean por 1,99 €."},
   {q:"¿Cuánto se tarda?",a:"Unos 3 minutos: son 26 afirmaciones de acuerdo o desacuerdo."},
   {q:"¿Se guardan mis respuestas o mi resultado?",a:"No. El cálculo se hace en tu navegador. Testia no registra tus respuestas ni el partido que te sale, y no ofrece enviar este resultado por email."},
   {q:"¿Sirve para las próximas elecciones generales?",a:"Sirve para conocer tu afinidad con las posiciones actuales de los partidos. Antes de unas elecciones conviene repetirlo cuando los partidos publiquen sus nuevos programas; revisaremos las posiciones entonces."},
