@@ -50,6 +50,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Intenciones reservadas por landings
 
+- `/test/test-que-entrenador-de-futbol-eres` — `qué entrenador de fútbol eres`, `test de ideología futbolística`.
 - `/test/test-triada-oscura` — `test de tríada oscura`, `test rasgos oscuros`.
 - `/test/test-honestidad-humildad` — `test de honestidad humildad`, `test de bondad`, `test de maldad`, `test de humildad`, `test si soy buena persona`.
 - `/test/test-de-celos` — `test de celos`, `test de celos pareja`, `test de si soy celosa`, `test de si soy celoso`.

@@ -502,6 +502,20 @@
       "test_id": "crt",
       "why": "Enlaza con la guía de pensamiento intuitivo y reflexivo; la cola larga 'en el día a día' evita competir con enciclopedias por el término corto.",
       "status": "pending"
+    },
+    {
+      "keyword": "qué es el juego de posición",
+      "secondary": [
+        "juego de posición Guardiola",
+        "diferencia entre posesión y juego de posición",
+        "qué es el gegenpressing",
+        "estilos de juego en el fútbol"
+      ],
+      "intent": "Explicar los grandes estilos de juego (juego de posición, bloque bajo, presión tras pérdida, transiciones) con datos de análisis de partidos, enlazando al test de qué entrenador eres.",
+      "test_slug": "test-que-entrenador-de-futbol-eres",
+      "test_id": "entrenador",
+      "why": "Test lanzado el 2026-10-15 sin guía; 'test ideologia futbolistica' y 'test que entrenador de futbol eres' aparecen en el autocompletado de Google.",
+      "status": "pending"
     }
   ]
 }

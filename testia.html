@@ -664,7 +664,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261015"></script>
+<script src="tests.js?v=20261015b"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -684,15 +684,16 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",memoria:"inteligencia",atencion:"inteligencia",
+const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",memoria:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
   attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",
   moral:"bienestar",partido:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
-  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library"};
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy"};
 const ICONS={
+  trophy:["M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.228a25.772 25.772 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"],
   library:["M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"],
   squares:["M3.75 6A2.25 2.25 0 0 1 6 3.75h2.25A2.25 2.25 0 0 1 10.5 6v2.25a2.25 2.25 0 0 1-2.25 2.25H6a2.25 2.25 0 0 1-2.25-2.25V6ZM3.75 15.75A2.25 2.25 0 0 1 6 13.5h2.25a2.25 2.25 0 0 1 2.25 2.25V18a2.25 2.25 0 0 1-2.25 2.25H6A2.25 2.25 0 0 1 3.75 18v-2.25ZM13.5 6a2.25 2.25 0 0 1 2.25-2.25H18A2.25 2.25 0 0 1 20.25 6v2.25A2.25 2.25 0 0 1 18 10.5h-2.25a2.25 2.25 0 0 1-2.25-2.25V6ZM13.5 15.75a2.25 2.25 0 0 1 2.25-2.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-2.25A2.25 2.25 0 0 1 13.5 18v-2.25Z"],
   search:["m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"],
@@ -928,6 +929,7 @@ const ARCHE={
   darktriad:{MAQ:'El estratega en la sombra',NAR:'La estrella del show',PSI:'El que no tiene freno'},
   moral:{CUI:'El alma compasiva',JUS:'El justiciero',LEA:'El incondicional',AUT:'El guardián del orden',PUR:'El idealista'},
   values:{AUT:'El espíritu libre',EST:'El buscador de emociones',HED:'El amante del placer',LOG:'El triunfador',POD:'El ambicioso',SEG:'El que busca refugio',CON:'El que sigue las reglas',TRA:'El guardián de tradiciones',BEN:'El protector de los suyos',UNI:'El alma universal'},
+  entrenador:{POS:'Pep Guardiola',BLO:'Diego Simeone',PRE:'Jürgen Klopp',GES:'Carlo Ancelotti',GAN:'José Mourinho',IDE:'Marcelo Bielsa'},
   lovestyles:{ERO:'Amor de flechazo',LUD:'Amor sin ataduras',STO:'Amor de mejores amigos',PRA:'Amor con cabeza',MAN:'Amor a todo o nada',AGA:'Amor sin condiciones'},
   lovelang:{PAL:'El de las palabras',TIE:'El del tiempo juntos',REG:'El de los detalles',ACT:'El de los hechos',CON:'El del contacto'},
 };
@@ -977,7 +979,7 @@ const OVERALL_TIERS={
 function finish(){
   clearInterval(timerId);
   const cat=CATS[TEST_CAT[T.id]],accent=cat.color,R=T.result;
-  let r={accent,traits:[],bars:null,stats:[],desc:'',role:T.name,eyebrow:'Tu lectura · El espejo'};
+  let r={accent,traits:[],bars:null,stats:[],desc:'',role:T.name,eyebrow:T.eyebrow||'Tu lectura · El espejo'};
   if(T.mode==='correct'){
     const correct=answers.reduce((n,a,i)=>n+(a===items[i].a?1:0),0);
     if(T.scoring==='iq'){
@@ -1068,25 +1070,28 @@ function finish(){
       const tps=Object.keys(topic[top]).sort((a,b)=>topic[top][b]-topic[top][a]);
       const diffs=items.map((it,i)=>({it,u:ans[i]})).filter(x=>x.u!==null).map(x=>({...x,d:Math.abs(x.u-x.it.pos[top])})).filter(x=>x.d>=2).sort((a,b)=>b.d-a.d).slice(0,3);
       // Orientación izquierda-derecha gratis; el partido se desbloquea. Cada afirmación pesa según cuánto separa a los partidos de izquierda y de derecha.
-      const LR={PODEMOS:-1,SUMAR:-0.8,PSOE:-0.4,PP:0.5,VOX:1},lrm=Object.values(LR).reduce((a,b)=>a+b,0)/P.length;
-      let lrn=0,lrd=0;items.forEach((it,i)=>{if(ans[i]===null)return;const d=P.reduce((s,k)=>s+it.pos[k]*(LR[k]-lrm),0);lrn+=ans[i]*d;lrd+=2*Math.abs(d);});
+      // El eje se calcula con los partidos estatales y sin las preguntas territoriales, que miden otra cosa.
+      const LR={PODEMOS:-1,FA:-0.8,PSOE:-0.4,PP:0.5,VOX:1},LK=Object.keys(LR),lrm=LK.reduce((a,k)=>a+LR[k],0)/LK.length;
+      let lrn=0,lrd=0;items.forEach((it,i)=>{if(ans[i]===null||it.s==='TER')return;const d=LK.reduce((s,k)=>s+it.pos[k]*(LR[k]-lrm),0);lrn+=ans[i]*d;lrd+=2*Math.abs(d);});
       const lr=Math.round((lrd?lrn/lrd:0)*100),lra=Math.abs(lr),side=lr<0?'izquierda':'derecha';
       const ori=lra<10?'Centro':lra<35?(lr<0?'Centroizquierda':'Centroderecha'):lra<70?(lr<0?'Izquierda':'Derecha'):(lr<0?'Muy de izquierdas':'Muy de derechas');
       const oriTxt=lra<10?'Estás en el centro':`Estás un ${lra} % a la ${side}`;
       r.eyebrow='Tu orientación política';r.name=oriTxt;r.role=ori;r.mono=String(lra);r.traits=[ori,`Partido más afín: ${pc} % de coincidencia`];
-      r.desc=`${oriTxt}. Hay un partido con el que coincides en un ${pc} %. Desbloquea cuál es, tu afinidad con PP, PSOE, Vox, Sumar y Podemos, y en qué temas coincides y te alejas de cada uno.`;
-      r.bars=rank.map(k=>({lab:lab(k),p:aff[k],tag:`${Math.round(aff[k])} %`,premium:true,hidePct:true}));
+      r.desc=`${oriTxt}. Hay un partido con el que coincides en un ${pc} %. Desbloquea cuál es, tu afinidad con las 13 candidaturas del 29N y en qué temas coincides y te alejas de cada uno.`;
+      const REG=T.regions||{},labR=k=>REG[k]?`${lab(k)} (${REG[k]})`:lab(k),topState=rank.find(k=>!REG[k]);
+      const regNote=REG[top]?` ${lab(top)} solo se presenta en ${REG[top]}; si votas en otra comunidad, tu opción de ámbito estatal más afín es ${lab(topState)}, con un ${Math.round(aff[topState])} %.`:'';
+      r.bars=rank.map(k=>({lab:labR(k),p:aff[k],tag:`${Math.round(aff[k])} %`,premium:true,hidePct:true}));
       r.stats=[{v:`${pc} %`,l:lab(top)},{v:`${Math.round(aff[second])} %`,l:lab(second)},{v:`${Math.round(aff[rank[rank.length-1]])} %`,l:lab(rank[rank.length-1])}];
       r.analysis=[
         {lab:'Tu resultado',band:`${pc} %`,p:pc,hidePct:true,text:`Tu partido más afín es ${lab(top)}, con un ${pc} %, seguido de ${lab(second)}, con un ${Math.round(aff[second])} %. `+(neutral/n>0.4?`Has respondido «Neutral» en ${neutral} de ${n} afirmaciones: con tantas respuestas neutrales, los partidos con posturas moderadas salen favorecidos y las diferencias se reducen.`:`La diferencia entre tus dos primeros partidos es de ${Math.round(aff[top]-aff[second])} puntos.`)},
         {lab:`Dónde coincides más con ${lab(top)}`,band:T.topics[tps[0]],p:topic[top][tps[0]],hidePct:true,text:`Coincides sobre todo en ${tps.slice(0,2).map(t=>`${T.topics[t].toLowerCase()} (${Math.round(topic[top][t])} %)`).join(' y ')}.`},
         {lab:`Dónde te alejas de ${lab(top)}`,band:T.topics[tps[tps.length-1]],p:topic[top][tps[tps.length-1]],hidePct:true,
           text:diffs.length?diffs.map(x=>`«${x.it.t}» Tú estás ${POS[x.u]} y ${lab(top)}, ${POS[x.it.pos[top]]}.`).join(' '):`No hay ninguna afirmación en la que estés claramente enfrentado a ${lab(top)}.`}
-      ].concat(rank.slice(1).map(k=>{const t2=Object.keys(topic[k]).sort((a,b)=>topic[k][b]-topic[k][a]);
-        return {lab:`${lab(k)} · ${Math.round(aff[k])} %`,band:`${Math.round(aff[k])} %`,p:aff[k],hidePct:true,text:`Con ${lab(k)} coincides más en ${T.topics[t2[0]].toLowerCase()} y menos en ${T.topics[t2[t2.length-1]].toLowerCase()}.`};}));
+      ].concat(rank.slice(1,7).map(k=>{const t2=Object.keys(topic[k]).sort((a,b)=>topic[k][b]-topic[k][a]);
+        return {lab:`${labR(k)} · ${Math.round(aff[k])} %`,band:`${Math.round(aff[k])} %`,p:aff[k],hidePct:true,text:`Con ${lab(k)} coincides más en ${T.topics[t2[0]].toLowerCase()} y menos en ${T.topics[t2[t2.length-1]].toLowerCase()}.`};}));
       r.card={mono:lra<10?'0':String(lra),name:ori,role:'Orientación política',stat:lra<10?'EN EL CENTRO':`${lra} % A LA ${side.toUpperCase()}`};
-      r.full={name:lab(top),role:`Tu partido más afín · ${ori}`,
-        desc:`Coincides en un ${pc} % con ${lab(top)}. ${oriTxt}. Abajo, tu afinidad con el resto de partidos, en qué temas coincides con cada uno y dónde te alejas de ${lab(top)}.`,
+      r.full={name:lab(top),role:REG[top]?`Tu partido más afín · ${REG[top]}`:`Tu partido más afín · ${ori}`,
+        desc:`Coincides en un ${pc} % con ${lab(top)}. ${oriTxt}.${regNote} Abajo, tu afinidad con el resto de partidos, en qué temas coincides con cada uno y dónde te alejas de ${lab(top)}.`,
         traits:[`${pc} % de coincidencia`,ori],card:{mono:String(pc),name:lab(top),role:'Partido más afín',stat:`${pc} % DE COINCIDENCIA`}};
     }else if(R.type==='mentalage'){
       const keys=Object.keys(T.scales),area={};
@@ -1310,7 +1315,7 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={politico:['partido','moral'],partido:['politico','values'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
+const NEXT_TEST={politico:['partido','moral'],partido:['politico','entrenador'],entrenador:['bigfive','darktriad'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
   iq:['memoria','atencion'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],

@@ -38,7 +38,8 @@ Datos útiles:
 - [Test de memoria](https://www.testia.info/test/test-de-memoria): Test de memoria online: recuerda secuencias de números en orden directo e inverso y reconoce palabras. Descubre tu amplitud de memoria. Gratis y sin registro.
 - [Test de atención y concentración](https://www.testia.info/test/test-de-atencion): Test de atención y concentración online: colores que engañan, letras escondidas y símbolos distintos contra el reloj. Mide tu índice de atención. Gratis.
 - [Test de edad mental](https://www.testia.info/test/test-edad-mental): Test de edad mental: 16 preguntas sobre ocio, tecnología, responsabilidades y emociones para descubrir cuántos años tiene tu mente. Gratis y sin registro.
-- [Test: ¿a qué partido votar en España?](https://www.testia.info/test/test-a-que-partido-votar-en-espana): Test para saber a qué partido votar en España: 26 afirmaciones y tu afinidad con PP, PSOE, Vox, Sumar y Podemos. Actualizado en octubre de 2026.
+- [Test: ¿a qué partido votar en España?](https://www.testia.info/test/test-a-que-partido-votar-en-espana): Test para saber a qué partido votar en las elecciones generales del 29 de noviembre: 34 afirmaciones y tu afinidad con PP, PSOE, Vox, Frente Amplio, Podemos y 8 partidos más.
+- [¿Qué entrenador de fútbol eres?](https://www.testia.info/test/test-que-entrenador-de-futbol-eres): Test de ideología futbolística: 24 preguntas para saber si eres Guardiola, Simeone, Klopp, Ancelotti, Mourinho o Bielsa. Gratis y sin registro.
 
 ## Guías
 
