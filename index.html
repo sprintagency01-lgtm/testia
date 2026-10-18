@@ -1173,8 +1173,8 @@ function finish(){
   {if(hiddenSince){hiddenMs+=Date.now()-hiddenSince;hiddenSince=null;}}
   const durS=elapsedS(),hidS=Math.round(hiddenMs/1000);
   lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length,duration_s:durS,hidden_s:hidS,active_s:Math.max(0,durS-hidS),over_limit:!!(T.duration&&!T.noTimer&&durS>T.duration)});renderResult(r);go('result');drawCard(r);
-  const pwv=paywallVariant();
-  trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:T.sensitive?undefined:r.name,tier:pwv==='hard'?'locked':'free',paywall_variant:pwv});
+  const pwv=paywallVariant(),prv=priceVariant();
+  trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:T.sensitive?undefined:r.name,tier:pwv==='hard'?'locked':'free',paywall_variant:pwv,price_variant:prv});
   try{$('mbOpt').checked=false;}catch(e){}
   if(document.fonts&&document.fonts.ready){document.fonts.ready.then(()=>{if(lastResult)drawCard(lastResult);});}
   lockResult(pwv);
@@ -1198,6 +1198,23 @@ function paywallVariant(){
   try{if(window.posthog&&posthog.register)posthog.register({paywall_variant:v,paywall_variant_forced:forced});}catch(e){}
   return v;
 }
+/* === Experimento: precio del resultado ===
+   Bandera «testia-price»: control = 1,99 €; low = 0,99 €. El pase sigue en 4,99 €.
+   El servidor solo acepta esos dos precios. Forzar para revisar: ?price=low o ?price=control (solo esa sesión). */
+const PRICE_FLAG='testia-price',PRICE_EUR={control:1.99,low:0.99};
+let PRICE_VARIANT='control';
+(function(){try{const q=new URLSearchParams(location.search).get('price');if(q==='low'||q==='control')sessionStorage.setItem('atlas_price_force',q);if(q==='off')sessionStorage.removeItem('atlas_price_force');}catch(e){}})();
+function priceVariant(){
+  let v=null,forced=false;
+  try{v=sessionStorage.getItem('atlas_price_force');forced=!!v;}catch(e){}
+  if(!v){try{const ph=window.posthog;if(ph&&typeof ph.getFeatureFlag==='function'){const f=ph.getFeatureFlag(PRICE_FLAG);if(f==='low'||f==='control'){v=f;try{localStorage.setItem('atlas_price',f);}catch(e){}}}}catch(e){}}
+  if(!v){try{v=localStorage.getItem('atlas_price');}catch(e){}}
+  if(v!=='low')v='control';
+  PRICE_VARIANT=v;
+  try{if(window.posthog&&posthog.register)posthog.register({price_variant:v,price_variant_forced:forced});}catch(e){}
+  return v;
+}
+const singlePrice=()=>PRICE_EUR[PRICE_VARIANT]||1.99,fmtEur=n=>n.toFixed(2).replace('.',',')+'&nbsp;€';
 function setHardLock(on){
   const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
   body.classList.toggle('hardlock',on);
@@ -1216,7 +1233,7 @@ function lockResult(v){
     <div class="pwemoji">🔍</div>
     <h2>${(tz&&tz.title)||T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
     <p>${pitch}</p>
-    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">1,99&nbsp;€</span></button>
+    <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">${fmtEur(singlePrice())}</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
@@ -1225,8 +1242,8 @@ function lockResult(v){
   $('resPremium').classList.add('locked');
   updateMailbox();
   paywallSeen=false;
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
-  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:1.99,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});}
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
+  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});}
 }
 function revealResult(){
   setHardLock(false);
@@ -1276,13 +1293,14 @@ async function payAndUnlock(plan){
   plan=plan==='pass'?'pass':'single';
   try{
     const testId=T?T.id:'pass',testName=T?T.name:'Pase Testia';
-    trackEvent('checkout_started',{test_id:testId,test_name:testName,plan,price:plan==='pass'?4.99:1.99,currency:'EUR',paywall_variant:PW_VARIANT});
+    const price=plan==='pass'?4.99:singlePrice();
+    trackEvent('checkout_started',{test_id:testId,test_name:testName,plan,price,currency:'EUR',paywall_variant:PW_VARIANT,price_variant:PRICE_VARIANT});
     const res=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({testId,testName,plan})});
+      body:JSON.stringify({testId,testName,plan,priceVariant:PRICE_VARIANT})});
     const data=await res.json();
     if(!data.url) throw new Error(data.error||'sin URL de pago');
     // Asociamos el resultado a ESTA sesión de pago; solo se revelará si el servidor confirma el cobro.
-    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan,pwv:PW_VARIANT}));}catch(e){}
+    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan,pwv:PW_VARIANT,prv:PRICE_VARIANT,price}));}catch(e){}
     window.location.href=data.url;
   }catch(e){
     toast('No se pudo iniciar el pago. Inténtalo de nuevo.');
@@ -1304,11 +1322,11 @@ async function handleReturn(){
   if(ok&&plan==='pass'){try{localStorage.setItem('atlas_pass',JSON.stringify({sid}));}catch(e){}}
   if(ok && pend && pend.r && pend.sid===sid){
     T=TESTS.find(t=>t.id===pend.testId)||T;lastResult=pend.r;renderResult(pend.r);go('result');revealResult();try{drawCard(pend.r);}catch(e){}
-    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:1.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT});
+    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:((pend&&pend.price)||1.99),currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT,price_variant:(pend&&pend.prv)||PRICE_VARIANT});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast(plan==='pass'?'¡Pase activo! Resultado completo desbloqueado ✓':'¡Pago confirmado! Resultado desbloqueado ✓');
   }else if(ok&&plan==='pass'){
-    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT});
+    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT,price_variant:(pend&&pend.prv)||PRICE_VARIANT});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast('¡Pase activo! Elige un test: verás el resultado completo.');go('catalog');
   }else{
