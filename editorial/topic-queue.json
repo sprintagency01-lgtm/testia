@@ -445,7 +445,9 @@
       "test_slug": "test-de-determinacion",
       "test_id": "grit",
       "why": "Tema vecino del grit que la guía existente no cubre; búsqueda informativa estable y permite un tono honesto sobre réplicas con efectos pequeños.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-18",
+      "slug": "mentalidad-de-crecimiento-y-mentalidad-fija"
     },
     {
       "keyword": "persona altamente sensible qué dice la ciencia",
