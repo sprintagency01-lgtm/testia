@@ -461,7 +461,9 @@
       "test_slug": "test-de-personalidad",
       "test_id": "bigfive",
       "why": "Consulta de cola larga con mucho contenido divulgativo poco riguroso en español; una guía con fuentes enlaza de forma natural con la guía de Big Five.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-18",
+      "slug": "persona-altamente-sensible"
     },
     {
       "keyword": "bienestar hedónico y eudaimónico",
@@ -517,6 +519,76 @@
       "test_slug": "test-que-entrenador-de-futbol-eres",
       "test_id": "entrenador",
       "why": "Test lanzado el 2026-10-15 sin guía; 'test ideologia futbolistica' y 'test que entrenador de futbol eres' aparecen en el autocompletado de Google.",
+      "status": "pending"
+    },
+    {
+      "keyword": "efecto Dunning-Kruger qué dice la investigación",
+      "secondary": [
+        "qué es el efecto Dunning-Kruger",
+        "por qué los que menos saben se creen más listos",
+        "sobreestimar la propia capacidad",
+        "críticas al efecto Dunning-Kruger"
+      ],
+      "intent": "Explicar el estudio original de Kruger y Dunning, qué se ha replicado y las críticas estadísticas, enlazando con el test de CI y la autoevaluación.",
+      "test_slug": "test-de-ci",
+      "test_id": "iq",
+      "why": "Término muy buscado en España con mucho contenido viral impreciso; la cola larga sobre la evidencia evita competir con enciclopedias y enlaza con la guía de percentiles de CI.",
+      "status": "pending"
+    },
+    {
+      "keyword": "qué es la humildad intelectual",
+      "secondary": [
+        "humildad intelectual psicología",
+        "reconocer que puedes estar equivocado",
+        "escala de humildad intelectual",
+        "humildad intelectual y honestidad-humildad"
+      ],
+      "intent": "Definir la humildad intelectual, cómo se mide y en qué se diferencia del factor honestidad-humildad del modelo HEXACO.",
+      "test_slug": "test-honestidad-humildad",
+      "test_id": "honesty",
+      "why": "Concepto en auge en investigación con poca divulgación rigurosa en español; complementa la guía de honestidad-humildad sin solaparse.",
+      "status": "pending"
+    },
+    {
+      "keyword": "diferencia entre motivación intrínseca y extrínseca",
+      "secondary": [
+        "teoría de la autodeterminación",
+        "motivación intrínseca ejemplos",
+        "necesidades psicológicas básicas",
+        "las recompensas reducen la motivación"
+      ],
+      "intent": "Explicar la teoría de la autodeterminación de Deci y Ryan, los tipos de motivación y qué dice la evidencia sobre las recompensas.",
+      "test_slug": "test-de-determinacion",
+      "test_id": "grit",
+      "why": "Búsqueda informativa estable de cola larga; conecta con las guías de grit y mentalidad de crecimiento y con el test de determinación.",
+      "status": "pending"
+    },
+    {
+      "keyword": "perfeccionismo adaptativo y desadaptativo",
+      "secondary": [
+        "tipos de perfeccionismo",
+        "perfeccionismo sano",
+        "esfuerzos perfeccionistas y preocupaciones perfeccionistas",
+        "perfeccionismo y maximización"
+      ],
+      "intent": "Distinguir las dos dimensiones del perfeccionismo que usa la investigación y su relación con la forma de decidir.",
+      "test_slug": "test-maximizador",
+      "test_id": "maximizer",
+      "why": "Cola larga con intención informativa clara; enlaza de forma natural con la guía de maximizador o satisfacedor. Tono descriptivo por rozar salud mental.",
+      "status": "pending"
+    },
+    {
+      "keyword": "diferencia entre atención selectiva y atención sostenida",
+      "secondary": [
+        "tipos de atención en psicología",
+        "atención dividida",
+        "qué es la atención sostenida",
+        "cómo se mide la atención"
+      ],
+      "intent": "Explicar los tipos de atención que distingue la psicología cognitiva y con qué tareas se estudia cada uno.",
+      "test_slug": "test-de-atencion",
+      "test_id": "atencion",
+      "why": "Complementa la guía del efecto Stroop sin repetir su keyword; búsqueda académica de cola larga con poca competencia de alta autoridad.",
       "status": "pending"
     }
   ]
