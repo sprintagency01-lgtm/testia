@@ -664,7 +664,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261015b"></script>
+<script src="tests.js?v=20261018"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -684,14 +684,14 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",memoria:"inteligencia",atencion:"inteligencia",
+const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
   attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",
   moral:"bienestar",partido:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
-  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy"};
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles"};
 const ICONS={
   trophy:["M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.228a25.772 25.772 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"],
   library:["M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"],
@@ -929,6 +929,8 @@ const ARCHE={
   darktriad:{MAQ:'El estratega en la sombra',NAR:'La estrella del show',PSI:'El que no tiene freno'},
   moral:{CUI:'El alma compasiva',JUS:'El justiciero',LEA:'El incondicional',AUT:'El guardián del orden',PUR:'El idealista'},
   values:{AUT:'El espíritu libre',EST:'El buscador de emociones',HED:'El amante del placer',LOG:'El triunfador',POD:'El ambicioso',SEG:'El que busca refugio',CON:'El que sigue las reglas',TRA:'El guardián de tradiciones',BEN:'El protector de los suyos',UNI:'El alma universal'},
+  solluna:{SOL:'Eres sol',LUN:'Eres luna',EST:'Eres estrella',ECL:'Eres eclipse'},
+  bruja:{BRU:'Eres bruja',HAD:'Eres hada',VAM:'Eres vampiro',SIR:'Eres sirena'},
   entrenador:{POS:'Pep Guardiola',BLO:'Diego Simeone',PRE:'Jürgen Klopp',GES:'Carlo Ancelotti',GAN:'José Mourinho',IDE:'Marcelo Bielsa'},
   lovestyles:{ERO:'Amor de flechazo',LUD:'Amor sin ataduras',STO:'Amor de mejores amigos',PRA:'Amor con cabeza',MAN:'Amor a todo o nada',AGA:'Amor sin condiciones'},
   lovelang:{PAL:'El de las palabras',TIE:'El del tiempo juntos',REG:'El de los detalles',ACT:'El de los hechos',CON:'El del contacto'},
@@ -1333,7 +1335,7 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={politico:['partido','moral'],partido:['politico','entrenador'],entrenador:['bigfive','darktriad'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
+const NEXT_TEST={politico:['partido','moral'],partido:['politico','entrenador'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
   iq:['memoria','atencion'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],

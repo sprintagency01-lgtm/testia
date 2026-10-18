@@ -1774,3 +1774,142 @@ window.SEO_CONTENT.entrenador={slug:"test-que-entrenador-de-futbol-eres",seoTitl
  ld:{"about":[["Josep Guardiola","Josep_Guardiola"],["Diego Pablo Simeone","Diego_Pablo_Simeone"],["Jürgen Klopp","Jürgen_Klopp"],["Carlo Ancelotti","Carlo_Ancelotti"],["José Mourinho","José_Mourinho"],["Marcelo Bielsa","Marcelo_Bielsa"]].map(([n,w])=>({"@type":"Person","name":n,"sameAs":W(w)}))},
  relatedIds:["bigfive","darktriad","iq"]};
 })();
+
+/* ===== Tests de tendencia: sol/luna/estrella/eclipse y criatura de Halloween (octubre 2026) ===== */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+window.TESTS.push({
+ id:"solluna", name:"¿Eres sol, luna, estrella o eclipse?", emoji:"🌗", cat:"Personalidad", eyebrow:"Tu energía",
+ blurb:"El test del trend: ¿iluminas la sala, la calmas, inspiras desde lejos o cambias cuando coges confianza? Descubre tu energía y con quién encajas.",
+ instrument:"Test recreativo basado en el trend de sol, luna, estrella y eclipse · ítems propios de Testia inspirados en la extraversión y la variabilidad de la conducta según la situación", license:"🟢",
+ mode:"likert", scaleMax:5, hideCardBars:true,
+ premiumTitle:"Ya sabes tu energía. Descubre tu mezcla y con quién encajas",
+ premiumPitch:"Nadie es solo sol o solo luna. Mira cuánto tienes de cada energía, qué significa cada una en tu caso y con qué energía encajas mejor en pareja y en amistad.",
+ scales:{SOL:"Sol",LUN:"Luna",EST:"Estrella",ECL:"Eclipse"},
+ result:{type:"profileBars"},
+ topDesc:{
+  SOL:"Eres sol: cuando llegas, se nota. Hablas claro, contagias el ánimo y se te ve venir de lejos cuando estás contento, nervioso o enfadado. La gente se acerca a ti porque das calor sin pedir nada a cambio.",
+  LUN:"Eres luna: tranquila, observadora y de pocas palabras, pero las justas. No necesitas hacer ruido para que se note tu presencia. Escuchas más de lo que hablas y la gente acaba contándote cosas que no cuenta a nadie.",
+  EST:"Eres estrella: brillas a tu manera y a tu ritmo. Tienes mucha gente alrededor, pero muy pocos te conocen de verdad. Sueñas a lo grande, vas por libre y, sin proponértelo, guías a otros.",
+  ECL:"Eres eclipse: luna para quien no te conoce y sol para quien se gana tu confianza. Al principio pareces reservado, pero en tu sitio y con tu gente sacas una energía que pilla a todos por sorpresa."
+ },
+ interp:{
+  SOL:{hi:"Tu lado sol es muy fuerte: expresivo, cálido y transparente. Encajas genial con una luna, que te da calma, y con otro sol hay chispa, aunque a veces compitáis por el foco.",mid:"Tienes tu momento sol: sabes animar un plan y decir lo que piensas, pero no necesitas ser el centro todo el rato.",lo:"El foco no va contigo. Prefieres que la energía la pongan otros y tú aportar desde un segundo plano."},
+  LUN:{hi:"Tu lado luna manda: observas, escuchas y transmites calma. Encajas muy bien con un sol, que te saca de tu órbita, y con un eclipse, que te entiende sin explicaciones.",mid:"Tienes un lado reflexivo y sabes estar en silencio, aunque también disfrutas cuando el plan se anima.",lo:"Te cuesta quedarte en segundo plano o callarte lo que piensas: la calma lunar no es lo tuyo."},
+  EST:{hi:"Tu lado estrella es muy marcado: independiente, soñador e inspirador. Encajas con otra estrella, que respeta tu espacio, y con un sol, que comparte tu brillo sin apagarte.",mid:"Tienes tu punto soñador e independiente, pero también necesitas vínculos cercanos y estables.",lo:"No vas por libre: prefieres pocos vínculos, muy cercanos, a brillar para mucha gente."},
+  ECL:{hi:"Tu lado eclipse es clarísimo: cambias mucho según con quién estés. Encajas con una luna, que respeta tu ritmo, y con un sol paciente, que espera a que salga tu luz.",mid:"Tienes algo de eclipse: con confianza te abres bastante más, aunque no eres un misterio para nadie.",lo:"Eres igual con todo el mundo: lo que ves el primer día es lo que hay."}
+ },
+ items:[
+  {t:"Cuando entro en un sitio, la gente suele notar que he llegado.",s:"SOL"},
+  {t:"Se me nota en la cara si estoy contento, nervioso o enfadado.",s:"SOL"},
+  {t:"Me gusta animar los planes y contagiar las ganas a los demás.",s:"SOL"},
+  {t:"Digo lo que siento sin darle demasiadas vueltas.",s:"SOL"},
+  {t:"Me siento cómodo siendo el centro de atención.",s:"SOL"},
+  {t:"En un grupo, prefiero escuchar a hablar.",s:"LUN"},
+  {t:"Los demás dicen que transmito calma.",s:"LUN"},
+  {t:"Me doy cuenta de detalles que a otros se les pasan.",s:"LUN"},
+  {t:"Necesito ratos a solas para recargar energía.",s:"LUN"},
+  {t:"La gente suele contarme cosas que no cuenta a nadie más.",s:"LUN"},
+  {t:"Tengo mucha gente alrededor, pero muy pocos me conocen de verdad.",s:"EST"},
+  {t:"Tengo sueños grandes y me gusta ir a mi aire para cumplirlos.",s:"EST"},
+  {t:"Sin proponérmelo, otros se inspiran en lo que hago.",s:"EST"},
+  {t:"Me llevo bien con casi todo el mundo, pero me ato a pocos.",s:"EST"},
+  {t:"Prefiero brillar a mi manera que encajar en lo que se espera.",s:"EST"},
+  {t:"Con gente nueva parezco serio, pero con confianza soy otra persona.",s:"ECL"},
+  {t:"Quien me conoce poco se sorprende al verme en mi ambiente.",s:"ECL"},
+  {t:"Paso de estar muy tranquilo a estar muy intenso según el momento.",s:"ECL"},
+  {t:"Necesito tiempo para abrirme, pero cuando lo hago, lo doy todo.",s:"ECL"},
+  {t:"Tengo una cara que enseño a pocas personas.",s:"ECL"}
+ ]
+});
+window.TESTS.push({
+ id:"bruja", name:"¿Eres bruja, hada, vampiro o sirena?", emoji:"🧙", cat:"Personalidad", eyebrow:"Tu criatura de Halloween",
+ blurb:"El test de Halloween: ¿intuición de bruja, dulzura de hada, magnetismo de vampiro o libertad de sirena? Descubre qué criatura llevas dentro.",
+ instrument:"Test recreativo de Halloween · ítems propios de Testia sobre cuatro arquetipos de criatura", license:"🟢",
+ mode:"likert", scaleMax:5, hideCardBars:true,
+ premiumTitle:"Ya sabes tu criatura. Descubre tu mezcla completa",
+ premiumPitch:"Todos llevamos un poco de cada una. Mira cuánto tienes de bruja, hada, vampiro y sirena, qué dice cada una de ti y qué disfraz te pega este Halloween.",
+ scales:{BRU:"Bruja",HAD:"Hada",VAM:"Vampiro",SIR:"Sirena"},
+ result:{type:"profileBars"},
+ topDesc:{
+  BRU:"Eres bruja: intuitiva, independiente y con un punto rebelde. Sabes cosas antes de que pasen, no te dejas mandar y tu casa tiene más plantas, velas y libros de la cuenta. Quien te subestima, se equivoca.",
+  HAD:"Eres hada: luminosa, juguetona y con un don para mejorar el día de los demás. Ves magia en lo pequeño, cuidas a los tuyos sin que te lo pidan y tu optimismo es casi un superpoder.",
+  VAM:"Eres vampiro: magnético, elegante y misterioso. Cobras vida de noche, eliges muy bien a quién dejas entrar y tienes una intensidad que atrae y asusta a partes iguales.",
+  SIR:"Eres sirena: libre, emocional y encantadora. Te mueves por lo que sientes, necesitas espacio y horizonte, y tu voz, o tu forma de contar las cosas, hace que la gente se quede escuchando."
+ },
+ interp:{
+  BRU:{hi:"Tu lado bruja es muy fuerte: confías en tu intuición, vas por libre y no te asusta ir contracorriente. Disfraz ideal: sombrero, capa y una mirada que lo dice todo.",mid:"Tienes tu punto de bruja: intuición y carácter cuando hace falta, sin renunciar a ir con el grupo.",lo:"Lo tuyo no es el misterio ni la rebeldía: prefieres lo claro y lo compartido."},
+  HAD:{hi:"Tu lado hada brilla: optimismo, ternura y ganas de cuidar. Disfraz ideal: alas, purpurina y luces pequeñas.",mid:"Tienes un lado dulce y cuidador, aunque también sabes poner límites.",lo:"La dulzura no es tu idioma: tu cariño se demuestra de otras formas, más directas."},
+  VAM:{hi:"Tu lado vampiro es intenso: magnetismo, elegancia y un círculo muy cerrado. Disfraz ideal: negro, rojo oscuro y colmillos discretos.",mid:"Tienes tu punto nocturno y misterioso, pero no te cuesta dejar entrar a la gente.",lo:"Eres más de día y de puertas abiertas: el misterio te parece una pérdida de tiempo."},
+  SIR:{hi:"Tu lado sirena manda: libertad, emociones a flor de piel y un encanto difícil de ignorar. Disfraz ideal: escamas, tonos turquesa y pelo suelto.",mid:"Tienes algo de sirena: necesitas tu espacio y te dejas llevar por lo que sientes, sin perder del todo el rumbo.",lo:"Eres de tierra firme: prefieres la estabilidad a dejarte llevar por la corriente."}
+ },
+ items:[
+  {t:"Suelo intuir cómo va a salir algo antes de que pase.",s:"BRU"},
+  {t:"No me gusta que me digan lo que tengo que hacer.",s:"BRU"},
+  {t:"Me atraen las cosas con un punto misterioso o esotérico.",s:"BRU"},
+  {t:"Prefiero ir por libre que seguir al grupo.",s:"BRU"},
+  {t:"Si alguien me subestima, acaba arrepintiéndose.",s:"BRU"},
+  {t:"Me encanta sorprender a los demás con pequeños detalles.",s:"HAD"},
+  {t:"Veo el lado bueno de las cosas casi siempre.",s:"HAD"},
+  {t:"Disfruto cuidando de la gente que quiero.",s:"HAD"},
+  {t:"Me divierten las cosas pequeñas: luces, colores, canciones.",s:"HAD"},
+  {t:"Los demás dicen que les alegro el día.",s:"HAD"},
+  {t:"Me siento más yo de noche que de día.",s:"VAM"},
+  {t:"Elijo con mucho cuidado a quién dejo entrar en mi vida.",s:"VAM"},
+  {t:"Me dicen que tengo algo que atrae, aunque no sepan explicar qué.",s:"VAM"},
+  {t:"Me gusta lo elegante, lo oscuro y lo clásico.",s:"VAM"},
+  {t:"Cuando algo me interesa, lo vivo con mucha intensidad.",s:"VAM"},
+  {t:"Necesito sentirme libre; las rutinas me ahogan.",s:"SIR"},
+  {t:"Me dejo llevar por lo que siento más que por lo que pienso.",s:"SIR"},
+  {t:"El mar, los viajes o cualquier horizonte abierto me cargan de energía.",s:"SIR"},
+  {t:"Cuando cuento algo, la gente se queda escuchando.",s:"SIR"},
+  {t:"Mi estado de ánimo cambia como la marea.",s:"SIR"}
+ ]
+});
+window.SEO_CONTENT.solluna={slug:"test-sol-luna-estrella-o-eclipse",seoTitle:"Test: ¿eres sol, luna, estrella o eclipse? El test del trend | Testia",h1:"Test: ¿eres sol, luna, estrella o eclipse?",
+ metaDesc:"El test del trend de TikTok: 20 preguntas para saber si eres sol, luna, estrella o eclipse, qué significa y con qué energía encajas. Gratis y sin registro.",
+ intro:"¿Eres sol, luna, estrella o eclipse? Es la pregunta del trend que se ha hecho viral en TikTok: el sol ilumina y se expresa, la luna calma y observa, la estrella brilla a su manera y el eclipse cambia cuando coge confianza. Este test te hace 20 preguntas y te dice cuál es tu energía. Es gratis, sin registro y tarda unos 2 minutos.",
+ updated:"octubre de 2026",updatedISO:"2026-10-18",
+ learn:["Si eres sol, luna, estrella o eclipse","Qué significa tu energía","Cuánto tienes de cada una de las cuatro","Con qué energía encajas mejor","Carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Cuatro energías del trend: sol, luna, estrella y eclipse."},{label:"Formato",text:"20 afirmaciones de acuerdo o desacuerdo; unos 2 minutos."},{label:"Límite",text:"Es un test recreativo, no una evaluación psicológica."}],
+ sections:[
+  {title:"Qué significa ser sol, luna, estrella o eclipse",body:"El sol es la persona expresiva, cálida y transparente: se le nota todo y contagia energía. La luna es tranquila, observadora y reservada: no hace ruido, pero su presencia se siente. La estrella brilla a su manera: independiente, soñadora y rodeada de gente, aunque pocos la conocen de verdad. El eclipse parece luna con quien no conoce, pero saca su lado sol cuando coge confianza."},
+  {title:"¿Qué dice la psicología?",body:"El trend es un juego, pero conecta con algo que la psicología sí estudia. El sol y la luna recuerdan a la extraversión y la introversión, uno de los grandes rasgos de personalidad. Y el eclipse encaja con una idea muy estudiada: la mayoría de la gente cambia bastante de comportamiento según la situación y la compañía, aunque mantenga una forma de ser de fondo."},
+  {title:"¿Con quién encaja cada energía?",body:"Según el trend, el sol y la luna se complementan: uno pone la energía y el otro la calma. La estrella encaja con quien respeta su espacio y el eclipse, con quien tiene paciencia para esperar a que salga su luz. En el resultado completo verás tu mezcla y con qué energía encajas mejor."},
+  {title:"¿Por qué nos vemos tan reflejados?",body:"Las descripciones de este tipo de tests suelen ser lo bastante amplias como para que casi todo el mundo se sienta identificado. Es el llamado efecto Forer. Por eso conviene tomarse el resultado como un juego para hablar de cómo eres, no como una verdad sobre ti."}],
+ faqs:[
+  {q:"¿Qué significa ser luna en el trend de TikTok?",a:"Ser luna significa tener una energía tranquila, observadora y reservada. No necesitas ser el centro de atención, escuchas más de lo que hablas y transmites calma."},
+  {q:"¿Qué significa ser sol?",a:"Ser sol significa tener una energía expresiva y cálida: se te nota lo que sientes, animas los planes y la gente se acerca a ti."},
+  {q:"¿Qué significa ser eclipse?",a:"El eclipse es la mezcla de los dos: pareces luna con quien no te conoce y sacas tu lado sol cuando coges confianza."},
+  {q:"¿Y ser estrella?",a:"La estrella brilla a su manera: es independiente, soñadora e inspira a otros, y suele tener mucha gente alrededor aunque pocos la conozcan de verdad."},
+  {q:"¿Es un test científico?",a:"No. Es un test recreativo basado en un trend de redes sociales. Algunas ideas, como la extraversión o el cambio de conducta según la situación, sí están estudiadas por la psicología."},
+  {q:"¿Es gratis?",a:"Sí. Responder y ver tu energía es gratis y no requiere registro. Tu mezcla completa y con quién encajas se puede desbloquear por 1,99 €."}],
+ sources:[
+  {title:"Toward a structure- and process-integrated view of personality: Traits as density distributions of states",url:"https://doi.org/10.1037/0022-3514.80.6.1011",note:"Fleeson (2001): las personas varían mucho de comportamiento según la situación, aunque mantengan rasgos estables."},
+  {title:"An intraindividual process approach to the relationship between extraversion and positive affect",url:"https://doi.org/10.1037/0022-3514.83.6.1409",note:"Fleeson, Malanos y Achille (2002): comportarse de forma extravertida se asocia con más ánimo positivo."},
+  {title:"The fallacy of personal validation: a classroom demonstration of gullibility",url:"https://doi.org/10.1037/h0059240",note:"Forer (1949): el efecto por el que nos identificamos con descripciones generales."},
+  {title:"Eclipse solar del 12 de agosto de 2026",url:W("Eclipse_solar_del_12_de_agosto_de_2026"),note:"El eclipse total visible desde España que avivó el interés por el trend."}],
+ relatedIds:["bigfive","bruja","lovestyles"]};
+window.SEO_CONTENT.bruja={slug:"test-eres-bruja-hada-vampiro-o-sirena",seoTitle:"Test de Halloween: ¿eres bruja, hada, vampiro o sirena? | Testia",h1:"Test: ¿eres bruja, hada, vampiro o sirena?",
+ metaDesc:"Test de Halloween: 20 preguntas para saber si eres bruja, hada, vampiro o sirena, qué dice de tu personalidad y qué disfraz te pega. Gratis y sin registro.",
+ intro:"¿Intuición de bruja, dulzura de hada, magnetismo de vampiro o libertad de sirena? Este test de Halloween te hace 20 preguntas sobre cómo eres y te dice qué criatura llevas dentro, qué dice de tu personalidad y qué disfraz te pega este 31 de octubre. Es gratis, sin registro y tarda unos 2 minutos.",
+ updated:"octubre de 2026",updatedISO:"2026-10-18",
+ learn:["Si eres bruja, hada, vampiro o sirena","Qué dice tu criatura de tu personalidad","Cuánto tienes de cada una de las cuatro","El disfraz que te pega para Halloween","Carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Cuatro arquetipos de criatura: bruja, hada, vampiro y sirena."},{label:"Formato",text:"20 afirmaciones de acuerdo o desacuerdo; unos 2 minutos."},{label:"Límite",text:"Es un test recreativo de Halloween, no una evaluación psicológica."}],
+ sections:[
+  {title:"Las cuatro criaturas",body:"La bruja es intuitiva, independiente y rebelde. El hada es luminosa, juguetona y cuidadora. El vampiro es magnético, elegante, nocturno y selectivo con la gente. La sirena es libre, emocional y encantadora, y necesita espacio y horizonte."},
+  {title:"¿Qué disfraz me pega para Halloween?",body:"El resultado completo te sugiere un disfraz según tu criatura: capa y sombrero para la bruja, alas y purpurina para el hada, negro y rojo oscuro para el vampiro y tonos turquesa y escamas para la sirena. Si te sale una mezcla, combina: una bruja con lado vampiro, por ejemplo, va de negro de pies a cabeza."},
+  {title:"¿De dónde viene Halloween?",body:"Halloween procede de la fiesta celta de Samhain, que marcaba el final de la cosecha y el paso al invierno. Se creía que esa noche se difuminaba la frontera entre el mundo de los vivos y el de los espíritus. Hoy se celebra el 31 de octubre, la víspera del Día de Todos los Santos."},
+  {title:"¿Por qué nos vemos tan reflejados?",body:"Las descripciones de este tipo de tests suelen ser lo bastante amplias como para que casi todo el mundo se sienta identificado. Es el llamado efecto Forer. Tómatelo como un juego para Halloween, no como una verdad sobre ti."}],
+ faqs:[
+  {q:"¿Qué significa ser bruja en este test?",a:"Que tu lado más fuerte es la intuición, la independencia y un punto rebelde: vas por libre y confías en tu instinto."},
+  {q:"¿Y ser vampiro?",a:"Que eres magnético, elegante y selectivo: eliges muy bien a quién dejas entrar y vives las cosas con intensidad."},
+  {q:"¿Puedo hacerlo con mis amigos?",a:"Sí, es la mejor forma. Al terminar tienes una carta para compartir y comparar quién es bruja, hada, vampiro o sirena en tu grupo."},
+  {q:"¿Es un test científico?",a:"No. Es un test recreativo de Halloween con preguntas propias de Testia."},
+  {q:"¿Es gratis?",a:"Sí. Responder y ver tu criatura es gratis y no requiere registro. Tu mezcla completa y tu disfraz ideal se pueden desbloquear por 1,99 €."}],
+ sources:[
+  {title:"Halloween",url:W("Halloween"),note:"Origen e historia de la fiesta."},
+  {title:"Samhain",url:W("Samhain"),note:"La fiesta celta de la que procede Halloween."},
+  {title:"The fallacy of personal validation: a classroom demonstration of gullibility",url:"https://doi.org/10.1037/h0059240",note:"Forer (1949): el efecto por el que nos identificamos con descripciones generales."}],
+ relatedIds:["solluna","lovestyles","darktriad"]};
+})();

@@ -590,6 +590,34 @@
       "test_id": "atencion",
       "why": "Complementa la guía del efecto Stroop sin repetir su keyword; búsqueda académica de cola larga con poca competencia de alta autoridad.",
       "status": "pending"
+    },
+    {
+      "keyword": "qué significa ser luna o sol",
+      "secondary": [
+        "qué significa ser eclipse",
+        "trend sol luna estrella eclipse",
+        "diferencia entre introvertido y extrovertido",
+        "por qué cambio según con quién estoy"
+      ],
+      "intent": "Explicar el trend de sol, luna, estrella y eclipse y conectarlo con la extraversión y la variabilidad de la conducta según la situación (Fleeson), dejando claro que el test es recreativo.",
+      "test_slug": "test-sol-luna-estrella-o-eclipse",
+      "test_id": "solluna",
+      "why": "Trend de TikTok en octubre de 2026; 'test sol o luna', 'test sol luna o estrellas' y 'test sol luna o eclipse' en el autocompletado. Test lanzado el 2026-10-18 sin guía.",
+      "status": "pending"
+    },
+    {
+      "keyword": "de qué disfrazarse en Halloween según tu personalidad",
+      "secondary": [
+        "ideas de disfraz de Halloween",
+        "disfraz de bruja",
+        "disfraz de vampiro",
+        "origen de Halloween"
+      ],
+      "intent": "Guía estacional que propone disfraces según rasgos de personalidad y enlaza al test de criatura; publicar antes del 31 de octubre.",
+      "test_slug": "test-eres-bruja-hada-vampiro-o-sirena",
+      "test_id": "bruja",
+      "why": "Estacional: Halloween el 31 de octubre; 'test eres bruja o hada' y 'test bruja vampiro hada o sirena' en el autocompletado. Test lanzado el 2026-10-18.",
+      "status": "pending"
     }
   ]
 }

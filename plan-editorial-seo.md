@@ -52,6 +52,8 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Intenciones reservadas por landings
 
+- `/test/test-sol-luna-estrella-o-eclipse` — `test sol o luna`, `test sol luna estrella o eclipse`, `eres sol o luna`.
+- `/test/test-eres-bruja-hada-vampiro-o-sirena` — `test eres bruja o hada`, `test bruja vampiro hada o sirena`.
 - `/test/test-que-entrenador-de-futbol-eres` — `qué entrenador de fútbol eres`, `test de ideología futbolística`.
 - `/test/test-triada-oscura` — `test de tríada oscura`, `test rasgos oscuros`.
 - `/test/test-honestidad-humildad` — `test de honestidad humildad`, `test de bondad`, `test de maldad`, `test de humildad`, `test si soy buena persona`.
