@@ -24,9 +24,10 @@ if (fs.existsSync("iq.js")) {
   const iqCode = fs.readFileSync("iq.js", "utf8").replace(/window\./g, "win.");
   new Function("win", iqCode)(win);
 }
-// Tests cognitivos con ítems generados (memoria, atención): sin esto la landing no sabría cuántas preguntas tienen.
-if (fs.existsSync("cognitive.js")) {
-  const cgCode = fs.readFileSync("cognitive.js", "utf8").replace(/\bW\.TESTS\b/g, "win.TESTS").replace(/const W = window;/, "const W = win;").replace(/window\./g, "win.");
+// Tests con ítems generados (memoria, atención, simulacro CCSE): sin esto la landing no sabría cuántas preguntas tienen.
+for (const gen of ["cognitive.js", "ccse.js"]) {
+  if (!fs.existsSync(gen)) continue;
+  const cgCode = fs.readFileSync(gen, "utf8").replace(/\bW\.TESTS\b/g, "win.TESTS").replace(/const W = window;/, "const W = win;").replace(/window\./g, "win.");
   new Function("win", cgCode)(win);
 }
 const TESTS = win.TESTS, SEO = win.SEO_CONTENT;
@@ -36,7 +37,7 @@ const CATS = {
   profesional:{name:"Profesional y decisiones",color:"#1f8a6d"}, relaciones:{name:"Relaciones y emociones",color:"#b8434c"},
   bienestar:{name:"Valores y bienestar",color:"#e0892f"},
 };
-const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad",partido:"bienestar"};
+const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",iq:"inteligencia",ccse:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad",partido:"bienestar"};
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const mins = t => t.mode==="correct" ? Math.round((t.duration||300)/60) : Math.max(2, Math.round(t.items.length*0.13));
 const PAYMENT_FAQ = {

@@ -618,6 +618,20 @@
       "test_id": "bruja",
       "why": "Estacional: Halloween el 31 de octubre; 'test eres bruja o hada' y 'test bruja vampiro hada o sirena' en el autocompletado. Test lanzado el 2026-10-18.",
       "status": "pending"
+    },
+    {
+      "keyword": "cómo aprobar el examen CCSE de nacionalidad",
+      "secondary": [
+        "preguntas más falladas del CCSE",
+        "cuánto se tarda en preparar el CCSE",
+        "qué entra en el examen de nacionalidad",
+        "diferencia entre DELE y CCSE"
+      ],
+      "intent": "Guía práctica para preparar el CCSE: estructura, temas que más se fallan, cómo usar el manual oficial del Instituto Cervantes y simulacros; enlazar al simulacro de Testia sin presentarlo como oficial. Verificar datos en el BOE (RD 1004/2015, Orden JUS/1625/2016).",
+      "test_slug": "test-de-nacionalidad-espanola",
+      "test_id": "ccse",
+      "why": "'test de nacionalidad española 2026' y 'test ccse 2026' en el autocompletado de Google; búsqueda constante todo el año. Test lanzado el 2026-10-20 sin guía.",
+      "status": "pending"
     }
   ]
 }

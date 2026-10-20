@@ -1913,3 +1913,48 @@ window.SEO_CONTENT.bruja={slug:"test-eres-bruja-hada-vampiro-o-sirena",seoTitle:
   {title:"The fallacy of personal validation: a classroom demonstration of gullibility",url:"https://doi.org/10.1037/h0059240",note:"Forer (1949): el efecto por el que nos identificamos con descripciones generales."}],
  relatedIds:["solluna","lovestyles","darktriad"]};
 })();
+
+/* ===== Test de nacionalidad española: simulacro del CCSE (octubre 2026) ===== */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+window.TESTS.push({
+ id:"ccse", name:"Test de nacionalidad española (simulacro CCSE)", emoji:"🇪🇸", cat:"Inteligencia", eyebrow:"Simulacro del examen de nacionalidad",
+ blurb:"25 preguntas sobre la Constitución, las instituciones, la geografía, la historia y la sociedad españolas, con la estructura del examen CCSE. ¿Lo aprobarías?",
+ instrument:"Simulacro de Testia con preguntas propias y la estructura del examen CCSE del Instituto Cervantes (25 preguntas en 5 tareas, 45 minutos, aprobado con 15 aciertos). No son las preguntas oficiales del manual del Cervantes.", license:"🟢",
+ mode:"correct", scoring:"ccse", duration:2700,
+ domains:{T1:"Gobierno, legislación y participación",T2:"Derechos y deberes",T3:"Territorio y geografía",T4:"Cultura e historia",T5:"Sociedad española"},
+ premiumTitle:"Ya sabes si aprobarías. Descubre en qué has fallado",
+ premiumPitch:"La corrección completa: cada pregunta que has fallado, con la respuesta correcta y su explicación, y tus aciertos en cada una de las cinco tareas del examen.",
+ items:[]
+});
+window.SEO_CONTENT.ccse={slug:"test-de-nacionalidad-espanola",seoTitle:"Test de nacionalidad española 2026: simulacro del examen CCSE gratis | Testia",h1:"Test de nacionalidad española: simulacro del examen CCSE",
+ metaDesc:"Simulacro gratis del examen de nacionalidad española (CCSE): 25 preguntas con la misma estructura que el examen real, 45 minutos y aprobado con 15 aciertos. ¿Lo aprobarías?",
+ intro:"Este test es un simulacro del examen CCSE, la prueba de conocimientos constitucionales y socioculturales que el Instituto Cervantes exige para obtener la nacionalidad española por residencia. Tiene la misma estructura que el examen real: 25 preguntas en cinco tareas, 45 minutos y aprobado con 15 aciertos. Las preguntas son propias de Testia y cambian en cada intento. Es gratis y sin registro.",
+ updated:"octubre de 2026",updatedISO:"2026-10-20",
+ learn:["Si aprobarías el examen de nacionalidad","Tus aciertos sobre 25","La corrección de cada pregunta fallada, con la respuesta y su explicación","Tus aciertos en cada una de las cinco tareas","Un simulacro distinto en cada intento"],
+ overview:[{label:"Mide",text:"Conocimientos sobre la Constitución, las instituciones, el territorio, la cultura y la sociedad españolas."},{label:"Formato",text:"25 preguntas tipo test en cinco tareas; 45 minutos de referencia."},{label:"Límite",text:"Es un simulacro con preguntas propias; no sustituye al manual oficial del Instituto Cervantes."}],
+ sections:[
+  {title:"Qué es el examen CCSE",body:"El CCSE (prueba de conocimientos constitucionales y socioculturales de España) es uno de los dos exámenes que deben aprobar los extranjeros que piden la nacionalidad española por residencia. El otro es el DELE, que acredita el nivel de español. Lo exige el Real Decreto 1004/2015, que entró en vigor el 8 de noviembre de 2015, y lo diseña y administra el Instituto Cervantes."},
+  {title:"Cómo es el examen",body:"Tiene 25 preguntas de respuesta cerrada repartidas en cinco tareas: gobierno, legislación y participación ciudadana; derechos y deberes; organización territorial y geografía; cultura e historia; y sociedad española. Hay preguntas de tres opciones y de verdadero o falso. El 60 % de las preguntas trata sobre gobierno, legislación y participación ciudadana, y el 40 %, sobre cultura, historia y sociedad. Se dispone de 45 minutos, cada acierto vale un punto, los fallos no restan y se aprueba con 15 aciertos."},
+  {title:"Cómo es este simulacro",body:"Reproduce la estructura del examen real: 10 preguntas sobre gobierno y legislación, 3 de verdadero o falso sobre derechos y deberes, 2 sobre territorio y geografía, 3 sobre cultura e historia y 7 sobre sociedad española. Las preguntas salen al azar de un banco propio de Testia, así que cada intento es distinto. No son las preguntas oficiales: para el examen real, estudia también el manual del Instituto Cervantes."},
+  {title:"Cuánto cuesta y cuándo se hace",body:"La inscripción cuesta 85 € en 2026 y da derecho a dos convocatorias: si suspendes o no te presentas a la primera, puedes repetir sin volver a pagar. El Instituto Cervantes organiza convocatorias casi todos los meses, en sus centros de examen de España y del extranjero."},
+  {title:"Quién tiene que hacerlo",body:"Lo deben aprobar quienes piden la nacionalidad española por residencia. Los menores de 18 años y las personas con capacidad modificada judicialmente no hacen el examen: aportan certificados de los centros en los que han estado inscritos. Los nacionales de países de habla hispana están dispensados del examen de idioma (DELE), pero no del CCSE."},
+  {title:"Cómo prepararlo",body:"El Instituto Cervantes publica cada año un manual gratuito con el banco completo de 300 preguntas, del que salen las del examen. Lo más eficaz es estudiar ese manual y hacer simulacros para acostumbrarse al formato. Este test sirve para medir tu nivel y descubrir qué temas flojean; la corrección completa te explica cada fallo."}],
+ faqs:[
+  {q:"¿Cuántas preguntas tiene el examen de nacionalidad española?",a:"El examen CCSE tiene 25 preguntas repartidas en cinco tareas, y hay que responderlas en 45 minutos."},
+  {q:"¿Cuántas preguntas hay que acertar para aprobar?",a:"Hay que acertar al menos 15 de las 25 preguntas, es decir, el 60 %. Los fallos no restan."},
+  {q:"¿Son las preguntas oficiales?",a:"No. Son preguntas propias de Testia con el mismo formato y los mismos temas que el examen real. Las oficiales están en el manual gratuito del Instituto Cervantes."},
+  {q:"¿Cuánto cuesta el examen CCSE?",a:"La inscripción cuesta 85 € en 2026 e incluye dos convocatorias."},
+  {q:"Si soy de un país latinoamericano, ¿tengo que hacer el CCSE?",a:"Sí. Los nacionales de países de habla hispana están dispensados del examen de idioma (DELE), pero tienen que aprobar el CCSE."},
+  {q:"¿Quién está exento del examen?",a:"Los menores de 18 años y las personas con capacidad modificada judicialmente. En su lugar, aportan certificados de los centros en los que han estado inscritos."},
+  {q:"¿Puedo repetir el simulacro?",a:"Sí. Cada intento saca otras preguntas del banco, así que puedes hacerlo varias veces para practicar."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el simulacro y saber si aprobarías y cuántas has acertado es gratis y sin registro. La corrección completa de cada fallo se puede desbloquear por 1,99 €."}],
+ sources:[
+  {title:"Real Decreto 1004/2015, por el que se aprueba el Reglamento del procedimiento para la adquisición de la nacionalidad española por residencia",url:"https://www.boe.es/buscar/act.php?id=BOE-A-2015-12047",note:"BOE: regula las pruebas DELE y CCSE, la dispensa del DELE para países hispanohablantes y el caso de los menores."},
+  {title:"Orden JUS/1625/2016, sobre la tramitación de los procedimientos de concesión de la nacionalidad española por residencia",url:"https://www.boe.es/buscar/pdf/2016/BOE-A-2016-9314-consolidado.pdf",note:"BOE: exención de las pruebas para menores de 18 años y personas con capacidad modificada judicialmente."},
+  {title:"Constitución española de 1978",url:"https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229",note:"Texto consolidado en el BOE; base de las preguntas sobre gobierno, derechos y deberes."},
+  {title:"Prueba de conocimientos constitucionales y socioculturales de España",url:W("Prueba_de_conocimientos_constitucionales_y_socioculturales_de_España"),note:"Estructura del examen: 25 preguntas, cinco tareas, 45 minutos y aprobado con 15 aciertos."},
+  {title:"Exámenes CCSE · Instituto de Idiomas de la Universidad de Sevilla",url:"https://institutodeidiomas.us.es/areas-idiomas/espanol/examenes-ccse-0",note:"Ejemplo de centro examinador con calendario de convocatorias e inscripción."}],
+ ld:{"spatialCoverage":{"@type":"Country","name":"España"},"educationalLevel":"Adultos","about":[{"@type":"Thing","name":"Prueba de conocimientos constitucionales y socioculturales de España (CCSE)","sameAs":W("Prueba_de_conocimientos_constitucionales_y_socioculturales_de_España")},{"@type":"Organization","name":"Instituto Cervantes","sameAs":W("Instituto_Cervantes")}]},
+ relatedIds:["partido","iq","politico"]};
+})();
