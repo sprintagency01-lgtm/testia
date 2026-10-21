@@ -477,7 +477,9 @@
       "test_slug": "test-de-felicidad",
       "test_id": "swls",
       "why": "Complementa la guía de satisfacción con la vida sin solaparse; búsqueda académica de cola larga con poca competencia de alta autoridad.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-10-21",
+      "slug": "bienestar-hedonico-y-eudaimonico"
     },
     {
       "keyword": "diferencia entre rumiación y reflexión",

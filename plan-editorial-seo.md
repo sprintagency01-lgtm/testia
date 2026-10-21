@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-10-21 — `/blog/bienestar-hedonico-y-eudaimonico` — keyword principal: `bienestar hedónico y eudaimónico` — secundarias: `diferencia entre placer y sentido`, `qué es el bienestar psicológico`, `modelo de Ryff`, `felicidad hedónica`.
 - 2026-10-18 — `/blog/persona-altamente-sensible` — keyword principal: `persona altamente sensible qué dice la ciencia` — secundarias: `alta sensibilidad de procesamiento sensorial`, `PAS Elaine Aron`, `alta sensibilidad y neuroticismo`, `ser muy sensible es un rasgo`.
 - 2026-10-18 — `/blog/mentalidad-de-crecimiento-y-mentalidad-fija` — keyword principal: `mentalidad de crecimiento y mentalidad fija` — secundarias: `qué es la mentalidad de crecimiento`, `Carol Dweck mindset`, `teorías implícitas de la inteligencia`, `mentalidad de crecimiento evidencia`.
 - 2026-10-13 — `/blog/como-funcionan-los-test-de-a-que-partido-votar` — keyword principal: `cómo funcionan los test de a qué partido votar` — secundarias: `test de afinidad electoral`, `brújula electoral`, `qué partido me representa`, `posiciones de los partidos en España`.
