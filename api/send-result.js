@@ -72,7 +72,7 @@ module.exports = async (req, res) => {
   if (typeof body === 'string') { try { body = JSON.parse(body || '{}'); } catch (e) { body = {}; } }
   body = body || {};
   // Opinión política (dato especialmente protegido en el RGPD): ni se envía ni se guarda.
-  if (['politico', 'partido'].includes(String(body.testId || ''))) { res.status(403).json({ error: 'este resultado no se envía por email' }); return; }
+  if (['politico', 'partido', 'candidato'].includes(String(body.testId || ''))) { res.status(403).json({ error: 'este resultado no se envía por email' }); return; }
   const email = String(body.email || '').trim().toLowerCase();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 120) { res.status(400).json({ error: 'email no válido' }); return; }
   const r0 = body.result || {};

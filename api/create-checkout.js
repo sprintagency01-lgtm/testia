@@ -35,6 +35,14 @@ module.exports = async (req, res) => {
     params.append('line_items[0][price_data][currency]', 'eur');
     params.append('line_items[0][price_data][unit_amount]', String(amount));
     params.append('line_items[0][price_data][product_data][name]', productName);
+    // Página de pago en español y con contexto: qué se compra, que es un pago único y qué pasa después.
+    params.append('line_items[0][price_data][product_data][description]', plan === 'pass'
+      ? 'El resultado completo de todos los tests de Testia, sin límite. Pago único, sin suscripción.'
+      : 'Tu resultado completo, con el análisis detallado y tu carta para compartir. Pago único, sin suscripción.');
+    params.append('line_items[0][price_data][product_data][images][0]', 'https://www.testia.info/assets/stripe-cover.jpg');
+    params.append('locale', 'es');
+    params.append('submit_type', 'pay');
+    params.append('custom_text[submit][message]', 'Pago único y seguro con Stripe. Al terminar vuelves a Testia y ves tu resultado completo al momento.');
     params.append('metadata[testId]', testId);
     params.append('metadata[plan]', plan);
     params.append('metadata[priceVariant]', priceVariant);
