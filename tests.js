@@ -2195,3 +2195,69 @@ window.SEO_CONTENT.parejanarc={slug:"test-pareja-narcisista",seoTitle:"Test de p
   {title:"Teléfono 016: qué es y cómo funciona",url:"https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/igualdad/paginas/2026/telefono-016-que-es.aspx",note:"La Moncloa: horario, gratuidad y que no deja rastro en la factura."}],
  relatedIds:["narcisismo","redflag","celos"]};
 })();
+
+/* ===== Test de compatibilidad de pareja para dos (octubre 2026) =====
+   Cada persona responde por su cuenta; las respuestas de la primera viajan en el enlace. */
+(function(){
+window.TESTS.push({
+ id:"pareja2", name:"Test de compatibilidad de pareja (para hacer los dos)", emoji:"💞", cat:"Relaciones", eyebrow:"Test de compatibilidad de pareja",
+ blurb:"Responde 24 preguntas, envía el enlace a tu pareja y descubrid cuánto encajáis en ocio, dinero, futuro, comunicación, afecto y espacio personal.",
+ instrument:"Cuestionario propio de Testia sobre preferencias y valores en la pareja. La compatibilidad se calcula comparando las respuestas de los dos miembros, en la línea de la investigación sobre similitud en la pareja (Luo y Klohnen, 2005; Montoya y colaboradores, 2008).", license:"🟢",
+ mode:"likert", scaleMax:5,
+ prompt:"Responde según lo que piensas tú, no lo que crees que contestará tu pareja.",
+ premiumTitle:"Ya sabéis cuánto encajáis. Descubrid dónde coincidís y dónde chocáis",
+ premiumPitch:"Vuestra compatibilidad en cada una de las seis áreas, los temas en los que más coincidís, los que más os separan con una pregunta para hablarlos, y qué dice la investigación sobre lo que de verdad hace funcionar una pareja.",
+ scales:{OCI:"Ocio y estilo de vida",DIN:"Dinero",FUT:"Proyecto de futuro",COM:"Comunicación y conflictos",AFE:"Afecto",ESP:"Espacio personal y entorno"},
+ result:{type:"couple"},
+ talk:{OCI:"¿Cómo sería para cada uno un fin de semana ideal?",DIN:"¿Cómo os gustaría organizar el dinero en común?",FUT:"¿Dónde os imagináis dentro de cinco años?",COM:"¿Qué necesita cada uno después de una discusión?",AFE:"¿Qué gesto os hace sentir más queridos?",ESP:"¿Cuánto tiempo a solas necesita cada uno?"},
+ items:[
+  {t:"Un plan perfecto de fin de semana es quedarse en casa tranquilos.",s:"OCI"},
+  {t:"Me gusta salir y conocer gente nueva a menudo.",s:"OCI"},
+  {t:"Prefiero gastar en viajar antes que ahorrar.",s:"OCI"},
+  {t:"Me gusta tener los planes organizados con antelación.",s:"OCI"},
+  {t:"En pareja, el dinero debería ponerse en común.",s:"DIN"},
+  {t:"Prefiero ahorrar a darme caprichos.",s:"DIN"},
+  {t:"Cualquier gasto importante se debería consultar con la pareja.",s:"DIN"},
+  {t:"Tener una buena posición económica es importante para mí.",s:"DIN"},
+  {t:"Quiero tener hijos, o más hijos, en el futuro.",s:"FUT",w:2},
+  {t:"Me gustaría vivir en una gran ciudad.",s:"FUT"},
+  {t:"Casarse es importante para mí.",s:"FUT"},
+  {t:"Mi carrera profesional es una prioridad en mi vida.",s:"FUT"},
+  {t:"Prefiero hablar los problemas en el momento, aunque sea incómodo.",s:"COM"},
+  {t:"Después de una discusión necesito tiempo a solas antes de hablar.",s:"COM"},
+  {t:"Me cuesta expresar lo que siento con palabras.",s:"COM"},
+  {t:"Las discusiones acaloradas son normales en una pareja.",s:"COM"},
+  {t:"Necesito muestras de cariño todos los días.",s:"AFE"},
+  {t:"El contacto físico es mi forma favorita de demostrar cariño.",s:"AFE"},
+  {t:"Me gusta que mi pareja me diga a menudo lo que siente por mí.",s:"AFE"},
+  {t:"Los detalles y las sorpresas son importantes para mí.",s:"AFE"},
+  {t:"Necesito tiempo para mí, sin mi pareja, cada semana.",s:"ESP"},
+  {t:"Me gusta que mi pareja forme parte de mi grupo de amigos.",s:"ESP"},
+  {t:"La familia tiene que estar muy presente en la vida de pareja.",s:"ESP"},
+  {t:"Tener aficiones por separado es sano en una pareja.",s:"ESP"}
+ ]
+});
+window.SEO_CONTENT.pareja2={slug:"test-de-compatibilidad-de-pareja",seoTitle:"Test de compatibilidad de pareja para hacer los dos | Testia",h1:"Test de compatibilidad de pareja (para hacer los dos)",
+ metaDesc:"Test de compatibilidad de pareja gratis para dos: cada uno responde desde su móvil y veis vuestro porcentaje de compatibilidad en ocio, dinero, futuro, comunicación y afecto.",
+ intro:"¿Cuánto encajáis de verdad? En este test de compatibilidad de pareja respondéis los dos por separado, cada uno desde su móvil: tú contestas 24 preguntas, envías el enlace a tu pareja y, cuando responda, veis vuestro porcentaje de compatibilidad en seis áreas. Es gratis, sin registro y Testia no guarda vuestras respuestas.",
+ updated:"octubre de 2026",updatedISO:"2026-10-26",
+ learn:["Vuestro porcentaje de compatibilidad","Cuánto encajáis en ocio, dinero, futuro, comunicación, afecto y espacio personal","Los temas en los que más coincidís","Los temas que más os separan y una pregunta para hablarlos"],
+ overview:[{label:"Mide",text:"Cuánto coinciden las preferencias y los valores de los dos en seis áreas de la vida en pareja."},{label:"Formato",text:"24 afirmaciones cada uno; unos 3 minutos por persona."},{label:"Límite",text:"La similitud es solo una parte: no predice por sí sola si una relación funcionará."}],
+ sections:[
+  {title:"Cómo funciona",body:"Tú respondes primero y, al terminar, recibes un enlace. Envíaselo a tu pareja por WhatsApp o como quieras. Cuando responda las mismas 24 preguntas, verá vuestro resultado y podrá enviártelo de vuelta. Tus respuestas viajan dentro del enlace: Testia no las guarda en ningún servidor."},
+  {title:"Las seis áreas que se comparan",body:"Ocio y estilo de vida, dinero, proyecto de futuro (hijos, dónde vivir, matrimonio, trabajo), comunicación y conflictos, afecto, y espacio personal y entorno. La pregunta sobre tener hijos pesa el doble, porque es una de las diferencias más difíciles de negociar."},
+  {title:"¿Importa parecerse?",body:"Algo, pero menos de lo que se cree. Un metaanálisis encontró que la similitud que percibimos influye más en la atracción que la similitud real. Y un gran estudio con 43 muestras de parejas concluyó que lo que más predice la satisfacción no son los rasgos de cada uno, sino cómo vive cada uno la relación: el compromiso, el aprecio y la sensación de ser correspondido."},
+  {title:"Qué hacer con el resultado",body:"Un porcentaje alto no garantiza nada y uno bajo no condena a nadie. Lo útil es la conversación: los temas en los que más os separáis son los que conviene hablar con calma. El informe de pareja os propone una pregunta concreta para cada uno."}],
+ faqs:[
+  {q:"¿Cómo se hace el test de compatibilidad de pareja?",a:"Uno responde primero y envía el enlace al otro. Cuando los dos habéis respondido, veis el porcentaje de compatibilidad. Cada uno responde desde su móvil, sin ver las respuestas del otro."},
+  {q:"¿Tenemos que hacerlo a la vez?",a:"No. Cada uno lo hace cuando quiera. El enlace guarda las respuestas del primero hasta que el segundo responde."},
+  {q:"¿Se guardan nuestras respuestas?",a:"No. Las respuestas viajan dentro del enlace y el cálculo se hace en el navegador. Testia no las guarda."},
+  {q:"¿Sirve para amigos o para una cita?",a:"Está pensado para parejas, pero las preguntas sobre ocio, dinero o comunicación también sirven para comparar con un amigo o con alguien que estás conociendo."},
+  {q:"¿Un porcentaje bajo significa que no funcionaremos?",a:"No. La investigación muestra que la similitud pesa menos que cómo os tratáis: el compromiso, el aprecio y la comunicación."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test los dos y ver vuestro porcentaje es gratis. El informe de pareja, con las seis áreas y los temas que más os separan, se puede desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"Assortative mating and marital quality in newlyweds: A couple-centered approach",url:"https://doi.org/10.1037/0022-3514.88.2.304",note:"Luo y Klohnen (2005): la similitud en personalidad se relaciona con la calidad de la pareja."},
+  {title:"Is actual similarity necessary for attraction? A meta-analysis of actual and perceived similarity",url:"https://doi.org/10.1177/0265407508096700",note:"Montoya, Horton y Kirchner (2008): la similitud percibida pesa más que la real."},
+  {title:"Machine learning uncovers the most robust self-report predictors of relationship quality across 43 longitudinal couples studies",url:"https://doi.org/10.1073/pnas.1917036117",note:"Joel y colaboradores (2020): el compromiso y el aprecio predicen la satisfacción más que los rasgos de cada uno."}],
+ relatedIds:["lovelang","lovestyles","attachment"]};
+})();

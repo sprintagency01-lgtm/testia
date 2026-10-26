@@ -53,6 +53,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Intenciones reservadas por landings
 
+- `/test/test-de-compatibilidad-de-pareja` — `test de compatibilidad de pareja`, `test de pareja para dos`, `test de compatibilidad de pareja gratis`.
 - `/test/test-pareja-narcisista` — `test de pareja narcisista`, `test para saber si mi pareja es narcisista`, `señales de pareja narcisista`.
 - `/test/test-de-narcisista` — `test de narcisista`, `test de narcisista gratis`, `test narcisismo encubierto`, `test de rasgos narcisistas`.
 - `/test/test-altas-capacidades-adultos` — `test de altas capacidades adultos`, `test de superdotado`, `test altas capacidades gratis`.

@@ -285,6 +285,7 @@
   .mbrow{display:flex;gap:8px}.mbrow input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line3);border-radius:12px;font:inherit;font-size:.95rem;background:#fff}.mbrow .btn{padding:13px 18px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
   .nextbox{margin-top:18px}.nexth{font-family:var(--disp);font-weight:600;font-size:1.05rem}.nextsub{color:var(--ink3);font-size:.86rem;margin:2px 0 10px}
   .nextcard{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 15px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s}
+  .couplebox{margin:18px 0 6px;border:1.5px solid var(--cobalt);border-radius:14px;padding:16px;background:#fff}.couplebox .cbh{font-weight:700;margin-bottom:8px}.couplebox input{width:100%;font:inherit;font-size:.86rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#f6f6f4;color:var(--ink2)}.couplebox .cbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.couplebox .btn{padding:12px 18px;font-size:.95rem}
   .nexttop{margin:22px 0 4px}.nexttop:empty{display:none}.nexttop .ntk{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:8px}.nextcard.big{padding:18px;border:1.5px solid var(--cobalt);box-shadow:0 10px 28px -18px rgba(47,75,214,.55)}.nextcard.big b{font-size:1.08rem}.nextcard.big .go{font-size:.92rem;white-space:nowrap}
   .nextcard:hover{border-color:var(--cobalt)}.nextcard .ne{font-size:1.45rem;line-height:1}.nextcard b{display:block;font-size:.96rem}.nextcard small{display:block;font-size:.8rem;color:var(--ink3);line-height:1.35;margin-top:2px}.nextcard .go{margin-left:auto;color:var(--cobalt);font-weight:700;padding-left:6px}
   .mbopt{display:flex;gap:8px;font-size:.84rem;color:var(--ink3);margin-top:10px;align-items:center;cursor:pointer}.mbnote{font-size:.74rem;color:var(--mut);margin-top:6px}
@@ -535,6 +536,7 @@
         <div class="ital" id="resRole" style="font-size:1.4rem;color:var(--ink3);margin-top:14px"></div>
         <p id="resDesc" style="font-size:1.2rem;color:var(--ink2);line-height:1.55;margin:18px 0 0"></p>
         <div class="chips" id="resTraits"></div>
+        <div id="coupleBox"></div>
         <div id="resScience" style="margin-top:16px;font-size:.82rem;color:var(--mut);line-height:1.5;display:none"></div>
         <div id="paywall" style="display:none"></div>
         <div id="nextTop" class="nexttop"></div>
@@ -666,7 +668,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261026e"></script>
+<script src="tests.js?v=20261026f"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -691,11 +693,11 @@ const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","biene
 const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",narcisismo:"personalidad",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
-  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",parejanarc:"relaciones",
+  attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",
   moral:"bienestar",partido:"bienestar",candidato:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
-  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles",ccse:"idcard",candidato:"users",aacc:"bulb",narcisismo:"star",parejanarc:"heart"};
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles",ccse:"idcard",candidato:"users",aacc:"bulb",narcisismo:"star",parejanarc:"heart",pareja2:"link"};
 const ICONS={
   idcard:["M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"],
   trophy:["M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.228a25.772 25.772 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"],
@@ -1246,6 +1248,45 @@ function finish(){
       r.card={mono:'EGO',name:tier[0],role:'Test de pareja narcisista',stat:tier[0].toUpperCase()};
       r.full={name:`${ix} % de narcisismo`,role:`${tier[0]} · en tu pareja`,desc:`Las conductas que describes reflejan un nivel de narcisismo del ${ix} % en tu pareja. ${tier[1]}${safety} Abajo, las cinco dimensiones y las conductas que más pesan.`,
         card:{mono:`${ix}%`,name:`${ix} % de narcisismo`,role:'En tu pareja',stat:tier[0].toUpperCase()},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    }else if(R.type==='couple'){
+      const N=items.length,mine=answers.map(v=>v==null?3:v),code=mine.join('');
+      const P=COUPLE_PARTNER&&COUPLE_PARTNER.length===N&&/^[1-5]+$/.test(COUPLE_PARTNER)?COUPLE_PARTNER.split('').map(Number):null;
+      r.mono='♥';r.traits=[];
+      if(!P){ // primera persona: aún no hay con quién comparar
+        const link=coupleLink(code),msg='He hecho el test de compatibilidad de pareja de Testia. Hazlo tú y vemos cuánto encajamos:';
+        r.name='Tu parte está lista';r.role='Ahora le toca a tu pareja';r.noPaywall=true;
+        r.desc='Envía este enlace a tu pareja. Cuando responda las mismas 24 preguntas, veréis vuestro porcentaje de compatibilidad. Tus respuestas viajan dentro del enlace: Testia no las guarda.';
+        r.coupleHtml=`<div class="couplebox"><div class="cbh">Tu enlace para tu pareja</div><input id="coupleLink" data-stage="invite" data-msg="${msg}" readonly value="${link}" onclick="this.select()"><div class="cbtns"><a class="btn" href="https://wa.me/?text=${encodeURIComponent(msg+' '+link)}" target="_blank" rel="noopener" onclick="trackEvent('couple_link_shared',{channel:'whatsapp',stage:'invite'})">Enviar por WhatsApp</a><button class="btn out" type="button" onclick="coupleShare()">Copiar o compartir</button></div></div>`;
+        r.card={mono:'?',name:'Tu parte está lista',role:'Test de compatibilidad de pareja',stat:'ESPERANDO A TU PAREJA'};
+        trackEvent('couple_link_created',{test_id:T.id});
+      }else{
+        const K=Object.keys(T.scales),L=likertLabels(T),sim=items.map((it,i)=>1-Math.abs(mine[i]-P[i])/4);
+        let sw=0,ww=0;items.forEach((it,i)=>{const w=it.w||1;sw+=sim[i]*w;ww+=w;});const pc=Math.round(sw/ww*100);
+        const dim={};K.forEach(k=>{let a=0,n=0;items.forEach((it,i)=>{if(it.s===k){a+=sim[i];n++;}});dim[k]=n?a/n*100:0;});
+        const tier=pc>=85?['Hechos a medida','Coincidís en casi todo lo que importa: cómo queréis vivir, el dinero, el futuro y la forma de quereros.']
+          :pc>=70?['Muy compatibles','Coincidís en la mayoría de los temas importantes y las diferencias son pequeñas.']
+          :pc>=55?['Compatibles con matices','Encajáis en bastantes cosas, pero hay temas en los que pensáis distinto y conviene hablarlos.']
+          :pc>=40?['Polos que se atraen','Pensáis distinto en muchos temas. Puede ser un reto o un complemento, según cómo lo habléis.']
+          :['Mundos distintos','Vuestras respuestas son muy diferentes en casi todo. No significa que no funcione, pero os tocará negociar mucho.'];
+        const both=COUPLE_VIEW?COUPLE_BOTH.join('.'):P.join('')+'.'+code,back=location.origin+'/#pareja='+both,msg='Ya tenemos nuestro resultado del test de compatibilidad de pareja:';
+        r.name=`${pc} % compatibles`;r.role=tier[0];
+        // Una diferencia grande en tener hijos se avisa siempre, también gratis: es la más difícil de negociar.
+        const kid=items.findIndex(it=>it.w===2),kidGap=kid>=0&&Math.abs(mine[kid]-P[kid])>=3?' Ojo: pensáis muy distinto sobre tener hijos, y es un tema que conviene hablar pronto.':'';
+        r.desc=`${tier[1]}${kidGap} En qué áreas coincidís, dónde chocáis y de qué hablar están en el informe de pareja.`;
+        r.coupleHtml=COUPLE_VIEW?'':`<div class="couplebox"><div class="cbh">Envía el resultado a tu pareja</div><input id="coupleLink" data-stage="result" data-msg="${msg}" readonly value="${back}" onclick="this.select()"><div class="cbtns"><a class="btn" href="https://wa.me/?text=${encodeURIComponent(msg+' '+back)}" target="_blank" rel="noopener" onclick="trackEvent('couple_link_shared',{channel:'whatsapp',stage:'result'})">Enviar por WhatsApp</a><button class="btn out" type="button" onclick="coupleShare()">Copiar o compartir</button></div></div>`;
+        const lv=p=>p>=80?'Alta':p>=60?'Media':'Baja';
+        r.bars=K.map(k=>({lab:T.scales[k],p:dim[k],tag:`${Math.round(dim[k])} %`,premium:true,hidePct:true}));
+        r.stats=[{v:`${pc} %`,l:'compatibilidad'}];
+        const ix=items.map((it,i)=>({it,i,d:Math.abs(mine[i]-P[i])}));
+        const same=ix.filter(x=>x.d===0&&mine[x.i]!==3).sort((a,b)=>Math.abs(mine[b.i]-3)-Math.abs(mine[a.i]-3)).slice(0,3);
+        const diff=ix.filter(x=>x.d>=2).sort((a,b)=>b.d-a.d||(b.it.w||1)-(a.it.w||1)).slice(0,3);
+        r.analysis=[{lab:'Donde más coincidís',band:same.length?`${same.length} temas`:'—',p:pc,hidePct:true,text:same.length?same.map(x=>`«${x.it.t}» Los dos: ${L[mine[x.i]-1].toLowerCase()}.`).join(' '):'No hay temas en los que hayáis respondido exactamente lo mismo con convicción.'},
+          {lab:'Donde más os separáis',band:diff.length?`${diff.length} temas`:'Ninguno',p:100-pc,hidePct:true,text:diff.length?diff.map(x=>`«${x.it.t}» Tú: ${L[mine[x.i]-1].toLowerCase()}; tu pareja: ${L[P[x.i]-1].toLowerCase()}. Para hablarlo: ${T.talk[x.it.s]}`).join(' '):'No hay ningún tema en el que penséis muy distinto.'}]
+          .concat(K.map(k=>({lab:`${T.scales[k]} · ${Math.round(dim[k])} %`,band:lv(dim[k]),p:dim[k],hidePct:true,text:dim[k]>=80?`Pensáis muy parecido en ${T.scales[k].toLowerCase()}.`:dim[k]>=60?`Coincidís en lo básico de ${T.scales[k].toLowerCase()}, con alguna diferencia. Una pregunta para hablarlo: ${T.talk[k]}`:`Es el área donde más distinto pensáis. Merece una conversación con calma: ${T.talk[k]}`})))
+          .concat([{lab:'Lo que dice la investigación',band:'Contexto',p:100,hidePct:true,text:'Parecerse ayuda, pero pesa menos de lo que se cree. Un gran estudio con 43 muestras de parejas encontró que lo que más predice la satisfacción es cómo vive cada uno la relación: el compromiso, el aprecio y la sensación de ser correspondido.'}]);
+        r.card={mono:`${pc}%`,name:`${pc} % compatibles`,role:tier[0],stat:'TEST DE COMPATIBILIDAD DE PAREJA'};
+        trackEvent('couple_result_viewed',{test_id:T.id,compat:pc,shared_view:COUPLE_VIEW});
+      }
     }else if(R.type==='riasec'){
       const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const code=arr.slice(0,3).map(x=>x.k).join('');
@@ -1274,7 +1315,7 @@ function finish(){
   if(T.freeTraits)r.traits=T.freeTraits.slice(); // no adelantar gratis el orden de las dimensiones
   {if(hiddenSince){hiddenMs+=Date.now()-hiddenSince;hiddenSince=null;}}
   const durS=elapsedS(),hidS=Math.round(hiddenMs/1000);
-  lastResult=r;trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length,duration_s:durS,hidden_s:hidS,active_s:Math.max(0,durS-hidS),over_limit:!!(T.duration&&!T.noTimer&&durS>T.duration)});renderResult(r);go('result');drawCard(r);
+  lastResult=r;if(!COUPLE_VIEW)trackEvent('test_completed',{test_id:T.id,test_name:T.name,question_count:items.length,duration_s:durS,hidden_s:hidS,active_s:Math.max(0,durS-hidS),over_limit:!!(T.duration&&!T.noTimer&&durS>T.duration)});renderResult(r);go('result');drawCard(r);
   const pwv=paywallVariant(),prv=priceVariant();
   trackEvent('result_viewed',{test_id:T.id,test_name:T.name,archetype:T.sensitive?undefined:r.name,tier:pwv==='hard'?'locked':'free',paywall_variant:pwv,price_variant:prv});
   try{$('mbOpt').checked=false;}catch(e){}
@@ -1286,6 +1327,26 @@ let paywallSeen=false;
 /* === Experimento: posición del muro de pago ===
    Bandera de PostHog «testia-paywall-position»: control = arquetipo gratis y muro sobre el análisis;
    hard = muro antes del resultado, todo borroso. Forzar para revisar: ?pw=hard o ?pw=control (solo esa sesión, sin contar como exposición). */
+/* === Test de compatibilidad para dos ===
+   El enlace lleva las respuestas: #pareja=AAAA (las de quien respondió primero) o #pareja=AAAA.BBBB (las de los dos).
+   No se guardan en ningún servidor: se leen aquí y se limpia la URL. */
+let COUPLE_PARTNER=null,COUPLE_BOTH=null,COUPLE_VIEW=false;
+(function(){try{const m=location.hash.match(/pareja=([1-5]+)(?:\.([1-5]+))?/);
+  if(m){if(m[2]){COUPLE_BOTH=[m[1],m[2]];}else{COUPLE_PARTNER=m[1];sessionStorage.setItem('atlas_couple_a',m[1]);}
+    history.replaceState({},'',location.pathname+location.search);}
+  else{COUPLE_PARTNER=sessionStorage.getItem('atlas_couple_a');}
+  const t=(window.TESTS||[]).find(x=>x.id==='pareja2');
+  if(t&&COUPLE_PARTNER)t.prompt='Tu pareja ya ha respondido. Ahora te toca a ti: responde según lo que piensas tú, no lo que crees que ha contestado.';
+}catch(e){}})();
+// Si el enlace se abre en una pestaña donde Testia ya estaba cargada, solo cambia el hash: recargamos para leerlo.
+window.addEventListener('hashchange',()=>{if(/pareja=[1-5]/.test(location.hash))location.reload();});
+function coupleLink(code){return location.origin+'/?start=pareja2#pareja='+code;}
+function coupleCopy(){const i=$('coupleLink');if(!i)return;try{navigator.clipboard.writeText(i.value);}catch(e){i.select();document.execCommand('copy');}toast('Enlace copiado');trackEvent('couple_link_shared',{channel:'copy',stage:i.dataset.stage});}
+function coupleShare(){const i=$('coupleLink');if(!i)return;if(navigator.share){navigator.share({title:'Test de compatibilidad de pareja',text:i.dataset.msg,url:i.value}).catch(()=>{});trackEvent('couple_link_shared',{channel:'native',stage:i.dataset.stage});}else coupleCopy();}
+function openCoupleResult(){const t=TESTS.find(x=>x.id==='pareja2');if(!t||!COUPLE_BOTH||COUPLE_BOTH[0].length!==t.items.length||COUPLE_BOTH[1].length!==t.items.length)return;
+  // Quien abre el enlace de vuelta es quien respondió primero: «tú» son sus respuestas.
+  T=t;items=T.items;answers=COUPLE_BOTH[0].split('').map(Number);COUPLE_PARTNER=COUPLE_BOTH[1];COUPLE_VIEW=true;startedAt=Date.now();hiddenMs=0;hiddenSince=null;
+  trackEvent('couple_result_opened',{test_id:T.id});finish();}
 const PW_FLAG='testia-paywall-position';
 let PW_VARIANT='control';
 // Se lee al cargar: la app limpia la URL antes de que termine el test.
@@ -1322,10 +1383,11 @@ function setHardLock(on){
   body.classList.toggle('hardlock',on);
   if(on){left.insertBefore(pw,left.firstElementChild);}else{left.insertBefore(pw,$('resPremium'));}
   const nt=$('nextTop');if(nt)pw.insertAdjacentElement('afterend',nt); // el siguiente test va siempre justo debajo del muro y sin difuminar
-  [...left.children].forEach(el=>el.classList.toggle('hl',on&&el!==pw&&el!==nt));
+  [...left.children].forEach(el=>el.classList.toggle('hl',on&&el!==pw&&el!==nt&&el.id!=='coupleBox'));
   if(side)[...side.children].forEach(el=>el.classList.toggle('hl',on&&el.id!=='nextBox'));
 }
 function lockResult(v){
+  if(lastResult&&lastResult.noPaywall){setHardLock(false);$('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();return;}
   v=v||PW_VARIANT;const hard=v==='hard';
   const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
   setHardLock(hard);
@@ -1436,7 +1498,7 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={politico:['partido','solluna'],partido:['solluna','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
+const NEXT_TEST={politico:['partido','solluna'],partido:['solluna','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
   iq:['aacc','memoria'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],
@@ -1459,6 +1521,7 @@ function renderResult(r){
   const n=$('resName');n.textContent=r.name;n.style.color=r.accent;
   $('resRole').textContent=r.role;$('resDesc').textContent=r.desc;
   $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
+  {const cb=$('coupleBox');if(cb)cb.innerHTML=r.coupleHtml||'';}
   {const sci=$('resScience');if(sci){if(T&&T.instrument){sci.style.display='block';sci.innerHTML='<span style="font-weight:600;color:var(--ink3)">Referencia metodológica:</span> '+T.instrument;}else{sci.style.display='none';}}}
   if(r.bars){$('resBars').innerHTML=`<div class="bars">${r.bars.map(b=>{const tag=b.tag||(b.p>=66?'Alto':b.p>=40?'Medio':'Bajo');
     return `<div class="barrow"><div class="bl"><span>${b.lab}</span><span class="tg">${b.hidePct?tag:`${tag} · ${Math.round(b.p)}%`}</span></div><div class="btrack"><i data-w="${b.p}" style="background:linear-gradient(90deg,${r.accent},${hexA(r.accent,.55)})"></i></div></div>`;}).join('')}</div>`;
@@ -1692,7 +1755,7 @@ document.addEventListener('keydown',e=>{
 });
 
 function handleStart(){const p=new URLSearchParams(location.search);const s=p.get('start');if(s&&TESTS.find(t=>t.id===s)){startTest(s);try{history.replaceState({},'',location.pathname);}catch(e){}}}
-buildHome();buildCatalog();buildFooter();handleReturn();handleStart();
+buildHome();buildCatalog();buildFooter();handleReturn();handleStart();if(COUPLE_BOTH)openCoupleResult();
 </script>
 </body>
 </html>
