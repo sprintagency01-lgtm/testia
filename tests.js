@@ -2108,12 +2108,12 @@ window.SEO_CONTENT.narcisismo={slug:"test-de-narcisista",seoTitle:"Test de narci
   {title:"Qué es el narcisismo",body:"El narcisismo es un rasgo de personalidad que todos tenemos en mayor o menor grado: la tendencia a verse como especial, buscar admiración y proteger la propia imagen. Solo en casos extremos, persistentes y que causan problemas serios se habla de trastorno narcisista de la personalidad, que únicamente puede diagnosticar un profesional."},
   {title:"Narcisismo grandioso y narcisismo encubierto",body:"La investigación distingue dos caras. El narcisismo grandioso es el más visible: seguridad, deseo de destacar, sensación de superioridad. El narcisismo vulnerable o encubierto se vive por dentro: mucha sensibilidad a la crítica, resentimiento cuando no se reconoce el propio valor e inseguridad. Ambas comparten la sensación de merecer más que los demás."},
   {title:"Admiración y rivalidad",body:"Un modelo muy usado divide el narcisismo grandioso en dos estrategias. La admiración busca brillar y gustar: puede ayudar a causar buena impresión. La rivalidad protege la imagen atacando a los demás: devaluar, competir, devolver la crítica. Es esta segunda la que más deteriora las relaciones a largo plazo."},
-  {title:"¿Y si quien me preocupa es mi pareja?",body:"Este test está pensado para responderlo sobre uno mismo. Si te preocupa la conducta de tu pareja, fíjate en hechos concretos: si te desvaloriza, controla o castiga cuando no le das la razón. El test de red flags puede ayudarte a ordenarlo, y si sientes miedo o control, en España puedes llamar al 016, que es gratuito y no deja rastro en la factura."}],
+  {title:"¿Y si quien me preocupa es mi pareja?",body:"Este test está pensado para responderlo sobre uno mismo. Si te preocupa la conducta de tu pareja, fíjate en hechos concretos: si te desvaloriza, controla o castiga cuando no le das la razón. El test de pareja narcisista te ayuda a ordenarlos, y si sientes miedo o control, en España puedes llamar al 016, que es gratuito y no deja rastro en la factura."}],
  faqs:[
   {q:"¿Cómo saber si soy narcisista?",a:"Todos tenemos rasgos narcisistas en algún grado. Un test como este mide cuánto pesan en tu caso y de qué tipo son. Solo un profesional puede diagnosticar el trastorno narcisista de la personalidad."},
   {q:"¿Qué es el narcisismo encubierto?",a:"Es el narcisismo vulnerable: no se muestra como arrogancia, sino como mucha sensibilidad a la crítica, resentimiento cuando no se reconoce lo que uno hace y necesidad de validación vivida por dentro."},
   {q:"¿Este test diagnostica el trastorno narcisista?",a:"No. Mide rasgos de personalidad, que son continuos y están presentes en todo el mundo. El trastorno solo lo diagnostica un profesional de la salud mental."},
-  {q:"¿Puedo hacerlo pensando en mi pareja?",a:"Está pensado para responderlo sobre ti. Para valorar la conducta de otra persona, fíjate en hechos concretos; el test de red flags te ayuda a ordenarlos."},
+  {q:"¿Puedo hacerlo pensando en mi pareja?",a:"Está pensado para responderlo sobre ti. Para valorar la conducta de tu pareja, haz el test de pareja narcisista, que pregunta por conductas concretas."},
   {q:"¿Tener rasgos narcisistas es malo?",a:"No necesariamente. Un poco de narcisismo da seguridad y ganas de destacar. El problema aparece cuando domina la rivalidad, la sensación de privilegio o la vulnerabilidad a la crítica."},
   {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de rasgos narcisistas es gratis y sin registro. Tu índice exacto, tu tipo y tus cinco dimensiones se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
  sources:[
@@ -2123,5 +2123,75 @@ window.SEO_CONTENT.narcisismo={slug:"test-de-narcisista",seoTitle:"Test de narci
   {title:"Grandiose and vulnerable narcissism: A nomological network analysis",url:"https://doi.org/10.1111/j.1467-6494.2010.00711.x",note:"Miller y colaboradores (2011): diferencias entre el narcisismo grandioso y el vulnerable."},
   {title:"Trastorno narcisista de la personalidad",url:W("Trastorno_narcisista_de_la_personalidad"),note:"Diferencia entre rasgo y trastorno."}],
  guide:{url:"/blog/narcisismo-grandioso-y-vulnerable",title:"Narcisismo grandioso y vulnerable",text:"Diferencias y cómo se miden"},
- relatedIds:["darktriad","redflag","dificil"]};
+ relatedIds:["parejanarc","darktriad","dificil"]};
+})();
+
+/* ===== Test de pareja narcisista: conductas observadas (octubre 2026) ===== */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+window.TESTS.push({
+ id:"parejanarc", name:"Test de pareja narcisista: ¿tu pareja tiene rasgos narcisistas?", emoji:"💔", cat:"Relaciones", eyebrow:"Conductas narcisistas en tu pareja",
+ blurb:"20 conductas concretas para saber si en tu relación hay un patrón narcisista: necesidad de admiración, falta de empatía, desvalorización, control y reacción a la crítica.",
+ instrument:"Cuestionario propio de Testia sobre conductas observadas en la pareja, basado en las dimensiones del narcisismo descritas por la investigación (Miller y colaboradores, 2011; Back y colaboradores, 2013). Describe conductas, no diagnostica a ninguna persona.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ prompt:"Piensa en tu pareja actual o en tu última relación y responde según lo que ha pasado de verdad, no según lo que te gustaría.",
+ premiumTitle:"Ya sabes el nivel. Descubre qué conductas pesan más",
+ premiumPitch:"El índice de 0 a 100, cuánto pesa cada una de las cinco dimensiones, las conductas que más se repiten en tu relación y cómo abordarlas.",
+ scales:{ADM:"Necesidad de admiración",EMP:"Falta de empatía",DEV:"Desvalorización",CTR:"Control y manipulación",CRI:"Reacción a la crítica"},
+ result:{type:"narcp"},
+ interp:{
+  ADM:{hi:"Necesita ser el centro y que le confirmes constantemente lo bien que lo hace. Cuando no recibe esa atención, se enfría o se enfada.",mid:"Le gusta sentirse admirado, como a mucha gente, sin que la relación gire siempre en torno a eso.",lo:"No necesita que le estés admirando: la atención se reparte entre los dos."},
+  EMP:{hi:"Le cuesta ponerse en tu lugar: tus problemas acaban derivando hacia los suyos y tus emociones le parecen exageradas.",mid:"A veces le cuesta empatizar, sobre todo cuando está centrado en lo suyo.",lo:"Se interesa por cómo estás y sabe acompañarte cuando lo necesitas."},
+  DEV:{hi:"Quita valor a tus logros, te compara o te hace sentir que exageras. Con el tiempo, esta conducta erosiona la autoestima de quien la recibe.",mid:"Hay comentarios que te restan, aunque no son la norma.",lo:"Se alegra de lo tuyo y te trata como a un igual."},
+  CTR:{hi:"Hay conductas de control: enfados si no haces lo que espera, castigos con el silencio o culpa para conseguir lo que quiere. Si además sientes miedo o te aísla de tu gente, es una señal de alarma.",mid:"En algunas situaciones intenta imponer lo suyo, aunque respeta buena parte de tus decisiones.",lo:"Respeta tus decisiones, tu tiempo y tu gente, aunque no siempre las comparta."},
+  CRI:{hi:"Vive cualquier crítica como un ataque, rara vez reconoce un error y las discusiones acaban siendo culpa tuya.",mid:"Le cuesta encajar las críticas, pero acaba reconociendo algunos errores.",lo:"Puede escuchar una crítica, reconocer sus errores y pedir perdón."}
+ },
+ items:[
+  {t:"Necesita que le digas a menudo lo bien que hace las cosas.",s:"ADM"},
+  {t:"Las conversaciones acaban girando en torno a sus logros y sus planes.",s:"ADM"},
+  {t:"Se molesta cuando la atención no está puesta en él o en ella.",s:"ADM"},
+  {t:"Le resulta indiferente si le reconocen o no lo que hace.",s:"ADM",r:true},
+  {t:"Cuando le cuentas un problema, acaba hablando de los suyos.",s:"EMP"},
+  {t:"Tus emociones le parecen exageradas o fuera de lugar.",s:"EMP"},
+  {t:"No se da cuenta de cuándo estás mal, o no le da importancia.",s:"EMP"},
+  {t:"Se interesa de verdad por cómo te sientes.",s:"EMP",r:true},
+  {t:"Quita importancia a tus logros o los compara con los suyos.",s:"DEV"},
+  {t:"Te hace sentir que exageras o que eres demasiado sensible.",s:"DEV"},
+  {t:"Hace comentarios que te dejan mal delante de otras personas.",s:"DEV"},
+  {t:"Se alegra sinceramente de tus éxitos.",s:"DEV",r:true},
+  {t:"Se enfada o te castiga con el silencio si no haces lo que espera.",s:"CTR"},
+  {t:"Te hace sentir culpable para conseguir lo que quiere.",s:"CTR"},
+  {t:"Le molesta que pases tiempo con tus amigos o tu familia.",s:"CTR"},
+  {t:"Respeta tus decisiones aunque no las comparta.",s:"CTR",r:true},
+  {t:"Cuando le señalas algo, se lo toma como un ataque.",s:"CRI"},
+  {t:"Las discusiones acaban siendo culpa tuya, aunque empezaran por algo que hizo.",s:"CRI"},
+  {t:"Rara vez pide perdón de verdad.",s:"CRI"},
+  {t:"Reconoce sus errores cuando se equivoca.",s:"CRI",r:true}
+ ]
+});
+window.SEO_CONTENT.parejanarc={slug:"test-pareja-narcisista",seoTitle:"Test de pareja narcisista: ¿tu pareja tiene rasgos narcisistas? | Testia",h1:"Test: ¿tu pareja tiene rasgos narcisistas?",
+ metaDesc:"Test de pareja narcisista gratis: 20 conductas concretas para saber si en tu relación hay un patrón narcisista, qué conductas pesan más y qué hacer. Sin registro.",
+ intro:"¿Tu pareja necesita ser siempre el centro, quita importancia a lo tuyo y nunca reconoce un error? Este test no pone etiquetas: te pregunta por 20 conductas concretas de tu relación y te dice si forman un patrón narcisista y cuáles pesan más. Es gratis, anónimo y tarda unos 3 minutos.",
+ updated:"octubre de 2026",updatedISO:"2026-10-26",
+ learn:["Si en tu relación hay un patrón de conductas narcisistas","El índice de 0 a 100","Cuánto pesa cada dimensión: admiración, empatía, desvalorización, control y crítica","Las conductas que más se repiten y cómo abordarlas"],
+ overview:[{label:"Mide",text:"Conductas narcisistas observadas en tu pareja, en cinco dimensiones."},{label:"Formato",text:"20 afirmaciones sobre conductas concretas; unos 3 minutos."},{label:"Límite",text:"Describe conductas; no diagnostica a nadie."}],
+ sections:[
+  {title:"Señales de narcisismo en la pareja",body:"La investigación sobre el narcisismo describe conductas que se notan especialmente en la pareja: necesidad constante de admiración, poca empatía, quitar valor a los logros del otro, control y una reacción desproporcionada a la crítica. Lo importante no es una conducta aislada, que todos tenemos alguna vez, sino que se repitan y formen un patrón."},
+  {title:"Rasgos narcisistas no es lo mismo que trastorno",body:"Muchas personas tienen rasgos narcisistas sin tener un trastorno narcisista de la personalidad, que solo puede diagnosticar un profesional. Por eso este test habla de conductas y no pone etiquetas. Lo útil es saber qué está pasando en tu relación y cómo te afecta."},
+  {title:"Cuándo pedir ayuda",body:"Si en tu relación hay control, aislamiento de tu gente, humillaciones o sientes miedo, no es solo narcisismo: puede ser violencia. En España, el 016 atiende a mujeres que sufren cualquier forma de violencia: es gratuito, funciona las 24 horas para información, no deja rastro en la factura y también atiende por WhatsApp en el 600 000 016. Si hay peligro inmediato, llama al 112."},
+  {title:"¿Y si el problema soy yo?",body:"Es una buena pregunta. Si te preocupa tener tú estas conductas, haz el test de narcisismo sobre ti mismo o el de «¿Eres tú la red flag?». Reconocer un patrón propio es el primer paso para cambiarlo."}],
+ faqs:[
+  {q:"¿Cómo saber si mi pareja es narcisista?",a:"Fíjate en conductas que se repiten: si necesita admiración constante, quita valor a lo tuyo, controla tus decisiones o nunca reconoce sus errores. Este test te ayuda a ordenarlas. Solo un profesional puede diagnosticar un trastorno."},
+  {q:"¿Este test diagnostica a mi pareja?",a:"No. Describe conductas que tú has observado. No puede diagnosticar a nadie y no debe usarse para etiquetar a una persona."},
+  {q:"¿Qué hago si el resultado es alto?",a:"Ponle palabras a las conductas concretas que más pesan y valora cómo te afectan. Hablarlo con un psicólogo ayuda. Si hay control, humillación o miedo, pide ayuda: en España, el 016 o, si hay peligro inmediato, el 112."},
+  {q:"¿Puedo hacerlo sobre una relación pasada?",a:"Sí. Responde pensando en cómo era la relación. Puede ayudarte a entender lo que viviste."},
+  {q:"¿Se guardan mis respuestas?",a:"No. El cálculo se hace en tu navegador y Testia no registra tus respuestas."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver si hay un patrón narcisista es gratis y sin registro. El índice, las cinco dimensiones y las conductas que más pesan se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"Narcissism and newlywed marriage: Partner characteristics and marital trajectories",url:"https://doi.org/10.1037/per0000137",note:"Lavner y colaboradores (2016): cómo el narcisismo se relaciona con la calidad de la pareja a lo largo del tiempo."},
+  {title:"Living with pathological narcissism: a qualitative study",url:"https://doi.org/10.1186/s40479-020-00132-8",note:"Day, Townsend y Grenyer (2020): la experiencia de convivir con una persona con narcisismo patológico."},
+  {title:"Narcissistic admiration and rivalry: Disentangling the bright and dark sides of narcissism",url:"https://doi.org/10.1037/a0034431",note:"Back y colaboradores (2013): la rivalidad como la cara del narcisismo que más daña las relaciones."},
+  {title:"Teléfono 016 · Delegación del Gobierno contra la Violencia de Género",url:"https://violenciagenero.igualdad.gob.es/informacion-3/recursos/telefono016/",note:"Canales del 016: teléfono, WhatsApp, chat y correo electrónico."},
+  {title:"Teléfono 016: qué es y cómo funciona",url:"https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/igualdad/paginas/2026/telefono-016-que-es.aspx",note:"La Moncloa: horario, gratuidad y que no deja rastro en la factura."}],
+ relatedIds:["narcisismo","redflag","celos"]};
 })();
