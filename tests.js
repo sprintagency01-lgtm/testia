@@ -2055,3 +2055,73 @@ window.SEO_CONTENT.aacc={slug:"test-altas-capacidades-adultos",seoTitle:"Test de
  ld:{"about":[{"@type":"Thing","name":"Superdotación","sameAs":W("Superdotación")}]},
  relatedIds:["iq","memoria","atencion"]};
 })();
+
+/* ===== Test de narcisismo: grandioso y vulnerable (octubre 2026) ===== */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+window.TESTS.push({
+ id:"narcisismo", name:"Test de narcisista: ¿tienes rasgos narcisistas?", emoji:"🪞", cat:"Personalidad", eyebrow:"Tu nivel de narcisismo",
+ blurb:"20 afirmaciones para medir tus rasgos narcisistas y saber si tu patrón es grandioso o encubierto. Sincero, sin juicios.",
+ instrument:"Cuestionario propio de Testia inspirado en el NPI-16 (Ames, Rose y Anderson, 2006), la escala de narcisismo hipersensible (Hendin y Cheek, 1997) y el modelo de admiración y rivalidad (Back y colaboradores, 2013). Mide rasgos, no diagnostica el trastorno narcisista de la personalidad.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ premiumTitle:"Ya sabes tu nivel. Descubre si eres grandioso o encubierto",
+ premiumPitch:"Tu índice de narcisismo de 0 a 100, si tu patrón es grandioso, encubierto o mixto, y tu puntuación en las cinco dimensiones con lo que significa cada una.",
+ scales:{GRA:"Grandiosidad",ADM:"Necesidad de admiración",RIV:"Rivalidad",DER:"Sensación de privilegio",VUL:"Narcisismo vulnerable"},
+ result:{type:"narc"},
+ interp:{
+  GRA:{hi:"Te ves por encima de la media y sientes que estás destinado a algo importante. Una dosis de esto da seguridad; en exceso, aleja de los demás.",mid:"Tienes una buena opinión de ti sin sentirte por encima de los demás.",lo:"Te ves como una persona corriente y no necesitas sentirte especial."},
+  ADM:{hi:"Necesitas mucho el reconocimiento y la atención de los demás. Es la cara brillante del narcisismo: ayuda a destacar, pero hace depender del aplauso.",mid:"Te gusta que te reconozcan, en una medida que la mayoría consideraría normal.",lo:"La atención y los elogios no te mueven demasiado; incluso te incomodan."},
+  RIV:{hi:"Vives el éxito ajeno como una amenaza y respondes a la crítica devolviendo el golpe. Es la cara oscura del narcisismo y la que más daña las relaciones.",mid:"A veces compites o te pica el éxito de otros, sin que domine tu forma de relacionarte.",lo:"Te alegras del éxito de los demás y no necesitas quedar por encima en cada discusión."},
+  DER:{hi:"Sientes que mereces un trato especial y que algunas normas no van contigo. Es uno de los rasgos que más conflictos genera en el trabajo y en pareja.",mid:"De vez en cuando sientes que mereces más, pero aceptas las reglas comunes.",lo:"Aceptas las normas y los turnos como cualquiera, sin esperar privilegios."},
+  VUL:{hi:"Eres muy sensible a la crítica y te duele en silencio que no se valore lo que haces. Es el narcisismo vulnerable o encubierto: no se ve desde fuera, pero se vive con mucho malestar.",mid:"Te afectan las críticas y la falta de reconocimiento, como a mucha gente, sin que te amarguen.",lo:"Las críticas y la falta de reconocimiento no te afectan demasiado."}
+ },
+ items:[
+  {t:"Creo que soy más especial que la mayoría de la gente.",s:"GRA"},
+  {t:"Siento que estoy destinado a hacer cosas importantes.",s:"GRA"},
+  {t:"Me cuesta encontrar gente a mi altura.",s:"GRA"},
+  {t:"Me considero una persona del montón, como cualquiera.",s:"GRA",r:true},
+  {t:"Me gusta ser el centro de atención.",s:"ADM"},
+  {t:"Necesito que los demás reconozcan lo que valgo.",s:"ADM"},
+  {t:"Cuido mucho la imagen que doy en redes o en público.",s:"ADM"},
+  {t:"Me incomoda que me elogien delante de otros.",s:"ADM",r:true},
+  {t:"Me molesta que otros tengan más éxito que yo.",s:"RIV"},
+  {t:"Cuando alguien me critica, intento dejarle en evidencia.",s:"RIV"},
+  {t:"Si alguien me hace sombra, intento quitarle protagonismo.",s:"RIV"},
+  {t:"Me alegro de verdad cuando a alguien de mi entorno le va mejor que a mí.",s:"RIV",r:true},
+  {t:"Merezco un trato mejor que el que recibe la mayoría.",s:"DER"},
+  {t:"Hay normas que están pensadas para la gente corriente, no para mí.",s:"DER"},
+  {t:"Si me conviene, uso a las personas para conseguir lo que quiero.",s:"DER"},
+  {t:"Espero mi turno como todo el mundo, aunque tenga prisa.",s:"DER",r:true},
+  {t:"Las críticas me afectan más de lo que dejo ver.",s:"VUL"},
+  {t:"Me molesta en silencio que no se valore lo que hago.",s:"VUL"},
+  {t:"Paso mucho tiempo pensando en cómo me ven los demás.",s:"VUL"},
+  {t:"Siento que merezco más de lo que la vida me da, y eso me amarga.",s:"VUL"}
+ ]
+});
+window.SEO_CONTENT.narcisismo={slug:"test-de-narcisista",seoTitle:"Test de narcisista: ¿tienes rasgos narcisistas? Grandioso o encubierto | Testia",h1:"Test de narcisista: ¿tienes rasgos narcisistas?",
+ metaDesc:"Test de narcisista gratis: 20 afirmaciones para medir tus rasgos narcisistas y saber si tu patrón es grandioso o encubierto. Basado en la investigación. Sin registro.",
+ intro:"¿Soy narcisista? Este test mide tus rasgos narcisistas con 20 afirmaciones sobre cómo te ves, cómo te relacionas y cómo vives la crítica. Distingue entre el narcisismo grandioso, el más visible, y el vulnerable o encubierto, el que no se nota desde fuera. Se basa en las escalas que usa la investigación, es gratis, sin registro y tarda unos 3 minutos.",
+ updated:"octubre de 2026",updatedISO:"2026-10-26",
+ learn:["Tu nivel de rasgos narcisistas","Tu índice de narcisismo de 0 a 100","Si tu patrón es grandioso, encubierto o mixto","Tu puntuación en grandiosidad, admiración, rivalidad, privilegio y vulnerabilidad"],
+ overview:[{label:"Mide",text:"Rasgos narcisistas en cinco dimensiones, grandiosas y vulnerables."},{label:"Formato",text:"20 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"Mide rasgos; no diagnostica el trastorno narcisista de la personalidad."}],
+ sections:[
+  {title:"Qué es el narcisismo",body:"El narcisismo es un rasgo de personalidad que todos tenemos en mayor o menor grado: la tendencia a verse como especial, buscar admiración y proteger la propia imagen. Solo en casos extremos, persistentes y que causan problemas serios se habla de trastorno narcisista de la personalidad, que únicamente puede diagnosticar un profesional."},
+  {title:"Narcisismo grandioso y narcisismo encubierto",body:"La investigación distingue dos caras. El narcisismo grandioso es el más visible: seguridad, deseo de destacar, sensación de superioridad. El narcisismo vulnerable o encubierto se vive por dentro: mucha sensibilidad a la crítica, resentimiento cuando no se reconoce el propio valor e inseguridad. Ambas comparten la sensación de merecer más que los demás."},
+  {title:"Admiración y rivalidad",body:"Un modelo muy usado divide el narcisismo grandioso en dos estrategias. La admiración busca brillar y gustar: puede ayudar a causar buena impresión. La rivalidad protege la imagen atacando a los demás: devaluar, competir, devolver la crítica. Es esta segunda la que más deteriora las relaciones a largo plazo."},
+  {title:"¿Y si quien me preocupa es mi pareja?",body:"Este test está pensado para responderlo sobre uno mismo. Si te preocupa la conducta de tu pareja, fíjate en hechos concretos: si te desvaloriza, controla o castiga cuando no le das la razón. El test de red flags puede ayudarte a ordenarlo, y si sientes miedo o control, en España puedes llamar al 016, que es gratuito y no deja rastro en la factura."}],
+ faqs:[
+  {q:"¿Cómo saber si soy narcisista?",a:"Todos tenemos rasgos narcisistas en algún grado. Un test como este mide cuánto pesan en tu caso y de qué tipo son. Solo un profesional puede diagnosticar el trastorno narcisista de la personalidad."},
+  {q:"¿Qué es el narcisismo encubierto?",a:"Es el narcisismo vulnerable: no se muestra como arrogancia, sino como mucha sensibilidad a la crítica, resentimiento cuando no se reconoce lo que uno hace y necesidad de validación vivida por dentro."},
+  {q:"¿Este test diagnostica el trastorno narcisista?",a:"No. Mide rasgos de personalidad, que son continuos y están presentes en todo el mundo. El trastorno solo lo diagnostica un profesional de la salud mental."},
+  {q:"¿Puedo hacerlo pensando en mi pareja?",a:"Está pensado para responderlo sobre ti. Para valorar la conducta de otra persona, fíjate en hechos concretos; el test de red flags te ayuda a ordenarlos."},
+  {q:"¿Tener rasgos narcisistas es malo?",a:"No necesariamente. Un poco de narcisismo da seguridad y ganas de destacar. El problema aparece cuando domina la rivalidad, la sensación de privilegio o la vulnerabilidad a la crítica."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de rasgos narcisistas es gratis y sin registro. Tu índice exacto, tu tipo y tus cinco dimensiones se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"The NPI-16 as a short measure of narcissism",url:"https://doi.org/10.1016/j.jrp.2005.03.002",note:"Ames, Rose y Anderson (2006): versión breve del inventario de personalidad narcisista."},
+  {title:"Assessing hypersensitive narcissism: A reexamination of Murray's Narcism Scale",url:"https://doi.org/10.1006/jrpe.1997.2204",note:"Hendin y Cheek (1997): la escala de narcisismo hipersensible o vulnerable."},
+  {title:"Narcissistic admiration and rivalry: Disentangling the bright and dark sides of narcissism",url:"https://doi.org/10.1037/a0034431",note:"Back y colaboradores (2013): el modelo de admiración y rivalidad."},
+  {title:"Grandiose and vulnerable narcissism: A nomological network analysis",url:"https://doi.org/10.1111/j.1467-6494.2010.00711.x",note:"Miller y colaboradores (2011): diferencias entre el narcisismo grandioso y el vulnerable."},
+  {title:"Trastorno narcisista de la personalidad",url:W("Trastorno_narcisista_de_la_personalidad"),note:"Diferencia entre rasgo y trastorno."}],
+ guide:{url:"/blog/narcisismo-grandioso-y-vulnerable",title:"Narcisismo grandioso y vulnerable",text:"Diferencias y cómo se miden"},
+ relatedIds:["darktriad","redflag","dificil"]};
+})();

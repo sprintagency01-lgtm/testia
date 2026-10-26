@@ -53,6 +53,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Intenciones reservadas por landings
 
+- `/test/test-de-narcisista` — `test de narcisista`, `test de narcisista gratis`, `test narcisismo encubierto`, `test de rasgos narcisistas`.
 - `/test/test-altas-capacidades-adultos` — `test de altas capacidades adultos`, `test de superdotado`, `test altas capacidades gratis`.
 - `/test/test-con-que-candidato-coincides` — `test con qué candidato coincides`, `test qué político eres`.
 - `/test/test-de-nacionalidad-espanola` — `test de nacionalidad española`, `test CCSE`, `simulacro CCSE`, `examen de nacionalidad española`.
