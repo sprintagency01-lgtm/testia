@@ -2065,7 +2065,7 @@ window.TESTS.push({
  instrument:"Cuestionario propio de Testia inspirado en el NPI-16 (Ames, Rose y Anderson, 2006), la escala de narcisismo hipersensible (Hendin y Cheek, 1997) y el modelo de admiración y rivalidad (Back y colaboradores, 2013). Mide rasgos, no diagnostica el trastorno narcisista de la personalidad.", license:"🟢",
  mode:"likert", scaleMax:5,
  premiumTitle:"Ya sabes tu nivel. Descubre si eres grandioso o encubierto",
- premiumPitch:"Tu índice de narcisismo de 0 a 100, si tu patrón es grandioso, encubierto o mixto, y tu puntuación en las cinco dimensiones con lo que significa cada una.",
+ premiumPitch:"Tu porcentaje exacto de narcisismo, si tu patrón es grandioso, encubierto o mixto, y tu puntuación en las cinco dimensiones con lo que significa cada una.",
  scales:{GRA:"Grandiosidad",ADM:"Necesidad de admiración",RIV:"Rivalidad",DER:"Sensación de privilegio",VUL:"Narcisismo vulnerable"},
  result:{type:"narc"},
  interp:{
@@ -2102,7 +2102,7 @@ window.SEO_CONTENT.narcisismo={slug:"test-de-narcisista",seoTitle:"Test de narci
  metaDesc:"Test de narcisista gratis: 20 afirmaciones para medir tus rasgos narcisistas y saber si tu patrón es grandioso o encubierto. Basado en la investigación. Sin registro.",
  intro:"¿Soy narcisista? Este test mide tus rasgos narcisistas con 20 afirmaciones sobre cómo te ves, cómo te relacionas y cómo vives la crítica. Distingue entre el narcisismo grandioso, el más visible, y el vulnerable o encubierto, el que no se nota desde fuera. Se basa en las escalas que usa la investigación, es gratis, sin registro y tarda unos 3 minutos.",
  updated:"octubre de 2026",updatedISO:"2026-10-26",
- learn:["Tu nivel de rasgos narcisistas","Tu índice de narcisismo de 0 a 100","Si tu patrón es grandioso, encubierto o mixto","Tu puntuación en grandiosidad, admiración, rivalidad, privilegio y vulnerabilidad"],
+ learn:["Tu nivel de rasgos narcisistas","Tu porcentaje de narcisismo","Si tu patrón es grandioso, encubierto o mixto","Tu puntuación en grandiosidad, admiración, rivalidad, privilegio y vulnerabilidad"],
  overview:[{label:"Mide",text:"Rasgos narcisistas en cinco dimensiones, grandiosas y vulnerables."},{label:"Formato",text:"20 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"Mide rasgos; no diagnostica el trastorno narcisista de la personalidad."}],
  sections:[
   {title:"Qué es el narcisismo",body:"El narcisismo es un rasgo de personalidad que todos tenemos en mayor o menor grado: la tendencia a verse como especial, buscar admiración y proteger la propia imagen. Solo en casos extremos, persistentes y que causan problemas serios se habla de trastorno narcisista de la personalidad, que únicamente puede diagnosticar un profesional."},
@@ -2115,7 +2115,7 @@ window.SEO_CONTENT.narcisismo={slug:"test-de-narcisista",seoTitle:"Test de narci
   {q:"¿Este test diagnostica el trastorno narcisista?",a:"No. Mide rasgos de personalidad, que son continuos y están presentes en todo el mundo. El trastorno solo lo diagnostica un profesional de la salud mental."},
   {q:"¿Puedo hacerlo pensando en mi pareja?",a:"Está pensado para responderlo sobre ti. Para valorar la conducta de tu pareja, haz el test de pareja narcisista, que pregunta por conductas concretas."},
   {q:"¿Tener rasgos narcisistas es malo?",a:"No necesariamente. Un poco de narcisismo da seguridad y ganas de destacar. El problema aparece cuando domina la rivalidad, la sensación de privilegio o la vulnerabilidad a la crítica."},
-  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de rasgos narcisistas es gratis y sin registro. Tu índice exacto, tu tipo y tus cinco dimensiones se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de rasgos narcisistas es gratis y sin registro. Tu porcentaje exacto de narcisismo, tu tipo y tus cinco dimensiones se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
  sources:[
   {title:"The NPI-16 as a short measure of narcissism",url:"https://doi.org/10.1016/j.jrp.2005.03.002",note:"Ames, Rose y Anderson (2006): versión breve del inventario de personalidad narcisista."},
   {title:"Assessing hypersensitive narcissism: A reexamination of Murray's Narcism Scale",url:"https://doi.org/10.1006/jrpe.1997.2204",note:"Hendin y Cheek (1997): la escala de narcisismo hipersensible o vulnerable."},
@@ -2136,7 +2136,7 @@ window.TESTS.push({
  mode:"likert", scaleMax:5,
  prompt:"Piensa en tu pareja actual o en tu última relación y responde según lo que ha pasado de verdad, no según lo que te gustaría.",
  premiumTitle:"Ya sabes el nivel. Descubre qué conductas pesan más",
- premiumPitch:"El índice de 0 a 100, cuánto pesa cada una de las cinco dimensiones, las conductas que más se repiten en tu relación y cómo abordarlas.",
+ premiumPitch:"El porcentaje de narcisismo en tu pareja, cuánto pesa cada una de las cinco dimensiones, las conductas que más se repiten en tu relación y cómo abordarlas.",
  scales:{ADM:"Necesidad de admiración",EMP:"Falta de empatía",DEV:"Desvalorización",CTR:"Control y manipulación",CRI:"Reacción a la crítica"},
  result:{type:"narcp"},
  interp:{
@@ -2173,7 +2173,7 @@ window.SEO_CONTENT.parejanarc={slug:"test-pareja-narcisista",seoTitle:"Test de p
  metaDesc:"Test de pareja narcisista gratis: 20 conductas concretas para saber si en tu relación hay un patrón narcisista, qué conductas pesan más y qué hacer. Sin registro.",
  intro:"¿Tu pareja necesita ser siempre el centro, quita importancia a lo tuyo y nunca reconoce un error? Este test no pone etiquetas: te pregunta por 20 conductas concretas de tu relación y te dice si forman un patrón narcisista y cuáles pesan más. Es gratis, anónimo y tarda unos 3 minutos.",
  updated:"octubre de 2026",updatedISO:"2026-10-26",
- learn:["Si en tu relación hay un patrón de conductas narcisistas","El índice de 0 a 100","Cuánto pesa cada dimensión: admiración, empatía, desvalorización, control y crítica","Las conductas que más se repiten y cómo abordarlas"],
+ learn:["Si en tu relación hay un patrón de conductas narcisistas","El porcentaje de narcisismo en tu pareja","Cuánto pesa cada dimensión: admiración, empatía, desvalorización, control y crítica","Las conductas que más se repiten y cómo abordarlas"],
  overview:[{label:"Mide",text:"Conductas narcisistas observadas en tu pareja, en cinco dimensiones."},{label:"Formato",text:"20 afirmaciones sobre conductas concretas; unos 3 minutos."},{label:"Límite",text:"Describe conductas; no diagnostica a nadie."}],
  sections:[
   {title:"Señales de narcisismo en la pareja",body:"La investigación sobre el narcisismo describe conductas que se notan especialmente en la pareja: necesidad constante de admiración, poca empatía, quitar valor a los logros del otro, control y una reacción desproporcionada a la crítica. Lo importante no es una conducta aislada, que todos tenemos alguna vez, sino que se repitan y formen un patrón."},
@@ -2186,7 +2186,7 @@ window.SEO_CONTENT.parejanarc={slug:"test-pareja-narcisista",seoTitle:"Test de p
   {q:"¿Qué hago si el resultado es alto?",a:"Ponle palabras a las conductas concretas que más pesan y valora cómo te afectan. Hablarlo con un psicólogo ayuda. Si hay control, humillación o miedo, pide ayuda: en España, el 016 o, si hay peligro inmediato, el 112."},
   {q:"¿Puedo hacerlo sobre una relación pasada?",a:"Sí. Responde pensando en cómo era la relación. Puede ayudarte a entender lo que viviste."},
   {q:"¿Se guardan mis respuestas?",a:"No. El cálculo se hace en tu navegador y Testia no registra tus respuestas."},
-  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver si hay un patrón narcisista es gratis y sin registro. El índice, las cinco dimensiones y las conductas que más pesan se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver si hay un patrón narcisista es gratis y sin registro. El porcentaje de narcisismo, las cinco dimensiones y las conductas que más pesan se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
  sources:[
   {title:"Narcissism and newlywed marriage: Partner characteristics and marital trajectories",url:"https://doi.org/10.1037/per0000137",note:"Lavner y colaboradores (2016): cómo el narcisismo se relaciona con la calidad de la pareja a lo largo del tiempo."},
   {title:"Living with pathological narcissism: a qualitative study",url:"https://doi.org/10.1186/s40479-020-00132-8",note:"Day, Townsend y Grenyer (2020): la experiencia de convivir con una persona con narcisismo patológico."},

@@ -666,7 +666,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261026d"></script>
+<script src="tests.js?v=20261026e"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -1214,15 +1214,15 @@ function finish(){
         :['Mixto','Combinas rasgos grandiosos y vulnerables: momentos de seguridad y ganas de destacar con otros de mucha sensibilidad a la crítica. La investigación describe las dos caras como relacionadas.'];
       const lv=p=>p>=66?['hi','Alto']:p>=40?['mid','Medio']:['lo','Bajo'];
       r.eyebrow=T.eyebrow;r.name=tier[0];r.role='Test de narcisismo';r.mono='EGO';r.traits=[];
-      r.desc=`${tier[1]} Tu índice exacto, si tu patrón es grandioso o encubierto y tus cinco dimensiones están en la lectura completa.`;
+      r.desc=`${tier[1]} Tu porcentaje exacto de narcisismo, si tu patrón es grandioso o encubierto y tus cinco dimensiones están en la lectura completa.`;
       r.bars=K.map(k=>({lab:T.scales[k],p:pct[k],tag:lv(pct[k])[1],premium:true,hidePct:true}));
-      r.stats=[{v:`${ix}/100`,l:'índice de narcisismo'},{v:sub[0],l:'tipo de patrón'}];
+      r.stats=[{v:`${ix} %`,l:'nivel de narcisismo'},{v:sub[0],l:'tipo de patrón'}];
       r.analysis=[{lab:'Tu patrón',band:sub[0],p:ix,hidePct:true,text:sub[1]}]
         .concat(K.map(k=>({lab:T.scales[k],band:lv(pct[k])[1],p:pct[k],hidePct:true,text:(T.interp[k]&&T.interp[k][lv(pct[k])[0]])||''})))
         .concat([{lab:'Si te preocupa',band:'Siguiente paso',p:100,hidePct:true,text:'Tener rasgos narcisistas no es un trastorno. Si sientes que te generan problemas en el trabajo o en tus relaciones, o te cuesta gestionar la crítica, hablarlo con un psicólogo ayuda: son patrones que se pueden trabajar.'}]);
       r.card={mono:'EGO',name:tier[0],role:'Test de narcisismo',stat:tier[0].toUpperCase()};
-      r.full={name:`Índice ${ix}/100`,role:ix>=55?`${tier[0]} · patrón ${sub[0].toLowerCase()}`:`${tier[0]} · sin patrón narcisista definido`,desc:`Tu índice de narcisismo es ${ix} sobre 100. ${tier[1]} ${ix>=55?`Tu patrón es ${sub[0].toLowerCase()}.`:''} Abajo, tus cinco dimensiones.`,
-        card:{mono:String(ix),name:tier[0],role:'Índice de narcisismo',stat:ix>=55?`PATRÓN ${sub[0].toUpperCase()}`:`${ix}/100`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+      r.full={name:`${ix} % narcisista`,role:ix>=55?`${tier[0]} · patrón ${sub[0].toLowerCase()}`:`${tier[0]} · sin patrón narcisista definido`,desc:`Tu nivel de narcisismo es del ${ix} %. ${tier[1]} ${ix>=55?`Tu patrón es ${sub[0].toLowerCase()}.`:''} Abajo, tus cinco dimensiones.`,
+        card:{mono:`${ix}%`,name:`${ix} % narcisista`,role:tier[0],stat:ix>=55?`PATRÓN ${sub[0].toUpperCase()}`:tier[0].toUpperCase()},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
     }else if(R.type==='narcp'){
       const K=Object.keys(T.scales),ix=Math.round(K.reduce((a,k)=>a+pct[k],0)/K.length);
       const tier=ix>=82?['Patrón narcisista muy marcado','Las conductas que describes forman un patrón narcisista muy marcado y repetido en tu relación.']
@@ -1237,15 +1237,15 @@ function finish(){
       const adj=items.map((it,i)=>({it,v:answers[i]==null?0:(it.r?6-answers[i]:answers[i])})).filter(x=>x.v>=4).sort((a,b)=>b.v-a.v||PRI[b.it.s]-PRI[a.it.s]).slice(0,3); // a igual intensidad, primero lo más grave
       const lv=p=>p>=66?['hi','Alto']:p>=40?['mid','Medio']:['lo','Bajo'];
       r.eyebrow=T.eyebrow;r.name=tier[0];r.role='Test de pareja narcisista';r.mono='EGO';r.traits=[];
-      r.desc=`${tier[1]}${safety} El índice exacto, el peso de cada dimensión y las conductas que más se repiten están en la lectura completa.`;
+      r.desc=`${tier[1]}${safety} El porcentaje exacto de narcisismo, el peso de cada dimensión y las conductas que más se repiten están en la lectura completa.`;
       r.bars=K.map(k=>({lab:T.scales[k],p:pct[k],tag:lv(pct[k])[1],premium:true,hidePct:true}));
-      r.stats=[{v:`${ix}/100`,l:'índice de conductas narcisistas'}];
+      r.stats=[{v:`${ix} %`,l:'nivel de narcisismo en tu pareja'}];
       r.analysis=[{lab:'Lo que más se repite',band:adj.length?`${adj.length} conductas`:'Nada destacable',p:ix,hidePct:true,text:adj.length?adj.map(x=>`«${x.it.t}»`).join(' ')+' Son las conductas que has marcado con más fuerza. Ponerles nombre ayuda a hablarlas: «cuando haces X, me siento Y».':'No hay ninguna conducta que hayas marcado con fuerza.'}]
         .concat(K.map(k=>({lab:T.scales[k],band:lv(pct[k])[1],p:pct[k],hidePct:true,text:(T.interp[k]&&T.interp[k][lv(pct[k])[0]])||''})))
         .concat([{lab:'Qué puedes hacer',band:'Siguiente paso',p:100,hidePct:true,text:'Un test no diagnostica a nadie, pero sí te ayuda a ver qué está pasando. Si estas conductas te hacen daño, hablarlo con un psicólogo te ayudará a decidir qué hacer. Si hay control, humillación o miedo, no es solo narcisismo: en España, el 016 atiende las 24 horas y el 112 si hay peligro inmediato.'}]);
       r.card={mono:'EGO',name:tier[0],role:'Test de pareja narcisista',stat:tier[0].toUpperCase()};
-      r.full={name:`Índice ${ix}/100`,role:`${tier[0]} · conductas narcisistas en la pareja`,desc:`El índice de conductas narcisistas en tu relación es ${ix} sobre 100. ${tier[1]}${safety} Abajo, las cinco dimensiones y las conductas que más pesan.`,
-        card:{mono:String(ix),name:tier[0],role:'Índice de conductas narcisistas',stat:`${ix}/100`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+      r.full={name:`${ix} % de narcisismo`,role:`${tier[0]} · en tu pareja`,desc:`Las conductas que describes reflejan un nivel de narcisismo del ${ix} % en tu pareja. ${tier[1]}${safety} Abajo, las cinco dimensiones y las conductas que más pesan.`,
+        card:{mono:`${ix}%`,name:`${ix} % de narcisismo`,role:'En tu pareja',stat:tier[0].toUpperCase()},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
     }else if(R.type==='riasec'){
       const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const code=arr.slice(0,3).map(x=>x.k).join('');
