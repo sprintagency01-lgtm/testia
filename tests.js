@@ -2005,3 +2005,53 @@ window.SEO_CONTENT.candidato={slug:"test-con-que-candidato-coincides",seoTitle:"
   "about":[["Pedro Sánchez","Pedro_Sánchez"],["Alberto Núñez Feijóo","Alberto_Núñez_Feijóo"],["Santiago Abascal","Santiago_Abascal"],["Ada Colau","Ada_Colau"],["Irene Montero","Irene_Montero"],["Alvise Pérez","Alvise_Pérez"]].map(([n,w])=>({"@type":"Person","name":n,"sameAs":W(w)}))},
  relatedIds:["partido","politico","values"]};
 })();
+
+/* ===== Test de altas capacidades para adultos (octubre 2026) ===== */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+const IQT=window.TESTS.find(t=>t.id==='iq');
+window.TESTS.push({
+ id:"aacc", name:"Test de altas capacidades para adultos", emoji:"💡", cat:"Inteligencia", eyebrow:"Tu perfil de altas capacidades",
+ blurb:"15 problemas de razonamiento y 20 preguntas sobre cómo piensas y sientes. Descubre si tu perfil encaja con las altas capacidades y tu CI estimado.",
+ instrument:"Razonamiento: ítems propios de Testia en el formato de ICAR (Condon y Revelle, 2014), escala de CI con media 100 y desviación 15. Rasgos: cuestionario propio basado en las características descritas en la investigación sobre altas capacidades en adultos. Orientativo, no es una evaluación clínica.", license:"🟢",
+ mode:"mixed", scoring:"aacc", scaleMax:5, minutes:12,
+ domains:{verbal:"Verbal",numerico:"Numérico",logico:"Lógico",abstracto:"Abstracto",espacial:"Espacial"},
+ interpD:IQT?IQT.interp:{},
+ scales:{CUR:"Curiosidad intelectual",VEL:"Rapidez y complejidad de pensamiento",INT:"Intensidad y sensibilidad",CRE:"Creatividad",EXI:"Exigencia e implicación"},
+ interp:{
+  CUR:{hi:"Tu curiosidad es muy intensa: necesitas entender a fondo lo que te interesa y te aburres con lo superficial. Es uno de los rasgos más descritos en adultos con altas capacidades.",mid:"Eres curioso con los temas que te importan, sin que esa necesidad de saber lo condicione todo.",lo:"La curiosidad intelectual no es lo que más te mueve: prefieres lo práctico a darle vueltas a por qué funcionan las cosas."},
+  VEL:{hi:"Piensas rápido y en red: llegas antes a las conclusiones y conectas ideas lejanas. A veces eso se vive como impaciencia con el ritmo de los demás.",mid:"Aprendes a buen ritmo y sueles ver por dónde van las cosas, sin que te pase constantemente.",lo:"Prefieres avanzar paso a paso y sobre seguro antes que saltar a la conclusión."},
+  INT:{hi:"Vives las emociones y los estímulos con mucha intensidad. La investigación encuentra que este rasgo aparece algo más en personas con altas capacidades, aunque también es propio de la alta sensibilidad.",mid:"Tienes una sensibilidad emocional normal-alta: te afectan las cosas, pero sin que te desborden.",lo:"Eres más bien estable y templado: los estímulos y las emociones no te saturan con facilidad."},
+  CRE:{hi:"Tu pensamiento es muy creativo: buscas soluciones poco habituales y te cuesta hacer las cosas como siempre. Es uno de los tres anillos del modelo de Renzulli.",mid:"Tienes ideas propias cuando la situación lo pide, aunque también te sientes cómodo con lo conocido.",lo:"Prefieres lo probado a inventar: la creatividad no es tu motor principal."},
+  EXI:{hi:"Te implicas a fondo en lo que te apasiona y te exiges mucho. Es el compromiso con la tarea que Renzulli sitúa junto a la capacidad y la creatividad; su cara b es el perfeccionismo.",mid:"Te implicas en lo que te importa sin llevarlo al extremo.",lo:"No sueles exigirte más de lo necesario: priorizas el equilibrio a la perfección."}
+ },
+ premiumTitle:"Ya sabes tu perfil. Descubre tu CI estimado y tus rasgos",
+ premiumPitch:"Tu CI estimado con la cifra y tu percentil, tus aciertos en cada aptitud, cuánto encajas en los cinco rasgos típicos de las altas capacidades y qué hacer si quieres una evaluación profesional.",
+ items:[]
+});
+window.SEO_CONTENT.aacc={slug:"test-altas-capacidades-adultos",seoTitle:"Test de altas capacidades para adultos gratis y sin registro | Testia",h1:"Test de altas capacidades para adultos",
+ metaDesc:"Test de altas capacidades para adultos: 15 problemas de razonamiento y 20 preguntas sobre rasgos. Descubre si tu perfil encaja con las altas capacidades. Gratis y sin registro.",
+ intro:"¿Siempre te has sentido diferente, piensas más rápido que los demás o te aburres con lo superficial? Este test de altas capacidades para adultos combina 15 problemas de razonamiento con 20 preguntas sobre los rasgos que la investigación asocia a las altas capacidades. Te dice si tu perfil encaja con ellas y te da tu CI estimado. Es gratis, sin registro y tarda unos 12 minutos.",
+ updated:"octubre de 2026",updatedISO:"2026-10-26",
+ learn:["Si tu perfil encaja con las altas capacidades","Tu CI estimado y tu percentil","Tus aciertos en razonamiento verbal, numérico, lógico, abstracto y espacial","Cuánto encajas en los cinco rasgos típicos","Qué hacer si quieres una evaluación profesional"],
+ overview:[{label:"Mide",text:"Tu razonamiento en cinco aptitudes y cinco rasgos asociados a las altas capacidades."},{label:"Formato",text:"15 problemas de razonamiento y 20 afirmaciones; unos 12 minutos."},{label:"Límite",text:"Es orientativo: las altas capacidades solo se confirman con una evaluación profesional."}],
+ sections:[
+  {title:"Qué son las altas capacidades",body:"Se habla de altas capacidades o superdotación cuando una persona tiene una capacidad intelectual muy superior a la media. El criterio más usado es un CI de 130 o más, que alcanza alrededor del 2 % de la población. Muchos modelos añaden otros elementos: el de los tres anillos de Renzulli, por ejemplo, combina capacidad, creatividad y compromiso con la tarea."},
+  {title:"Cómo funciona este test",body:"La primera parte son 15 problemas de razonamiento, tres de cada aptitud: verbal, numérica, lógica, abstracta y espacial. Siguen el formato de ICAR, un banco de ítems de dominio público usado en investigación, y cambian en cada intento. La segunda parte son 20 afirmaciones sobre cinco rasgos: curiosidad intelectual, rapidez de pensamiento, intensidad y sensibilidad, creatividad y exigencia. El resultado cruza las dos partes."},
+  {title:"Rasgos de las altas capacidades en adultos",body:"Los adultos con altas capacidades suelen describir una curiosidad muy intensa, aprendizaje rápido, pensamiento en red, sentido de la justicia, creatividad y una exigencia alta consigo mismos. La investigación es prudente con la intensidad emocional: un metaanálisis encontró que es algo más frecuente en personas con altas capacidades, pero con diferencias pequeñas. Ninguno de estos rasgos basta por sí solo."},
+  {title:"Si el resultado te encaja, ¿y ahora qué?",body:"Este test es orientativo. Las altas capacidades solo se confirman con una evaluación profesional, que suele incluir una prueba de inteligencia completa, como las escalas Wechsler, y una entrevista. En España la realizan psicólogos especializados y algunas asociaciones de altas capacidades. Saberlo ayuda a muchos adultos a entender cómo piensan y por qué se han sentido diferentes."}],
+ faqs:[
+  {q:"¿Cómo saber si tengo altas capacidades siendo adulto?",a:"Un test orientativo como este es un primer paso: combina razonamiento y rasgos. Para confirmarlo hace falta una evaluación con un psicólogo especializado, que incluye una prueba de inteligencia completa."},
+  {q:"¿Qué CI hay que tener para tener altas capacidades?",a:"El criterio más habitual es un CI de 130 o más, es decir, dos desviaciones típicas por encima de la media. Lo supera alrededor del 2 % de la población."},
+  {q:"¿Este test da un diagnóstico?",a:"No. Es orientativo. Las altas capacidades no son un trastorno, pero su identificación formal la hace un profesional con pruebas estandarizadas."},
+  {q:"¿Puedo tener rasgos de altas capacidades sin un CI muy alto?",a:"Sí. Rasgos como la intensidad emocional o la curiosidad también aparecen en personas sin altas capacidades, por ejemplo con alta sensibilidad. Por eso el test cruza los rasgos con el razonamiento."},
+  {q:"¿En qué se diferencia del test de CI?",a:"El test de CI mide solo razonamiento, con 32 problemas. Este combina 15 problemas con un cuestionario de rasgos para valorar si tu perfil encaja con las altas capacidades."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver si tu perfil encaja con las altas capacidades es gratis y sin registro. Tu CI estimado, tu percentil y el perfil completo de rasgos se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"Rethinking giftedness and gifted education: A proposed direction forward based on psychological science",url:"https://doi.org/10.1177/1529100611418056",note:"Subotnik, Olszewski-Kubilius y Worrell (2011): revisión sobre qué son las altas capacidades y cómo se identifican."},
+  {title:"Giftedness and overexcitability: Investigating the relationship using meta-analysis",url:"https://doi.org/10.1177/0016986216657588",note:"Winkler y Voight (2016): la intensidad es algo más frecuente en personas con altas capacidades, con diferencias pequeñas."},
+  {title:"The International Cognitive Ability Resource: Development and initial validation of a public-domain measure",url:"https://doi.org/10.1016/j.intell.2014.01.004",note:"Condon y Revelle (2014): el banco de ítems de razonamiento en el que se inspira el formato del test."},
+  {title:"Superdotación",url:W("Superdotación"),note:"Definiciones, criterio de CI de 130 y modelo de los tres anillos de Renzulli."}],
+ ld:{"about":[{"@type":"Thing","name":"Superdotación","sameAs":W("Superdotación")}]},
+ relatedIds:["iq","memoria","atencion"]};
+})();

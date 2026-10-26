@@ -666,11 +666,12 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261026"></script>
+<script src="tests.js?v=20261026b"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
 <script src="ccse.js?v=20261020"></script>
+<script src="aacc.js?v=20261026"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -687,14 +688,14 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",atencion:"inteligencia",
+const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",grit:"profesional",maximizer:"profesional",
   attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",
   moral:"bienestar",partido:"bienestar",candidato:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
 const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
-  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles",ccse:"idcard",candidato:"users"};
+  values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles",ccse:"idcard",candidato:"users",aacc:"bulb"};
 const ICONS={
   idcard:["M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"],
   trophy:["M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.228a25.772 25.772 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"],
@@ -873,14 +874,15 @@ function renderItem(){
   $('qcount').textContent=`Pregunta ${idx+1} de ${items.length}`;
   $('qbig').textContent=String(idx+1).padStart(2,'0');
   $('qbar').style.width=(idx/items.length*100)+'%';
-  $('qtext').textContent=(T.mode==='correct')?it.q:it.t;
+  const isQ=T.mode==='correct'||(T.mode==='mixed'&&it.q!==undefined); // en modo mixto, cada ítem decide
+  $('qtext').textContent=isQ?it.q:it.t;
   const keys=['1','2','3','4','5','6','7','8'];
-  if(T.mode==='likert') renderScale(it);
+  if(T.mode==='likert'||(T.mode==='mixed'&&!isQ)) renderScale(it);
   else if(it.osvg){ // ítem figural (CI): prompt SVG + opciones SVG
     const prompt=it.svg?`<div class="figprompt">${it.svg}</div>`:'';
     $('opts').innerHTML=prompt+`<div class="figopts">${it.osvg.map((s,i)=>`<div class="figopt ${answers[idx]===i?'on':''}" role="button" tabindex="0" onclick="pick(${i})"><span class="k">${keys[i]}</span><div class="figbox">${s}</div></div>`).join('')}</div>`;
   } else {
-    const opts=(T.mode==='correct')?it.o.map((o,i)=>({l:o,v:i})):it.opts.map(o=>({l:o.l,v:o.v}));
+    const opts=isQ?it.o.map((o,i)=>({l:o,v:i})):it.opts.map(o=>({l:o.l,v:o.v}));
     const prompt=it.svg?`<div class="figprompt">${it.svg}</div>`:'';
     $('opts').innerHTML=prompt+`<div class="olist">${opts.map((o,i)=>`<div class="orow ${answers[idx]===o.v?'on':''}" role="button" tabindex="0" onclick="pick(${o.v})"><span class="k">${keys[i]}</span><span>${o.l}</span></div>`).join('')}</div>`;
   }
@@ -904,7 +906,8 @@ function pick(v){
   if(memActive)return;
   if(rts[idx]===undefined&&itemStart[idx])rts[idx]=Date.now()-itemStart[idx];
   answers[idx]=v;renderItem();
-  if((T.mode!=='correct'||T.autoAdvance)&&idx<items.length-1){const at=idx,tid=T.id;setTimeout(()=>{
+  const cur=items[idx],isQ=T.mode==='correct'||(T.mode==='mixed'&&cur&&cur.q!==undefined);
+  if((!isQ||T.autoAdvance)&&idx<items.length-1){const at=idx,tid=T.id;setTimeout(()=>{
     if(T&&T.id===tid&&idx===at&&answers[at]!=null&&$('quiz').classList.contains('active')){idx++;renderItem();window.scrollTo({top:0,behavior:'smooth'});}
   },320);}
 }
@@ -986,7 +989,36 @@ function finish(){
   clearInterval(timerId);
   const cat=CATS[TEST_CAT[T.id]],accent=cat.color,R=T.result;
   let r={accent,traits:[],bars:null,stats:[],desc:'',role:T.name,eyebrow:T.eyebrow||'Tu lectura · El espejo'};
-  if(T.mode==='correct'){
+  if(T.scoring==='aacc'){
+    const rq=items.filter(it=>it.q!==undefined),correct=rq.reduce((n,it)=>n+(answers[items.indexOf(it)]===it.a?1:0),0),total=rq.length;
+    const iq=Math.round(Math.min(145,Math.max(70,100+15*((correct-total*0.55)/(total*0.18))))),pc=pctIQ(iq);
+    const tr={};Object.keys(T.scales).forEach(k=>{const v=items.map((it,i)=>it.s===k?answers[i]:null).filter(x=>x!=null);tr[k]=v.length?(v.reduce((a,b)=>a+b,0)/v.length-1)/4*100:0;});
+    const trAvg=Object.values(tr).reduce((a,b)=>a+b,0)/Object.keys(tr).length;
+    const trLv=trAvg>=70?'muy marcados':trAvg>=50?'presentes':'poco marcados';
+    const tier=iq>=130?['Perfil de altas capacidades','Tu razonamiento está en la franja que suele asociarse a las altas capacidades.']
+      :iq>=120?['Capacidad muy alta','Tu razonamiento está muy por encima de la media, cerca de la franja de las altas capacidades.']
+      :iq>=110?['Capacidad alta','Tu razonamiento está por encima de la media.']
+      :iq>=90?['Capacidad en la media','Tu razonamiento está en la franja media, donde se sitúa la mayoría de la población.']
+      :['Capacidad media-baja','Hoy tu razonamiento ha quedado por debajo de la media en este test.'];
+    const byD=k=>{const its=rq.filter(x=>x.d===k);const c=its.reduce((n,x)=>n+(answers[items.indexOf(x)]===x.a?1:0),0);return {c,n:its.length};};
+    r.eyebrow=T.eyebrow;r.name=tier[0];r.role='Test de altas capacidades';r.traits=[`Rasgos ${trLv}`];r.mono='AACC';
+    r.desc=`${tier[1]} Los rasgos que suelen acompañar a las altas capacidades están ${trLv} en tus respuestas. Tu CI estimado, tu percentil y tu perfil completo de rasgos están en la lectura completa.`;
+    r.bars=Object.keys(T.domains).map(k=>{const b=byD(k);return {lab:T.domains[k],p:b.n?b.c/b.n*100:0,tag:`${b.c}/${b.n}`,premium:true,hidePct:true};})
+      .concat(Object.keys(T.scales).map(k=>({lab:T.scales[k],p:tr[k],tag:tr[k]>=70?'Muy marcado':tr[k]>=50?'Presente':'Poco marcado',premium:true,hidePct:true})));
+    r.stats=[{v:String(iq),l:'CI estimado'},{v:pc.toFixed(0)+'%',l:'percentil'},{v:`${correct}/${total}`,l:'problemas resueltos'}];
+    const hiIQ=iq>=125,hiTr=trAvg>=60;
+    const combo=hiIQ&&hiTr?'Tu razonamiento y tus rasgos apuntan en la misma dirección. Es el perfil que más se parece a las altas capacidades tal y como se describen en adultos: capacidad alta junto a curiosidad, intensidad y creatividad. Si te reconoces, una evaluación profesional puede confirmarlo.'
+      :hiIQ?'Tu razonamiento es muy alto, aunque los rasgos que suelen acompañar a las altas capacidades no están tan marcados en tus respuestas. No son imprescindibles: hay personas con capacidad muy alta y un estilo tranquilo y convencional.'
+      :hiTr?'Te reconoces mucho en los rasgos típicos de las altas capacidades, aunque tu resultado de razonamiento ha sido más modesto. Puede deberse al día, a la presión del test o a que esos rasgos tengan otro origen, como la alta sensibilidad. Si la duda te acompaña desde hace tiempo, una evaluación profesional es la forma de salir de ella.'
+      :'Ni el razonamiento ni los rasgos apuntan de forma clara a unas altas capacidades. Es el resultado más frecuente: por definición, solo alrededor del 2 % de la población supera un CI de 130.';
+    r.analysis=[{lab:'Lectura conjunta',band:tier[0],p:Math.min(100,(iq-70)/75*100),hidePct:true,text:combo}]
+      .concat(Object.keys(T.domains).map(k=>{const b=byD(k),p=b.n?b.c/b.n*100:0,key=p>=66?'hi':p>=34?'mid':'lo';return {lab:`${T.domains[k]} · ${b.c}/${b.n}`,band:p>=66?'Alto':p>=34?'Medio':'Bajo',p,hidePct:true,text:(T.interpD[k]&&T.interpD[k][key])||''};}))
+      .concat(Object.keys(T.scales).map(k=>{const p=tr[k],key=p>=70?'hi':p>=50?'mid':'lo';return {lab:T.scales[k],band:p>=70?'Muy marcado':p>=50?'Presente':'Poco marcado',p,hidePct:true,text:(T.interp[k]&&T.interp[k][key])||''};}))
+      .concat([{lab:'Si quieres confirmarlo',band:'Siguiente paso',p:100,hidePct:true,text:'Este test es orientativo. Las altas capacidades solo se confirman con una evaluación profesional, que suele incluir una prueba de inteligencia completa, como las escalas Wechsler, y una entrevista. En España la realizan psicólogos especializados y algunas asociaciones de altas capacidades.'}]);
+    r.card={mono:'AACC',name:tier[0],role:'Test de altas capacidades',stat:`RASGOS ${trLv.toUpperCase()}`};
+    r.full={name:`CI ${iq}`,role:`${tier[0]} · rasgos ${trLv}`,desc:`Tu CI estimado es ${iq}: superas aproximadamente al ${pc.toFixed(0)} % de la población. ${tier[1]} Los rasgos de altas capacidades están ${trLv} en tus respuestas. Abajo, tu desglose completo.`,
+      card:{mono:String(iq),name:tier[0],role:'CI estimado · altas capacidades',stat:`TOP ${Math.max(1,Math.round(100-pc))} % · CI ${iq}`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+  }else if(T.mode==='correct'){
     const correct=answers.reduce((n,a,i)=>n+(a===items[i].a?1:0),0);
     if(T.scoring==='iq'){
       const secs=Math.min(T.duration,Math.round((Date.now()-startedAt)/1000)),total=items.length,iq=computeIQ(correct,total,secs,T.duration),pc=pctIQ(iq);
@@ -1358,8 +1390,8 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={politico:['partido','solluna'],partido:['solluna','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
-  iq:['memoria','atencion'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
+const NEXT_TEST={politico:['partido','solluna'],partido:['solluna','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['dificil','honesty'],moral:['politico','values'],
+  iq:['aacc','memoria'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],
   redflag:['celos','attachment'],celos:['lovestyles','attachment'],dificil:['darktriad','redflag'],lovestyles:['lovelang','celos'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};

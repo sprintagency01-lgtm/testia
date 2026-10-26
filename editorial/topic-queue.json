@@ -634,6 +634,20 @@
       "test_id": "ccse",
       "why": "'test de nacionalidad española 2026' y 'test ccse 2026' en el autocompletado de Google; búsqueda constante todo el año. Test lanzado el 2026-10-20 sin guía.",
       "status": "pending"
+    },
+    {
+      "keyword": "cómo saber si tengo altas capacidades siendo adulto",
+      "secondary": [
+        "rasgos de altas capacidades en adultos",
+        "altas capacidades no diagnosticadas en adultos",
+        "diferencia entre altas capacidades y alta sensibilidad",
+        "dónde hacer una evaluación de altas capacidades"
+      ],
+      "intent": "Guía para adultos que sospechan tener altas capacidades: rasgos descritos en la investigación (con prudencia), criterio de CI, modelos como el de Renzulli, diferencia con la alta sensibilidad y cómo es una evaluación profesional. Enlazar al test sin presentarlo como diagnóstico.",
+      "test_slug": "test-altas-capacidades-adultos",
+      "test_id": "aacc",
+      "why": "'test de altas capacidades adultos gratis' y variantes en el autocompletado de España y México; tema con mayor intención de pago en el análisis del 2026-10-26. Test lanzado el 2026-10-26 sin guía.",
+      "status": "pending"
     }
   ]
 }
