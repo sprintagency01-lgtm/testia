@@ -2313,3 +2313,77 @@ window.SEO_CONTENT.razonamiento={slug:"test-de-razonamiento-para-entrevistas",se
   {title:"Revisiting meta-analytic estimates of validity in personnel selection",url:"https://doi.org/10.1037/apl0000994",note:"Sackett, Zhang, Berry y Lievens (2022): las entrevistas estructuradas predicen algo mejor que los tests de capacidad cognitiva."}],
  relatedIds:["iq","riasec","crt"]};
 })();
+
+/* ===== Test de dependencia emocional (octubre 2026) ===== */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+window.TESTS.push({
+ id:"dependencia", name:"Test de dependencia emocional", emoji:"🔗", cat:"Relaciones", eyebrow:"Tu nivel de dependencia emocional",
+ blurb:"24 afirmaciones para saber cuánto dependes emocionalmente de tu pareja: miedo a la separación, necesidad de afecto, renuncias, miedo a la soledad, sumisión y búsqueda de atención.",
+ instrument:"Cuestionario propio de Testia basado en las dimensiones del Cuestionario de Dependencia Emocional (CDE) de Lemos y Londoño (2006). Orientativo; no es una evaluación clínica.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ prompt:"Piensa en tu pareja actual o, si ahora no tienes, en tu última relación.",
+ premiumTitle:"Ya sabes tu nivel. Descubre de dónde viene tu dependencia",
+ premiumPitch:"Tu porcentaje de dependencia emocional, cuánto pesa cada una de las seis dimensiones, las afirmaciones que más te definen y pautas concretas para ganar autonomía en pareja.",
+ scales:{SEP:"Ansiedad por separación",AFE:"Necesidad de afecto",PLA:"Renuncias y cambio de planes",SOL:"Miedo a la soledad",SUM:"Sumisión",ATE:"Búsqueda de atención"},
+ result:{type:"depend"},
+ interp:{
+  SEP:{hi:"Las separaciones, aunque sean breves, te generan mucha angustia y te cuesta pensar en otra cosa. Es uno de los núcleos de la dependencia emocional.",mid:"Echas de menos a tu pareja y a veces te inquietas cuando no sabes de ella, sin que te bloquee.",lo:"Llevas bien el tiempo separados: no te angustia no saber de tu pareja durante un rato."},
+  AFE:{hi:"Necesitas pruebas constantes de que te quieren, y un día de distancia se vive como una amenaza. Pedir confirmación una y otra vez suele agotar a los dos.",mid:"Te gusta sentirte querido y a veces necesitas que te lo confirmen.",lo:"Confías en el cariño de tu pareja sin necesitar que te lo demuestre a cada momento."},
+  PLA:{hi:"Tu vida gira alrededor de la de tu pareja: cambias planes, aparcas aficiones y amistades. A la larga, esto empobrece tu red de apoyo.",mid:"A veces renuncias a cosas tuyas por la pareja, aunque mantienes buena parte de tu vida propia.",lo:"Mantienes tus aficiones, tus amistades y tus decisiones aunque estés en pareja."},
+  SOL:{hi:"La idea de quedarte sin pareja te da miedo, hasta el punto de preferir una relación que no te hace feliz. Es el motor que más mantiene relaciones que no funcionan.",mid:"Prefieres estar en pareja, pero podrías estar sin ella sin que te angustie demasiado.",lo:"Estás bien contigo cuando no tienes pareja."},
+  SUM:{hi:"Aguantas cosas que no te gustan para evitar conflictos y te cuesta decir que no. Si además sientes miedo o te sientes menos, pide ayuda.",mid:"A veces cedes más de la cuenta para evitar discusiones.",lo:"Dices lo que piensas y pones límites sin miedo a que tu pareja se enfade."},
+  ATE:{hi:"Necesitas ser lo más importante para tu pareja y te duele que dedique tiempo a otras personas. Es una fuente frecuente de celos y conflictos.",mid:"Te gusta sentirte prioridad, sin que te moleste que tu pareja tenga su vida.",lo:"Respetas el espacio y la gente de tu pareja sin sentirte desplazado."}
+ },
+ items:[
+  {t:"Me angustia mucho cuando mi pareja se va, aunque sea por poco tiempo.",s:"SEP"},
+  {t:"Si no sé de mi pareja durante unas horas, me imagino lo peor.",s:"SEP"},
+  {t:"Me cuesta concentrarme en otras cosas cuando estamos separados.",s:"SEP"},
+  {t:"Disfruto del tiempo que paso sin mi pareja.",s:"SEP",r:true},
+  {t:"Necesito que mi pareja me demuestre constantemente que me quiere.",s:"AFE"},
+  {t:"Si mi pareja está distante un día, siento que ya no me quiere.",s:"AFE"},
+  {t:"Le pregunto a menudo a mi pareja si me sigue queriendo.",s:"AFE"},
+  {t:"Confío en su cariño aunque no me lo diga todos los días.",s:"AFE",r:true},
+  {t:"Cambio mis planes en cuanto mi pareja me propone algo.",s:"PLA"},
+  {t:"He dejado de ver a amigos o de hacer cosas que me gustaban por estar con mi pareja.",s:"PLA"},
+  {t:"Mis decisiones dependen más de lo que quiere mi pareja que de lo que quiero yo.",s:"PLA"},
+  {t:"Mantengo mis aficiones y mis amistades aunque esté en pareja.",s:"PLA",r:true},
+  {t:"La idea de quedarme sin pareja me da pánico.",s:"SOL"},
+  {t:"Prefiero estar en una relación que no me hace feliz a estar sin pareja.",s:"SOL"},
+  {t:"Cuando una relación se acaba, busco otra enseguida para no quedarme sin pareja.",s:"SOL"},
+  {t:"Estoy bien conmigo cuando no tengo pareja.",s:"SOL",r:true},
+  {t:"Aguanto cosas que no me gustan para que mi pareja no se enfade.",s:"SUM"},
+  {t:"Me cuesta decirle que no a mi pareja.",s:"SUM"},
+  {t:"Pido perdón aunque no haya hecho nada malo, para evitar una discusión.",s:"SUM"},
+  {t:"Siento que valgo menos que mi pareja.",s:"SUM"},
+  {t:"Necesito ser lo más importante en la vida de mi pareja.",s:"ATE"},
+  {t:"Hago lo que sea para que mi pareja me preste atención.",s:"ATE"},
+  {t:"Me duele mucho cuando mi pareja dedica tiempo a otras personas.",s:"ATE"},
+  {t:"Me parece bien que mi pareja tenga su propio espacio y su gente.",s:"ATE",r:true}
+ ]
+});
+window.SEO_CONTENT.dependencia={slug:"test-de-dependencia-emocional",seoTitle:"Test de dependencia emocional en la pareja: gratis y sin registro | Testia",h1:"Test de dependencia emocional",
+ metaDesc:"Test de dependencia emocional en la pareja: 24 afirmaciones basadas en el cuestionario CDE para saber cuánto dependes de tu pareja y en qué. Gratis y sin registro.",
+ intro:"¿Te angustia cuando tu pareja se va, necesitas que te confirme a todas horas que te quiere o te da pánico quedarte sin pareja? Este test de dependencia emocional mide, con 24 afirmaciones, cuánto dependes de tu pareja y en qué aspectos. Se basa en las dimensiones del cuestionario de dependencia emocional más usado en español. Es gratis, anónimo y tarda unos 4 minutos.",
+ updated:"octubre de 2026",updatedISO:"2026-10-27",
+ learn:["Tu nivel de dependencia emocional","Tu porcentaje de dependencia","Cuánto pesa cada dimensión: separación, afecto, renuncias, soledad, sumisión y atención","Las afirmaciones que más te definen","Pautas concretas para ganar autonomía en pareja"],
+ overview:[{label:"Mide",text:"Seis dimensiones de la dependencia emocional en la pareja."},{label:"Formato",text:"24 afirmaciones de acuerdo o desacuerdo; unos 4 minutos."},{label:"Límite",text:"Es orientativo; no sustituye una evaluación psicológica."}],
+ sections:[
+  {title:"Qué es la dependencia emocional",body:"Es un patrón de necesidad afectiva excesiva hacia la pareja: miedo intenso a perderla, necesidad constante de confirmación y tendencia a renunciar a la propia vida para mantener la relación. No es un diagnóstico oficial, sino un patrón que se puede medir y trabajar. Todas las personas necesitan a su pareja en algún grado; el problema aparece cuando esa necesidad genera malestar o mantiene relaciones que hacen daño."},
+  {title:"Las seis dimensiones que mide",body:"El test sigue las dimensiones del Cuestionario de Dependencia Emocional (CDE) de Lemos y Londoño: ansiedad por separación, necesidad de afecto, renuncias y cambio de planes, miedo a la soledad y búsqueda de atención. En lugar de la dimensión del cuestionario original sobre reacciones extremas ante una ruptura, este test mide la sumisión: ceder y aguantar para evitar conflictos."},
+  {title:"Dependencia emocional y apego",body:"La dependencia emocional se relaciona con el apego ansioso: el miedo a ser abandonado y la necesidad de cercanía. La investigación describe la dependencia como un rasgo que puede ser adaptativo en dosis moderadas, porque ayuda a pedir apoyo, y problemático cuando es extremo. Si te interesa esta parte, el test de estilos de apego la explica."},
+  {title:"Cuándo pedir ayuda",body:"Si la relación te hace daño, si aguantas humillaciones o sientes miedo, pide ayuda. En España, el 016 atiende a mujeres que sufren cualquier forma de violencia, las 24 horas y sin dejar rastro en la factura. Si en algún momento piensas en hacerte daño, llama al 024, la línea de atención a la conducta suicida, gratuita y disponible las 24 horas. Si hay peligro inmediato, llama al 112."}],
+ faqs:[
+  {q:"¿Cómo saber si tengo dependencia emocional?",a:"Algunas señales son la angustia intensa cuando tu pareja se aleja, la necesidad constante de que te confirme que te quiere, renunciar a tu vida por la relación y el pánico a quedarte sin pareja. Este test mide esas señales en seis dimensiones."},
+  {q:"¿La dependencia emocional es un trastorno?",a:"No es un diagnóstico oficial. Es un patrón de relación que puede ir de leve a intenso. En los casos intensos conviene trabajarlo con un psicólogo."},
+  {q:"¿Se puede superar la dependencia emocional?",a:"Sí. Recuperar las amistades y aficiones propias, aprender a poner límites y trabajar la autoestima ayudan mucho. La terapia psicológica es la vía más eficaz en los casos intensos."},
+  {q:"¿En qué se basa el test?",a:"En las dimensiones del Cuestionario de Dependencia Emocional (CDE) de Lemos y Londoño (2006), con preguntas propias de Testia y una finalidad orientativa."},
+  {q:"¿Se guardan mis respuestas?",a:"No. El cálculo se hace en tu navegador y Testia no registra tus respuestas."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel es gratis y sin registro. Tu porcentaje, las seis dimensiones y las pautas se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"Construcción y validación del Cuestionario de Dependencia Emocional en población colombiana",url:"https://actacolombianapsicologia.ucatolica.edu.co/article/view/405",note:"Lemos y Londoño (2006), Acta Colombiana de Psicología: el cuestionario CDE y sus dimensiones."},
+  {title:"From dysfunction to adaptation: An interactionist model of dependency",url:"https://doi.org/10.1146/annurev-clinpsy-032511-143058",note:"Bornstein (2012), Annual Review of Clinical Psychology: la dependencia, de adaptativa a problemática."},
+  {title:"024. Línea de atención a la conducta suicida",url:"https://www.sanidad.gob.es/linea024/home.htm",note:"Ministerio de Sanidad: gratuita, confidencial y disponible las 24 horas."},
+  {title:"Teléfono 016 · Delegación del Gobierno contra la Violencia de Género",url:"https://violenciagenero.igualdad.gob.es/informacion-3/recursos/telefono016/",note:"Canales del 016: teléfono, WhatsApp, chat y correo electrónico."}],
+ relatedIds:["attachment","celos","parejanarc"]};
+})();
