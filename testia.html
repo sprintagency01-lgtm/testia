@@ -285,6 +285,7 @@
   .mbrow{display:flex;gap:8px}.mbrow input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line3);border-radius:12px;font:inherit;font-size:.95rem;background:#fff}.mbrow .btn{padding:13px 18px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
   .nextbox{margin-top:18px}.nexth{font-family:var(--disp);font-weight:600;font-size:1.05rem}.nextsub{color:var(--ink3);font-size:.86rem;margin:2px 0 10px}
   .nextcard{display:flex;gap:12px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);border-radius:14px;background:#fff;padding:13px 15px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit;transition:border-color .2s}
+  .certbox{margin:18px 0 6px;border:1.5px solid var(--cobalt);border-radius:14px;padding:16px;background:#fff}.certbox .cbh{font-weight:700;margin-bottom:4px}.certbox p{font-size:.86rem;color:var(--ink3);margin:0 0 10px}.certbox input{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--line);border-radius:10px}.certbox .cbtns{margin-top:10px}
   .couplebox{margin:18px 0 6px;border:1.5px solid var(--cobalt);border-radius:14px;padding:16px;background:#fff}.couplebox .cbh{font-weight:700;margin-bottom:8px}.couplebox input{width:100%;font:inherit;font-size:.86rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#f6f6f4;color:var(--ink2)}.couplebox .cbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.couplebox .btn{padding:12px 18px;font-size:.95rem}
   .nexttop{margin:22px 0 4px}.nexttop:empty{display:none}.nexttop .ntk{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:8px}.nextcard.big{padding:18px;border:1.5px solid var(--cobalt);box-shadow:0 10px 28px -18px rgba(47,75,214,.55)}.nextcard.big b{font-size:1.08rem}.nextcard.big .go{font-size:.92rem;white-space:nowrap}
   .nextcard:hover{border-color:var(--cobalt)}.nextcard .ne{font-size:1.45rem;line-height:1}.nextcard b{display:block;font-size:.96rem}.nextcard small{display:block;font-size:.8rem;color:var(--ink3);line-height:1.35;margin-top:2px}.nextcard .go{margin-left:auto;color:var(--cobalt);font-weight:700;padding-left:6px}
@@ -537,6 +538,7 @@
         <p id="resDesc" style="font-size:1.2rem;color:var(--ink2);line-height:1.55;margin:18px 0 0"></p>
         <div class="chips" id="resTraits"></div>
         <div id="coupleBox"></div>
+        <div id="certBox"></div>
         <div id="resScience" style="margin-top:16px;font-size:.82rem;color:var(--mut);line-height:1.5;display:none"></div>
         <div id="paywall" style="display:none"></div>
         <div id="nextTop" class="nexttop"></div>
@@ -668,7 +670,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261026f"></script>
+<script src="tests.js?v=20261027"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -1020,6 +1022,7 @@ function finish(){
     r.card={mono:'AACC',name:tier[0],role:'Test de altas capacidades',stat:`RASGOS ${trLv.toUpperCase()}`};
     r.full={name:`CI ${iq}`,role:`${tier[0]} · rasgos ${trLv}`,desc:`Tu CI estimado es ${iq}: superas aproximadamente al ${pc.toFixed(0)} % de la población. ${tier[1]} Los rasgos de altas capacidades están ${trLv} en tus respuestas. Abajo, tu desglose completo.`,
       card:{mono:String(iq),name:tier[0],role:'CI estimado · altas capacidades',stat:`TOP ${Math.max(1,Math.round(100-pc))} % · CI ${iq}`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    r.cert={value:`CI ${iq}`,label:'Perfil de altas capacidades',detail:`${tier[0]} · percentil ${pc.toFixed(0)} · rasgos ${trLv}`};
   }else if(T.mode==='correct'){
     const correct=answers.reduce((n,a,i)=>n+(a===items[i].a?1:0),0);
     if(T.scoring==='iq'){
@@ -1039,6 +1042,7 @@ function finish(){
       // Al desbloquear, el resultado y la carta pasan a mostrar el número.
       r.full={name:String(iq),role:"CI · "+cls,desc:`Tu CI estimado es ${iq}, categoría «${cls}». Superas aproximadamente al ${pc.toFixed(0)}% de la población. Abajo, tu desglose por aptitud cognitiva.`,
         card:{mono:String(iq),name:cls,role:"Coeficiente intelectual",stat:`TOP ${(100-pc).toFixed(0)}% MUNDIAL`},bars:(r.bars||[]).map(b=>({lab:b.lab,p:b.p}))};
+      r.cert={value:`CI ${iq}`,label:'Coeficiente intelectual estimado',detail:`Categoría «${cls}» · percentil ${pc.toFixed(0)} · ${correct} de ${total} problemas resueltos`};
       if(T.interp||T.overallInterp){r.analysis=[];
         if(T.overallInterp&&T.overallInterp[cls])r.analysis.push({lab:'Lectura global',p:pc,band:cls,text:T.overallInterp[cls]});
         if(T.domains&&T.interp)Object.keys(T.domains).forEach(k=>{const its=items.filter(x=>x.d===k);const c=its.reduce((n,x)=>n+(answers[items.indexOf(x)]===x.a?1:0),0);
@@ -1084,6 +1088,7 @@ function finish(){
       r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
       r.full={name:`${fwd} dígitos`,role:`Memoria · ${tier.name}`,desc:`Retienes ${fwd} dígitos en orden directo y ${bwd} al revés, y reconociste ${wc} de ${wr.length} palabras. Tu puntuación de memoria es ${comp} sobre 100.`,
         card:{mono:String(fwd),name:tier.name,role:'Dígitos que retienes',stat:`MEMORIA ${comp}/100`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
+      r.cert={value:`${fwd} dígitos`,label:'Amplitud de memoria',detail:`${tier.name} · ${bwd} dígitos al revés · puntuación de memoria ${comp}/100`};
     }else if(T.scoring==='attention'){
       const dur=T.duration||240,secs=Math.min(dur,Math.round((Date.now()-startedAt)/1000)),total=items.length,acc=correct/total;
       const by=d=>{let c=0,n=0;items.forEach((it,i)=>{if(it.d===d){n++;if(answers[i]===it.a)c++;}});return {c,n,p:n?c/n:0};};
@@ -1104,6 +1109,7 @@ function finish(){
       r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
       r.full={name:String(score),role:`Índice de atención · ${tier.name}`,desc:`Tu índice de atención es ${score} sobre 100: ${correct} aciertos de ${total} en ${mm} min ${ss} s.`,
         card:{mono:String(score),name:tier.name,role:'Índice de atención',stat:`${correct}/${total} ACIERTOS`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
+      r.cert={value:`${score}/100`,label:'Índice de atención',detail:`${tier.name} · ${correct} de ${total} aciertos`};
     }else{
       const b=correct<=1?["Intuitivo","Te fías de tu instinto: rápido, pero la trampa te pilla."]:correct<=3?["Mixto","Combinas instinto y reflexión según la pregunta."]:["Reflexivo","Paras a pensar antes de responder. La trampa no te pilla."];
       r.name=`${correct}/${items.length}`;r.role="Estilo de pensamiento";r.desc=b[1];r.traits=[b[0]];r.mono=initials(b[0]);
@@ -1413,7 +1419,39 @@ function lockResult(v){
 function revealResult(){
   setHardLock(false);
   if(lastResult&&lastResult.full){Object.assign(lastResult,lastResult.full);delete lastResult.full;renderResult(lastResult);try{drawCard(lastResult);}catch(e){}}
-  $('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();window.scrollTo({top:0,behavior:'smooth'});}
+  $('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();renderCert();window.scrollTo({top:0,behavior:'smooth'});}
+/* === Certificado en PDF (incluido con el resultado completo de los tests con cifra) ===
+   Se genera en el navegador con jsPDF, alojado en /vendor y cargado solo al pulsar. */
+function renderCert(){const ce=$('certBox');if(!ce)return;ce.innerHTML='';
+  if(!T||!T.cert||!lastResult||!lastResult.cert)return;
+  ce.innerHTML=`<div class="certbox"><div class="cbh">Tu certificado en PDF</div><p>Escribe el nombre que quieres que aparezca. No se guarda en ningún sitio.</p><input id="certName" type="text" maxlength="60" placeholder="Tu nombre" autocomplete="name"><div class="cbtns"><button class="btn" type="button" onclick="downloadCert()">Descargar certificado</button></div></div>`;}
+function loadJsPDF(){return new Promise((ok,ko)=>{if(window.jspdf)return ok(window.jspdf);const sc=document.createElement('script');sc.src='/vendor/jspdf.umd.min.js';sc.onload=()=>ok(window.jspdf);sc.onerror=ko;document.head.appendChild(sc);});}
+async function downloadCert(){
+  const c=lastResult&&lastResult.cert;if(!c||!T)return;
+  const name=(($('certName')&&$('certName').value)||'').trim().slice(0,60);
+  if(!name){toast('Escribe el nombre para el certificado');try{$('certName').focus();}catch(e){}return;}
+  let lib;try{lib=await loadJsPDF();}catch(e){toast('No se pudo generar el PDF. Inténtalo de nuevo.');return;}
+  const doc=new lib.jsPDF({orientation:'landscape',unit:'mm',format:'a4'}),W=297,H=210,ink=[23,24,28],co=[47,75,214],mu=[110,112,117];
+  const date=new Date().toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'});
+  const code='TST-'+Math.random().toString(36).slice(2,8).toUpperCase();
+  doc.setFillColor(250,250,247);doc.rect(0,0,W,H,'F');
+  doc.setDrawColor(...co);doc.setLineWidth(1.2);doc.rect(10,10,W-20,H-20);doc.setLineWidth(0.3);doc.rect(14,14,W-28,H-28);
+  doc.setFont('helvetica','bold');doc.setFontSize(18);doc.setTextColor(...ink);doc.text('Testia',W/2,34,{align:'center'});
+  doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(...mu);doc.text('TESTS · AUTOCONOCIMIENTO',W/2,40,{align:'center'});
+  doc.setFont('helvetica','bold');doc.setFontSize(26);doc.setTextColor(...co);doc.text('Certificado de resultado',W/2,60,{align:'center'});
+  doc.setFont('helvetica','normal');doc.setFontSize(12);doc.setTextColor(...mu);doc.text('Se certifica que',W/2,76,{align:'center'});
+  doc.setFont('helvetica','bold');doc.setFontSize(28);doc.setTextColor(...ink);doc.text(name,W/2,92,{align:'center'});
+  doc.setFont('helvetica','normal');doc.setFontSize(12);doc.setTextColor(...mu);
+  doc.text(doc.splitTextToSize(`ha completado el «${T.name}» en testia.info el ${date} con el siguiente resultado:`,210),W/2,106,{align:'center'});
+  doc.setFont('helvetica','bold');doc.setFontSize(12);doc.setTextColor(...mu);doc.text(c.label.toUpperCase(),W/2,124,{align:'center'});
+  doc.setFontSize(36);doc.setTextColor(...co);doc.text(c.value,W/2,142,{align:'center'});
+  doc.setFont('helvetica','normal');doc.setFontSize(11);doc.setTextColor(...ink);doc.text(doc.splitTextToSize(c.detail,220),W/2,154,{align:'center'});
+  doc.setFontSize(8);doc.setTextColor(...mu);
+  doc.text(doc.splitTextToSize('Resultado orientativo obtenido en un test online de Testia. No es una evaluación clínica ni un título o certificación oficial.',230),W/2,178,{align:'center'});
+  doc.text(`Código ${code} · www.testia.info`,W/2,188,{align:'center'});
+  doc.save(`certificado-testia-${T.id}.pdf`);
+  trackEvent('certificate_downloaded',{test_id:T.id,test_name:T.name});
+}
 function passSid(){try{const p=JSON.parse(localStorage.getItem('atlas_pass'));return p&&p.sid||null;}catch(e){return null;}}
 async function checkPass(){
   const sid=passSid();if(!sid)return;
@@ -1522,6 +1560,7 @@ function renderResult(r){
   $('resRole').textContent=r.role;$('resDesc').textContent=r.desc;
   $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
   {const cb=$('coupleBox');if(cb)cb.innerHTML=r.coupleHtml||'';}
+  {const ce=$('certBox');if(ce)ce.innerHTML='';}
   {const sci=$('resScience');if(sci){if(T&&T.instrument){sci.style.display='block';sci.innerHTML='<span style="font-weight:600;color:var(--ink3)">Referencia metodológica:</span> '+T.instrument;}else{sci.style.display='none';}}}
   if(r.bars){$('resBars').innerHTML=`<div class="bars">${r.bars.map(b=>{const tag=b.tag||(b.p>=66?'Alto':b.p>=40?'Medio':'Bajo');
     return `<div class="barrow"><div class="bl"><span>${b.lab}</span><span class="tg">${b.hidePct?tag:`${tag} · ${Math.round(b.p)}%`}</span></div><div class="btrack"><i data-w="${b.p}" style="background:linear-gradient(90deg,${r.accent},${hexA(r.accent,.55)})"></i></div></div>`;}).join('')}</div>`;

@@ -2261,3 +2261,13 @@ window.SEO_CONTENT.pareja2={slug:"test-de-compatibilidad-de-pareja",seoTitle:"Te
   {title:"Machine learning uncovers the most robust self-report predictors of relationship quality across 43 longitudinal couples studies",url:"https://doi.org/10.1073/pnas.1917036117",note:"Joel y colaboradores (2020): el compromiso y el aprecio predicen la satisfacción más que los rasgos de cada uno."}],
  relatedIds:["lovelang","lovestyles","attachment"]};
 })();
+
+/* ===== Certificado en PDF incluido con el resultado completo (octubre 2026) =====
+   Solo en tests con cifra. No en el simulacro CCSE: podría confundirse con el certificado oficial. */
+(function(){
+['iq','aacc','memoria','atencion'].forEach(id=>{
+  const t=window.TESTS.find(x=>x.id===id);if(!t)return;
+  t.cert=true;t.premiumPitch=(t.premiumPitch||'').trim()+' Incluye tu certificado en PDF con tu nombre y tu resultado.';
+  const s=window.SEO_CONTENT[id];if(s&&Array.isArray(s.learn)&&!s.learn.some(x=>/certificado/i.test(x)))s.learn.push('Un certificado en PDF con tu nombre y tu resultado, incluido en el resultado completo');
+});
+})();
