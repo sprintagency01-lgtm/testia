@@ -670,7 +670,7 @@
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261027"></script>
+<script src="tests.js?v=20261027b"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261008"></script>
@@ -1040,7 +1040,7 @@ function finish(){
       r.stats=[{v:String(iq),l:"CI estimado"},{v:pc.toFixed(0)+"%",l:"percentil"},{v:`${correct}/${total}`,l:"aciertos"}];
       r.card={mono:"CI",name:cls,role:"Coeficiente intelectual",stat:cls.toUpperCase()};
       // Al desbloquear, el resultado y la carta pasan a mostrar el número.
-      r.full={name:String(iq),role:"CI · "+cls,desc:`Tu CI estimado es ${iq}, categoría «${cls}». Superas aproximadamente al ${pc.toFixed(0)}% de la población. Abajo, tu desglose por aptitud cognitiva.`,
+      r.full={name:`CI ${iq}`,role:"Coeficiente intelectual · "+cls,desc:`Tu CI estimado es ${iq}, categoría «${cls}». Superas aproximadamente al ${pc.toFixed(0)}% de la población. Abajo, tu desglose por aptitud cognitiva.`,
         card:{mono:String(iq),name:cls,role:"Coeficiente intelectual",stat:`TOP ${(100-pc).toFixed(0)}% MUNDIAL`},bars:(r.bars||[]).map(b=>({lab:b.lab,p:b.p}))};
       r.cert={value:`CI ${iq}`,label:'Coeficiente intelectual estimado',detail:`Categoría «${cls}» · percentil ${pc.toFixed(0)} · ${correct} de ${total} problemas resueltos`};
       if(T.interp||T.overallInterp){r.analysis=[];
@@ -1086,7 +1086,7 @@ function finish(){
         {lab:`${T.domains.WR} · ${wc}/${wr.length}`,p:pW*100,band:lW[1],text:T.interp.WR[lW[0]]}];
       r.card={mono:'MEM',name:tier.name,role:'Test de memoria',stat:tier.name.toUpperCase()};
       r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
-      r.full={name:`${fwd} dígitos`,role:`Memoria · ${tier.name}`,desc:`Retienes ${fwd} dígitos en orden directo y ${bwd} al revés, y reconociste ${wc} de ${wr.length} palabras. Tu puntuación de memoria es ${comp} sobre 100.`,
+      r.full={name:tier.name,role:`Puntuación de memoria ${comp}/100 · ${fwd} dígitos`,desc:`Retienes ${fwd} dígitos en orden directo y ${bwd} al revés, y reconociste ${wc} de ${wr.length} palabras. Tu puntuación de memoria es ${comp} sobre 100.`,
         card:{mono:String(fwd),name:tier.name,role:'Dígitos que retienes',stat:`MEMORIA ${comp}/100`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
       r.cert={value:`${fwd} dígitos`,label:'Amplitud de memoria',detail:`${tier.name} · ${bwd} dígitos al revés · puntuación de memoria ${comp}/100`};
     }else if(T.scoring==='attention'){
@@ -1107,12 +1107,12 @@ function finish(){
       if(stroop!==null)r.analysis.push({lab:'Tu efecto Stroop',p:Math.max(0,Math.min(100,stroop/15)),band:stroop>0?`+${stroop} ms`:`${stroop} ms`,text:stroop>150?`Con las palabras que engañan tardaste de media ${stroop} milisegundos más que con las que coinciden con su color. Es el coste de frenar la lectura automática, y es normal notarlo.`:`Apenas notaste el efecto Stroop: respondiste casi igual de rápido con las palabras que engañan que con las que no.`});
       r.card={mono:'ATN',name:tier.name,role:'Test de atención',stat:tier.name.toUpperCase()};
       r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
-      r.full={name:String(score),role:`Índice de atención · ${tier.name}`,desc:`Tu índice de atención es ${score} sobre 100: ${correct} aciertos de ${total} en ${mm} min ${ss} s.`,
+      r.full={name:tier.name,role:`Atención ${score}/100 · ${correct} de ${total} aciertos`,desc:`Tu índice de atención es ${score} sobre 100: ${correct} aciertos de ${total} en ${mm} min ${ss} s.`,
         card:{mono:String(score),name:tier.name,role:'Índice de atención',stat:`${correct}/${total} ACIERTOS`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
       r.cert={value:`${score}/100`,label:'Índice de atención',detail:`${tier.name} · ${correct} de ${total} aciertos`};
     }else{
       const b=correct<=1?["Intuitivo","Te fías de tu instinto: rápido, pero la trampa te pilla."]:correct<=3?["Mixto","Combinas instinto y reflexión según la pregunta."]:["Reflexivo","Paras a pensar antes de responder. La trampa no te pilla."];
-      r.name=`${correct}/${items.length}`;r.role="Estilo de pensamiento";r.desc=b[1];r.traits=[b[0]];r.mono=initials(b[0]);
+      r.name=`Pensamiento ${b[0].toLowerCase()}`;r.role=`${correct} de ${items.length} acertijos resueltos`;r.desc=b[1];r.traits=[b[0]];r.mono=initials(b[0]);
       r.stats=[{v:`${correct}/${items.length}`,l:'aciertos reflexivos'}];
       r.card={mono:`${correct}/${items.length}`,name:b[0],role:'Estilo de pensamiento',stat:b[0].toUpperCase()};
       if(T.interp){const key=correct<=1?'lo':correct<=3?'mid':'hi';
@@ -1171,7 +1171,7 @@ function finish(){
         .concat(keys.map(k=>({lab:`${T.scales[k]} · ${Math.round(area[k])} años`,p:toP(area[k]),band:`${Math.round(area[k])} años`,text:T.interp[k][L(area[k])]})));
       r.card={mono:'EDAD',name:tier.name,role:'Edad mental',stat:tier.name.toUpperCase()};
       r.bars.forEach(b=>{b.hidePct=true;});r.analysis.forEach(a=>{a.hidePct=true;});
-      r.full={name:`${age} años`,role:`Edad mental · ${tier.name}`,desc:`Tu mente tiene ${age} años. ${tier.desc}`,card:{mono:String(age),name:tier.name,role:'Años de edad mental',stat:'EDAD MENTAL'},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
+      r.full={name:`Edad mental: ${age} años`,role:tier.name,desc:`Tu mente tiene ${age} años. ${tier.desc}`,card:{mono:String(age),name:tier.name,role:'Años de edad mental',stat:'EDAD MENTAL'},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:b.hidePct}))};
     }else if(R.type==='single'){
       const p=pct[Object.keys(T.scales)[0]],b=band(R.bands,p);
       r.name=b.label;r.role=T.name;r.desc=b.desc;r.mono=initials(b.label);r.traits=[b.emoji+' '+Object.values(T.scales)[0]];
@@ -1297,7 +1297,7 @@ function finish(){
       const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const code=arr.slice(0,3).map(x=>x.k).join('');
       const careers=[...new Set([...(RIASEC_CAREERS[arr[0].k]||[]),...(RIASEC_CAREERS[arr[1].k]||[])])].slice(0,6);
-      r.name=code;r.role="Tu código Holland";r.mono=code;r.desc=`Tu código vocacional es «${code}». Tus tres intereses dominantes son ${arr.slice(0,3).map(x=>x.lab).join(', ')}. Abajo, el desglose de tus seis áreas de interés y a qué encaja cada una.`;
+      r.name=`${arr[0].lab} y ${arr[1].lab.toLowerCase()}`;r.role=`Tu perfil vocacional · código Holland ${code}`;r.mono=code;r.desc=`Tu código vocacional es «${code}». Tus tres intereses dominantes son ${arr.slice(0,3).map(x=>x.lab).join(', ')}. Abajo, el desglose de tus seis áreas de interés y a qué encaja cada una.`;
       r.traits=careers;r.bars=arr;
       r.stats=[{v:code,l:'código vocacional'},{v:arr[0].lab,l:'interés principal'}];
       r.card={mono:code,name:arr[0].lab,role:'Perfil vocacional',stat:'CÓDIGO '+code};
