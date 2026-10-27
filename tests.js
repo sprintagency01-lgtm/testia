@@ -2387,3 +2387,41 @@ window.SEO_CONTENT.dependencia={slug:"test-de-dependencia-emocional",seoTitle:"T
   {title:"Teléfono 016 · Delegación del Gobierno contra la Violencia de Género",url:"https://violenciagenero.igualdad.gob.es/informacion-3/recursos/telefono016/",note:"Canales del 016: teléfono, WhatsApp, chat y correo electrónico."}],
  relatedIds:["attachment","celos","parejanarc"]};
 })();
+
+/* ===== Revisión de octubre de 2026: títulos del muro y huecos en las landings ===== */
+(function(){
+const SCORE='Descubre tu puntuación exacta y qué significa';
+const TITLES={
+ bigfive:'Ya sabes tu rasgo principal. Descubre tus cinco rasgos',
+ tipi:'Ya sabes tu rasgo principal. Descubre tus cinco rasgos',
+ honesty:'Ya sabes tu nivel. Descubre tus cuatro facetas de honestidad',
+ darktriad:'Ya sabes tu rasgo dominante. Descubre cuánto tienes de cada uno',
+ moral:'Ya sabes tu fundamento principal. Descubre tu mapa moral completo',
+ crt:'Ya sabes tu estilo de pensamiento. Descubre en qué acertijos caíste',
+ ncs:'Ya sabes cuánto te gusta pensar. '+SCORE,
+ riasec:'Ya sabes tu perfil vocacional. Descubre tus seis áreas de interés',
+ ei:'Ya sabes tu nivel. Descubre tus cuatro áreas de inteligencia emocional',
+ empathy:'Ya sabes tu nivel de empatía. '+SCORE,
+ selfesteem:'Ya sabes tu nivel de autoestima. '+SCORE,
+ grit:'Ya sabes tu nivel. Descubre si te falla la perseverancia o la constancia',
+ swls:'Ya sabes cómo de satisfecho estás. '+SCORE,
+ panas:'Ya sabes tu balance. Descubre tu afecto positivo y negativo por separado',
+ resilience:'Ya sabes cuánto aguantas. '+SCORE,
+ values:'Ya sabes tu valor principal. Descubre tu ranking de valores',
+ maximizer:'Ya sabes cómo decides. '+SCORE,
+ attachment:'Ya sabes tu estilo de apego. Descubre tu ansiedad y tu evitación',
+ chronotype:'Ya sabes tu cronotipo. '+SCORE,
+ lovelang:'Ya sabes tu lenguaje principal. Descubre tu ranking de los cinco',
+ redflag:'Ya sabes tu color. Descubre qué conductas pesan más'
+};
+Object.entries(TITLES).forEach(([id,ti])=>{const t=window.TESTS.find(x=>x.id===id);if(t&&!t.premiumTitle)t.premiumTitle=ti;});
+const S=window.SEO_CONTENT;
+if(S.lovelang&&!(S.lovelang.sources||[]).length)S.lovelang.sources=[
+ {title:"Popular psychology through a scientific lens: Evaluating love languages from a relationship science perspective",url:"https://doi.org/10.1177/09637214231217663",note:"Impett, Park y Muise (2024): qué dice la investigación sobre los lenguajes del amor y sus límites."},
+ {title:"I love the way you love me: Responding to partner's love language preferences boosts satisfaction in romantic heterosexual couples",url:"https://doi.org/10.1371/journal.pone.0269429",note:"Mostova, Stolarski y Matthews (2022): responder al lenguaje preferido de la pareja se asocia con más satisfacción."}];
+if(S.redflag&&!(S.redflag.sources||[]).length)S.redflag.sources=[
+ {title:"Dark triad traits and romantic relationship attachment, accommodation, and control",url:"https://doi.org/10.1016/j.paid.2017.09.008",note:"Brewer y colaboradores (2018): rasgos oscuros de personalidad y conductas de control en la pareja."}];
+if(S.redflag){const f=S.redflag.faqs.find(x=>/pareja/.test(x.q));if(f&&!/pareja narcisista/.test(f.a))f.a='Si te preocupa la conducta de tu pareja, haz el test de pareja narcisista, que pregunta por conductas concretas. Si sientes miedo, control o aislamiento, busca apoyo: en España, el 016 atiende de forma gratuita y la llamada no aparece en la factura.';}
+if(S.honesty&&S.honesty.faqs.length<4)S.honesty.faqs.push({q:'¿Es gratis?',a:'Sí. Hacer el test y ver tu nivel de honestidad-humildad es gratis y sin registro. El desglose de las cuatro facetas se puede desbloquear por 1,99 €, en un pago único y sin suscripción.'});
+if(S.panas&&S.panas.faqs.length<4)S.panas.faqs.push({q:'¿Es gratis?',a:'Sí. Hacer el test y ver tu balance emocional es gratis y sin registro. Tu afecto positivo y negativo por separado se pueden desbloquear por 1,99 €, en un pago único y sin suscripción.'});
+})();
