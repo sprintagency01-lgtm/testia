@@ -53,6 +53,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Intenciones reservadas por landings
 
+- `/test/test-de-razonamiento-para-entrevistas` — `test de razonamiento lógico`, `test de lógica para entrevista laboral`, `test psicométrico laboral`, `test de razonamiento numérico`, `test de razonamiento verbal`.
 - `/test/test-de-compatibilidad-de-pareja` — `test de compatibilidad de pareja`, `test de pareja para dos`, `test de compatibilidad de pareja gratis`.
 - `/test/test-pareja-narcisista` — `test de pareja narcisista`, `test para saber si mi pareja es narcisista`, `señales de pareja narcisista`.
 - `/test/test-de-narcisista` — `test de narcisista`, `test de narcisista gratis`, `test narcisismo encubierto`, `test de rasgos narcisistas`.

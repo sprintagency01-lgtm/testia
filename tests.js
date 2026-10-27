@@ -2271,3 +2271,45 @@ window.SEO_CONTENT.pareja2={slug:"test-de-compatibilidad-de-pareja",seoTitle:"Te
   const s=window.SEO_CONTENT[id];if(s&&Array.isArray(s.learn)&&!s.learn.some(x=>/certificado/i.test(x)))s.learn.push('Un certificado en PDF con tu nombre y tu resultado, incluido en el resultado completo');
 });
 })();
+
+/* ===== Test de razonamiento para entrevistas de trabajo (octubre 2026) ===== */
+(function(){
+window.TESTS.push({
+ id:"razonamiento", name:"Test de razonamiento para entrevistas de trabajo", emoji:"💼", cat:"Profesional", eyebrow:"Tu nivel de razonamiento",
+ blurb:"20 preguntas de razonamiento numérico, verbal y lógico como las de los psicotécnicos de selección. Descubre tu percentil y practica antes de la entrevista.",
+ instrument:"Preguntas propias de Testia en el formato de los tests de aptitud usados en selección de personal (razonamiento numérico, verbal y lógico). Percentil orientativo; no es un test baremado por una empresa de selección.", license:"🟢",
+ mode:"correct", scoring:"apt", duration:1200,
+ domains:{NUM:"Razonamiento numérico",VER:"Razonamiento verbal",LOG:"Razonamiento lógico"},
+ interp:{
+  NUM:{hi:"Calculas porcentajes, proporciones y variaciones con soltura. Es el bloque que más pesa en procesos de finanzas, consultoría y operaciones.",mid:"Resuelves bien los cálculos directos y fallas en los que esconden una trampa, como un porcentaje sobre la base equivocada.",lo:"Los cálculos con porcentajes y proporciones son tu punto débil. Practicar diez minutos al día con este tipo de preguntas mejora mucho el resultado."},
+  VER:{hi:"Distingues bien lo que un texto afirma de lo que solo sugiere. Es justo lo que miden las preguntas de «verdadero, falso o no se puede saber».",mid:"Entiendes los textos, pero a veces das por hecho algo que el texto no dice. Cuidado con «la mayoría», «solo» y «algunos».",lo:"Tiendes a responder según lo que parece lógico y no según lo que el texto dice exactamente. Es el error más frecuente en este bloque y se corrige con práctica."},
+  LOG:{hi:"Detectas patrones en series y ordenas relaciones sin esfuerzo. Es la base del razonamiento abstracto que piden muchos psicotécnicos.",mid:"Ves los patrones sencillos y te atascan los que combinan dos reglas.",lo:"Las series y deducciones te cuestan. Ayuda escribir las diferencias entre números o dibujar las relaciones."}
+ },
+ premiumTitle:"Ya sabes tu nivel. Descubre tu percentil y en qué has fallado",
+ premiumPitch:"Tu percentil frente a la población, tus aciertos en razonamiento numérico, verbal y lógico, y la corrección de cada pregunta fallada con su explicación. Incluye tu certificado en PDF con tu nombre y tu resultado.",
+ cert:true,
+ items:[]
+});
+window.SEO_CONTENT.razonamiento={slug:"test-de-razonamiento-para-entrevistas",seoTitle:"Test de razonamiento lógico, numérico y verbal para entrevistas | Testia",h1:"Test de razonamiento para entrevistas de trabajo",
+ metaDesc:"Test psicotécnico de razonamiento numérico, verbal y lógico como los de las entrevistas de trabajo. 20 preguntas, 20 minutos y tu percentil. Gratis y sin registro.",
+ intro:"Muchas empresas usan tests de razonamiento en sus procesos de selección. Este test te hace 20 preguntas del mismo tipo, de razonamiento numérico, verbal y lógico, con 20 minutos de referencia, y te dice tu nivel frente a la población. Sirve para practicar antes de una entrevista o de un psicotécnico. Es gratis, sin registro y las preguntas cambian en cada intento.",
+ updated:"octubre de 2026",updatedISO:"2026-10-27",
+ learn:["Tu nivel de razonamiento frente a la población","Tu percentil orientativo","Tus aciertos en razonamiento numérico, verbal y lógico","La corrección de cada pregunta fallada, con su explicación","Un certificado en PDF con tu nombre y tu resultado, incluido en el resultado completo"],
+ overview:[{label:"Mide",text:"Razonamiento numérico, verbal y lógico, como en los psicotécnicos de selección."},{label:"Formato",text:"20 preguntas de opción múltiple; 20 minutos de referencia."},{label:"Límite",text:"Percentil orientativo; cada empresa usa sus propias pruebas y baremos."}],
+ sections:[
+  {title:"Qué miden los tests de razonamiento en una entrevista",body:"Los tests de aptitud de los procesos de selección suelen medir tres cosas: razonamiento numérico (porcentajes, proporciones, lectura de datos), razonamiento verbal (entender exactamente qué dice un texto) y razonamiento lógico o abstracto (series y deducciones). Se hacen con tiempo limitado, así que importan tanto los aciertos como la velocidad."},
+  {title:"Los tres tipos de preguntas de este test",body:"En el bloque numérico hay problemas de porcentajes, proporciones y variaciones como los de un psicotécnico de empresa. En el verbal, la mayoría son preguntas de «verdadero, falso o no se puede saber» a partir de un texto breve, el formato más usado en selección. En el lógico hay series numéricas y deducciones de orden."},
+  {title:"Cómo prepararlos",body:"Estos tests mejoran con práctica: familiarizarte con el formato reduce los errores por las prisas. Tres consejos: en las preguntas numéricas, comprueba sobre qué cantidad se calcula el porcentaje; en las verbales, responde solo con lo que dice el texto, no con lo que es probable; y en las series, escribe las diferencias entre números."},
+  {title:"¿Cuánto pesan en la decisión final?",body:"Menos de lo que se cree. Una revisión de 2022 de la investigación sobre selección concluyó que las entrevistas estructuradas predicen el rendimiento algo mejor que los tests de capacidad cognitiva. Aun así, muchos procesos usan estos tests como primer filtro, así que conviene llegar con práctica."}],
+ faqs:[
+  {q:"¿Qué es un test de razonamiento lógico para una entrevista de trabajo?",a:"Es una prueba con tiempo limitado que mide tu capacidad para resolver problemas numéricos, entender textos y detectar patrones. Muchas empresas lo usan como primer filtro en sus procesos de selección."},
+  {q:"¿Cómo se responde a «verdadero, falso o no se puede saber»?",a:"Solo con lo que dice el texto. Si el texto no da información suficiente para afirmarlo o negarlo, la respuesta es «no se puede saber», aunque te parezca probable."},
+  {q:"¿Cuánto tiempo hay?",a:"Este test tiene 20 minutos de referencia para 20 preguntas, un ritmo parecido al de los psicotécnicos de empresa. El reloj no te corta, pero el resultado te dice si te has pasado."},
+  {q:"¿Se puede mejorar con práctica?",a:"Sí. Conocer el formato y las trampas típicas mejora el resultado. Por eso las preguntas cambian en cada intento."},
+  {q:"¿Sirve para un psicotécnico de oposiciones?",a:"Los bloques numérico, verbal y lógico se parecen a los de muchas oposiciones, pero cada convocatoria tiene su formato. Úsalo como práctica general."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel es gratis y sin registro. Tu percentil, tus aciertos por área, la corrección explicada y el certificado en PDF se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"The validity and utility of selection methods in personnel psychology",url:"https://doi.org/10.1037/0033-2909.124.2.262",note:"Schmidt y Hunter (1998): revisión clásica sobre los métodos de selección y los tests de capacidad cognitiva."},
+  {title:"Revisiting meta-analytic estimates of validity in personnel selection",url:"https://doi.org/10.1037/apl0000994",note:"Sackett, Zhang, Berry y Lievens (2022): las entrevistas estructuradas predicen algo mejor que los tests de capacidad cognitiva."}],
+ relatedIds:["iq","riasec","crt"]};
+})();
