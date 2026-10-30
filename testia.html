@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Testia — Tests de personalidad, CI y autoconocimiento</title>
-<meta name="description" content="Más de 20 tests de personalidad, CI, vocación, apego e inteligencia emocional inspirados en modelos publicados. Sin registro y con límites claros.">
+<meta name="description" content="Más de 40 tests de personalidad, CI, vocación, apego e inteligencia emocional inspirados en modelos publicados. Sin registro y con límites claros.">
 <meta name="keywords" content="test de personalidad, test de iq, test vocacional, big five, estilo de apego, inteligencia emocional, tríada oscura, test psicológico online, test científico">
 <meta name="author" content="Testia">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -15,11 +15,11 @@
 <meta property="og:locale" content="es_ES">
 <meta property="og:url" content="https://www.testia.info/">
 <meta property="og:title" content="Testia — Tests para conocerte mejor">
-<meta property="og:description" content="Más de 20 tests inspirados en modelos publicados, sin registro y con resultados orientativos.">
+<meta property="og:description" content="Más de 40 tests inspirados en modelos publicados, sin registro y con resultados orientativos.">
 <meta property="og:image" content="https://www.testia.info/assets/atlas-cover.webp">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Testia — ¿De verdad te conoces?">
-<meta name="twitter:description" content="Más de 20 tests de personalidad, CI, apego, inteligencia emocional y más. Sin registro.">
+<meta name="twitter:description" content="Más de 40 tests de personalidad, CI, apego, inteligencia emocional y más. Sin registro.">
 <meta name="twitter:image" content="https://www.testia.info/assets/atlas-cover.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -346,13 +346,13 @@
         <div>
           <div class="eyebrow">El atlas del autoconocimiento</div>
           <h1 class="title">¿De verdad <span class="ital" style="color:var(--cobalt)">te conoces</span>?</h1>
-          <p class="lead" style="margin:26px 0 0">Hazte los tests y descúbrete. Más de 20 experiencias inspiradas en modelos publicados para explorar quién eres, cómo piensas y por qué haces lo que haces.</p>
+          <p class="lead" style="margin:26px 0 0">Hazte los tests y descúbrete. Más de 40 tests inspirados en modelos publicados para explorar quién eres, cómo piensas y por qué haces lo que haces.</p>
           <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:36px">
             <button class="btn lg" data-analytics-name="Empezar test destacado" onclick="startTest(FLAGSHIP)">Conócete ahora →</button>
             <a onclick="go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver todos los tests</a>
           </div>
           <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.8rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--mut)">
-            <span>✓ Sin registro</span><span>✓ +20 tests</span><span>✓ Método explicado</span>
+            <span>✓ Sin registro</span><span>✓ +40 tests</span><span>✓ Método explicado</span>
           </div>
         </div>
         <div class="heroCard">
@@ -495,7 +495,7 @@
     <div class="wrap" style="padding:70px 40px 20px">
       <div class="eyebrow">El catálogo completo</div>
       <h1 class="disp" style="font-weight:600;font-size:clamp(2.5rem,5.4vw,4.2rem);line-height:1;letter-spacing:-.03em;margin:0;max-width:18ch">Todos los tests. Un solo sitio, bien hechos.</h1>
-      <p class="lead" style="max-width:54ch;margin:22px 0 0">Más de 20 tests inspirados en modelos publicados. Filtra por lo que te apetezca ahora.</p>
+      <p class="lead" style="max-width:54ch;margin:22px 0 0">Más de 40 tests inspirados en modelos publicados. Filtra por lo que te apetezca ahora.</p>
       <div class="filters" id="filters"></div>
     </div>
     <div class="wrap" style="padding:18px 40px 60px"><div class="cards" id="catalogCards"></div></div>
@@ -1550,16 +1550,38 @@ async function payAndUnlock(plan){
     const data=await res.json();
     if(!data.url) throw new Error(data.error||'sin URL de pago');
     // Asociamos el resultado a ESTA sesión de pago; solo se revelará si el servidor confirma el cobro.
-    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan,pwv:PW_VARIANT,prv:PRICE_VARIANT,price}));}catch(e){}
+    try{localStorage.setItem('atlas_pending',JSON.stringify({sid:data.sessionId,testId:T?T.id:null,r:lastResult,plan,pwv:PW_VARIANT,prv:PRICE_VARIANT,price,ts:Date.now()}));}catch(e){}
     window.location.href=data.url;
   }catch(e){
     toast('No se pudo iniciar el pago. Inténtalo de nuevo.');
   }
 }
+// Quien sale de Stripe sin pagar (flecha «atrás» de Stripe o botón atrás del navegador) vuelve a su resultado
+// con el muro de pago, en vez de aterrizar en la portada y perderlo.
+function restorePending(pend,how){
+  const t=TESTS.find(x=>x.id===pend.testId);if(!t||!pend.r)return false;
+  T=t;items=T.items;lastResult=pend.r;
+  renderResult(pend.r);go('result');try{drawCard(pend.r);}catch(e){}
+  lockResult(pend.pwv||PW_VARIANT);checkPass();
+  trackEvent('checkout_abandoned_return',{test_id:T.id,test_name:T.name,how,plan:pend.plan,paywall_variant:pend.pwv||PW_VARIANT,price_variant:pend.prv||PRICE_VARIANT});
+  setTimeout(()=>{const pw=$('paywall');if(pw&&pw.style.display!=='none')pw.scrollIntoView({behavior:'smooth',block:'center'});},350);
+  toast('No se ha completado el pago. Tu resultado sigue aquí.');
+  return true;
+}
 async function handleReturn(){
   const p=new URLSearchParams(location.search);
   const sid=p.get('session_id');
-  if(!sid) return;                       // sin session_id no se desbloquea nada
+  if(!sid){
+    let pend=null; try{pend=JSON.parse(localStorage.getItem('atlas_pending'));}catch(e){}
+    const canceled=p.get('canceled')==='1';
+    let back=false; try{const nav=performance.getEntriesByType('navigation')[0];back=!!nav&&nav.type==='back_forward';}catch(e){}
+    if(canceled){try{history.replaceState({},'',location.pathname);}catch(e){}}
+    // Con el botón atrás solo se restaura un intento de pago reciente (menos de 30 minutos).
+    if(pend&&pend.r&&(canceled||(back&&pend.ts&&Date.now()-pend.ts<30*60*1000))){
+      if(restorePending(pend,canceled?'stripe_back':'browser_back'))return 'restored';
+    }
+    return;                              // sin session_id no se desbloquea nada
+  }
   let pend=null; try{pend=JSON.parse(localStorage.getItem('atlas_pending'));}catch(e){}
   toast('Verificando tu pago…');
   let ok=false,plan='single';
@@ -1841,7 +1863,7 @@ document.addEventListener('keydown',e=>{
 });
 
 function handleStart(){const p=new URLSearchParams(location.search);const s=p.get('start');if(s&&TESTS.find(t=>t.id===s)){startTest(s);try{history.replaceState({},'',location.pathname);}catch(e){}}}
-buildHome();buildCatalog();buildFooter();handleReturn();handleStart();if(COUPLE_BOTH)openCoupleResult();
+buildHome();buildCatalog();buildFooter();handleReturn().then(st=>{if(st!=='restored')handleStart();});if(COUPLE_BOTH)openCoupleResult();
 </script>
 </body>
 </html>
