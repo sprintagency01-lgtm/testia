@@ -53,6 +53,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Intenciones reservadas por landings
 
+- `/test/test-eneagrama` — `test eneagrama`, `test de eneagrama gratis`, `eneatipo test`, `qué eneatipo soy`.
 - `/test/test-de-dependencia-emocional` — `test de dependencia emocional`, `test de dependencia emocional a la pareja`, `test de codependencia`.
 - `/test/test-de-razonamiento-para-entrevistas` — `test de razonamiento lógico`, `test de lógica para entrevista laboral`, `test psicométrico laboral`, `test de razonamiento numérico`, `test de razonamiento verbal`.
 - `/test/test-de-compatibilidad-de-pareja` — `test de compatibilidad de pareja`, `test de pareja para dos`, `test de compatibilidad de pareja gratis`.

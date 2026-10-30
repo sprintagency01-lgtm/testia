@@ -2425,3 +2425,54 @@ if(S.redflag){const f=S.redflag.faqs.find(x=>/pareja/.test(x.q));if(f&&!/pareja 
 if(S.honesty&&S.honesty.faqs.length<4)S.honesty.faqs.push({q:'¿Es gratis?',a:'Sí. Hacer el test y ver tu nivel de honestidad-humildad es gratis y sin registro. El desglose de las cuatro facetas se puede desbloquear por 1,99 €, en un pago único y sin suscripción.'});
 if(S.panas&&S.panas.faqs.length<4)S.panas.faqs.push({q:'¿Es gratis?',a:'Sí. Hacer el test y ver tu balance emocional es gratis y sin registro. Tu afecto positivo y negativo por separado se pueden desbloquear por 1,99 €, en un pago único y sin suscripción.'});
 })();
+
+/* ===== Test de eneagrama (octubre 2026) ===== */
+(function(){
+const BY={
+ E1:["Me cuesta dejar algo a medias si sé que puede quedar mejor.","Noto enseguida los errores, en mi trabajo y en el de los demás.","Tengo muy claro lo que está bien y lo que está mal.","Me irrita que la gente no haga las cosas como se deben hacer."],
+ E2:["Me sale de forma natural ayudar a los demás, incluso antes de que me lo pidan.","Me importa mucho sentirme necesario para la gente que quiero.","Me cuesta pedir ayuda, pero me encanta darla.","Suelo saber qué necesita alguien antes de que lo diga."],
+ E3:["Me motiva mucho conseguir metas y que se note.","Me importa la imagen que doy, sobre todo en el trabajo.","Me adapto a lo que se espera de mí para tener éxito.","Me siento valioso sobre todo cuando consigo cosas."],
+ E4:["Siento que soy diferente a la mayoría de la gente.","Vivo las emociones con mucha intensidad, también las tristes.","Me atrae lo auténtico y lo único; lo convencional me aburre.","A menudo siento que me falta algo que los demás sí tienen."],
+ E5:["Necesito entender bien las cosas antes de actuar.","Valoro mucho mi espacio y mi tiempo a solas.","Prefiero observar a participar, sobre todo al principio.","Me agota pasar mucho tiempo con gente, aunque me caiga bien."],
+ E6:["Antes de decidir, pienso en todo lo que podría salir mal.","La lealtad es de lo que más valoro en una persona.","Me cuesta confiar en alguien hasta que lo conozco bien.","Me quedo más tranquilo cuando tengo un plan B."],
+ E7:["Me encanta tener muchos planes y opciones abiertas.","Me aburro rápido cuando algo se vuelve rutina.","Veo el lado bueno incluso cuando las cosas van mal.","Cuando algo me hace sentir mal, prefiero pasar página rápido a darle vueltas."],
+ E8:["Digo las cosas claras, aunque moleste.","Me gusta tener el control de las situaciones.","Protejo mucho a la gente que quiero.","Me cuesta mostrarme vulnerable."],
+ E9:["Hago casi lo que sea por evitar un conflicto.","Me adapto con facilidad a lo que quieren los demás.","Dejo para más tarde lo que de verdad me importa.","Casi siempre estoy en calma y es difícil sacarme de quicio."]
+};
+const K=Object.keys(BY),items=[];
+for(let i=0;i<4;i++)K.forEach(k=>items.push({t:BY[k][i],s:k}));
+window.TESTS.push({
+ id:"eneagrama", name:"Test de eneagrama", emoji:"✳️", cat:"Personalidad", eyebrow:"Tu eneatipo",
+ blurb:"36 afirmaciones para descubrir tu eneatipo entre los nueve del eneagrama, tu ala y hacia dónde te mueves cuando creces y cuando estás bajo estrés.",
+ instrument:"Cuestionario propio de Testia sobre los nueve tipos del eneagrama de la personalidad. Orientativo: el eneagrama tiene una base científica limitada y este test no es el RHETI ni ningún instrumento comercial.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ premiumTitle:"Ya sabes tu eneatipo. Descubre tu ala y tus nueve puntuaciones",
+ premiumPitch:"Tu ala, tu puntuación en los nueve tipos, tu segundo y tercer tipo, hacia qué tipo te mueves cuando creces y cuando estás bajo estrés, y tus fortalezas y puntos ciegos.",
+ scales:{E1:"Tipo 1 · Perfeccionista",E2:"Tipo 2 · Ayudador",E3:"Tipo 3 · Triunfador",E4:"Tipo 4 · Individualista",E5:"Tipo 5 · Investigador",E6:"Tipo 6 · Leal",E7:"Tipo 7 · Entusiasta",E8:"Tipo 8 · Desafiador",E9:"Tipo 9 · Pacificador"},
+ result:{type:"ennea"},
+ items
+});
+window.SEO_CONTENT.eneagrama={slug:"test-eneagrama",seoTitle:"Test de eneagrama gratis: descubre tu eneatipo y tu ala | Testia",h1:"Test de eneagrama",
+ metaDesc:"Test de eneagrama gratis y sin registro: 36 afirmaciones para descubrir tu eneatipo entre los nueve tipos, tu ala y tus direcciones de crecimiento y estrés.",
+ intro:"El eneagrama describe nueve tipos de personalidad según lo que más te mueve y lo que más temes. Este test te hace 36 afirmaciones, cuatro por tipo, y te dice cuál es tu eneatipo. También te dice tu ala y hacia qué tipo te mueves cuando creces y cuando estás bajo estrés. Es gratis, sin registro y tarda unos 5 minutos. Es un test orientativo: más abajo explicamos qué dice la ciencia del eneagrama.",
+ updated:"octubre de 2026",updatedISO:"2026-10-30",
+ learn:["Tu eneatipo entre los nueve del eneagrama","Tu ala, el tipo vecino que más te influye","Tu puntuación en los nueve tipos","Hacia qué tipo te mueves cuando creces y cuando estás bajo estrés","Tus fortalezas y tus puntos ciegos"],
+ overview:[{label:"Mide",text:"Los nueve tipos del eneagrama, tu ala y tu centro."},{label:"Formato",text:"36 afirmaciones de acuerdo o desacuerdo; unos 5 minutos."},{label:"Límite",text:"Orientativo: el eneagrama tiene poca evidencia científica."}],
+ sections:[
+  {title:"Los nueve eneatipos",body:"Tipo 1, el perfeccionista: quiere hacer las cosas bien. Tipo 2, el ayudador: quiere sentirse querido y necesario. Tipo 3, el triunfador: quiere tener éxito y ser valorado. Tipo 4, el individualista: quiere ser auténtico y único. Tipo 5, el investigador: quiere entender y ser competente. Tipo 6, el leal: quiere seguridad y apoyo. Tipo 7, el entusiasta: quiere disfrutar y evitar el dolor. Tipo 8, el desafiador: quiere tener el control y protegerse. Tipo 9, el pacificador: quiere paz y armonía."},
+  {title:"Qué es el ala y los centros",body:"El ala es el tipo vecino de tu eneatipo en el círculo que más te influye: un 4 puede tener ala 3 o ala 5, y se escribe 4w3 o 4w5. Los nueve tipos se agrupan además en tres centros: el instintivo (8, 9 y 1), el emocional (2, 3 y 4) y el mental (5, 6 y 7)."},
+  {title:"Crecimiento y estrés",body:"Según el eneagrama, cada tipo toma rasgos de otro cuando crece y de otro distinto cuando está bajo estrés. Por ejemplo, un tipo 1 se relaja y disfruta más como un 7 cuando crece, y se vuelve más melancólico como un 4 bajo estrés. El resultado completo te dice cuáles son los tuyos."},
+  {title:"¿Tiene base científica?",body:"Poca. Una revisión sistemática de 2021 concluyó que la evidencia sobre el eneagrama es mixta: algunos estudios encuentran una fiabilidad aceptable y relaciones con los cinco grandes rasgos de personalidad, pero la investigación es escasa y la validez de los nueve tipos no está demostrada. Úsalo como una herramienta para reflexionar sobre ti, no como un diagnóstico. Si buscas un modelo con más respaldo, el test de los cinco grandes es la referencia en psicología."}],
+ faqs:[
+  {q:"¿Cómo saber cuál es mi eneatipo?",a:"Con un test como este, que mide cuánto te identificas con cada uno de los nueve tipos, y leyendo la descripción de los que te salgan más altos. Muchas personas dudan entre dos tipos: lee los dos y quédate con el que describe mejor lo que te mueve, no solo cómo te comportas."},
+  {q:"¿Qué significa 4w5 o 9w1?",a:"El primer número es tu eneatipo y el segundo, tu ala: el tipo vecino que más te influye. Un 4w5 es un tipo 4 con rasgos del tipo 5."},
+  {q:"¿El eneatipo cambia con el tiempo?",a:"Según la teoría del eneagrama, el tipo de base no cambia, pero sí cómo lo vives. En la práctica, tus respuestas pueden variar según tu momento vital, así que el resultado puede cambiar si repites el test."},
+  {q:"¿Es científico?",a:"El eneagrama tiene una base científica limitada. Este test es orientativo y no sustituye una evaluación psicológica."},
+  {q:"¿Qué relación tiene con los cinco grandes?",a:"Algunos estudios encuentran que los tipos del eneagrama se relacionan con los cinco grandes rasgos. Por ejemplo, el tipo 7 con la extraversión y el tipo 5 con la introversión."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu eneatipo es gratis y sin registro. Tu ala, tus nueve puntuaciones y tus direcciones de crecimiento y estrés se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"The Enneagram: A systematic review of the literature and directions for future research",url:"https://doi.org/10.1002/jclp.23097",note:"Hook, Hall, Davis, Van Tongeren y Conner (2021), Journal of Clinical Psychology: la evidencia sobre el eneagrama es mixta y escasa."},
+  {title:"The Riso-Hudson Enneagram Type Indicator: Estimates of reliability and validity",url:"https://doi.org/10.1080/07481756.2004.11909744",note:"Newgent, Parr, Newman y Wiggins (2004): fiabilidad de un cuestionario de eneagrama y su relación con los cinco grandes."},
+  {title:"Eneagrama de la personalidad",url:"https://es.wikipedia.org/wiki/Eneagrama_de_la_personalidad",note:"Wikipedia: origen del modelo, los nueve tipos y las críticas."}],
+ relatedIds:["bigfive","tipi","attachment"]};
+})();
