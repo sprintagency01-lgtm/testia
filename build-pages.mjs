@@ -223,8 +223,8 @@ if (!DRY) {
 
 Datos útiles:
 - Idioma: español. Público: España y Latinoamérica.
-- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción.
-- Privacidad: los tests políticos no registran respuestas ni resultados.
+- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción. Algunos tests, como el de Hogwarts, son gratis enteros.
+- Privacidad: los tests políticos y el de daltonismo no registran respuestas ni resultados.
 
 ## Tests
 

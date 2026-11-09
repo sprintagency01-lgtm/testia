@@ -2587,3 +2587,86 @@ window.SEO_CONTENT.hogwarts={slug:"test-de-hogwarts",seoTitle:"Test de Hogwarts:
   {title:"Hogwarts",url:"https://es.wikipedia.org/wiki/Hogwarts",note:"Wikipedia: el colegio de Harry Potter y sus cuatro casas."}],
  relatedIds:["bigfive","darktriad","bruja"]};
 })();
+
+/* ===== Títulos, H1 y entradillas de las landings (noviembre de 2026) =====
+   Varias landings usaban el título de relleno «Nombre — test online con base científica» y un H1 sin la
+   palabra que se busca. Aquí cada una tiene un título con la búsqueda principal delante y una entradilla
+   que dice qué mide, cuántas preguntas tiene, cuánto tarda y que es gratis. */
+(function(){
+const FIX={
+ bigfive:{seoTitle:"Test de personalidad Big Five: tus 5 grandes rasgos | Testia",h1:"Test de personalidad (Big Five)",
+  metaDesc:"Test de personalidad Big Five gratis: 50 preguntas para medir tus cinco grandes rasgos, el modelo con más respaldo en psicología. Sin registro.",
+  intro:"Este test de personalidad mide los cinco grandes rasgos, o Big Five: apertura, responsabilidad, extraversión, amabilidad y estabilidad emocional. Es el modelo de personalidad con más respaldo en psicología. Son 50 afirmaciones del banco público IPIP de Goldberg y tardas unos 7 minutos. Es gratis y sin registro."},
+ tipi:{seoTitle:"Test de personalidad rápido: 10 preguntas, 5 rasgos | Testia",h1:"Test de personalidad rápido",
+  metaDesc:"Test de personalidad rápido: 10 preguntas y unos 2 minutos para conocer tu perfil en los cinco grandes rasgos. Basado en el TIPI. Gratis y sin registro.",
+  intro:"Este test de personalidad rápido te da tu perfil en los cinco grandes rasgos con solo 10 preguntas. Se basa en el TIPI, un cuestionario breve muy usado en investigación cuando no hay tiempo para uno largo. Tardas unos 2 minutos y es gratis y sin registro. Si quieres un resultado más preciso, haz el test de personalidad completo de 50 preguntas."},
+ moral:{seoTitle:"Test de brújula moral: tus 5 fundamentos morales | Testia",h1:"Test de brújula moral",
+  metaDesc:"Test de brújula moral: 15 preguntas para saber cuánto pesan en ti el cuidado, la justicia, la lealtad, la autoridad y la pureza. Gratis y sin registro.",
+  intro:"¿En qué te basas para decidir qué está bien y qué está mal? Este test mide tus cinco fundamentos morales según la teoría de Jonathan Haidt: cuidado, justicia, lealtad, autoridad y pureza. Son 15 preguntas inspiradas en el Moral Foundations Questionnaire y tardas unos 2 minutos. Es gratis y sin registro."},
+ ncs:{seoTitle:"Test de necesidad de cognición: ¿te gusta pensar? | Testia",h1:"Test de necesidad de cognición",
+  metaDesc:"Test de necesidad de cognición: 6 preguntas para saber cuánto disfrutas pensando y resolviendo problemas complejos. Basado en la escala NCS-6. Gratis.",
+  intro:"La necesidad de cognición es cuánto disfrutas pensando: si te atraen los problemas complejos o prefieres ir al grano. Este test la mide con 6 preguntas de la escala NCS-6 y tardas unos 2 minutos. Es gratis y sin registro."},
+ riasec:{seoTitle:"Test vocacional gratis: ¿a qué deberías dedicarte? | Testia",h1:"Test vocacional",
+  metaDesc:"Test vocacional gratis basado en el modelo RIASEC de Holland: 48 preguntas para descubrir tus intereses y qué estudiar o a qué dedicarte. Sin registro.",
+  intro:"Este test vocacional te ayuda a decidir qué estudiar o a qué dedicarte según tus intereses. Se basa en el modelo RIASEC de Holland, el que usa el O*NET Interest Profiler del Departamento de Trabajo de Estados Unidos. Son 48 actividades que valoras según cuánto te gustarían y tardas unos 6 minutos. Es gratis y sin registro."},
+ ei:{name:"Test de inteligencia emocional",seoTitle:"Test de inteligencia emocional gratis y online | Testia",h1:"Test de inteligencia emocional",
+  metaDesc:"Test de inteligencia emocional gratis: 16 preguntas para saber cómo percibes, entiendes y gestionas tus emociones y las de los demás. Sin registro.",
+  intro:"La inteligencia emocional es la capacidad de percibir, entender y gestionar tus emociones y las de los demás. Este test la mide con 16 preguntas inspiradas en la escala de Schutte y tardas unos 2 minutos. Es gratis y sin registro."},
+ empathy:{seoTitle:"Test de empatía: ¿cuánta empatía tienes? | Testia",h1:"Test de empatía",
+  metaDesc:"Test de empatía gratis: 12 preguntas para saber cuánto captas y compartes lo que sienten los demás. Inspirado en el Empathy Quotient. Sin registro.",
+  intro:"¿Cuánto captas y compartes lo que sienten los demás? Este test mide tu nivel de empatía con 12 preguntas inspiradas en el Empathy Quotient de Baron-Cohen y Wheelwright. Tardas unos 2 minutos y es gratis y sin registro."},
+ selfesteem:{name:"Test de autoestima",h1:"Test de autoestima de Rosenberg"},
+ grit:{name:"Test de determinación",seoTitle:"Test de determinación (grit): pasión y constancia | Testia",h1:"Test de determinación (grit)",
+  metaDesc:"Test de determinación o grit: 10 preguntas para medir tu perseverancia y tu constancia con las metas a largo plazo. Basado en Duckworth. Gratis.",
+  intro:"La determinación, o grit, es la mezcla de perseverancia y constancia que te hace terminar lo que empiezas aunque cueste. Este test la mide con 10 preguntas inspiradas en la escala de Angela Duckworth y tardas unos 2 minutos. Es gratis y sin registro."},
+ swls:{seoTitle:"Test de felicidad: ¿estás satisfecho con tu vida? | Testia",h1:"Test de felicidad",
+  metaDesc:"Test de felicidad: 5 preguntas para saber cómo de satisfecho estás con tu vida, con la escala SWLS de Diener, validada en decenas de países. Gratis.",
+  intro:"¿Cómo de satisfecho estás con tu vida? Este test de felicidad lo mide con la escala SWLS de Ed Diener, una de las más usadas en el mundo para medir el bienestar. Son 5 preguntas y tardas unos 2 minutos. Es gratis y sin registro."},
+ resilience:{seoTitle:"Test de resiliencia: ¿cómo te recuperas de los golpes? | Testia",h1:"Test de resiliencia",
+  metaDesc:"Test de resiliencia: 6 preguntas para saber cuánto tardas en recuperarte de los momentos difíciles. Inspirado en la Brief Resilience Scale. Gratis.",
+  intro:"La resiliencia es la capacidad de recuperarte después de un momento difícil. Este test la mide con 6 preguntas inspiradas en la Brief Resilience Scale y tardas unos 2 minutos. Es gratis y sin registro."},
+ values:{seoTitle:"Test de valores personales: qué te importa de verdad | Testia",h1:"Test de valores personales",
+  metaDesc:"Test de valores personales: 20 preguntas para descubrir cuáles de los 10 valores básicos de Schwartz guían tus decisiones. Gratis y sin registro.",
+  intro:"¿Qué es lo que más te importa cuando decides? Este test mide los diez valores humanos básicos del modelo de Shalom Schwartz, de la libertad al poder y de la tradición a la ayuda a los demás. Son 20 preguntas inspiradas en el Portrait Values Questionnaire y tardas unos 3 minutos. Es gratis y sin registro."},
+ maximizer:{seoTitle:"Test: ¿eres maximizador o conformista al decidir? | Testia",h1:"Test: ¿maximizador o conformista?",
+  metaDesc:"Test de estilo de decisión: 6 preguntas para saber si buscas siempre la mejor opción o te conformas con una buena. Basado en la Maximization Scale. Gratis.",
+  intro:"¿Buscas siempre la mejor opción posible o te quedas con la primera que es suficientemente buena? Este test mide tu estilo de decisión con 6 preguntas de la versión breve de la Maximization Scale y tardas unos 2 minutos. Es gratis y sin registro."},
+ attachment:{seoTitle:"Test de apego: descubre tu estilo de apego adulto | Testia",h1:"Test de estilo de apego",
+  metaDesc:"Test de apego: 24 preguntas para saber si tu estilo de apego en pareja es seguro, ansioso, evitativo o temeroso. Inspirado en el ECR-R. Gratis.",
+  intro:"Tu estilo de apego es la forma en que te vinculas con tu pareja: seguro, ansioso, evitativo o temeroso. Este test lo mide en dos ejes, ansiedad y evitación, con 24 preguntas inspiradas en el cuestionario ECR-R. Tardas unos 3 minutos y es gratis y sin registro."},
+ chronotype:{seoTitle:"Test de cronotipo: ¿eres búho o alondra? | Testia",h1:"Test de cronotipo: ¿búho o alondra?",
+  metaDesc:"Test de cronotipo: 5 preguntas para saber si eres búho o alondra y a qué hora del día rindes mejor. Basado en el cuestionario rMEQ. Gratis y sin registro.",
+  intro:"¿Eres de mañanas o de noches? Tu cronotipo es el horario natural de tu cuerpo. Este test te dice si eres búho, alondra o algo intermedio con las 5 preguntas del cuestionario rMEQ, y tardas unos 2 minutos. Es gratis y sin registro."},
+ politico:{seoTitle:"Test: ¿cuánto facha eres? Tu posición política real | Testia",h1:"Test: ¿cuánto facha eres?",
+  metaDesc:"Test político: ¿cuánto facha eres? 22 preguntas sobre economía y valores para saber dónde estás en el eje izquierda-derecha. Gratis y sin registro.",
+  intro:"¿Eres de izquierdas, de derechas o de centro? Este test político te sitúa en el eje izquierda-derecha combinando dos cosas: lo que piensas de la economía y lo que piensas de los valores sociales. Son 22 preguntas y tardas unos 3 minutos. Es gratis y sin registro, y no guardamos tus respuestas."},
+ redflag:{seoTitle:"Test: ¿eres tú la red flag en tus relaciones? | Testia",h1:"Test: ¿eres tú la red flag?",
+  metaDesc:"Test: ¿eres tú la red flag? 20 preguntas sobre cómo te comportas en pareja para saber qué conductas tuyas pueden ser una señal de alarma. Gratis.",
+  intro:"¿Y si la red flag de tus relaciones fueras tú? Este test repasa cómo te comportas en pareja, de los celos y el control a la forma de discutir o de desaparecer. Son 20 preguntas y tardas unos 3 minutos. Es un test para divertirse y pensar un poco, gratis y sin registro."},
+ // Títulos largos que Google corta.
+ hogwarts:{seoTitle:"Test de Hogwarts (Harry Potter): ¿a qué casa perteneces? | Testia"},
+ narcisismo:{name:"Test de narcisismo: ¿tienes rasgos narcisistas?",seoTitle:"Test de narcisismo: ¿tienes rasgos narcisistas? | Testia",h1:"Test de narcisismo: ¿tienes rasgos narcisistas?",
+  metaDesc:"Test de narcisismo gratis: 20 afirmaciones para medir tus rasgos narcisistas y saber si tu patrón es grandioso o encubierto. Sin registro."},
+ razonamiento:{seoTitle:"Test de razonamiento lógico para entrevistas de trabajo | Testia",
+  metaDesc:"Test psicotécnico de razonamiento numérico, verbal y lógico como los de las entrevistas de trabajo: 20 preguntas, 20 minutos y tu percentil. Gratis."},
+ aacc:{seoTitle:"Test de altas capacidades para adultos, gratis | Testia",
+  metaDesc:"Test de altas capacidades para adultos: 15 problemas de razonamiento y 20 preguntas sobre rasgos para saber si tu perfil encaja. Gratis y sin registro."},
+ dificil:{seoTitle:"Test de persona difícil: ¿eres difícil de tratar? | Testia"},
+ parejanarc:{seoTitle:"Test de pareja narcisista: señales en tu relación | Testia",
+  metaDesc:"Test de pareja narcisista gratis: 20 conductas concretas para saber si en tu relación hay un patrón narcisista y qué hacer. Sin registro."},
+ pareja2:{metaDesc:"Test de compatibilidad de pareja para dos: cada uno responde en su móvil y veis vuestro porcentaje de compatibilidad en ocio, dinero, futuro y afecto."},
+ ccse:{seoTitle:"Test de nacionalidad española 2026: simulacro CCSE gratis | Testia",
+  metaDesc:"Simulacro gratis del examen de nacionalidad española (CCSE): 25 preguntas como en el examen real, 45 minutos y aprobado con 15 aciertos. ¿Lo aprobarías?"},
+ daltonismo:{metaDesc:"Test de daltonismo online gratis: 13 láminas de puntos de colores para saber si ves todos los colores o si te cuestan los rojos, los verdes o los azules."},
+ dependencia:{seoTitle:"Test de dependencia emocional en la pareja, gratis | Testia",
+  metaDesc:"Test de dependencia emocional en la pareja: 24 afirmaciones basadas en el cuestionario CDE para saber cuánto dependes de tu pareja y en qué. Gratis."}
+};
+const NAMES={bigfive:"Test de personalidad",riasec:"Test vocacional"};
+Object.entries(FIX).forEach(([id,f])=>{if(!f)return;const s=window.SEO_CONTENT[id],t=window.TESTS.find(x=>x.id===id);if(!s||!t)return;
+ const {name,...seo}=f;if(name)t.name=name;
+ const changed=Object.keys(seo).some(k=>k!=="seoTitle");Object.assign(s,seo);
+ if(changed){s.updated="noviembre de 2026";s.updatedISO="2026-11-09";}});
+Object.entries(NAMES).forEach(([id,n])=>{const t=window.TESTS.find(x=>x.id===id);if(t)t.name=n;});
+// Landings editadas a mano (build-pages no las regenera): el H1 ya se cambió en el HTML; aquí solo se deja igual.
+window.SEO_CONTENT.honesty.h1="Test de honestidad y humildad";window.SEO_CONTENT.darktriad.h1="Test de la tríada oscura";
+})();
