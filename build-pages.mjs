@@ -37,7 +37,7 @@ const CATS = {
   profesional:{name:"Profesional y decisiones",color:"#1f8a6d"}, relaciones:{name:"Relaciones y emociones",color:"#b8434c"},
   bienestar:{name:"Valores y bienestar",color:"#e0892f"},
 };
-const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",iq:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",razonamiento:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",dependencia:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad",partido:"bienestar",candidato:"bienestar"};
+const TEST_CAT = {bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",iq:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",razonamiento:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",dependencia:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad",partido:"bienestar",candidato:"bienestar"};
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const mins = t => t.minutes || (t.mode==="correct" ? Math.round((t.duration||300)/60) : Math.max(2, Math.round(t.items.length*0.13)));
 const PAYMENT_FAQ = {
@@ -82,7 +82,7 @@ function page(t){
     TESTS.filter(x=>x.id!==t.id && TEST_CAT[x.id]===TEST_CAT[t.id])
       .concat(TESTS.filter(x=>x.id!==t.id && TEST_CAT[x.id]!==TEST_CAT[t.id])).slice(0,3);
   const faqs = [...(s.faqs||[])];
-  if (!faqs.some(f=>/cu[aá]nto cuesta|precio|1,99/.test(`${f.q} ${f.a}`.toLowerCase()))) faqs.push(PAYMENT_FAQ);
+  if (!t.free && !faqs.some(f=>/cu[aá]nto cuesta|precio|1,99/.test(`${f.q} ${f.a}`.toLowerCase()))) faqs.push(PAYMENT_FAQ);
   const graph = [
     {"@type":"Quiz","name":pageName,"about":s.intro,"url":url,"educationalLevel":"general",
      "isAccessibleForFree":true,"inLanguage":"es","timeRequired":`PT${mins(t)}M`,
@@ -122,10 +122,10 @@ function page(t){
   <div class="eyebrow" style="color:${cat.color}">${esc(cat.name)}</div>
   <h1>${esc(pageName)}</h1>
   <p class="lead">${esc(s.intro)}</p>
-  <div class="meta"><span class="chip">${t.items.length} preguntas</span><span class="chip">~${mins(t)} min</span><span class="chip">Sin registro</span><span class="chip">Cuestionario gratis</span></div>
+  <div class="meta"><span class="chip">${t.items.length} preguntas</span><span class="chip">~${mins(t)} min</span><span class="chip">Sin registro</span><span class="chip">${t.free?"Gratis entero":"Cuestionario gratis"}</span></div>
   <div><a class="btn" style="background:linear-gradient(135deg,#3a57e8,#2840c4)" href="/?start=${t.id}" aria-label="Responder ${esc(pageName)} gratis">Responder gratis →</a><a class="btn alt" href="/#catalogo">Ver todos los tests</a></div>
 ${s.updated?`  <p class="updated">Actualizado: <time datetime="${esc(s.updatedISO||"")}">${esc(s.updated)}</time></p>
-`:""}  <p class="cta-note"><strong>Sin suscripción:</strong> responde gratis y desbloquea el informe completo solo si quieres, por 1,99 €.</p>
+`:""}  <p class="cta-note">${t.free?"<strong>Gratis de principio a fin:</strong> ves tu resultado completo sin pagar nada y sin registro.":"<strong>Sin suscripción:</strong> responde gratis y desbloquea el informe completo solo si quieres, por 1,99 €."}</p>
 
 ${s.overview?.length?`  <dl class="overview">${s.overview.map(x=>`<div><dt>${esc(x.label)}</dt><dd>${esc(x.text)}</dd></div>`).join("")}</dl>`:""}
 
@@ -134,8 +134,8 @@ ${s.overview?.length?`  <dl class="overview">${s.overview.map(x=>`<div><dt>${esc
 
   <h2>Cómo funciona</h2>
   <div class="steps">
-    <div class="step"><div class="n">01</div><h3>Responde</h3><p>${t.items.length} preguntas inspiradas en un instrumento publicado. Sin registro.</p></div>
-    <div class="step"><div class="n">02</div><h3>Elige si quieres el informe</h3><p>Al terminar puedes desbloquear la interpretación completa por 1,99 €, sin suscripción.</p></div>
+    <div class="step"><div class="n">01</div><h3>Responde</h3><p>${esc(s.step1||`${t.items.length} preguntas inspiradas en un instrumento publicado. Sin registro.`)}</p></div>
+    ${t.free?`<div class="step"><div class="n">02</div><h3>Ve tu resultado</h3><p>Tu resultado completo al momento, gratis y sin registro.</p></div>`:`<div class="step"><div class="n">02</div><h3>Elige si quieres el informe</h3><p>Al terminar puedes desbloquear la interpretación completa por 1,99 €, sin suscripción.</p></div>`}
     <div class="step"><div class="n">03</div><h3>Comparte</h3><p>Descarga tu carta de resultado y compártela donde quieras.</p></div>
   </div>
 

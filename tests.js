@@ -2486,3 +2486,104 @@ Object.entries(ADD).forEach(([id,a])=>{const s=window.SEO_CONTENT[id];if(!s||s._
  const us=new Set((s.sources||[]).map(x=>x.url));s.sources=(s.sources||[]).concat((a.addSources||[]).filter(x=>!us.has(x.url)));
  s.updated='octubre de 2026';s.updatedISO='2026-10-30';s.__expanded=true;});
 })();
+
+/* ===== Test de daltonismo y test de Hogwarts (noviembre de 2026) ===== */
+(function(){
+/* Daltonismo: las láminas se generan en cognitive.js. Datos de salud: sensitive evita guardar el resultado en la analítica. */
+window.TESTS.push({
+ id:"daltonismo", name:"Test de daltonismo", emoji:"🎨", cat:"Bienestar", eyebrow:"Tu visión del color", sensitive:true,
+ blurb:"13 láminas de puntos de colores con un número escondido. Descubre si ves todos los colores o si te cuestan los rojos, los verdes o los azules.",
+ instrument:"Láminas pseudoisocromáticas propias de Testia, del tipo de las de Ishihara. Cada número cambia solo un tipo de cono, según la simulación de dicromatas de Viénot, Brettel y Mollon (1999). Orientativo: no sustituye una revisión con un óptico o un oftalmólogo.", license:"🟢",
+ mode:"correct", scoring:"color", noTimer:true, autoAdvance:true, minutes:3,
+ promptOnce:true,
+ prompt:"Antes de empezar: sube el brillo y desactiva el modo nocturno o el filtro de luz azul. Si no ves ningún número, elige «No veo ningún número»: no intentes adivinar.",
+ premiumTitle:"Ya sabes si ves todos los colores. Descubre tu tipo exacto",
+ premiumPitch:"Qué tipo de daltonismo encaja con tus respuestas (protan, deutan o tritan), con qué intensidad, cuántas láminas viste de cada color y cómo te afecta en el día a día.",
+ domains:{L:"Rojos (conos L)",M:"Verdes (conos M)",S:"Azules (conos S)"},
+ interp:{
+  L:{hi:"Has visto los números de las láminas de rojos, incluso los más tenues. Tus conos de los rojos funcionan con normalidad.",mid:"Has visto las láminas de rojos más claras, pero se te han escapado las más tenues. Puede ser una dificultad leve o que tu pantalla no muestre bien los matices.",lo:"Las láminas de rojos te han costado mucho. Es lo que pasa cuando los conos de los rojos funcionan peor o faltan: el número se confunde con el fondo."},
+  M:{hi:"Has visto los números de las láminas de verdes, incluso los más tenues. Tus conos de los verdes funcionan con normalidad.",mid:"Has visto las láminas de verdes más claras, pero se te han escapado las más tenues. Puede ser una dificultad leve o que tu pantalla no muestre bien los matices.",lo:"Las láminas de verdes te han costado mucho. Es lo que pasa cuando los conos de los verdes funcionan peor o faltan, el tipo de daltonismo más frecuente."},
+  S:{hi:"Has visto las dos láminas de azules. Distingues bien el azul y el amarillo.",mid:"Se te ha escapado una de las dos láminas de azules. Revisa que no tengas activado un filtro de luz azul: es la causa más habitual.",lo:"No has visto las láminas de azules. Es poco frecuente y, si no tienes ningún filtro de luz activado, merece la pena consultarlo con un óptico o un oftalmólogo."}
+ },
+ items:[]
+});
+window.SEO_CONTENT.daltonismo={slug:"test-de-daltonismo",seoTitle:"Test de daltonismo online gratis: ¿ves todos los colores? | Testia",h1:"Test de daltonismo",
+ metaDesc:"Test de daltonismo online, gratis y sin registro: 13 láminas de puntos de colores para saber si ves todos los colores o si te cuestan los rojos, los verdes o los azules.",
+ intro:"¿Eres daltónico? Este test te enseña 13 láminas de puntos de colores, cada una con un número escondido, como las del test de Ishihara. Según los números que veas, te dice si tu visión del color es normal o si te cuestan los rojos, los verdes o los azules. Es gratis, sin registro y tarda unos 3 minutos. Es orientativo: depende de tu pantalla y no sustituye una revisión con un óptico o un oftalmólogo.",
+ step1:"13 láminas de puntos de colores, cada una con un número escondido. Sin registro.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-09",
+ learn:["Si tu visión del color es normal","Si te cuestan los rojos, los verdes o los azules","Qué tipo de daltonismo encaja con tus respuestas: protan, deutan o tritan","Con qué intensidad: leve, moderada o fuerte","Cómo te afecta en el día a día y cómo confirmarlo"],
+ overview:[{label:"Mide",text:"Si distingues los rojos, los verdes y los azules."},{label:"Formato",text:"13 láminas de puntos con un número escondido; unos 3 minutos."},{label:"Límite",text:"Orientativo: depende de tu pantalla y no es un diagnóstico."}],
+ sections:[
+  {title:"Antes de empezar",body:"El resultado depende mucho de la pantalla. Sube el brillo, desactiva el modo nocturno, el filtro de luz azul o cualquier modo de lectura, y no lo hagas al sol. Si llevas gafas con filtro de color, quítatelas. Si no ves ningún número en una lámina, elige «No veo ningún número» en lugar de adivinar: así el resultado es más fiable."},
+  {title:"Cómo funciona este test",body:"El ojo distingue los colores gracias a tres tipos de conos: los L, sensibles sobre todo a los rojos, los M, a los verdes, y los S, a los azules. En cada lámina, el número solo se diferencia del fondo por la señal de uno de esos conos. Si ese cono funciona bien, ves el número; si funciona peor o falta, el número se confunde con el fondo. Hay láminas más claras y más tenues, la primera es de prueba y la ve todo el mundo, y dos láminas muy intensas sirven para distinguir el tipo protan del deutan. Las láminas se generan de nuevo cada vez que haces el test."},
+  {title:"Tipos de daltonismo",body:"El más frecuente es el daltonismo rojo-verde. Si fallan los conos de los verdes se llama deuteranomalía y, si faltan del todo, deuteranopia. Si fallan los de los rojos, protanomalía o protanopia. Mucho más raro es el daltonismo azul-amarillo, o tritan, cuando fallan los conos de los azules. Que una persona no vea ningún color, la acromatopsia, es excepcional."},
+  {title:"¿A quién afecta?",body:"El daltonismo rojo-verde afecta a alrededor del 8 % de los hombres y al 0,5 % de las mujeres de origen europeo. Es más frecuente en los hombres porque los genes de los conos de los rojos y los verdes están en el cromosoma X: un hombre solo tiene uno, y una mujer necesita heredar el cambio en los dos. Casi siempre es de nacimiento y no empeora con los años."},
+  {title:"¿Es fiable un test de daltonismo online?",body:"Sirve para orientarte, no para diagnosticar. Las pantallas no muestran los colores igual y el brillo, los filtros y la luz de la habitación cambian lo que ves. La prueba de referencia en una consulta es el test de Ishihara impreso y, para confirmar el tipo, el anomaloscopio o el test Farnsworth D-15. Si este test te dice que te cuestan algunos colores, coméntalo en tu próxima revisión con un óptico o un oftalmólogo. Y si notas que ves los colores peor que antes, ve al médico: un cambio reciente no es daltonismo de nacimiento y puede tener otra causa."}],
+ faqs:[
+  {q:"¿Cómo saber si soy daltónico?",a:"Con un test de láminas como este puedes hacerte una primera idea: si no ves los números de las láminas de rojos o de verdes, es probable que te cuesten esos colores. Para confirmarlo, un óptico o un oftalmólogo te hará el test de Ishihara en papel y, si hace falta, otras pruebas."},
+  {q:"¿Es lo mismo que el test de Ishihara?",a:"Funciona igual, con láminas de puntos de colores y un número escondido, pero las láminas son propias de Testia y se generan en tu pantalla. Las del test de Ishihara son láminas impresas con colores calibrados, por eso son la referencia en las consultas."},
+  {q:"¿Puede una mujer ser daltónica?",a:"Sí, aunque es mucho menos frecuente: alrededor de 1 de cada 200 mujeres tiene daltonismo rojo-verde, frente a 1 de cada 12 hombres."},
+  {q:"¿El daltonismo tiene cura?",a:"El daltonismo de nacimiento no tiene cura. Algunas gafas con filtros especiales ayudan a algunas personas a notar más contraste entre ciertos colores, pero no devuelven una visión del color normal. Lo más útil es conocer tu tipo y usar trucos del día a día, como fijarte en la posición de las luces del semáforo."},
+  {q:"Tengo buena vista y no he visto algún número. ¿Es normal?",a:"Puede pasar con las láminas más tenues, sobre todo con poco brillo, con el modo nocturno activado o en pantallas que no muestran bien los colores. Por eso el test no tiene en cuenta que se te escape una de las láminas más tenues de cada color. Si te pasa con varias, repítelo en otra pantalla."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y saber si tu visión del color es normal o si te cuestan los rojos, los verdes o los azules es gratis y sin registro. El tipo de daltonismo que encaja con tus respuestas, su intensidad y el detalle de cada lámina se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"Worldwide prevalence of red-green color deficiency",url:"https://doi.org/10.1364/JOSAA.29.000313",note:"Birch (2012), Journal of the Optical Society of America A: cuántas personas tienen daltonismo rojo-verde en el mundo."},
+  {title:"Digital video colourmaps for checking the legibility of displays by dichromats",url:"https://doi.org/10.1002/(SICI)1520-6378(199908)24:4<243::AID-COL5>3.0.CO;2-3",note:"Viénot, Brettel y Mollon (1999), Color Research & Application: cómo simular en una pantalla lo que ven las personas con daltonismo. Es la base del diseño de las láminas."},
+  {title:"Color blindness",url:"https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness",note:"National Eye Institute (Estados Unidos): tipos de daltonismo, causas y diagnóstico."},
+  {title:"Test de Ishihara",url:"https://es.wikipedia.org/wiki/Test_de_Ishihara",note:"Wikipedia: origen y funcionamiento de las láminas de Ishihara."}],
+ relatedIds:["atencion","memoria","iq"]};
+
+/* Hogwarts: test recreativo y no oficial, gratis entero (free: sin muro de pago). Sin logos, imágenes ni citas de los libros. */
+const HOUSES={
+ GRY:["Si veo una injusticia, intervengo aunque me pueda salir caro.","Me lanzo a hacer cosas que me dan miedo.","Prefiero equivocarme por actuar que por quedarme quieto.","Defiendo a mis amigos aunque eso me meta en líos.","Me gusta ser quien da el primer paso en un grupo.","Las situaciones de riesgo me dan más energía que miedo."],
+ HUF:["Soy de las personas que se quedan hasta el final para ayudar a recoger.","La lealtad a mi gente está por encima de casi todo.","Prefiero el trabajo constante a los golpes de genio.","Trato igual a todo el mundo, tenga el cargo que tenga.","Tengo mucha paciencia con los demás.","Me hace más feliz que gane el equipo que destacar yo."],
+ RAV:["Me encanta aprender cosas aunque no me sirvan para nada práctico.","Le doy vueltas a una idea hasta entenderla del todo.","Prefiero una buena conversación a una gran fiesta.","Se me ocurren soluciones que a otros no se les ocurren.","Pierdo la noción del tiempo leyendo o investigando sobre algo que me interesa.","Me importa más tener buenos argumentos que caer bien."],
+ SLY:["Tengo metas ambiciosas y sé cómo quiero llegar a ellas.","Sé usar las reglas a mi favor.","Me importa mucho llegar lejos y que se me reconozca.","Pienso varios pasos por delante antes de mover ficha.","Elijo muy bien de quién me rodeo.","No me cuesta ser frío si la situación lo pide."]
+};
+const HK=Object.keys(HOUSES),hitems=[];
+for(let i=0;i<6;i++)HK.forEach(k=>hitems.push({t:HOUSES[k][i],s:k}));
+window.TESTS.push({
+ id:"hogwarts", name:"Test de Hogwarts: ¿a qué casa perteneces?", emoji:"🏰", cat:"Personalidad", eyebrow:"Tu casa de Hogwarts", free:true,
+ blurb:"¿Valiente como Gryffindor, leal como Hufflepuff, curioso como Ravenclaw o ambicioso como Slytherin? 24 afirmaciones para saber a qué casa de Hogwarts perteneces.",
+ instrument:"Test recreativo y no oficial, con ítems propios de Testia sobre los rasgos de las cuatro casas de Hogwarts. Inspirado en los estudios de Crysel y otros (2015) y Jakob y otros (2019) sobre las casas y la personalidad.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ scales:{GRY:"Gryffindor",HUF:"Hufflepuff",RAV:"Ravenclaw",SLY:"Slytherin"},
+ result:{type:"profileBars"},
+ topDesc:{
+  GRY:"Eres de Gryffindor: valiente, impulsivo y con un sentido de la justicia que no se negocia. Te lanzas cuando otros dudan y das la cara por los tuyos aunque te cueste. Tu reto es pensar un segundo antes de saltar.",
+  HUF:"Eres de Hufflepuff: leal, trabajador y justo con todo el mundo. Eres la persona con la que se puede contar, la que no abandona y la que hace que el grupo funcione. Que no te subestimen: tu constancia llega más lejos que muchos golpes de genio.",
+  RAV:"Eres de Ravenclaw: curioso, ingenioso y con la cabeza siempre en marcha. Disfrutas aprendiendo por el gusto de aprender y ves soluciones donde otros ven problemas. Tu reto es salir de vez en cuando de tu cabeza.",
+  SLY:"Eres de Slytherin: ambicioso, estratégico y con las ideas muy claras. Sabes lo que quieres, piensas varios pasos por delante y eliges bien a tu gente. No es ser malo: es tener hambre de llegar lejos."
+ },
+ interp:{
+  GRY:{hi:"Tu lado Gryffindor es muy fuerte: valentía, iniciativa y ganas de defender lo justo.",mid:"Tienes tu punto de Gryffindor: te atreves cuando hace falta, aunque no te lanzas a ciegas.",lo:"Lo tuyo no es lanzarte sin red: prefieres pensar bien antes de arriesgar."},
+  HUF:{hi:"Tu lado Hufflepuff manda: lealtad, paciencia y trabajo constante.",mid:"Tienes un lado Hufflepuff: cuidas a tu gente, aunque también miras por ti.",lo:"La paciencia y el trabajo en equipo no son lo que más te define: vas más a tu ritmo."},
+  RAV:{hi:"Tu lado Ravenclaw brilla: curiosidad, ingenio y ganas de entenderlo todo.",mid:"Tienes algo de Ravenclaw: te gusta aprender, aunque sin perderte en las ideas.",lo:"Prefieres la acción a la teoría: las ideas te interesan si sirven para algo."},
+  SLY:{hi:"Tu lado Slytherin es intenso: ambición, estrategia y ganas de llegar lejos.",mid:"Tienes tu punto de Slytherin: sabes lo que quieres, aunque no a cualquier precio.",lo:"La ambición no es lo tuyo: te importa más el camino que llegar el primero."}
+ },
+ items:hitems
+});
+window.SEO_CONTENT.hogwarts={slug:"test-de-hogwarts",seoTitle:"Test de Hogwarts: ¿a qué casa perteneces? Test de Harry Potter gratis | Testia",h1:"Test de Hogwarts: ¿a qué casa perteneces?",
+ metaDesc:"Test de Hogwarts gratis y sin registro: 24 afirmaciones para saber si eres de Gryffindor, Hufflepuff, Ravenclaw o Slytherin, y cuánto tienes de cada casa.",
+ intro:"¿Eres de Gryffindor, de Hufflepuff, de Ravenclaw o de Slytherin? Este test de Harry Potter te hace 24 afirmaciones sobre tu forma de ser y te dice a qué casa de Hogwarts perteneces y cuánto tienes de cada una. Es gratis de principio a fin, sin registro, y tarda unos 3 minutos. Es un test no oficial y para divertirse.",
+ step1:"24 afirmaciones sobre tu forma de ser. Sin registro.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-09",
+ learn:["A qué casa de Hogwarts perteneces","Cuánto tienes de Gryffindor, Hufflepuff, Ravenclaw y Slytherin","Cuál sería tu segunda casa","Qué dice de ti cada casa"],
+ overview:[{label:"Mide",text:"Cuánto encajas con los rasgos de cada una de las cuatro casas."},{label:"Formato",text:"24 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Precio",text:"Gratis entero: sin pago y sin registro."}],
+ sections:[
+  {title:"Las cuatro casas de Hogwarts",body:"Gryffindor es la casa de los valientes: osadía, iniciativa y sentido de la justicia. Hufflepuff, la de los leales: trabajo constante, paciencia y juego limpio. Ravenclaw, la de los curiosos: inteligencia, ingenio y ganas de aprender. Slytherin, la de los ambiciosos: estrategia, determinación y ganas de llegar lejos. Este test mide cuánto encajas con los rasgos de cada una y te asigna la que más."},
+  {title:"¿Tiene algo de ciencia?",body:"Un poco, y es curioso. En 2015, un estudio con fans de Harry Potter encontró que la casa con la que se identificaban se relacionaba con su personalidad: los de Hufflepuff eran más amables, los de Ravenclaw disfrutaban más pensando y los de Slytherin puntuaban más alto en los rasgos oscuros de la personalidad. Una réplica de 2019 con más participantes encontró relaciones parecidas, pero pequeñas. Así que este test es para divertirse: si quieres conocer tu personalidad de verdad, haz el test de los cinco grandes."},
+  {title:"Test no oficial",body:"Este test es un homenaje de fans y no tiene relación con J. K. Rowling, Warner Bros. ni Wizarding World. Harry Potter, Hogwarts y los nombres de las casas son marcas de sus propietarios. La web oficial de Harry Potter tiene su propio test del Sombrero Seleccionador."}],
+ faqs:[
+  {q:"¿Cómo saber a qué casa de Hogwarts pertenezco?",a:"Respondiendo a un test como este, que mide cuánto encajas con los rasgos de cada casa: la valentía de Gryffindor, la lealtad de Hufflepuff, la curiosidad de Ravenclaw y la ambición de Slytherin. La casa en la que más puntúas es la tuya."},
+  {q:"¿Es el test oficial del Sombrero Seleccionador?",a:"No. Es un test no oficial, con preguntas propias de Testia. El test oficial está en la web oficial de Harry Potter."},
+  {q:"¿Puedo ser de dos casas?",a:"En el resultado ves cuánto tienes de cada casa. Si dos salen muy igualadas, tienes rasgos de las dos: quédate con la que mejor describe lo que más te importa."},
+  {q:"¿Cuál es la mejor casa de Hogwarts?",a:"Ninguna. Cada una valora cosas distintas: el valor, la lealtad, el ingenio o la ambición. Lo interesante es ver cuál encaja contigo."},
+  {q:"¿Es gratis?",a:"Sí, entero. Ves tu casa y cuánto tienes de cada una sin pagar nada y sin registro."}],
+ sources:[
+  {title:"Harry Potter and the measures of personality: Extraverted Gryffindors, agreeable Hufflepuffs, clever Ravenclaws, and manipulative Slytherins",url:"https://doi.org/10.1016/j.paid.2015.04.016",note:"Crysel, Cook, Schember y Webster (2015), Personality and Individual Differences: la casa con la que se identifican los fans se relaciona con su personalidad."},
+  {title:"The Science Behind the Magic? The Relation of the Harry Potter “Sorting Hat Quiz” to Personality and Human Values",url:"https://doi.org/10.1525/collabra.240",note:"Jakob, Garcia-Garzon, Jarke y Dablander (2019), Collabra: Psychology: una réplica con más participantes encuentra relaciones parecidas, pero pequeñas."},
+  {title:"Hogwarts",url:"https://es.wikipedia.org/wiki/Hogwarts",note:"Wikipedia: el colegio de Harry Potter y sus cuatro casas."}],
+ relatedIds:["bigfive","darktriad","bruja"]};
+})();

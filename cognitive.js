@@ -4,6 +4,7 @@
      reconocimiento de palabras tras una distracción.
    · atencion: Stroop (color frente a palabra), búsqueda visual
      (contar letras entre letras parecidas) y símbolo distinto.
+   · daltonismo: láminas de puntos de colores con un número escondido.
    Cada partida genera ítems nuevos para que el test se pueda repetir.
    Carga DESPUÉS de tests.js (la usan también las landings).
    ============================================================ */
@@ -97,8 +98,88 @@
     return out;
   }
 
+  /* ---------- DALTONISMO ---------- */
+  // Cada lámina esconde un número que solo se distingue del fondo por la respuesta de un tipo de cono:
+  // L (rojos), M (verdes) o S (azules). Para quien no tiene ese cono el número desaparece
+  // (simulación de dicromatas de Viénot, Brettel y Mollon, 1999). Varias intensidades por cono miden cuánto cuesta.
+  const LMS = [[17.8824, 43.5161, 4.11935], [3.45565, 27.1554, 3.86714], [0.0299566, 0.184309, 1.46709]];
+  const inv3 = (m) => {
+    const [a, b, c] = m[0], [d, e, f] = m[1], [g, h, i] = m[2], A = e * i - f * h, B = f * g - d * i, C = d * h - e * g, D = a * A + b * B + c * C;
+    return [[A / D, (c * h - b * i) / D, (b * f - c * e) / D], [B / D, (a * i - c * g) / D, (c * d - a * f) / D], [C / D, (b * g - a * h) / D, (a * e - b * d) / D]];
+  };
+  const LMSi = inv3(LMS), mul3 = (m, v) => m.map((r) => r[0] * v[0] + r[1] * v[1] + r[2] * v[2]);
+  const toLin = (c) => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4), toGam = (c) => (c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055);
+  const hexOf = (lms) => '#' + mul3(LMSi, lms).map((c) => Math.round(255 * Math.min(1, Math.max(0, toGam(c)))).toString(16).padStart(2, '0')).join('');
+  // Fondos que admiten todas las variaciones sin salirse de los colores que puede mostrar una pantalla.
+  const BASES = [[0.66, 0.58, 0.42], [0.62, 0.6, 0.4], [0.6, 0.58, 0.55], [0.64, 0.56, 0.5]];
+  const AX = { L: 0, M: 1, S: 2 };
+
+  function plateDots() {
+    // Empaquetado aleatorio de círculos dentro de la lámina: primero los grandes, luego se rellenan los huecos.
+    const out = [], cell = 13, grid = new Map(), k = (cx, cy) => cx + ',' + cy;
+    for (let t = 0; t < 45000 && out.length < 2400; t++) {
+      const r = t < 6000 ? 3.6 + Math.random() * 2 : t < 18000 ? 2.6 + Math.random() * 1.2 : 1.7 + Math.random() * 0.9;
+      const a = Math.random() * 2 * Math.PI, d = Math.sqrt(Math.random()) * (146 - r), x = 150 + d * Math.cos(a), y = 150 + d * Math.sin(a);
+      const cx = Math.floor(x / cell), cy = Math.floor(y / cell);
+      let ok = true;
+      for (let i = -1; i <= 1 && ok; i++) for (let j = -1; j <= 1 && ok; j++) {
+        for (const o of grid.get(k(cx + i, cy + j)) || []) { if ((o.x - x) ** 2 + (o.y - y) ** 2 < (o.r + r + 1) ** 2) { ok = false; break; } }
+      }
+      if (!ok) continue;
+      const dot = { x, y, r };
+      out.push(dot);
+      const key = k(cx, cy);
+      if (!grid.has(key)) grid.set(key, []);
+      grid.get(key).push(dot);
+    }
+    return out;
+  }
+  function digitMask(num) {
+    const c = document.createElement('canvas'); c.width = c.height = 300;
+    const g = c.getContext('2d');
+    g.fillStyle = g.strokeStyle = '#000'; g.lineWidth = 4; g.lineJoin = 'round';
+    g.font = `700 ${num.length > 1 ? 160 : 220}px Arial, Helvetica, sans-serif`; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(num, 150, 160); g.strokeText(num, 150, 160);
+    const px = g.getImageData(0, 0, 300, 300).data;
+    return (x, y) => px[((Math.round(y) * 300) + Math.round(x)) * 4 + 3] > 128;
+  }
+  function plateSVG(p) {
+    const B = mul3(LMS, p.base.map(toLin)), inFig = digitMask(p.num);
+    let t = '';
+    plateDots().forEach((o) => {
+      const j = 0.94 + Math.random() * 0.1, lms = B.map((v) => v * j);
+      if (inFig(o.x, o.y)) { if (p.d === 'C') lms.forEach((v, i) => { lms[i] = v * 0.5; }); else lms[AX[p.d]] *= 1 + p.k; }
+      t += `<circle cx="${o.x.toFixed(1)}" cy="${o.y.toFixed(1)}" r="${o.r.toFixed(1)}" fill="${hexOf(lms)}"/>`;
+    });
+    return `<svg viewBox="0 0 300 300" class="wfig cplate" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Lámina de puntos de colores con un número escondido">${t}</svg>`;
+  }
+  function colorItems() {
+    // Peso = cuánto pesa no ver esa lámina: no ver la más clara cuenta más que no ver la más tenue.
+    const plan = [{ d: 'C', k: 0, w: 0 }];
+    ['L', 'M'].forEach((d) => [[0.16, 4], [0.12, 3], [0.09, 2], [0.06, 1]].forEach(([k, w]) => plan.push({ d, k: rnd(2) ? k : -k, w })));
+    plan.push(rnd(2) ? { d: 'S', k: 0.95, w: 2 } : { d: 'S', k: -0.6, w: 2 }, rnd(2) ? { d: 'S', k: 0.6, w: 1 } : { d: 'S', k: -0.4, w: 1 });
+    // Láminas de clasificación: muy intensas para cualquiera con visión normal. La de rojos la sigue viendo quien es deutan
+    // y no quien es protan; la de verdes, al revés. No cuentan para la intensidad, solo para el tipo.
+    plan.push({ d: 'L', k: 0.3, w: 0, cls: true }, { d: 'M', k: -0.3, w: 0, cls: true });
+    const order = [plan[0]].concat(shuffle(plan.slice(1)));
+    const nums = ['2', '3', '4', '5', '6', '7', '8', '9'];
+    let last = '';
+    return order.map((p) => {
+      let num; do { num = nums[rnd(nums.length)]; } while (num === last);
+      last = num;
+      const others = shuffle(nums.filter((n) => n !== num)).slice(0, 2), o = shuffle([num].concat(others));
+      const it = Object.assign({}, p, { num, base: BASES[rnd(BASES.length)], q: '¿Qué número ves dentro del círculo?', o: o.concat(['No veo ningún número']), a: o.indexOf(num) });
+      // La lámina se dibuja al mostrarla: las landings cargan este archivo solo para contar las preguntas.
+      let svg = null;
+      Object.defineProperty(it, 'svg', { enumerable: true, get() { if (!svg) svg = plateSVG(it); return svg; } });
+      return it;
+    });
+  }
+
   const mem = (W.TESTS || []).find((x) => x.id === 'memoria');
   if (mem) { mem.items = memoryItems(); mem.regen = memoryItems; }
   const att = (W.TESTS || []).find((x) => x.id === 'atencion');
   if (att) { att.items = attentionItems(); att.regen = attentionItems; }
+  const col = (W.TESTS || []).find((x) => x.id === 'daltonismo');
+  if (col) { col.items = colorItems(); col.regen = colorItems; }
 })();

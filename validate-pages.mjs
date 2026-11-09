@@ -22,7 +22,8 @@ for (const file of files) {
   if (!description) errors.push(`${file}: falta meta description`);
   if (!canonical) errors.push(`${file}: falta canonical`);
   if (!html.includes("Responder gratis")) errors.push(`${file}: falta CTA principal`);
-  if (!html.includes("1,99 €")) errors.push(`${file}: falta información transparente del precio`);
+  // Los tests gratis enteros no tienen precio, pero la landing tiene que decirlo.
+  if (!html.includes("1,99 €") && !html.includes("Gratis de principio a fin")) errors.push(`${file}: falta información transparente del precio`);
   if (title && titles.has(title)) errors.push(`${file}: título duplicado`);
   if (canonical && canonicals.has(canonical)) errors.push(`${file}: canonical duplicado`);
   if (title) titles.add(title);
