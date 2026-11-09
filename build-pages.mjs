@@ -235,5 +235,30 @@ ${testsMd.join("\n")}
 ${guides.join("\n")}
 `);
 }
+// Índice de todos los tests: enlaces estáticos para que Google descubra cada landing.
+// Se inyecta entre <!--ALLTESTS--> y <!--/ALLTESTS--> en la portada, el blog y todas las landings
+// (también las retocadas a mano: solo cambia este bloque).
+const LINK_LABEL = {partido:"Test de a qué partido votar", candidato:"Test: ¿con qué candidato coincides?", parejanarc:"Test de pareja narcisista", entrenador:"Test: ¿qué entrenador de fútbol eres?"};
+const linkLabel = t => LINK_LABEL[t.id] || (SEO[t.id].h1 || t.name).replace(/\s*\([^)]*\)\s*$/,"").replace(/^(Test de [^:]+):.*$/,"$1");
+function allTestsNav(current){
+  const live = TESTS.filter(t => SEO[t.id] && fs.existsSync(`test/${SEO[t.id].slug}.html`));
+  const cols = Object.keys(CATS).map(c => {
+    const ts = live.filter(t => TEST_CAT[t.id]===c); if(!ts.length) return "";
+    return `<div><strong>${esc(CATS[c].name)}</strong>${ts.map(t => t.id===current ? `<span>${esc(linkLabel(t))}</span>` : `<a href="/test/${SEO[t.id].slug}">${esc(linkLabel(t))}</a>`).join("")}</div>`;
+  }).join("");
+  return `<!--ALLTESTS--><style>.alltests{border-top:1px solid #e6e6e3;margin-top:40px;padding:34px 0 10px;font-family:'Instrument Sans',sans-serif}.alltests h2{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:700;margin:0 0 18px;color:#14161c}.alltests .atg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:22px}.alltests strong{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#9a9b9f;margin-bottom:8px}.alltests a,.alltests span{display:block;font-size:.88rem;line-height:1.35;padding:3px 0;color:#3a3c42;text-decoration:none}.alltests a:hover{color:#2f4bd6}.alltests span{color:#9a9b9f}</style><nav class="alltests" aria-label="Todos los tests"><div class="wrap"><h2>Todos los tests de Testia</h2><div class="atg">${cols}</div></div></nav><!--/ALLTESTS-->`;
+}
+function injectAllTests(file, current){
+  let h = fs.readFileSync(file, "utf8"); const nav = allTestsNav(current);
+  if (h.includes("<!--ALLTESTS-->")) h = h.replace(/<!--ALLTESTS-->[\s\S]*?<!--\/ALLTESTS-->/, () => nav);
+  else if (/<footer/.test(h)) h = h.replace(/<footer/, () => nav + "\n<footer");
+  else { console.warn(`${file}: sin <footer> ni marcador, no se inyecta el índice`); return; }
+  fs.writeFileSync(file, h);
+}
+if (!DRY) {
+  const bySlug = Object.fromEntries(TESTS.filter(t=>SEO[t.id]).map(t => [SEO[t.id].slug, t.id]));
+  for (const f of fs.readdirSync("test").filter(f => f.endsWith(".html"))) injectAllTests(`test/${f}`, bySlug[f.replace(/\.html$/,"")]);
+  for (const f of ["index.html","testia.html","blog.html"]) if (fs.existsSync(f)) injectAllTests(f, null);
+}
 console.log(`${DRY?"[simulación] ":""}Escritas ${written.length} landings${written.length?": "+written.join(", "):""}. Sin tocar: ${skipped.length}. Sitemap: ${sitemap.size} URLs.`);
 if (ALL) console.warn("Aviso: --all sobrescribe los retoques a mano de las landings publicadas.");
