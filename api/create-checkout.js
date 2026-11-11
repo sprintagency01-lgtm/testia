@@ -1,5 +1,5 @@
 // POST /api/create-checkout  -> crea una Checkout Session de Stripe.
-//   { testId, testName, priceVariant? } -> resultado de un test (1,99 €; 0,99 € si priceVariant es 'low', experimento de precio)
+//   { testId, testName, email? } -> resultado de un test (1,99 €)
 //   { plan: "pass", testId?, testName? } -> pase para todos los tests (4,99 €)
 // Sin dependencias: usa la API REST de Stripe con fetch.
 // Requiere la variable de entorno STRIPE_SECRET_KEY en Vercel.
@@ -20,8 +20,10 @@ module.exports = async (req, res) => {
     if (typeof body === 'string') { try { body = JSON.parse(body || '{}'); } catch (e) { body = {}; } }
     body = body || {};
     const plan = body.plan === 'pass' ? 'pass' : 'single';
-    const priceVariant = plan === 'single' && body.priceVariant === 'low' ? 'low' : 'control';
-    const amount = plan === 'pass' ? PRICES.pass : (priceVariant === 'low' ? PRICES.single_low : PRICES.single);
+    // Experimento de precio cerrado el 2026-11-11: el resultado cuesta 1,99 € para todos.
+    const priceVariant = 'control';
+    const amount = plan === 'pass' ? PRICES.pass : PRICES.single;
+    const email = String(body.email || '').trim().slice(0, 200);
     const testId = String(body.testId || (plan === 'pass' ? 'pass' : 'test')).slice(0, 64);
     const testName = String(body.testName || 'tu resultado').slice(0, 120);
     const origin = req.headers.origin || ('https://' + (req.headers.host || 'testia.info'));
@@ -46,6 +48,8 @@ module.exports = async (req, res) => {
     params.append('metadata[testId]', testId);
     params.append('metadata[plan]', plan);
     params.append('metadata[priceVariant]', priceVariant);
+    // Si ya nos dio su email (para recibir el resultado), lo rellenamos: un campo menos en el pago.
+    if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) params.append('customer_email', email);
     params.append('success_url', origin + '/?session_id={CHECKOUT_SESSION_ID}');
     params.append('cancel_url', origin + '/?canceled=1');
 

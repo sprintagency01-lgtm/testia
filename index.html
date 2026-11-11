@@ -281,7 +281,11 @@
   .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .pwprice{font-family:var(--disp);font-weight:700}
   .pwalt{margin-top:12px;display:flex;flex-direction:column;gap:6px;align-items:center}.pwalt .btn{font-size:.9rem;padding:13px 22px}.pwalt span{font-size:.8rem;color:var(--mut)}
-  .pwrecover{display:inline-block;margin-top:14px;font-size:.78rem;color:var(--mut);text-decoration:underline;cursor:pointer}
+  .pwpeek{text-align:left;max-width:440px;margin:-6px auto 18px;padding:14px 16px;border:1px solid var(--line2);border-radius:14px;background:#fff;position:relative;overflow:hidden;font-size:.9rem;line-height:1.5;color:var(--ink2)}.pwpeek b{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt);margin-bottom:4px}.pwpeek:after{content:'';position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(transparent,#fff)}
+.pwinc{list-style:none;padding:0;margin:0 auto 22px;max-width:380px;text-align:left;display:grid;gap:8px}.pwinc li{position:relative;padding-left:26px;font-size:.92rem;color:var(--ink2);line-height:1.4}.pwinc li:before{content:'✓';position:absolute;left:0;top:0;width:18px;height:18px;border-radius:50%;background:#e7ebfc;color:var(--cobalt);font-size:.7rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.pwpay{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}.pwpay span{font-size:.72rem;font-weight:600;color:var(--ink3);border:1px solid var(--line2);border-radius:999px;padding:4px 10px;background:#fff}
+.pwblur{font-style:normal;filter:blur(4.5px);user-select:none}
+.pwrecover{display:inline-block;margin-top:14px;font-size:.78rem;color:var(--mut);text-decoration:underline;cursor:pointer}
   .mailbox{margin-top:18px;border:1px solid var(--line);border-radius:16px;padding:18px;background:#fff;text-align:left}.mbt{font-family:var(--disp);font-weight:600;font-size:1.05rem}.mailbox p{color:var(--ink3);font-size:.9rem;margin:4px 0 12px;line-height:1.45}
   .mbrow{display:flex;gap:8px}.mbrow input{flex:1;min-width:0;padding:13px 14px;border:1px solid var(--line3);border-radius:12px;font:inherit;font-size:.95rem;background:#fff}.mbrow .btn{padding:13px 18px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em}
   .nextbox{margin-top:18px}.nexth{font-family:var(--disp);font-weight:600;font-size:1.05rem}.nextsub{color:var(--ink3);font-size:.86rem;margin:2px 0 10px}
@@ -1508,6 +1512,10 @@ const PRICE_FLAG='testia-price',PRICE_EUR={control:1.99,low:0.99};
 let PRICE_VARIANT='control';
 (function(){try{const q=new URLSearchParams(location.search).get('price');if(q==='low'||q==='control')sessionStorage.setItem('atlas_price_force',q);if(q==='off')sessionStorage.removeItem('atlas_price_force');}catch(e){}})();
 function priceVariant(){
+  // Experimento cerrado el 2026-11-11: 1,99 € para todos (0,99 € vendía algo más pero dejaba menos dinero).
+  PRICE_VARIANT='control';
+  try{if(window.posthog&&posthog.register)posthog.register({price_variant:'control',price_variant_forced:false});}catch(e){}
+  return 'control';
   let v=null,forced=false;
   try{v=sessionStorage.getItem('atlas_price_force');forced=!!v;}catch(e){}
   if(!v){try{const ph=window.posthog;if(ph&&typeof ph.getFeatureFlag==='function'){const f=ph.getFeatureFlag(PRICE_FLAG);if(f==='low'||f==='control'){v=f;try{localStorage.setItem('atlas_price',f);}catch(e){}}}}catch(e){}}
@@ -1517,6 +1525,8 @@ function priceVariant(){
   try{if(window.posthog&&posthog.register)posthog.register({price_variant:v,price_variant_forced:forced});}catch(e){}
   return v;
 }
+const pwEsc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
+const PAY_METHODS=['Tarjeta','Apple Pay','Google Pay']; // añadir 'PayPal' cuando esté activado en Stripe
 const singlePrice=()=>PRICE_EUR[PRICE_VARIANT]||1.99,fmtEur=n=>n.toFixed(2).replace('.',',')+'&nbsp;€';
 function setHardLock(on){
   const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
@@ -1532,15 +1542,28 @@ function lockResult(v){
   const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
   setHardLock(hard);
   if(!hasPremium&&!hard){$('paywall').style.display='none';$('resPremium').classList.remove('locked');return;}
-  const tz=hard?{kind:'hard',title:'Tu resultado está listo',pitch:`Has completado «${T.name}». Desbloquea tu resultado completo: tu perfil, lo que significa cada dimensión y tu carta para compartir.`}:(lastResult&&lastResult.teaser);
+  const tz=hard?{kind:'hard',title:'Tu resultado está listo',pitch:`Has completado «${T.name}». Esto es lo que incluye:`}:(lastResult&&lastResult.teaser);
   const pitch=(tz&&tz.pitch)||T.premiumPitch||`Tu puntuación en cada dimensión de «${T.name}» y una lectura de qué significa cada una en tu caso.`;
+  const R=Object.assign({},lastResult||{},(lastResult&&lastResult.full)||{});
+  const nB=(R.bars||[]).length,nA=(R.analysis||[]).length,nS=(R.stats||[]).length;
+  const inc=[hard?'Tu resultado y lo que dice de ti':null,nB?`Tu puntuación detallada en ${nB} ${nB===1?'dimensión':'dimensiones'}`:null,nA?`${nA} ${nA===1?'lectura personal':'lecturas personales'} de lo que significa en tu caso`:null,nS&&!nB?'Tus cifras detalladas':null,hard?'Tu carta para compartir':null,T.cert?'Certificado en PDF':null,'El informe completo en tu email'].filter(Boolean).slice(0,5);
+  const a0=(R.analysis||[]).find(a=>a&&a.text&&a.text.length>60);
+  // Muro total: lo que se vende es el resultado, así que solo se leen las primeras palabras y el resto va desordenado y difuminado.
+  const scr=t=>t.replace(/[a-záéíóúñ]/gi,()=>'abcdefghilmnoprstu'[Math.random()*18|0]).replace(/\d/g,()=>Math.random()*10|0);
+  const peekTxt=a0?a0.text.slice(0,140).replace(/\s+\S*$/,''):'';
+  // También en los tests con cifra (CI, memoria…): la cifra es lo que se paga y la lectura la delata.
+  const peekBody=(hard||(lastResult&&lastResult.full))?(()=>{const w=peekTxt.split(' ');return `${pwEsc(w.slice(0,3).join(' '))} <i class="pwblur" aria-hidden="true">${pwEsc(scr(w.slice(3).join(' ')))}</i>`;})():`${pwEsc(peekTxt)}…`;
+  const peek=a0?`<div class="pwpeek"><b>${pwEsc(a0.lab||'Tu lectura')}</b><span>${peekBody}</span></div>`:'';
   $('paywall').innerHTML=`<div class="paywallcard">
     <div class="pwemoji">🔍</div>
     <h2>${(tz&&tz.title)||T.premiumTitle||'Ya conoces tu arquetipo. Desbloquea la lectura completa'}</h2>
     <p>${pitch}</p>
+    ${peek}
+    <ul class="pwinc">${inc.map(x=>`<li>${x}</li>`).join('')}</ul>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">${fmtEur(singlePrice())}</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}</div>
+    <div class="pwpay">${PAY_METHODS.map(m=>`<span>${m}</span>`).join('')}</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
   $('paywall').style.display='block';
@@ -1633,7 +1656,7 @@ async function payAndUnlock(plan){
     const price=plan==='pass'?4.99:singlePrice();
     trackEvent('checkout_started',{test_id:testId,test_name:testName,plan,price,currency:'EUR',paywall_variant:PW_VARIANT,price_variant:PRICE_VARIANT});
     const res=await fetch('/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({testId,testName,plan,priceVariant:PRICE_VARIANT})});
+      body:JSON.stringify({testId,testName,plan,priceVariant:PRICE_VARIANT,email:(()=>{try{return localStorage.getItem('atlas_email')||''}catch(e){return ''}})()})});
     const data=await res.json();
     if(!data.url) throw new Error(data.error||'sin URL de pago');
     // Asociamos el resultado a ESTA sesión de pago; solo se revelará si el servidor confirma el cobro.
