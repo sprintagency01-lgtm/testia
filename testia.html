@@ -1526,7 +1526,7 @@ function priceVariant(){
   return v;
 }
 const pwEsc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
-const PAY_METHODS=['Tarjeta','Apple Pay','Google Pay']; // añadir 'PayPal' cuando esté activado en Stripe
+const PAY_METHODS=['Tarjeta','Apple Pay','Google Pay','PayPal']; // los que muestra Stripe Checkout (métodos dinámicos)
 const singlePrice=()=>PRICE_EUR[PRICE_VARIANT]||1.99,fmtEur=n=>n.toFixed(2).replace('.',',')+'&nbsp;€';
 function setHardLock(on){
   const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
