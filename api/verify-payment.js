@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
     }
     const paid = s.payment_status === 'paid';
     const md = s.metadata || {};
-    res.status(200).json({ paid: !!paid, testId: md.testId || null, plan: md.plan === 'pass' ? 'pass' : 'single' });
+    res.status(200).json({ paid: !!paid, testId: md.testId || null, plan: md.plan === 'pass' ? 'pass' : 'single', recovered: !!s.recovered_from });
   } catch (e) {
     res.status(200).json({ paid: false, error: e.message });
   }

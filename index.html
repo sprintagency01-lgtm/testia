@@ -61,7 +61,8 @@
   .nav nav{display:flex;align-items:center;gap:26px}
   .nav nav a{cursor:pointer;font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mut2)}
   .nav nav a:hover{color:var(--ink)}
-  @media(max-width:760px){.nav nav a.hideMob{display:none}.wrap{padding:0 22px}}
+  @media(max-width:760px){.nav nav a.hideMob{display:none}.wrap{padding:0 22px}.nav nav{gap:18px}}
+  @media(max-width:520px){.brand .tag{display:none}}
   .screen{display:none}
   .screen.active{display:block}
   /* hero */
@@ -294,6 +295,8 @@
   .couplebox{margin:18px 0 6px;border:1.5px solid var(--cobalt);border-radius:14px;padding:16px;background:#fff}.couplebox .cbh{font-weight:700;margin-bottom:8px}.couplebox input{width:100%;font:inherit;font-size:.86rem;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#f6f6f4;color:var(--ink2)}.couplebox .cbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.couplebox .btn{padding:12px 18px;font-size:.95rem}
   .nexttop{margin:22px 0 4px}.nexttop:empty{display:none}.nexttop .ntk{font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-bottom:8px}.nextcard.big{padding:18px;border:1.5px solid var(--cobalt);box-shadow:0 10px 28px -18px rgba(47,75,214,.55)}.nextcard.big b{font-size:1.08rem}.nextcard.big .go{font-size:.92rem;white-space:nowrap}
   .nextcard:hover{border-color:var(--cobalt)}.nextcard .ne{font-size:1.45rem;line-height:1}.nextcard b{display:block;font-size:.96rem}.nextcard small{display:block;font-size:.8rem;color:var(--ink3);line-height:1.35;margin-top:2px}.nextcard .go{margin-left:auto;color:var(--cobalt);font-weight:700;padding-left:6px}
+  .eask{position:fixed;left:50%;bottom:18px;transform:translate(-50%,28px);opacity:0;width:min(440px,calc(100% - 24px));background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.18);padding:18px 18px 16px;z-index:98;transition:transform .35s,opacity .35s;text-align:left}.eask.on{transform:translate(-50%,0);opacity:1}.eask[hidden],.eask [hidden]{display:none}
+  .eat{font-family:var(--disp);font-weight:600;font-size:1.12rem;padding-right:34px}.eask p{color:var(--ink3);font-size:.9rem;margin:4px 0 12px;line-height:1.45}.eask .mbrow input{font-size:16px}.eaclose{position:absolute;top:8px;right:8px;width:36px;height:36px;border:0;background:transparent;font-size:1.5rem;line-height:1;color:var(--mut);cursor:pointer;border-radius:50%}.eaclose:hover{background:var(--line)}
   .mbopt{display:flex;gap:8px;font-size:.84rem;color:var(--ink3);margin-top:10px;align-items:center;cursor:pointer}.mbnote{font-size:.74rem;color:var(--mut);margin-top:6px}
   details summary::-webkit-details-marker{display:none}
   details summary::marker{content:""}
@@ -334,8 +337,8 @@
   <a class="brand" onclick="go('home')"><span class="nm">Testia</span><span class="tag">Tests · Autoconocimiento</span></a>
   <nav>
     <a onclick="go('catalog')">Catálogo</a>
-    <a onclick="go('home');setTimeout(()=>{var e=document.getElementById('ciencia');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Ciencia</a>
-    <a onclick="go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">FAQ</a>
+    <a class="hideMob" onclick="go('home');setTimeout(()=>{var e=document.getElementById('ciencia');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Ciencia</a>
+    <a class="hideMob" onclick="go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">FAQ</a>
     <a onclick="startTarot()">Tarot</a>
   </nav>
 </div></header>
@@ -674,6 +677,14 @@
 </main>
 
 <div class="lbox" id="lbox" onclick="if(event.target===this)closeCard()"><div class="lbi" id="lboxInner"></div></div>
+<form class="eask" id="emailAsk" hidden role="dialog" aria-labelledby="eaTitle" onsubmit="askSubmit(event)">
+  <button type="button" class="eaclose" aria-label="Cerrar" onclick="closeAsk()">×</button>
+  <div class="eat" id="eaTitle">¿Quieres tu resultado por email?</div>
+  <p id="eaLead">Te lo enviamos gratis para que no lo pierdas.</p>
+  <div class="mbrow"><input type="email" id="eaEmail" placeholder="tu@email.com" required autocomplete="email" maxlength="120"><button class="btn" type="submit" id="eaBtn" data-analytics-name="Enviar resultado por email (aviso)">Enviar</button></div>
+  <label class="mbopt" id="eaOptRow"><input type="checkbox" id="eaOpt"> Avísame cuando haya tests nuevos</label>
+  <div class="mbnote">Sin spam. Te das de baja en un clic.</div>
+</form>
 <div class="toast" id="toast"></div>
 
 <script src="tests.js?v=20261109d"></script>
@@ -749,7 +760,7 @@ let T=null, items=[], idx=0, answers=[], startedAt=0, timeLeft=0, timerId=null, 
 function $(id){return document.getElementById(id);}
 
 /* ----- navigation ----- */
-function go(s){clearInterval(timerId);try{clearTimeout(memTimer);}catch(e){}memActive=false;document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(s).classList.add('active');window.scrollTo({top:0});}
+function go(s){if(s!=='result')try{hideAsk();}catch(e){}clearInterval(timerId);try{clearTimeout(memTimer);}catch(e){}memActive=false;document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(s).classList.add('active');window.scrollTo({top:0});}
 
 /* ----- catalog / home build ----- */
 function cardHTML(t,showCat){
@@ -1536,7 +1547,8 @@ function setHardLock(on){
   [...left.children].forEach(el=>el.classList.toggle('hl',on&&el!==pw&&el!==nt&&el.id!=='coupleBox'));
   if(side)[...side.children].forEach(el=>el.classList.toggle('hl',on&&el.id!=='nextBox'));
 }
-function lockResult(v){
+function lockResult(v){lockResultInner(v);try{armAsk();}catch(e){}}
+function lockResultInner(v){
   if(lastResult&&lastResult.noPaywall){setHardLock(false);$('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();return;}
   v=v||PW_VARIANT;const hard=v==='hard';
   const hasPremium=(lastResult&&((lastResult.bars&&lastResult.bars.length)||(lastResult.stats&&lastResult.stats.length)||(lastResult.analysis&&lastResult.analysis.length)));
@@ -1574,6 +1586,7 @@ function lockResult(v){
   else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});}
 }
 function revealResult(){
+  hideAsk();
   setHardLock(false);
   if(lastResult&&lastResult.full){Object.assign(lastResult,lastResult.full);delete lastResult.full;renderResult(lastResult);try{drawCard(lastResult);}catch(e){}}
   $('paywall').style.display='none';$('resPremium').classList.remove('locked');updateMailbox();renderCert();window.scrollTo({top:0,behavior:'smooth'});}
@@ -1610,7 +1623,16 @@ async function downloadCert(){
   trackEvent('certificate_downloaded',{test_id:T.id,test_name:T.name});
 }
 function passSid(){try{const p=JSON.parse(localStorage.getItem('atlas_pass'));return p&&p.sid||null;}catch(e){return null;}}
+function creditFor(id){try{const c=JSON.parse(localStorage.getItem('atlas_credit'));return c&&c.sid&&(!c.testId||c.testId===id)?c:null;}catch(e){return null;}}
+async function checkCredit(){
+  const c=T&&creditFor(T.id);if(!c)return false;
+  try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(c.sid));const d=await r.json();
+    if(d.paid){try{localStorage.removeItem('atlas_credit');}catch(e){}revealResult();trackEvent('credit_unlocked',{test_id:T.id,test_name:T.name});toast('Pago confirmado: resultado completo desbloqueado ✓');return true;}
+  }catch(e){}
+  return false;
+}
 async function checkPass(){
+  if(await checkCredit())return;
   const sid=passSid();if(!sid)return;
   try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(sid));const d=await r.json();
     if(d.paid&&d.plan==='pass'){revealResult();trackEvent('pass_unlocked',{test_id:T.id,test_name:T.name});toast('Pase activo: resultado completo desbloqueado ✓');}
@@ -1637,18 +1659,78 @@ function updateMailbox(){
   $('mbBtn').disabled=false;$('mbBtn').textContent='Enviar';
   try{const e=localStorage.getItem('atlas_email');if(e&&!$('mbEmail').value)$('mbEmail').value=e;}catch(e){}
 }
+// Envía el resultado (o, en los tests con datos sensibles, solo apunta a los avisos) y guarda el email.
+async function postResult(email,optin,source){
+  const sens=!!T.sensitive,tier=$('resPremium').classList.contains('locked')?'free':'full',r=lastResult;
+  const payload=sens?{email,subscribe:true}:{email,optin,testId:T.id,testName:T.name,tier,result:{name:r.name,role:r.role,desc:r.desc,traits:r.traits||[],bars:(r.bars||[]).map(b=>({lab:b.lab,p:b.p,tag:b.tag||''})),stats:r.stats||[],analysis:(r.analysis||[]).map(a=>({lab:a.lab,band:a.band,text:a.text}))}};
+  const res=await fetch('/api/send-result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await res.json();
+  if(!res.ok||!d.ok)throw new Error(d.error||'error');
+  try{localStorage.setItem('atlas_email',email);}catch(e){}
+  trackEvent('email_submitted',{test_id:T.id,test_name:T.name,tier,optin:sens?true:optin,source,kind:sens?'news':'result'});
+}
 async function sendResult(ev){
   ev.preventDefault();if(!lastResult||!T)return;
-  const email=$('mbEmail').value.trim(),optin=$('mbOpt').checked,tier=$('resPremium').classList.contains('locked')?'free':'full';
-  const r=lastResult,payload={email,optin,testId:T.id,testName:T.name,tier,result:{name:r.name,role:r.role,desc:r.desc,traits:r.traits||[],bars:(r.bars||[]).map(b=>({lab:b.lab,p:b.p,tag:b.tag||''})),stats:r.stats||[],analysis:(r.analysis||[]).map(a=>({lab:a.lab,band:a.band,text:a.text}))}};
   $('mbBtn').disabled=true;$('mbBtn').textContent='Enviando…';
-  try{const res=await fetch('/api/send-result',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const d=await res.json();
-    if(!res.ok||!d.ok)throw new Error(d.error||'error');
-    try{localStorage.setItem('atlas_email',email);}catch(e){}
-    trackEvent('email_submitted',{test_id:T.id,test_name:T.name,tier,optin});
-    $('mbBtn').textContent='Enviado ✓';toast('Te lo hemos enviado. Mira también en promociones o spam.');
+  try{await postResult($('mbEmail').value.trim(),$('mbOpt').checked,'box');
+    $('mbBtn').textContent='Enviado ✓';toast('Te lo hemos enviado. Mira también en promociones o spam.');hideAsk();
   }catch(e){$('mbBtn').disabled=false;$('mbBtn').textContent='Enviar';toast('No se pudo enviar. Revisa el email e inténtalo de nuevo.');}
 }
+/* === «¿Quieres tu resultado por email?» ===
+   Una vez por sesión y sin competir con el pago: aparece cuando ya han dejado atrás el muro (bajan más allá
+   o, en ordenador, van a salir de la pestaña), o a los 12 s si el resultado no tiene muro. Nunca en el muro
+   total (ahí el resultado es lo que se paga). En los tests con datos sensibles solo ofrece los avisos de tests nuevos. */
+let askTimer=null,askIO=null,askTrigger='';
+function askBlocked(){
+  try{if(sessionStorage.getItem('atlas_ask')||localStorage.getItem('atlas_email'))return true;}catch(e){}
+  if(!T||!lastResult||COUPLE_VIEW)return true;
+  if(!$('result').classList.contains('active'))return true;
+  if($('resBody')&&$('resBody').classList.contains('hardlock'))return true;
+  return false;
+}
+function armAsk(){
+  clearTimeout(askTimer);if(askIO){askIO.disconnect();askIO=null;}
+  if(askBlocked())return;
+  const pw=$('paywall');
+  if(pw&&pw.style.display!=='none'){
+    if(!('IntersectionObserver' in window))return;
+    let seen=false;
+    askIO=new IntersectionObserver(es=>{const e=es[es.length-1];
+      if(e.isIntersecting){seen=true;return;}
+      if(seen&&e.boundingClientRect.top<0){askIO.disconnect();askIO=null;askTimer=setTimeout(()=>showAsk('scroll_past'),900);}
+    },{threshold:0});
+    askIO.observe(pw);
+  }else askTimer=setTimeout(()=>showAsk('timer'),12000);
+}
+function showAsk(trigger){
+  if(askBlocked())return;
+  const pw=$('paywall'),walled=pw&&pw.style.display!=='none';
+  try{sessionStorage.setItem('atlas_ask','1');}catch(e){}
+  const sens=!!T.sensitive;
+  $('eaTitle').textContent=sens?'¿Te avisamos cuando haya tests nuevos?':'¿Quieres tu resultado por email?';
+  $('eaLead').textContent=sens?'Un email cuando publiquemos uno. Nada más.':'Te lo enviamos gratis para que no lo pierdas.';
+  $('eaOptRow').hidden=sens;$('eaOpt').checked=false;
+  $('eaBtn').disabled=false;$('eaBtn').textContent=sens?'Avisarme':'Enviar';
+  const f=$('emailAsk');f.hidden=false;requestAnimationFrame(()=>requestAnimationFrame(()=>f.classList.add('on')));
+  askTrigger=trigger;
+  trackEvent('email_ask_shown',{test_id:T.id,test_name:T.name,trigger,kind:sens?'news':'result',walled});
+}
+function hideAsk(){
+  clearTimeout(askTimer);if(askIO){askIO.disconnect();askIO=null;}
+  const f=$('emailAsk');if(!f||f.hidden)return;
+  f.classList.remove('on');setTimeout(()=>{f.hidden=true;},350);
+}
+function closeAsk(){if(T)trackEvent('email_ask_closed',{test_id:T.id,test_name:T.name,trigger:askTrigger});hideAsk();}
+async function askSubmit(ev){
+  ev.preventDefault();if(!lastResult||!T)return;
+  $('eaBtn').disabled=true;$('eaBtn').textContent='Enviando…';
+  try{await postResult($('eaEmail').value.trim(),$('eaOpt').checked,'ask');
+    $('eaBtn').textContent='Hecho ✓';
+    toast(T.sensitive?'Listo: te avisaremos del próximo test.':'Te lo hemos enviado. Mira también en promociones o spam.');
+    setTimeout(hideAsk,1200);
+  }catch(e){$('eaBtn').disabled=false;$('eaBtn').textContent='Enviar';toast('No se pudo enviar. Revisa el email e inténtalo de nuevo.');}
+}
+// En ordenador: si el ratón sale por arriba (va a cerrar la pestaña) después de ver el muro.
+document.addEventListener('mouseout',e=>{if(e.relatedTarget||e.clientY>0)return;if(typeof paywallSeen!=='undefined'&&paywallSeen&&$('paywall')&&$('paywall').style.display!=='none')showAsk('exit');});
 async function payAndUnlock(plan){
   plan=plan==='pass'?'pass':'single';
   try{
@@ -1694,23 +1776,32 @@ async function handleReturn(){
   }
   let pend=null; try{pend=JSON.parse(localStorage.getItem('atlas_pending'));}catch(e){}
   toast('Verificando tu pago…');
-  let ok=false,plan='single';
+  let ok=false,plan='single',paidTest=null,recovered=false;
   for(let i=0;i<8;i++){                   // el cobro puede tardar un instante en confirmarse: reintentos
     try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(sid));
-      const d=await r.json(); if(d.paid){ok=true;plan=d.plan==='pass'?'pass':'single';break;}}catch(e){}
+      const d=await r.json(); if(d.paid){ok=true;plan=d.plan==='pass'?'pass':'single';paidTest=d.testId||null;recovered=!!d.recovered;break;}}catch(e){}
     await new Promise(r=>setTimeout(r,1500));
   }
   try{history.replaceState({},'',location.pathname);}catch(e){}
   if(ok&&plan==='pass'){try{localStorage.setItem('atlas_pass',JSON.stringify({sid}));}catch(e){}}
-  if(ok && pend && pend.r && pend.sid===sid){
+  // Un pago recuperado (email de carrito abandonado de Stripe) llega con otra sesión: vale si es del mismo test.
+  if(ok && pend && pend.r && (pend.sid===sid || (plan==='single' && paidTest && pend.testId===paidTest))){
     T=TESTS.find(t=>t.id===pend.testId)||T;lastResult=pend.r;renderResult(pend.r);go('result');revealResult();try{drawCard(pend.r);}catch(e){}
-    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:((pend&&pend.price)||1.99),currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT,price_variant:(pend&&pend.prv)||PRICE_VARIANT});
+    trackEvent('purchase_completed',{test_id:T.id,test_name:T.name,plan,revenue:plan==='pass'?4.99:((pend&&pend.price)||1.99),currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT,price_variant:(pend&&pend.prv)||PRICE_VARIANT,recovered});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast(plan==='pass'?'¡Pase activo! Resultado completo desbloqueado ✓':'¡Pago confirmado! Resultado desbloqueado ✓');
   }else if(ok&&plan==='pass'){
-    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT,price_variant:(pend&&pend.prv)||PRICE_VARIANT});
+    trackEvent('purchase_completed',{test_id:'pass',test_name:'Pase Testia',plan,revenue:4.99,currency:'EUR',paywall_variant:(pend&&pend.pwv)||PW_VARIANT,price_variant:(pend&&pend.prv)||PRICE_VARIANT,recovered});
     try{localStorage.removeItem('atlas_pending');}catch(e){}
     toast('¡Pase activo! Elige un test: verás el resultado completo.');go('catalog');
+  }else if(ok){
+    // Pagó un resultado pero su respuesta no está en este navegador (otro dispositivo o se borró):
+    // se guarda el pago y al repetir el test lo verá completo.
+    try{localStorage.setItem('atlas_credit',JSON.stringify({sid,testId:paidTest}));localStorage.removeItem('atlas_pending');}catch(e){}
+    const pt=paidTest&&TESTS.find(t=>t.id===paidTest);
+    trackEvent('purchase_completed',{test_id:pt?pt.id:'unknown',test_name:pt?pt.name:'',plan,revenue:1.99,currency:'EUR',recovered,credit:true});
+    toast('¡Pago confirmado! Haz el test de nuevo y verás tu resultado completo.');
+    if(pt)startTest(pt.id);else go('catalog');
   }else{
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }

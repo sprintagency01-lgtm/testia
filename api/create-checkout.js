@@ -1,6 +1,9 @@
 // POST /api/create-checkout  -> crea una Checkout Session de Stripe.
 //   { testId, testName, email? } -> resultado de un test (1,99 €)
 //   { plan: "pass", testId?, testName? } -> pase para todos los tests (4,99 €)
+// Recuperación de carritos: la sesión caduca a la hora y, si el cliente aceptó recibir novedades
+// (casilla de Stripe), Stripe le envía un email con un enlace para terminar el pago. Hay que tener
+// activados los emails de carritos abandonados en Stripe → Ajustes → Checkout.
 // Sin dependencias: usa la API REST de Stripe con fetch.
 // Requiere la variable de entorno STRIPE_SECRET_KEY en Vercel.
 const PRICES = { single: 199, single_low: 99, pass: 499 };
@@ -53,15 +56,22 @@ module.exports = async (req, res) => {
     params.append('success_url', origin + '/?session_id={CHECKOUT_SESSION_ID}');
     params.append('cancel_url', origin + '/?canceled=1');
 
-    const r = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+    const create = p => fetch('https://api.stripe.com/v1/checkout/sessions', {
       method: 'POST',
       headers: {
         'Authorization': 'Bearer ' + key,
         'Content-Type': 'application/x-www-form-urlencoded'
       },
-      body: params.toString()
+      body: p.toString()
     });
-    const data = await r.json();
+    const recovery = new URLSearchParams(params);
+    recovery.append('expires_at', String(Math.floor(Date.now() / 1000) + 60 * 60));
+    recovery.append('after_expiration[recovery][enabled]', 'true');
+    recovery.append('consent_collection[promotions]', 'auto');
+    let r = await create(recovery);
+    let data = await r.json();
+    // Si Stripe rechaza la recuperación (cuenta sin configurar), el pago no se bloquea: sesión normal.
+    if (!r.ok) { r = await create(params); data = await r.json(); }
     if (!r.ok) {
       res.status(502).json({ error: (data.error && data.error.message) || 'stripe error' });
       return;

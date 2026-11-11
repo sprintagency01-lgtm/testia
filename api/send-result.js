@@ -71,6 +71,24 @@ module.exports = async (req, res) => {
   let body = req.body;
   if (typeof body === 'string') { try { body = JSON.parse(body || '{}'); } catch (e) { body = {}; } }
   body = body || {};
+  // Solo suscribirse a los avisos de tests nuevos (se usa en los tests políticos): se guarda el email
+  // y el consentimiento, sin ningún dato del test ni del resultado.
+  if (body.subscribe === true) {
+    const em = String(body.email || '').trim().toLowerCase();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em) || em.length > 120) { res.status(400).json({ error: 'email no válido' }); return; }
+    const HS = { 'api-key': key, 'Content-Type': 'application/json', 'Accept': 'application/json' };
+    try {
+      await ensureAttributes(HS);
+      const listId = await getListId(HS, process.env.BREVO_LIST_NAME || 'Testia');
+      const c = await fetch(`${BREVO}/contacts`, { method: 'POST', headers: HS, body: JSON.stringify({
+        email: em, updateEnabled: true, listIds: listId ? [listId] : undefined,
+        attributes: { TESTIA_OPTIN: true, TESTIA_LAST: new Date().toISOString().slice(0, 10) }
+      }) });
+      if (!c.ok && c.status !== 204) { const d = await c.json().catch(() => ({})); res.status(502).json({ error: d.message || 'brevo error' }); return; }
+      res.status(200).json({ ok: true });
+    } catch (e) { res.status(500).json({ error: e.message }); }
+    return;
+  }
   // Opinión política (dato especialmente protegido en el RGPD): ni se envía ni se guarda.
   if (['politico', 'partido', 'candidato'].includes(String(body.testId || ''))) { res.status(403).json({ error: 'este resultado no se envía por email' }); return; }
   const email = String(body.email || '').trim().toLowerCase();
