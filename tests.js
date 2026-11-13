@@ -2678,3 +2678,56 @@ Object.entries(NAMES).forEach(([id,n])=>{const t=window.TESTS.find(x=>x.id===id)
 // Landings editadas a mano (build-pages no las regenera): el H1 ya se cambió en el HTML; aquí solo se deja igual.
 window.SEO_CONTENT.honesty.h1="Test de honestidad y humildad";window.SEO_CONTENT.darktriad.h1="Test de la tríada oscura";
 })();
+
+/* ===== Test del Grinch: ¿cuánto Grinch eres? (noviembre de 2026) =====
+   Test recreativo y gratis entero. Cada escala mide cuánto te sobra esa parte de la Navidad. */
+(function(){
+const GI={
+ LUC:[["Los villancicos en las tiendas desde noviembre me ponen de mal humor."],["Me parece excesivo que las calles se llenen de luces semanas antes de Navidad."],["Si por mí fuera, en casa no habría ni árbol ni belén."],["Las canciones de Navidad me cansan a la segunda vez que las oigo."],["Me encanta ir a ver las luces de Navidad de mi ciudad.",1],["Pongo música navideña por gusto, sin que nadie me obligue.",1]],
+ FAM:[["Las cenas familiares de Navidad me agotan solo de pensarlas."],["Si pudiera, me saltaría la cena de empresa sin dudarlo."],["Cuento las horas para que termine la sobremesa de Nochebuena."],["Las discusiones de siempre en la cena de Navidad me quitan las ganas de ir."],["Disfruto de verdad juntándome con toda la familia en estas fechas.",1],["Me ofrezco a organizar comidas o cenas en Navidad.",1]],
+ REG:[["Hacer regalos por obligación me parece tirar el dinero."],["Odio los centros comerciales llenos de gente en diciembre."],["El amigo invisible me parece una tortura."],["Preferiría que nadie me regalara nada en Navidad."],["Me lo paso bien buscando el regalo perfecto para cada persona.",1],["Envolver regalos es de las cosas que más me gustan de estas fechas.",1]],
+ TRA:[["Los mensajes navideños en los grupos de WhatsApp me sobran."],["No entiendo tanto revuelo con el sorteo de la Lotería de Navidad."],["Comerme las uvas en Nochevieja me parece más un trámite que una fiesta."],["El espíritu navideño me parece sobre todo una excusa para consumir."],["Me hace ilusión que llegue diciembre.",1],["Vivo la noche de Reyes con ilusión, tenga la edad que tenga.",1]]
+};
+const GK=Object.keys(GI),gitems=[];
+for(let i=0;i<6;i++)GK.forEach(k=>{const [t,r]=GI[k][i];gitems.push(r?{t,s:k,r:true}:{t,s:k});});
+window.TESTS.push({
+ id:"grinch", name:"Test: ¿cuánto Grinch eres?", emoji:"🎄", cat:"Personalidad", eyebrow:"Tu nivel de Grinch", free:true,
+ blurb:"Luces, villancicos, cenas familiares y amigo invisible: 24 afirmaciones para saber cuánto Grinch eres y qué parte de la Navidad te sobra.",
+ instrument:"Test recreativo y no oficial, con ítems propios de Testia sobre cómo vives la Navidad en cuatro ámbitos: luces y villancicos, cenas y reuniones, regalos y compras, y tradiciones.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ scales:{LUC:"Luces y villancicos",FAM:"Cenas y reuniones",REG:"Regalos y compras",TRA:"Tradiciones"},
+ result:{type:"grinch"},
+ interp:{
+  LUC:{hi:"Las luces y los villancicos te sacan de quicio. Si pudieras, pasarías diciembre con cascos y las persianas bajadas.",mid:"Las luces y la música navideña te parecen bien en su justa medida; a partir de la tercera vuelta de villancicos, ya no tanto.",lo:"Te encantan las luces y la música navideña. Eres de los que se paran a mirar el alumbrado y tararean villancicos sin darse cuenta."},
+  FAM:{hi:"Las cenas y las reuniones navideñas son lo que peor llevas: demasiada gente, demasiadas horas y las mismas conversaciones de cada año.",mid:"Las cenas familiares te gustan, siempre que no se alarguen demasiado ni salga cierto tema de conversación.",lo:"Las reuniones de Navidad son lo mejor del año para ti. Eres de los que proponen otra sobremesa cuando los demás ya miran el reloj."},
+  REG:{hi:"Los regalos y las compras navideñas te parecen una obligación cara. El amigo invisible, un castigo.",mid:"Te gusta regalar, pero sin agobios: el centro comercial en diciembre te quita parte de la gracia.",lo:"Regalar te hace feliz: buscas el regalo perfecto, lo envuelves con mimo y disfrutas viendo la cara del otro al abrirlo."},
+  TRA:{hi:"Las tradiciones, de la Lotería a las uvas, te dejan frío. Para ti son más un trámite que una fiesta.",mid:"Sigues las tradiciones navideñas sin mucha emoción: las uvas, sí; la Lotería, según el año.",lo:"Vives las tradiciones con ilusión: la Lotería, las uvas, la noche de Reyes. La Navidad no sería lo mismo sin ellas."}
+ },
+ items:gitems
+});
+window.SEO_CONTENT.grinch={slug:"test-cuanto-grinch-eres",seoTitle:"Test: ¿cuánto Grinch eres en Navidad? | Testia",h1:"Test: ¿cuánto Grinch eres?",
+ metaDesc:"Test del Grinch gratis: 24 afirmaciones sobre luces, villancicos, cenas y regalos para saber cuánto Grinch eres y qué parte de la Navidad te sobra.",
+ intro:"¿Te ponen de mal humor los villancicos en el súper? ¿Cuentas las horas de la sobremesa de Nochebuena? Este test del Grinch te hace 24 afirmaciones sobre cómo vives la Navidad y te dice cuánto Grinch eres, en porcentaje, y qué parte de las fiestas te sobra más. Es gratis de principio a fin, sin registro, y tarda unos 3 minutos. Es un test no oficial y para divertirse.",
+ step1:"24 afirmaciones sobre cómo vives la Navidad. Sin registro.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-13",
+ learn:["Cuánto Grinch eres, en porcentaje","Qué tipo de Grinch (o de elfo) eres","Qué parte de la Navidad te sobra más","Cómo llevas las luces, las cenas, los regalos y las tradiciones"],
+ overview:[{label:"Mide",text:"Cuánto te sobran las luces, las cenas, los regalos y las tradiciones navideñas."},{label:"Formato",text:"24 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Precio",text:"Gratis entero: sin pago y sin registro."}],
+ sections:[
+  {title:"¿Qué es ser un Grinch?",body:"En español llamamos Grinch a quien no soporta la Navidad: el que se queja de las luces desde noviembre, huye de las cenas familiares y ve los regalos como una obligación. El nombre viene de un personaje de cuento que odiaba las fiestas. Casi nadie es Grinch del todo: lo normal es disfrutar de unas partes de la Navidad y aguantar otras."},
+  {title:"Qué mide este test",body:"El test repasa cuatro partes de la Navidad: las luces y los villancicos, las cenas y reuniones, los regalos y las compras, y tradiciones como la Lotería, las uvas o la noche de Reyes. Cada una te da un porcentaje, y la media es tu nivel de Grinch. Además, el resultado te dice qué parte te sobra más, que suele ser lo más revelador."},
+  {title:"Cómo leer tu resultado",body:"Por debajo del 20 % eres de Navidad desde octubre; entre el 20 % y el 39 %, tienes espíritu navideño de serie; entre el 40 % y el 59 %, no eres ni Grinch ni elfo; entre el 60 % y el 79 %, eres Grinch a tiempo parcial, y desde el 80 %, Grinch de manual. Responder a todo «ni de acuerdo ni en desacuerdo» da en torno al 50 %."},
+  {title:"¿Tiene algo de ciencia?",body:"Un poco. En 2002, un estudio de Kasser y Sheldon encontró que quienes vivían la Navidad centrada en la familia y en sus tradiciones decían pasarla mejor que quienes la centraban en gastar y recibir regalos. Y en 2015, un estudio medio en broma publicado en el BMJ observó que las imágenes navideñas activaban zonas del cerebro distintas en quienes celebran la Navidad y en quienes no. Este test es para divertirse, pero recoge esa idea: no todo el mundo vive igual las fiestas."},
+  {title:"Test no oficial",body:"Este test no tiene relación con Dr. Seuss Enterprises ni con las películas del personaje. «El Grinch» es una marca de sus propietarios; aquí usamos la palabra en su sentido corriente, el de alguien a quien no le gusta la Navidad."}],
+ faqs:[
+  {q:"¿Cómo saber si soy un Grinch?",a:"Respondiendo a un test como este, que mide cuánto te sobran las luces, las cenas, los regalos y las tradiciones navideñas. Si tu porcentaje pasa del 60 %, tienes bastante de Grinch."},
+  {q:"¿Qué significa ser un Grinch?",a:"En el lenguaje de la calle, ser un Grinch es no soportar la Navidad: quejarse de las luces, huir de las cenas familiares o ver los regalos como una obligación."},
+  {q:"¿Es malo ser un Grinch?",a:"No. Que no te guste la Navidad es más común de lo que parece. Si estas fechas te traen tristeza de verdad, por ejemplo por una pérdida o por soledad, hablarlo con alguien de confianza o con un profesional ayuda."},
+  {q:"¿Qué es lo que más molesta de la Navidad?",a:"Depende de cada persona: a unos les agotan las cenas familiares, a otros las compras y a otros los villancicos desde noviembre. Por eso el resultado te dice qué parte te sobra más a ti."},
+  {q:"¿Es un test oficial del Grinch?",a:"No. Es un test no oficial, con preguntas propias de Testia, que usa la palabra Grinch en su sentido corriente."},
+  {q:"¿Es gratis?",a:"Sí, entero. Ves tu porcentaje de Grinch, tu tipo y el desglose de las cuatro partes de la Navidad sin pagar nada y sin registro."}],
+ sources:[
+  {title:"What Makes for a Merry Christmas?",url:"https://doi.org/10.1023/A:1021516410457",note:"Kasser y Sheldon (2002), Journal of Happiness Studies: la familia y las tradiciones se asocian a una Navidad más feliz que el consumo."},
+  {title:"Evidence of a Christmas spirit network in the brain: functional MRI study",url:"https://doi.org/10.1136/bmj.h6266",note:"Hougaard y colaboradores (2015), BMJ: las imágenes navideñas activan zonas distintas en quienes celebran la Navidad."},
+  {title:"El Grinch",url:"https://es.wikipedia.org/wiki/El_Grinch",note:"Wikipedia: el personaje y el uso de su nombre para quien detesta la Navidad."}],
+ relatedIds:["solluna","bruja","edadmental"]};
+})();
