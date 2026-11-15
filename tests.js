@@ -2731,3 +2731,161 @@ window.SEO_CONTENT.grinch={slug:"test-cuanto-grinch-eres",seoTitle:"Test: ¿cuá
   {title:"El Grinch",url:"https://es.wikipedia.org/wiki/El_Grinch",note:"Wikipedia: el personaje y el uso de su nombre para quien detesta la Navidad."}],
  relatedIds:["solluna","bruja","edadmental"]};
 })();
+
+/* ===== Test de racismo (cuestionario), racismo implícito y orientación sexual (noviembre de 2026) =====
+   Los tres son sensibles: origen étnico y orientación sexual son datos especiales del RGPD. */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+
+/* ---------- 1. Test de racismo: prejuicio sutil y manifiesto ---------- */
+const RI={
+ AME:[["Los inmigrantes quitan trabajo a la gente de aquí."],["La llegada de inmigrantes hace que haya más delincuencia."],["Hay grupos que, por su origen, no se integrarán nunca en España."],["Las personas inmigrantes aportan a España más de lo que reciben.",1]],
+ DIS:[["Me molestaría que un familiar cercano tuviera pareja de origen magrebí."],["No me gustaría tener como vecinos a una familia gitana."],["Me costaría tener un jefe o una jefa de origen africano."],["Me daría igual el origen de la pareja de mi hijo o de mi hija.",1]],
+ CUL:[["Las costumbres de muchos inmigrantes son incompatibles con las nuestras."],["La forma de ser de la gente de otros países es muy diferente de la nuestra."],["Quien viene a vivir aquí debería dejar atrás su cultura y adoptar la nuestra."],["Las diferencias culturales enriquecen un barrio.",1]],
+ EMO:[["Pocas veces he sentido simpatía por personas de otros orígenes que viven en España."],["Me cuesta sentir admiración por personas que vienen de países pobres."],["Me siento incómodo cuando estoy rodeado de gente de otro origen."],["Me resulta fácil conectar con personas de otros países.",1]],
+ MOD:[["Hoy en día en España casi no hay racismo."],["Los inmigrantes reciben más ayudas que la gente de aquí."],["Se habla demasiado de racismo: la mayoría de las quejas son exageradas."],["Las personas gitanas o negras siguen sufriendo discriminación al buscar piso o trabajo.",1]]
+};
+const RK=Object.keys(RI),ritems=[];
+for(let i=0;i<4;i++)RK.forEach(k=>{const [t,r]=RI[k][i];ritems.push(r?{t,s:k,r:true}:{t,s:k});});
+window.TESTS.push({
+ id:"racismo", name:"Test de racismo: ¿tienes prejuicios?", emoji:"🤝", cat:"Sociedad", eyebrow:"Tu nivel de prejuicio", sensitive:true,
+ blurb:"20 afirmaciones sobre inmigración, convivencia y diferencias culturales para medir tu nivel de prejuicio y saber si es sutil o manifiesto.",
+ instrument:"Cuestionario propio de Testia inspirado en las escalas de prejuicio sutil y manifiesto (Pettigrew y Meertens, 1995) y de racismo simbólico (Henry y Sears, 2002), adaptado a España. Mide actitudes, no si eres buena o mala persona.", license:"🟢",
+ mode:"likert", scaleMax:5,
+ premiumTitle:"Ya sabes tu nivel. Descubre si tu prejuicio es sutil o manifiesto",
+ premiumPitch:"Tu porcentaje exacto de prejuicio, si tu patrón es sutil o manifiesto y tu puntuación en las cinco dimensiones, con lo que significa cada una.",
+ scales:{AME:"Sensación de amenaza",DIS:"Distancia personal",CUL:"Diferencias culturales",EMO:"Distancia emocional",MOD:"Negar la discriminación"},
+ result:{type:"racism"},
+ interp:{
+  AME:{hi:"Ves a las personas inmigrantes como una amenaza para el empleo o la seguridad. Es la forma más abierta del prejuicio, y los datos no suelen respaldarla.",mid:"A veces te preocupa el efecto de la inmigración en el trabajo o la seguridad, sin que domine tu forma de ver a las personas.",lo:"No ves a las personas inmigrantes como una amenaza: las juzgas por lo que hacen, no por su origen."},
+  DIS:{hi:"Te incomoda la cercanía con personas de otros orígenes: como pareja de un familiar, como vecinos o como jefes. Es una de las señales más claras de prejuicio.",mid:"Hay situaciones de cercanía con personas de otros orígenes que te incomodan un poco.",lo:"Te da igual el origen de tu vecino, de tu jefe o de la pareja de tu familia."},
+  CUL:{hi:"Tiendes a exagerar las diferencias culturales y a pedir que quien llega renuncie a las suyas. Es la forma sutil más común del prejuicio.",mid:"Ves diferencias culturales reales, sin convertirlas en un muro.",lo:"Ves la diversidad cultural como algo que suma."},
+  EMO:{hi:"Te cuesta sentir simpatía o admiración por personas de otros orígenes. Esta distancia emocional es una señal sutil, pero muy consistente, de prejuicio.",mid:"Conectas con personas de otros orígenes, aunque no siempre con la misma facilidad.",lo:"Conectas con facilidad con personas de cualquier origen."},
+  MOD:{hi:"Crees que el racismo apenas existe hoy y que se exageran las quejas. Es la base del llamado racismo moderno: no se rechaza a nadie abiertamente, pero se niega el problema.",mid:"Reconoces que hay discriminación, aunque a veces te parece que se exagera.",lo:"Reconoces que la discriminación por origen sigue existiendo."}
+ },
+ items:ritems
+});
+window.SEO_CONTENT.racismo={slug:"test-de-racismo",seoTitle:"Test de racismo: ¿tienes prejuicios? | Testia",h1:"Test de racismo: ¿tienes prejuicios?",
+ metaDesc:"Test de racismo gratis: 20 afirmaciones para medir tu nivel de prejuicio y saber si es sutil o manifiesto. Basado en escalas científicas. Sin registro.",
+ intro:"¿Soy racista? Casi nadie se ve así, pero todos tenemos prejuicios en algún grado. Este test de racismo mide los tuyos con 20 afirmaciones sobre inmigración, convivencia y diferencias culturales, y distingue entre el prejuicio manifiesto, el que se dice en voz alta, y el sutil, el que no se nota. Es gratis, sin registro, tarda unos 3 minutos y no guardamos tus respuestas.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-15",
+ learn:["Tu nivel de prejuicio","Tu porcentaje de prejuicio","Si tu patrón es sutil o manifiesto","Tu puntuación en amenaza, distancia, cultura, emociones y negación de la discriminación"],
+ overview:[{label:"Mide",text:"Prejuicio hacia personas de otros orígenes, sutil y manifiesto, en cinco dimensiones."},{label:"Formato",text:"20 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Privacidad",text:"No guardamos tus respuestas ni tu resultado."}],
+ sections:[
+  {title:"Qué es el prejuicio",body:"El prejuicio es una actitud negativa hacia una persona por pertenecer a un grupo, en este caso por su origen o su etnia. No hace falta odiar a nadie para tenerlo: aparece en lo que nos incomoda, en lo que damos por hecho y en lo que preferimos no ver. Por eso casi todo el mundo tiene algo, y por eso tiene sentido medirlo."},
+  {title:"Prejuicio sutil y prejuicio manifiesto",body:"Pettigrew y Meertens (1995) distinguieron dos formas en Europa. El prejuicio manifiesto es abierto: ver a otros grupos como una amenaza y rechazar el contacto. El sutil es más socialmente aceptado: exagerar las diferencias culturales, pedir que quien llega renuncie a lo suyo y no sentir simpatía. Quien tiene solo el sutil suele verse como alguien sin prejuicios."},
+  {title:"El racismo que niega el racismo",body:"La investigación en Estados Unidos describió el racismo simbólico o moderno: no se rechaza a nadie abiertamente, pero se cree que la discriminación ya no existe y que las quejas son exageradas. Este test incluye esa dimensión, adaptada a España."},
+  {title:"Cómo leer tu resultado",body:"El test da un porcentaje de 0 a 100. Por debajo del 30 % no hay prejuicios a la vista; entre el 30 % y el 54 % hay prejuicios puntuales, como en buena parte de la población; entre el 55 % y el 69 %, el prejuicio es marcado, y desde el 70 %, fuerte. Responder a todo «neutral» da en torno al 50 %. La lectura completa dice si tu patrón es sutil o manifiesto."},
+  {title:"¿Y el racismo que no sé que tengo?",body:"Este test mide lo que piensas cuando te paras a pensarlo. Las asociaciones automáticas, las que aparecen en una fracción de segundo, se miden de otra forma: con tiempos de reacción. Para eso está el test de racismo implícito."}],
+ faqs:[
+  {q:"¿Cómo saber si soy racista?",a:"Respondiendo con sinceridad a un test como este, que mide tu nivel de prejuicio hacia personas de otros orígenes. Casi todo el mundo tiene algo de prejuicio; lo útil es saber cuánto y de qué tipo."},
+  {q:"¿Qué es el racismo sutil?",a:"Es el prejuicio que no se nota como rechazo abierto: exagerar las diferencias culturales, pedir que quien llega renuncie a su cultura o no sentir simpatía por personas de otros orígenes."},
+  {q:"¿Guardáis mis respuestas?",a:"No. Las respuestas y el resultado de este test no se registran en nuestras estadísticas ni se envían por email."},
+  {q:"¿Qué porcentaje es normal?",a:"Entre el 30 % y el 54 % es lo más habitual: prejuicios puntuales que no dominan cómo tratas a la gente. Por debajo del 30 % no hay prejuicios a la vista."},
+  {q:"¿Puedo cambiar mis prejuicios?",a:"Sí. Lo que más ayuda, según la investigación, es el contacto real y en igualdad con personas de otros grupos: compañeros, vecinos, amistades."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de prejuicio es gratis y sin registro. Tu porcentaje exacto, tu tipo y tus cinco dimensiones se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[
+  {title:"Subtle and blatant prejudice in western Europe",url:"https://doi.org/10.1002/ejsp.2420250106",note:"Pettigrew y Meertens (1995): las escalas de prejuicio sutil y manifiesto."},
+  {title:"The Symbolic Racism 2000 Scale",url:"https://doi.org/10.1111/0162-895X.00281",note:"Henry y Sears (2002): el racismo simbólico, que niega que la discriminación siga existiendo."},
+  {title:"Racismo",url:W("Racismo"),note:"Definición y formas del racismo."}],
+ relatedIds:["implicito","politico","empathy"]};
+
+/* ---------- 2. Test de racismo implícito (método IAT) ---------- */
+window.TESTS.push({
+ id:"implicito", name:"Test de racismo implícito", emoji:"⚡", cat:"Sociedad", eyebrow:"Tu sesgo automático", sensitive:true,
+ mode:"iat", scoring:"iat", noBack:true, minutes:5, countLabel:"7 rondas", questionCount:188,
+ blurb:"Clasifica nombres y palabras lo más rápido que puedas. Tus tiempos de reacción revelan asociaciones automáticas que no controlas.",
+ instrument:"Test de asociación implícita (IAT) en versión corta, con la puntuación D mejorada de Greenwald, Nosek y Banaji (2003). Mide asociaciones automáticas, no si una persona es racista.", license:"🟢",
+ premiumTitle:"Ya sabes tu sesgo. Mira los números detrás",
+ premiumPitch:"Tu puntuación D exacta, tus tiempos medios en cada emparejamiento, tus errores y qué significa cada cosa.",
+ iat:{
+  A:{lab:"Nombres españoles",items:["Antonio","Javier","Manuel","Pablo","Carmen","Lucía","María","Elena"]},
+  B:{lab:"Nombres árabes",items:["Mohamed","Youssef","Hassan","Omar","Fátima","Aicha","Khadija","Samira"]},
+  P:{lab:"Agradable",items:["alegría","amor","paz","maravilloso","placer","risa","felicidad","amistad"]},
+  N:{lab:"Desagradable",items:["dolor","odio","horrible","desastre","tristeza","asco","guerra","fracaso"]},
+  blocks:[20,20,20,40,28,20,40]
+ },
+ items:[]
+});
+window.SEO_CONTENT.implicito={slug:"test-de-racismo-implicito",seoTitle:"Test de racismo implícito: mide tu sesgo automático | Testia",h1:"Test de racismo implícito",
+ metaDesc:"Test de racismo implícito gratis: clasifica nombres y palabras a toda velocidad y descubre tus asociaciones automáticas. Método IAT, unos 5 minutos.",
+ intro:"¿Tienes prejuicios que no sabes que tienes? Este test de racismo implícito usa el método de asociación implícita (IAT): clasificas nombres españoles y árabes junto con palabras agradables y desagradables, lo más rápido que puedas. Si tardas más en unas combinaciones que en otras, hay una asociación automática. Es gratis, sin registro, tarda unos 5 minutos y no guardamos tus respuestas.",
+ step1:"7 rondas cortas de clasificar con dos botones. Sin registro.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-15",
+ learn:["Si tienes una asociación automática a favor de un grupo","Su dirección y su fuerza: leve, moderada o fuerte","Tu puntuación D, la misma medida que usa la investigación","Tus tiempos y errores en cada emparejamiento"],
+ overview:[{label:"Mide",text:"La asociación automática entre nombres españoles o árabes y palabras agradables o desagradables."},{label:"Formato",text:"7 rondas de clasificar con dos botones o con las teclas E e I; unos 5 minutos."},{label:"Límite",text:"Mide asociaciones, no si eres racista ni cómo vas a actuar."}],
+ sections:[
+  {title:"Cómo funciona",body:"En cada ronda aparecen nombres o palabras en el centro y tienes que clasificarlos a izquierda o derecha lo más rápido posible. En unas rondas, los nombres españoles comparten lado con las palabras agradables; en otras, con las desagradables. Si te cuesta más una combinación que la otra, tu mente asocia con más facilidad uno de los grupos con lo agradable. La diferencia se mide en milisegundos."},
+  {title:"Qué es el test de asociación implícita",body:"El IAT lo crearon Greenwald, McGhee y Schwartz en 1998 y se ha usado en miles de estudios sobre sesgos de raza, género o edad. Este test usa una versión corta, con la puntuación D mejorada que propusieron Greenwald, Nosek y Banaji en 2003: compara tus tiempos medios en los dos emparejamientos y los divide por tu variabilidad."},
+  {title:"Lo que mide y lo que no",body:"Mide asociaciones automáticas, que absorbemos del entorno sin darnos cuenta. No dice si eres racista ni predice bien cómo vas a tratar a una persona: un metaanálisis de Oswald y colaboradores (2013) encontró que el IAT predice poco la conducta. Además, el resultado de una persona varía bastante si repite el test. Tómalo como una pista interesante, no como un veredicto."},
+  {title:"Cómo leer tu resultado",body:"Una puntuación D por debajo de 0,15, en positivo o en negativo, significa que no hay preferencia clara. Entre 0,15 y 0,35, la preferencia es leve; entre 0,35 y 0,65, moderada, y por encima, fuerte. Si respondes demasiado rápido y al azar, el test lo detecta y te pide repetirlo."},
+  {title:"Consejos para hacerlo bien",body:"Hazlo en un sitio tranquilo, sin prisas y sin distracciones. Ve rápido aunque te equivoques: si fallas, aparece una cruz roja y solo tienes que pulsar el otro lado. En el móvil, sujétalo con las dos manos y usa los pulgares."}],
+ faqs:[
+  {q:"¿Qué es el racismo implícito?",a:"Son asociaciones automáticas entre un grupo y algo positivo o negativo que tenemos sin ser conscientes. Pueden no coincidir con lo que pensamos de verdad."},
+  {q:"¿Si me sale preferencia por un grupo, soy racista?",a:"No. Indica una asociación automática, muy influida por el entorno, las noticias y la cultura. Lo que haces con ella depende de ti."},
+  {q:"¿Es como el test de Harvard?",a:"Usa el mismo método, el test de asociación implícita, con una versión más corta y adaptada a España. No tiene relación con Harvard ni con Project Implicit."},
+  {q:"¿Por qué nombres árabes?",a:"Porque las personas de origen magrebí y árabe son uno de los grupos más estudiados en la investigación sobre prejuicio en España. Más adelante podríamos añadir otros grupos."},
+  {q:"¿Guardáis mis respuestas?",a:"No. Ni tus tiempos ni tu resultado se registran en nuestras estadísticas ni se envían por email."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver la dirección y la fuerza de tu sesgo es gratis y sin registro. Tu puntuación D exacta, tus tiempos y tus errores se pueden desbloquear por 1,99 €, en un pago único."}],
+ sources:[
+  {title:"Measuring individual differences in implicit cognition: The implicit association test",url:"https://doi.org/10.1037/0022-3514.74.6.1464",note:"Greenwald, McGhee y Schwartz (1998): el artículo que presentó el IAT."},
+  {title:"Understanding and using the Implicit Association Test: I. An improved scoring algorithm",url:"https://doi.org/10.1037/0022-3514.85.2.197",note:"Greenwald, Nosek y Banaji (2003): la puntuación D que usa este test."},
+  {title:"Predicting ethnic and racial discrimination: A meta-analysis of IAT criterion studies",url:"https://doi.org/10.1037/a0032734",note:"Oswald y colaboradores (2013): el IAT predice poco la conducta individual."},
+  {title:"Test de asociación implícita",url:W("Test_de_asociaci%C3%B3n_impl%C3%ADcita"),note:"Wikipedia: historia, usos y críticas."}],
+ relatedIds:["racismo","empathy","politico"]};
+
+/* ---------- 3. Test de orientación sexual (Kinsey y Klein) ---------- */
+const KO=["Solo de otro género","Casi siempre de otro género","Más de otro género que del mío","Igual de los dos","Más de mi mismo género","Casi siempre de mi mismo género","Solo de mi mismo género"].map((l,v)=>({l,v}));
+const KX=t=>KO.concat([{l:t,v:-1}]);
+const FREQ=["Nunca","Casi nunca","A veces","A menudo","Muy a menudo"].map((l,v)=>({l,v}));
+window.TESTS.push({
+ id:"orientacion", name:"Test de orientación sexual", emoji:"🌈", cat:"Relaciones", eyebrow:"Tu orientación en la escala de Kinsey", sensitive:true, minutes:3,
+ blurb:"14 preguntas sobre atracción, enamoramiento, fantasías y experiencias, hoy y antes, para ver dónde estás en la escala de Kinsey.",
+ instrument:"Cuestionario propio de Testia inspirado en la escala de Kinsey (1948) y la cuadrícula de orientación sexual de Klein (Klein, Sepekoff y Wolf, 1985), con preguntas sobre el espectro asexual. Describe, no etiqueta: solo tú decides cómo te defines.", license:"🟢",
+ mode:"choice",
+ premiumTitle:"Ya sabes tu punto en la escala. Mira el detalle",
+ premiumPitch:"Tu posición exacta en la escala de Kinsey, cómo se reparten tu atracción sexual, tu atracción romántica y tus fantasías, y cómo ha cambiado entre el pasado y hoy.",
+ scales:{K:"Escala de Kinsey",ASX:"Atracción sexual en general"},
+ result:{type:"orient"},
+ items:[
+  {t:"Hoy, ¿hacia quién sientes atracción sexual?",s:"K",d:"SEX",w:2,opts:KO},
+  {t:"¿De quién te enamoras o podrías enamorarte?",s:"K",d:"ROM",w:1.5,opts:KO},
+  {t:"¿Con quién son tus fantasías sexuales?",s:"K",d:"FAN",w:1.5,opts:KO},
+  {t:"Cuando ves a alguien atractivo por la calle o en una serie, ¿de qué género suele ser?",s:"K",d:"SEX",w:1,opts:KO},
+  {t:"Si imaginas tu cita ideal, ¿con quién es?",s:"K",d:"ROM",w:1,opts:KO},
+  {t:"Si nadie fuera a juzgarte, ¿con quién te gustaría tener una relación?",s:"K",d:"IDE",w:1,opts:KO},
+  {t:"En el último año, ¿con quién has tenido experiencias sexuales o románticas?",s:"K",d:"EXP",w:.5,opts:KX("No he tenido en el último año")},
+  {t:"¿Cómo te describirías hoy?",s:"K",d:"IDE",w:1,opts:[{l:"Heterosexual",v:0},{l:"Heterosexual, con alguna excepción",v:1},{l:"Bisexual, más hacia otro género",v:2},{l:"Bisexual",v:3},{l:"Bisexual, más hacia mi mismo género",v:4},{l:"Gay o lesbiana, con alguna excepción",v:5},{l:"Gay o lesbiana",v:6},{l:"Prefiero no ponerme etiqueta",v:-1}]},
+  {t:"Hace unos años, ¿hacia quién sentías atracción sexual?",s:"K",d:"SEX",w:2,past:true,opts:KO},
+  {t:"Hace unos años, ¿de quién te enamorabas?",s:"K",d:"ROM",w:1.5,past:true,opts:KO},
+  {t:"Hace unos años, ¿con quién eran tus fantasías?",s:"K",d:"FAN",w:1.5,past:true,opts:KO},
+  {t:"¿Con qué frecuencia sientes atracción sexual por alguien?",s:"ASX",d:"SEXG",opts:FREQ},
+  {t:"¿Con qué frecuencia te apetece tener sexo con otra persona?",s:"ASX",d:"DES",opts:FREQ},
+  {t:"¿Con qué frecuencia sientes atracción romántica, ganas de enamorarte o de tener pareja?",s:"ASX",d:"ROMG",opts:FREQ}
+ ]
+});
+window.SEO_CONTENT.orientacion={slug:"test-de-orientacion-sexual",seoTitle:"Test de orientación sexual: la escala de Kinsey | Testia",h1:"Test de orientación sexual",
+ metaDesc:"Test de orientación sexual gratis: 14 preguntas sobre atracción, enamoramiento y fantasías para ver dónde estás en la escala de Kinsey. Sin registro.",
+ intro:"La orientación sexual no siempre es blanco o negro. Este test te hace 14 preguntas sobre a quién te atrae, de quién te enamoras, con quién son tus fantasías y cómo era antes, y te sitúa en la escala de Kinsey, de 0 a 6. También tiene en cuenta el espectro asexual. Es gratis, sin registro, tarda unos 3 minutos y no guardamos tus respuestas. Solo tú decides cómo te defines.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-15",
+ learn:["Dónde estás en la escala de Kinsey, de 0 a 6","Si tu atracción sexual y la romántica van en la misma dirección","Cómo ha cambiado tu orientación entre el pasado y hoy","Si encajas en el espectro asexual"],
+ overview:[{label:"Mide",text:"Atracción sexual, atracción romántica, fantasías, experiencias e identidad, hoy y antes."},{label:"Formato",text:"14 preguntas de opción; unos 3 minutos."},{label:"Privacidad",text:"No guardamos tus respuestas ni tu resultado."}],
+ sections:[
+  {title:"La escala de Kinsey",body:"Alfred Kinsey propuso en 1948 una escala de 0 a 6 para describir la orientación sexual: 0 es exclusivamente heterosexual, 3 es igual de atracción hacia ambos sexos y 6 es exclusivamente homosexual. Su idea central sigue vigente: mucha gente no está en los extremos. Kinsey añadió una categoría aparte, la X, para quienes no sienten atracción sexual."},
+  {title:"Más de una dimensión: la cuadrícula de Klein",body:"Fritz Klein y sus colegas (1985) mostraron que la orientación tiene varias caras que no siempre coinciden: la atracción sexual, la romántica, las fantasías, las experiencias y la identidad, y que pueden cambiar con el tiempo. Por eso este test pregunta por cada una, hoy y hace unos años."},
+  {title:"El espectro asexual",body:"Algunas personas sienten poca o ninguna atracción sexual, y eso también es una orientación. Un estudio con una muestra representativa del Reino Unido (Bogaert, 2004) encontró que alrededor del 1 % de las personas no había sentido nunca atracción sexual. El test incluye tres preguntas para detectarlo y distingue la atracción sexual de la romántica."},
+  {title:"Lo que este test no hace",body:"Ningún test puede decirte quién eres. Este describe cómo respondes hoy, con las categorías de la escala de Kinsey, que solo distingue entre tu género y otro. Si eres una persona no binaria o las categorías no encajan contigo, quédate con lo que te sirva. La orientación no se elige, no es un problema y puede cambiar a lo largo de la vida."},
+  {title:"Si necesitas hablar con alguien",body:"Si estás pensando en tu orientación y te genera dudas o malestar, no estás solo. La FELGTBI+ (felgtbi.org) reúne asociaciones de toda España que ofrecen orientación gratuita. Si eres menor de edad, el teléfono de la Fundación ANAR, 900 20 20 10, es gratuito y confidencial. Y si te sientes muy mal, el 024 atiende las 24 horas."}],
+ faqs:[
+  {q:"¿Cómo saber cuál es mi orientación sexual?",a:"Fijándote en a quién te atrae, de quién te enamoras y con quién fantaseas, más que en una etiqueta. Un test como este te ayuda a ordenarlo, pero solo tú decides cómo te defines."},
+  {q:"¿Qué es la escala de Kinsey?",a:"Una escala de 0 a 6 que describe la orientación sexual: 0 es exclusivamente heterosexual, 3 es bisexual a partes iguales y 6 es exclusivamente homosexual. La categoría X es para quien no siente atracción sexual."},
+  {q:"¿La orientación sexual puede cambiar?",a:"En algunas personas sí, sobre todo la atracción y la forma de definirse, y en otras se mantiene estable toda la vida. Las dos cosas son normales. Lo que no funciona es intentar cambiarla a la fuerza."},
+  {q:"¿Qué significa estar en el espectro asexual?",a:"Que sientes poca o ninguna atracción sexual. Puedes sentir atracción romántica, o no; son cosas distintas. Es una orientación más, no un problema."},
+  {q:"¿Guardáis mis respuestas?",a:"No. Las respuestas y el resultado de este test no se registran en nuestras estadísticas ni se envían por email."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu punto en la escala de Kinsey es gratis y sin registro. El desglose por dimensiones y la comparación entre el pasado y hoy se pueden desbloquear por 1,99 €, en un pago único."}],
+ sources:[
+  {title:"Sexual Orientation: A Multi-Variable Dynamic Process",url:"https://doi.org/10.1300/J082v11n01_04",note:"Klein, Sepekoff y Wolf (1985), Journal of Homosexuality: la cuadrícula de orientación sexual de Klein."},
+  {title:"Asexuality: Prevalence and associated factors in a national probability sample",url:"https://doi.org/10.1080/00224490409552235",note:"Bogaert (2004): alrededor del 1 % no ha sentido nunca atracción sexual."},
+  {title:"Escala de Kinsey",url:W("Escala_de_Kinsey"),note:"Wikipedia: la escala de 0 a 6 y la categoría X."}],
+ relatedIds:["lovestyles","attachment","pareja2"]};
+})();
