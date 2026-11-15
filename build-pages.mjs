@@ -37,7 +37,7 @@ const CATS = {
   profesional:{name:"Profesional y decisiones",color:"#1f8a6d"}, relaciones:{name:"Relaciones y emociones",color:"#b8434c"},
   bienestar:{name:"Valores y bienestar",color:"#e0892f"},
 };
-const TEST_CAT = {grinch:"personalidad",bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",iq:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",razonamiento:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",dependencia:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad",partido:"bienestar",candidato:"bienestar"};
+const TEST_CAT = {racismo:"bienestar",implicito:"bienestar",orientacion:"relaciones",grinch:"personalidad",bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",entrenador:"personalidad",solluna:"personalidad",bruja:"personalidad",iq:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",crt:"inteligencia",ncs:"inteligencia",riasec:"profesional",razonamiento:"profesional",grit:"profesional",maximizer:"profesional",attachment:"relaciones",ei:"relaciones",empathy:"relaciones",moral:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",dificil:"personalidad",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",dependencia:"relaciones",memoria:"inteligencia",atencion:"inteligencia",edadmental:"personalidad",partido:"bienestar",candidato:"bienestar"};
 const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 const mins = t => t.minutes || (t.mode==="correct" ? Math.round((t.duration||300)/60) : Math.max(2, Math.round(t.items.length*0.13)));
 const PAYMENT_FAQ = {
@@ -86,7 +86,7 @@ function page(t){
   const graph = [
     {"@type":"Quiz","name":pageName,"about":s.intro,"url":url,"educationalLevel":"general",
      "isAccessibleForFree":true,"inLanguage":"es","timeRequired":`PT${mins(t)}M`,
-     "numberOfQuestions":t.items.length,
+     "numberOfQuestions":t.questionCount||t.items.length,
      ...(s.sources?.length?{"citation":s.sources.map(x=>x.url)}:{}),
      "provider":{"@type":"Organization","name":"Testia","url":DOMAIN},
      ...(s.updatedISO?{"dateModified":s.updatedISO}:{}),
@@ -122,7 +122,7 @@ function page(t){
   <div class="eyebrow" style="color:${cat.color}">${esc(cat.name)}</div>
   <h1>${esc(pageName)}</h1>
   <p class="lead">${esc(s.intro)}</p>
-  <div class="meta"><span class="chip">${t.items.length} preguntas</span><span class="chip">~${mins(t)} min</span><span class="chip">Sin registro</span><span class="chip">${t.free?"Gratis entero":"Cuestionario gratis"}</span></div>
+  <div class="meta"><span class="chip">${t.countLabel||t.items.length+" preguntas"}</span><span class="chip">~${mins(t)} min</span><span class="chip">Sin registro</span><span class="chip">${t.free?"Gratis entero":"Cuestionario gratis"}</span></div>
   <div><a class="btn" style="background:linear-gradient(135deg,#3a57e8,#2840c4)" href="/?start=${t.id}" aria-label="Responder ${esc(pageName)} gratis">Responder gratis →</a><a class="btn alt" href="/#catalogo">Ver todos los tests</a></div>
 ${s.updated?`  <p class="updated">Actualizado: <time datetime="${esc(s.updatedISO||"")}">${esc(s.updated)}</time></p>
 `:""}  <p class="cta-note">${t.free?"<strong>Gratis de principio a fin:</strong> ves tu resultado completo sin pagar nada y sin registro.":"<strong>Sin suscripción:</strong> responde gratis y desbloquea el informe completo solo si quieres, por 1,99 €."}</p>
