@@ -4,6 +4,9 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-11-15 — `/blog/escala-de-kinsey` — keyword principal: `escala de Kinsey` — secundarias: `qué es la escala de Kinsey`, `Kinsey 1 2 3`, `cuadrícula de Klein`, `espectro asexual`.
+- 2026-11-15 — `/blog/racismo-implicito-que-es` — keyword principal: `racismo implícito` — secundarias: `sesgo implícito`, `test de asociación implícita`, `test de Harvard racismo`, `puntuación D IAT`.
+- 2026-11-15 — `/blog/prejuicio-sutil-y-manifiesto` — keyword principal: `prejuicio sutil y manifiesto` — secundarias: `soy racista`, `racismo sutil`, `racismo moderno`, `microrracismos`.
 - 2026-10-21 — `/blog/bienestar-hedonico-y-eudaimonico` — keyword principal: `bienestar hedónico y eudaimónico` — secundarias: `diferencia entre placer y sentido`, `qué es el bienestar psicológico`, `modelo de Ryff`, `felicidad hedónica`.
 - 2026-10-18 — `/blog/persona-altamente-sensible` — keyword principal: `persona altamente sensible qué dice la ciencia` — secundarias: `alta sensibilidad de procesamiento sensorial`, `PAS Elaine Aron`, `alta sensibilidad y neuroticismo`, `ser muy sensible es un rasgo`.
 - 2026-10-18 — `/blog/mentalidad-de-crecimiento-y-mentalidad-fija` — keyword principal: `mentalidad de crecimiento y mentalidad fija` — secundarias: `qué es la mentalidad de crecimiento`, `Carol Dweck mindset`, `teorías implícitas de la inteligencia`, `mentalidad de crecimiento evidencia`.

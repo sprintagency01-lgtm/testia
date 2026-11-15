@@ -2788,6 +2788,7 @@ window.SEO_CONTENT.racismo={slug:"test-de-racismo",seoTitle:"Test de racismo: ¿
   {title:"Subtle and blatant prejudice in western Europe",url:"https://doi.org/10.1002/ejsp.2420250106",note:"Pettigrew y Meertens (1995): las escalas de prejuicio sutil y manifiesto."},
   {title:"The Symbolic Racism 2000 Scale",url:"https://doi.org/10.1111/0162-895X.00281",note:"Henry y Sears (2002): el racismo simbólico, que niega que la discriminación siga existiendo."},
   {title:"Racismo",url:W("Racismo"),note:"Definición y formas del racismo."}],
+ guide:{url:"/blog/prejuicio-sutil-y-manifiesto",title:"Prejuicio sutil y manifiesto",text:"Las dos caras del racismo y cómo reconocerlas"},
  relatedIds:["implicito","politico","empathy"]};
 
 /* ---------- 2. Test de racismo implícito (método IAT) ---------- */
@@ -2818,7 +2819,7 @@ window.SEO_CONTENT.implicito={slug:"test-de-racismo-implicito",seoTitle:"Test de
   {title:"Cómo funciona",body:"En cada ronda aparecen nombres o palabras en el centro y tienes que clasificarlos a izquierda o derecha lo más rápido posible. En unas rondas, los nombres españoles comparten lado con las palabras agradables; en otras, con las desagradables. Si te cuesta más una combinación que la otra, tu mente asocia con más facilidad uno de los grupos con lo agradable. La diferencia se mide en milisegundos."},
   {title:"Qué es el test de asociación implícita",body:"El IAT lo crearon Greenwald, McGhee y Schwartz en 1998 y se ha usado en miles de estudios sobre sesgos de raza, género o edad. Este test usa una versión corta, con la puntuación D mejorada que propusieron Greenwald, Nosek y Banaji en 2003: compara tus tiempos medios en los dos emparejamientos y los divide por tu variabilidad."},
   {title:"Lo que mide y lo que no",body:"Mide asociaciones automáticas, que absorbemos del entorno sin darnos cuenta. No dice si eres racista ni predice bien cómo vas a tratar a una persona: un metaanálisis de Oswald y colaboradores (2013) encontró que el IAT predice poco la conducta. Además, el resultado de una persona varía bastante si repite el test. Tómalo como una pista interesante, no como un veredicto."},
-  {title:"Cómo leer tu resultado",body:"Una puntuación D por debajo de 0,15, en positivo o en negativo, significa que no hay preferencia clara. Entre 0,15 y 0,35, la preferencia es leve; entre 0,35 y 0,65, moderada, y por encima, fuerte. Si respondes demasiado rápido y al azar, el test lo detecta y te pide repetirlo."},
+  {title:"Cómo leer tu resultado",body:"Según los cortes que se usan habitualmente, una puntuación D por debajo de 0,15, en positivo o en negativo, significa que no hay preferencia clara. Entre 0,15 y 0,35, la preferencia es leve; entre 0,35 y 0,65, moderada, y por encima, fuerte. Si respondes demasiado rápido y al azar, el test lo detecta y te pide repetirlo."},
   {title:"Consejos para hacerlo bien",body:"Hazlo en un sitio tranquilo, sin prisas y sin distracciones. Ve rápido aunque te equivoques: si fallas, aparece una cruz roja y solo tienes que pulsar el otro lado. En el móvil, sujétalo con las dos manos y usa los pulgares."}],
  faqs:[
   {q:"¿Qué es el racismo implícito?",a:"Son asociaciones automáticas entre un grupo y algo positivo o negativo que tenemos sin ser conscientes. Pueden no coincidir con lo que pensamos de verdad."},
@@ -2832,6 +2833,7 @@ window.SEO_CONTENT.implicito={slug:"test-de-racismo-implicito",seoTitle:"Test de
   {title:"Understanding and using the Implicit Association Test: I. An improved scoring algorithm",url:"https://doi.org/10.1037/0022-3514.85.2.197",note:"Greenwald, Nosek y Banaji (2003): la puntuación D que usa este test."},
   {title:"Predicting ethnic and racial discrimination: A meta-analysis of IAT criterion studies",url:"https://doi.org/10.1037/a0032734",note:"Oswald y colaboradores (2013): el IAT predice poco la conducta individual."},
   {title:"Test de asociación implícita",url:W("Test_de_asociaci%C3%B3n_impl%C3%ADcita"),note:"Wikipedia: historia, usos y críticas."}],
+ guide:{url:"/blog/racismo-implicito-que-es",title:"Racismo implícito: qué es y cómo se mide",text:"El test de asociación implícita, paso a paso"},
  relatedIds:["racismo","empathy","politico"]};
 
 /* ---------- 3. Test de orientación sexual (Kinsey y Klein) ---------- */
@@ -2887,5 +2889,6 @@ window.SEO_CONTENT.orientacion={slug:"test-de-orientacion-sexual",seoTitle:"Test
   {title:"Sexual Orientation: A Multi-Variable Dynamic Process",url:"https://doi.org/10.1300/J082v11n01_04",note:"Klein, Sepekoff y Wolf (1985), Journal of Homosexuality: la cuadrícula de orientación sexual de Klein."},
   {title:"Asexuality: Prevalence and associated factors in a national probability sample",url:"https://doi.org/10.1080/00224490409552235",note:"Bogaert (2004): alrededor del 1 % no ha sentido nunca atracción sexual."},
   {title:"Escala de Kinsey",url:W("Escala_de_Kinsey"),note:"Wikipedia: la escala de 0 a 6 y la categoría X."}],
+ guide:{url:"/blog/escala-de-kinsey",title:"La escala de Kinsey, explicada",text:"Qué es, cómo funciona y sus límites"},
  relatedIds:["lovestyles","attachment","pareja2"]};
 })();

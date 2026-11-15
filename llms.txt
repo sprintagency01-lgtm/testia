@@ -4,8 +4,8 @@
 
 Datos útiles:
 - Idioma: español. Público: España y Latinoamérica.
-- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción. Algunos tests, como el de Hogwarts, son gratis enteros.
-- Privacidad: los tests políticos y el de daltonismo no registran respuestas ni resultados.
+- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción. Son gratis enteros: Test de Hogwarts: ¿a qué casa perteneces? y Test: ¿cuánto Grinch eres?
+- Privacidad: estos tests tratan datos especialmente protegidos y no registran respuestas ni resultados: Test: ¿cuánto facha eres?, Test para saber a qué partido votar en las elecciones del 29N, Test: ¿con qué candidato coincides en las elecciones del 29N?, Test de daltonismo, Test de racismo: ¿tienes prejuicios?, Test de racismo implícito y Test de orientación sexual.
 
 ## Tests
 
@@ -72,6 +72,7 @@ Datos útiles:
 - [Diferencia entre test psicológico y test recreativo](https://www.testia.info/blog/diferencia-entre-test-psicologico-y-recreativo)
 - [Efecto Barnum en los tests de personalidad: por qué aciertan](https://www.testia.info/blog/efecto-barnum-en-los-tests-de-personalidad)
 - [Escala de CI: media, percentiles y significado](https://www.testia.info/blog/escala-ci-percentiles)
+- [Escala de Kinsey: qué es, cómo funciona y por qué no basta un número](https://www.testia.info/blog/escala-de-kinsey)
 - [Escala de satisfacción con la vida (SWLS): qué mide y cómo se lee](https://www.testia.info/blog/escala-de-satisfaccion-con-la-vida)
 - [Escala PANAS: afecto positivo y negativo](https://www.testia.info/blog/escala-panas-afecto-positivo-negativo)
 - [Los 6 estilos de amor de John Lee: eros, ludus, storge y más](https://www.testia.info/blog/estilos-de-amor-de-john-lee)
@@ -89,6 +90,7 @@ Datos útiles:
 - [Persona altamente sensible: qué dice la ciencia sobre el rasgo](https://www.testia.info/blog/persona-altamente-sensible)
 - [Por qué me cuesta madrugar aunque duerma bien: el reloj interno](https://www.testia.info/blog/por-que-me-cuesta-madrugar)
 - [Por qué me siento más joven de lo que soy | Edad subjetiva](https://www.testia.info/blog/por-que-me-siento-mas-joven-de-lo-que-soy)
+- [Prejuicio sutil y manifiesto: las dos caras del racismo](https://www.testia.info/blog/prejuicio-sutil-y-manifiesto)
 - [Qué es el cronotipo: alondra, búho y continuo](https://www.testia.info/blog/que-es-el-cronotipo)
 - [Qué es el efecto Stroop y por qué cuesta decir el color de una palabra](https://www.testia.info/blog/que-es-el-efecto-stroop)
 - [Qué es la alexitimia: señales, cómo se mide y qué no es](https://www.testia.info/blog/que-es-la-alexitimia)
@@ -98,6 +100,7 @@ Datos útiles:
 - [Qué es la resiliencia psicológica y cómo se mide](https://www.testia.info/blog/que-es-la-resiliencia-psicologica)
 - [Qué es una persona difícil según la psicología: los 7 rasgos](https://www.testia.info/blog/que-es-una-persona-dificil)
 - [Qué mide un test de ideología política y cómo interpretarlo](https://www.testia.info/blog/que-mide-un-test-de-ideologia-politica)
+- [Racismo implícito: qué es, cómo se mide y qué dice de ti](https://www.testia.info/blog/racismo-implicito-que-es)
 - [Red flags en una relación: qué son y cómo distinguirlas](https://www.testia.info/blog/red-flags-en-una-relacion)
 - [Teoría de los fundamentos morales: qué mide y cómo se interpreta](https://www.testia.info/blog/teoria-de-los-fundamentos-morales)
 - [Test de personalidad corto: ¿es fiable uno de 10 preguntas?](https://www.testia.info/blog/test-de-personalidad-corto-es-fiable)
