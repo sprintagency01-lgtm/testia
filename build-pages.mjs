@@ -217,14 +217,18 @@ if (!DRY) {
   const guides = fs.existsSync("blog") ? fs.readdirSync("blog").filter(f => f.endsWith(".html")).sort().map(f => `- [${titleOf("blog/" + f)}](${DOMAIN}/blog/${f.replace(/\.html$/, "")})`) : [];
   const testsMd = TESTS.filter(t => SEO[t.id] && fs.existsSync(`test/${SEO[t.id].slug}.html`))
     .map(t => `- [${SEO[t.id].h1 || t.name}](${DOMAIN}/test/${SEO[t.id].slug}): ${SEO[t.id].metaDesc || t.blurb}`);
+  const nameOf = t => SEO[t.id]?.h1 || t.name;
+  const listEs = a => { const t = a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " y " + a[a.length - 1]; return /[?!]$/.test(t) ? t : t + "."; };
+  const freeNames = listEs(TESTS.filter(t => t.free).map(nameOf));
+  const sensNames = listEs(TESTS.filter(t => t.sensitive).map(nameOf));
   fs.writeFileSync("llms.txt", `# Testia
 
 > Testia (testia.info) es una web española de tests de personalidad, inteligencia, relaciones y valores. Cada test se inspira en un instrumento publicado o en investigación citada en su página, es gratuito de responder y sin registro, y muestra un resultado orientativo. El informe completo de cada test cuesta 1,99 € (pago único) y existe un pase de 4,99 € para todos los tests. No son evaluaciones clínicas ni diagnósticos.
 
 Datos útiles:
 - Idioma: español. Público: España y Latinoamérica.
-- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción. Algunos tests, como el de Hogwarts, son gratis enteros.
-- Privacidad: los tests políticos y el de daltonismo no registran respuestas ni resultados.
+- Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción. Son gratis enteros: ${freeNames}
+- Privacidad: estos tests tratan datos especialmente protegidos y no registran respuestas ni resultados: ${sensNames}
 
 ## Tests
 
