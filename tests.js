@@ -3060,4 +3060,9 @@ window.SEO_CONTENT.trabajo={slug:"test-que-trabajo-es-para-mi",seoTitle:"Test: �
   {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu profesión más afín y tu entorno ideal es gratis y sin registro. Tus cinco mejores opciones, por qué encajas, lo que te puede frenar y por dónde empezar se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
  sources:[SRC_HOLLAND,SRC_INTERESTS,SRC_ONET],
  relatedIds:["riasec","values","carrera"]};
+
+/* El test vocacional enlaza a los tres tests concretos. */
+const RS=window.SEO_CONTENT.riasec;
+if(RS){RS.relatedIds=["carrera","fp","trabajo"];
+ RS.sections=(RS.sections||[]).concat([{title:"Del código de Holland a una carrera concreta",body:"Tu código de tres letras dice qué tipo de actividades te atraen, pero no qué estudiar ni a qué dedicarte. Para eso Testia tiene tres tests más concretos que cruzan tus intereses con tus puntos fuertes y lo que buscas: «¿Qué carrera estudiar?», que compara tu perfil con 58 grados universitarios; «¿Qué FP estudiar?», con 86 ciclos de grado medio y superior, y «¿Qué trabajo es para mí?», con 63 profesiones y tu entorno de trabajo ideal."}]);}
 })();
