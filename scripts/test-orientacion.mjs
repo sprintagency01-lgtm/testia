@@ -135,6 +135,27 @@ test("fpIntegrity", () => {
 });
 test("fpSpread", () => spread(CAT.fp || [], "fp"));
 
+test("envPick", () => {
+  assert(typeof win.orientEnv === "function", "orientEnv no existe");
+  const a = win.orientEnv({ GRA: 40, PYM: 40, AUT_: 40, PUB: 80, REM: 70 });
+  assert(a.env === "PUB" && a.remote === "remoto", `salió ${JSON.stringify(a)}`);
+  const b = win.orientEnv({ GRA: 40, PYM: 40, AUT_: 40, PUB: 80, REM: 50 });
+  assert(b.remote === null, `REM=50 debería ser null, salió ${b.remote}`);
+  const c = win.orientEnv({ GRA: 90, PYM: 40, AUT_: 40, PUB: 20, REM: 30 });
+  assert(c.env === "GRA" && c.remote === "presencial", `salió ${JSON.stringify(c)}`);
+});
+test("trabajoIntegrity", () => {
+  const L = CAT.trabajo || [];
+  assert(L.length >= 55, `solo ${L.length} profesiones`);
+  checkCommon(L, "trabajo");
+  for (const e of L) {
+    assert(Array.isArray(e.entornos) && e.entornos.length && e.entornos.every((x) => ["GRA", "PYM", "AUT_", "PUB"].includes(x)), `trabajo/${e.id}: entornos ${e.entornos}`);
+    assert(e.entrada, `trabajo/${e.id}: falta entrada`);
+    assert(typeof e.rem === "boolean", `trabajo/${e.id}: falta rem (si se puede hacer en remoto)`);
+  }
+});
+test("trabajoSpread", () => spread(CAT.trabajo || [], "trabajo"));
+
 const ok = results.filter((r) => r[1]).length;
 for (const [n, pass, msg] of results) console.log(`${pass ? "OK  " : "FAIL"} ${n}${msg ? " — " + msg : ""}`);
 console.log(`${ok}/${results.length} ${ok === results.length ? "OK" : "FALLAN"}`);

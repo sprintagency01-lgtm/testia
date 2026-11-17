@@ -3006,4 +3006,58 @@ window.SEO_CONTENT.fp={slug:"test-que-fp-estudiar",seoTitle:"Test: ¿qué FP est
  sources:[SRC_HOLLAND,SRC_INTERESTS,
   {title:"Familias profesionales y ciclos formativos (TodoFP)",url:"https://www.todofp.es/que-estudiar/familias-profesionales.html",note:"Catálogo oficial del Ministerio de Educación, Formación Profesional y Deportes."},SRC_ONET],
  relatedIds:["carrera","riasec","trabajo"]};
+
+/* ---------- 3. ¿Qué trabajo es para mí? ---------- */
+window.TESTS.push({
+ id:"trabajo", name:"¿Qué trabajo es para mí?", emoji:"💼", cat:"Carrera", eyebrow:"Tu trabajo ideal",
+ blurb:"33 afirmaciones sobre lo que te gusta hacer, lo que se te da bien, lo que buscas y dónde te ves para decirte qué profesión y qué entorno encajan contigo.",
+ instrument:"Cuestionario propio de Testia basado en el modelo de intereses de Holland (RIASEC), con puntos fuertes, valores y entorno de trabajo, comparado con 63 profesiones con salida en España.", license:"🟢",
+ mode:"likert", scaleMax:5, minutes:5,
+ premiumTitle:"Ya sabes tu profesión. Descubre tus 5 mejores opciones",
+ premiumPitch:"Tus cinco profesiones más afines con su porcentaje, por qué encajas, lo que te puede frenar y por dónde empezar en cada una.",
+ scales:Object.assign({},ORIENT_SCALES,{GRA:"Gran empresa",PYM:"Empresa pequeña o startup",AUT_:"Por cuenta propia",PUB:"Sector público",REM:"Trabajo en remoto"}),
+ result:{type:"match"}, catalog:"trabajo",
+ items:mix({
+  R:[["Disfruto con trabajos prácticos en los que uso las manos o herramientas."],["Las tareas manuales me aburren.",1]],
+  I:[["Me gusta analizar un problema a fondo hasta entenderlo."],["Me interesan la ciencia y la tecnología."]],
+  A:[["Necesito que mi trabajo tenga una parte creativa."],["Lo artístico no va conmigo.",1]],
+  S:[["Me llena ayudar, enseñar o cuidar a otras personas."],["Prefiero trabajar con cosas o con datos que con personas.",1]],
+  E:[["Me gusta convencer, negociar y tomar decisiones."],["Me veo dirigiendo un equipo o un negocio."]],
+  C:[["Me siento a gusto con tareas ordenadas y procedimientos claros."],["Llevo bien los datos, los papeles y los detalles."]],
+  NUM:[["Me manejo bien con números y cálculos."],["Los números me cuestan más que a la mayoría.",1]],
+  LEN:[["Escribo bien y me explico con claridad."],["Se me dan bien los idiomas."]],
+  MAN:[["Tengo buena mano para trabajos de precisión."],["Me imagino bien cómo encajan las piezas de algo."]],
+  PER:[["Me resulta fácil tratar con clientes o con desconocidos."],["Mantengo la calma con alguien nervioso o enfadado."]],
+  EST:[["Prefiero un trabajo estable aunque sea menos emocionante."],["Me agobia no saber si tendré trabajo dentro de un año."]],
+  ING:[["Ganar bien es de lo que más me importa en un trabajo."],["Cobraría menos a cambio de hacer algo que me guste.",1]],
+  IMP:[["Quiero que mi trabajo mejore la vida de otros o el planeta."],["Me motiva más ayudar que destacar."]],
+  AUT:[["Quiero libertad para decidir cómo y cuándo trabajo."],["Me agobiaría hacer lo mismo cada día siguiendo instrucciones."]],
+  GRA:[["Me veo trabajando en una empresa grande, con estructura y posibilidades de ascenso."]],
+  PYM:[["Me atrae una empresa pequeña o una startup, donde se hace un poco de todo."]],
+  AUT_:[["Me gustaría trabajar por mi cuenta, como autónomo o con mi propio negocio."]],
+  PUB:[["Me veo en el sector público, aunque tenga que preparar una oposición."]],
+  REM:[["Prefiero trabajar desde casa a ir cada día a un lugar de trabajo."]]
+ })
+});
+window.SEO_CONTENT.trabajo={slug:"test-que-trabajo-es-para-mi",seoTitle:"Test: ¿qué trabajo es para mí? Gratis y al instante | Testia",h1:"Test: ¿qué trabajo es para mí?",
+ metaDesc:"Test gratis para saber qué trabajo es para ti: compara tus intereses, tus puntos fuertes y lo que buscas con 63 profesiones, y descubre tu entorno ideal.",
+ intro:"¿No sabes a qué dedicarte o quieres cambiar de trabajo? Este test compara lo que te gusta hacer, lo que se te da bien y lo que buscas en un trabajo con 63 profesiones con salida en España, y te dice cuál encaja más contigo y en qué entorno: gran empresa, empresa pequeña, por tu cuenta o sector público. Son 33 afirmaciones, unos 5 minutos, gratis y sin registro.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-17",
+ learn:["La profesión que más encaja contigo","Tu entorno de trabajo ideal","Tus cinco mejores opciones y por qué","Lo que te puede frenar y por dónde empezar"],
+ overview:[{label:"Mide",text:"Tus intereses (modelo de Holland), tus puntos fuertes, lo que buscas y el entorno en el que te ves."},{label:"Formato",text:"33 afirmaciones de acuerdo o desacuerdo; unos 5 minutos."},{label:"Resultado",text:"La profesión más afín de 63 y tu entorno de trabajo ideal."}],
+ sections:[
+  {title:"Cómo funciona el test",body:"Cada profesión tiene una ficha con su perfil: qué intereses atrae, qué habilidades pide y qué ofrece (estabilidad, ingresos, ayudar a otros, libertad). Tus respuestas forman el mismo perfil y el test busca las profesiones que más se le parecen. Los intereses pesan más que el resto, porque son lo que mejor predice que un trabajo te satisfaga."},
+  {title:"Tu entorno ideal, aparte",body:"No es lo mismo ser diseñador en una gran empresa que por tu cuenta. Por eso el test calcula aparte dónde te ves: gran empresa, empresa pequeña o startup, por cuenta propia o sector público, y si prefieres el remoto o lo presencial. Si tu entorno ideal no es el habitual en tu profesión, el resultado te lo dice."},
+  {title:"Si quieres cambiar de trabajo",body:"Muchas personas que hacen este test ya trabajan y se plantean un cambio. Responde pensando en lo que disfrutas y en lo que se te da bien, no en tu puesto actual. La lectura completa te dice por dónde empezar en cada profesión, que a menudo es una formación corta y no volver a empezar de cero."},
+  {title:"Cómo leer tu resultado",body:"El porcentaje de afinidad indica cuánto se parece tu perfil al de la profesión, no tu probabilidad de éxito ni tu sueldo. Si varias profesiones salen casi empatadas, tu perfil está abierto: tienes varias opciones razonables y te conviene probarlas antes de decidir."},
+  {title:"Lo que este test no tiene en cuenta",body:"No conoce tu experiencia, tu formación ni el mercado laboral de tu ciudad. Úsalo como punto de partida y habla con gente que ya trabaje en las profesiones que te salgan."}],
+ faqs:[
+  {q:"¿Cómo saber qué trabajo es para mí?",a:"Fíjate en tres cosas: lo que disfrutas haciendo, lo que se te da bien y lo que buscas en un trabajo (estabilidad, dinero, ayudar, libertad). Este test cruza las tres con 63 profesiones y añade el entorno en el que te ves."},
+  {q:"¿A qué me dedico si no sé lo que me gusta?",a:"Es más habitual de lo que parece. Responde pensando en las tareas que disfrutas, aunque no sean de trabajo. Si te sale un perfil abierto, prueba las profesiones de tu top 5 hablando con gente que trabaje en ellas."},
+  {q:"¿Sirve si quiero cambiar de trabajo?",a:"Sí. Está pensado también para adultos que se plantean un cambio. La lectura completa incluye por dónde empezar en cada profesión, para que veas qué formación o qué primer paso necesitas."},
+  {q:"¿El test tiene en cuenta el sueldo?",a:"Tiene en cuenta cuánto te importa ganar bien y si la profesión suele pagar bien, pero no da cifras: los sueldos cambian mucho según la empresa, la ciudad y la experiencia."},
+  {q:"¿En qué se diferencia del test vocacional?",a:"El test vocacional te da tu código de intereses y las áreas que encajan contigo. Este te dice qué profesión concreta encaja contigo y en qué entorno, teniendo en cuenta también tus puntos fuertes y lo que buscas."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu profesión más afín y tu entorno ideal es gratis y sin registro. Tus cinco mejores opciones, por qué encajas, lo que te puede frenar y por dónde empezar se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[SRC_HOLLAND,SRC_INTERESTS,SRC_ONET],
+ relatedIds:["riasec","values","carrera"]};
 })();
