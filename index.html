@@ -1640,24 +1640,25 @@ function finish(){
           const sib=CATL.filter(z=>z.familia===o.familia&&z.id!==o.id).map(z=>z.name);if(sib.length)t+=` Otros ciclos de ${o.familia}: ${y(sib)}.`;}
         if(T.catalog==='trabajo')t+=` Por dónde empezar: ${o.entrada}`;
         return t;};
-      r.name=e.name;r.role=`${top.score} % de afinidad`+((e.rama||e.familia)?` · ${e.rama||e.familia}`:'');r.mono=`${top.score}%`;
-      r.desc=(flat?`Tu perfil está abierto: varias ${NOUN[0]} encajan casi igual contigo y esta sale primera por poco. `:'')+`${e.why} ${whyOf(top)} Abajo, tus cinco ${NOUN[0]} más afines, por qué encajas y qué salidas tienen.`;
-      if(T.catalog==='trabajo'){const EV=orientEnv(pct),EL=ORIENT_ENV_LABEL,ELW={GRA:'en una gran empresa',PYM:'en una empresa pequeña o una startup',AUT_:'por cuenta propia',PUB:'en el sector público'},remTxt=EV.remote==='remoto'?(e.rem?', mejor en remoto':', y aunque prefieres el remoto, esta profesión es sobre todo presencial'):EV.remote==='presencial'?', mejor presencial':'',envTxt=`Tu entorno ideal: ${EL[EV.env]}${remTxt}.`;
-        const usual=e.entornos.includes(EV.env)?'':` En esta profesión lo habitual es trabajar ${ELW[e.entornos[0]]}.`;
+      const grp=e.rama||e.familia;
+      r.name=e.name;r.role=(flat?'Perfil abierto':`${top.score} % de afinidad`)+(grp?` · ${grp}`:'');r.mono=flat?'≈':`${top.score}%`;
+      r.desc=(flat?`Tu perfil está abierto: tus respuestas no se inclinan claramente hacia ningún tipo de ${NOUN[1]}, así que varias ${NOUN[0]} encajan casi igual contigo. De momento, la que sale primera por poco es esta.${top.top.length?' '+whyOf(top):''}`:`${e.why} ${whyOf(top)}`)+` Abajo, tus cinco ${NOUN[0]} más afines, por qué encajas y qué salidas tienen.`;
+      if(T.catalog==='trabajo'){const EV=orientEnv(pct),EL=Object.assign({null:'sin un entorno claro'},ORIENT_ENV_LABEL),ELW={GRA:'en una gran empresa',PYM:'en una empresa pequeña o una startup',AUT_:'por cuenta propia',PUB:'en el sector público'},remTxt=EV.remote==='remoto'?(e.rem?(EV.env?', mejor en remoto':'; eso sí, prefieres el remoto'):'. Prefieres el remoto, pero esta profesión es sobre todo presencial'):EV.remote==='presencial'?(EV.env?', mejor presencial':'; eso sí, prefieres lo presencial'):'',envTxt=EV.env?`Tu entorno ideal: ${EL[EV.env]}${remTxt}.`:`Ningún entorno de trabajo destaca en tus respuestas${remTxt}.`;
+        const usual=EV.env&&e.entornos.includes(EV.env)?'':` En esta profesión lo habitual es trabajar ${ELW[e.entornos[0]]}.`;
         r.desc=r.desc.replace(' Abajo,',` ${envTxt}${usual} Abajo,`);
         const FR={EST:['Buscas más estabilidad de la que suele dar esta profesión: entrar por un puesto fijo o una empresa grande ayuda.','Es una profesión bastante estable y previsible; si te aburre la rutina, busca un puesto con variedad.'],
           ING:['Te importa ganar bien y no es de las profesiones mejor pagadas al empezar; especializarte es lo que más sube el sueldo.','Paga bien a cambio de presión por resultados; si el dinero no te mueve, esa presión puede pesar.'],
           IMP:['Quieres que tu trabajo ayude a otros y esta profesión no lo hace de forma directa; un proyecto con impacto social puede compensarlo.','Es una profesión de servicio a otros que pide mucha implicación emocional.'],
           AUT:['Buscas libertad y aquí lo normal es seguir procedimientos; con experiencia se gana autonomía.','Pide mucha iniciativa propia y aguantar la incertidumbre.']};
         const dv=ORIENT_DIMS.VAL.map(k=>({k,d:(pct[k]||0)-e.prof[k]})).sort((a,b)=>Math.abs(b.d)-Math.abs(a.d))[0];
-        ENVI=[{lab:'Tu entorno ideal',band:EL[EV.env],p:100,hidePct:true,text:`Te ves trabajando ${ELW[EV.env]}${remTxt}.${usual}`},
+        ENVI=[{lab:'Tu entorno ideal',band:EL[EV.env],p:100,hidePct:true,text:EV.env?`Te ves trabajando ${ELW[EV.env]}${remTxt}.${usual}`:`Ningún entorno de trabajo destaca en tus respuestas${remTxt}.${usual}`},
           {lab:'Lo que te puede frenar',band:Math.abs(dv.d)<25?'Sin choque claro':T.scales[dv.k],p:100,hidePct:true,text:Math.abs(dv.d)<25?'No hay un choque claro entre lo que buscas y lo que da esta profesión.':FR[dv.k][dv.d>0?0:1]}];}
       r.traits=top.top.map(k=>T.scales[k]);
       r.bars=OK.map(k=>({lab:T.scales[k],p:Math.round(pct[k]||0)}));
-      r.stats=[{v:`${top.score}%`,l:'afinidad'},{v:String(CATL.length),l:`${NOUN[0]} comparadas`}];
+      r.stats=[{v:flat?'Abierto':`${top.score}%`,l:flat?'perfil':'afinidad'},{v:String(CATL.length),l:`${NOUN[0]} comparadas`}];
       r.analysis=rk.slice(0,5).map((x,i)=>({lab:`${i+1}. ${x.e.name}`,band:`${x.score} % de afinidad`,p:x.score,hidePct:true,text:`${whyOf(x)} Salidas: ${x.e.salidas}${extra(x)}`}))
         .concat(ENVI).concat([{lab:'Cómo usar este resultado',band:'Consejo',p:100,hidePct:true,text:(flat?'Tienes un perfil abierto, así que compara tus cinco opciones con calma: habla con gente que las estudie o trabaje en ellas. ':'')+(T.catalog==='carrera'?'Cada universidad pondera las asignaturas de Bachillerato a su manera y la nota de corte cambia cada año: compruébalo en las que te interesen. ':'')+'El porcentaje dice cuánto se parece tu perfil al de cada opción, no tu probabilidad de éxito.'}]);
-      r.card={mono:`${top.score}%`,name:e.name,role:T.eyebrow||T.name,stat:`AFINIDAD ${top.score}%`};
+      r.card={mono:flat?'≈':`${top.score}%`,name:e.name,role:T.eyebrow||T.name,stat:flat?'PERFIL ABIERTO':`AFINIDAD ${top.score}%`};
     }else if(R.type==='riasec'){
       const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const code=arr.slice(0,3).map(x=>x.k).join('');
@@ -2067,6 +2068,13 @@ function restart(){if(T)startTest(T.id);}
 function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();}
 function lightenHex(hex,amt){const h=hex.replace('#','');let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);r=Math.round(r+(255-r)*amt);g=Math.round(g+(255-g)*amt);b=Math.round(b+(255-b)*amt);return`rgb(${r},${g},${b})`;}
 function drawCard(r){drawCardOn($('idcard'),r);}
+/* Titular de la carta: reduce la letra hasta 40 px y, si aún no cabe, lo parte en hasta 3 líneas. */
+function cardTitleFit(x,big,start,maxW){let bs=start;const F=s=>`700 ${s}px "Bricolage Grotesque",sans-serif`;
+  x.font=F(bs);while(bs>40&&x.measureText(big).width>maxW){bs-=6;x.font=F(bs);}
+  if(x.measureText(big).width<=maxW)return {bs,lines:[big]};
+  const wrap=()=>{x.font=F(bs);const out=[];let cur='';big.split(' ').forEach(w=>{const t=cur?cur+' '+w:w;if(cur&&x.measureText(t).width>maxW){out.push(cur);cur=w;}else cur=t;});out.push(cur);return out;};
+  bs=64;let lines=wrap();while(bs>28&&(lines.length>3||lines.some(l=>x.measureText(l).width>maxW))){bs-=4;lines=wrap();}
+  return {bs,lines};}
 function drawCardOn(c,r){
   const x=c.getContext('2d'),W=c.width,H=c.height,col=r.accent,colL=lightenHex(col,.42),cd=r.card||{mono:r.mono,name:r.name,role:r.role,stat:''},P=72;
   const E=Math.round(H*0.205),B=Math.round(H*0.315),tall=H>1600;
@@ -2084,11 +2092,11 @@ function drawCardOn(c,r){
   const heroNum=/^\d+$/.test(String(cd.mono||''))&&bars.length!==1, big=heroNum?String(cd.mono):String(cd.name||r.name||''), sub=heroNum?String(cd.name||''):String(cd.role||'');
   x.textAlign='center';
   x.fillStyle=colL;x.font='700 24px "Instrument Sans",sans-serif';x.fillText('MI RESULTADO',W/2,E);
-  let bs=big.length<=3?206:big.length<=10?122:big.length<=16?88:66;
-  x.font=`700 ${bs}px "Bricolage Grotesque",sans-serif`;while(bs>40&&x.measureText(big).width>W-2*P-16){bs-=6;x.font=`700 ${bs}px "Bricolage Grotesque",sans-serif`;}
-  const tg=x.createLinearGradient(0,B-120,0,B+15);tg.addColorStop(0,'#ffffff');tg.addColorStop(1,colL);x.fillStyle=tg;
-  x.fillText(big,W/2,B);
-  if(sub){x.fillStyle='rgba(255,255,255,.82)';x.font='italic 400 42px "Instrument Sans",sans-serif';x.fillText(sub.slice(0,42),W/2,B+60);}
+  const fit=cardTitleFit(x,big,big.length<=3?206:big.length<=10?122:big.length<=16?88:66,W-2*P-16),bs=fit.bs,lh=Math.round(bs*1.05);
+  x.font=`700 ${bs}px "Bricolage Grotesque",sans-serif`;
+  const ex=(fit.lines.length-1)*lh,tg=x.createLinearGradient(0,B-120,0,B+15+ex);tg.addColorStop(0,'#ffffff');tg.addColorStop(1,colL);x.fillStyle=tg;
+  fit.lines.forEach((l,i)=>x.fillText(l,W/2,B+i*lh));
+  if(sub){x.fillStyle='rgba(255,255,255,.82)';x.font='italic 400 42px "Instrument Sans",sans-serif';x.fillText(sub.slice(0,42),W/2,B+60+ex);}
   // visualización
   const vizTop=Math.round(H*0.44);
   if(bars.length>=2){

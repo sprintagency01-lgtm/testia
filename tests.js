@@ -2917,7 +2917,7 @@ window.TESTS.push({
  mode:"likert", scaleMax:5, minutes:5,
  premiumTitle:"Ya sabes tu carrera. Descubre tus 5 mejores opciones",
  premiumPitch:"Tus cinco grados más afines con su porcentaje, por qué encajas, qué Bachillerato y asignaturas te conviene elegir, salidas y una alternativa en FP.",
- scales:ORIENT_SCALES, result:{type:"match"}, catalog:"carrera",
+ scales:ORIENT_SCALES, result:{type:"match"}, catalog:"carrera", hideCardBars:true,
  items:mix({
   R:[["Disfruto montando, arreglando o construyendo cosas."],["Me veo trabajando al aire libre o en movimiento, no sentado todo el día."],["Me aburren las tareas manuales.",1]],
   I:[["Me pregunto por qué pasan las cosas y busco la explicación."],["Me gustan los experimentos y las asignaturas de ciencias."],["Me aburre investigar un tema a fondo.",1]],
@@ -2966,7 +2966,7 @@ window.TESTS.push({
  mode:"likert", scaleMax:5, minutes:5,
  premiumTitle:"Ya sabes tu ciclo. Descubre tus 5 mejores opciones",
  premiumPitch:"Tus cinco ciclos más afines con su porcentaje, por qué encajas, si son de grado medio o superior, salidas y otros ciclos de la misma familia.",
- scales:ORIENT_SCALES, result:{type:"match"}, catalog:"fp",
+ scales:ORIENT_SCALES, result:{type:"match"}, catalog:"fp", hideCardBars:true,
  items:mix({
   R:[["Prefiero aprender haciendo que estudiando de un libro."],["Me gusta usar herramientas, máquinas o aparatos."],["Me aburre el trabajo manual.",1]],
   I:[["Me gusta averiguar por qué algo falla hasta dar con la causa."],["Me interesan la ciencia y la tecnología."],["No tengo paciencia para analizar algo con detalle.",1]],
@@ -3011,12 +3011,12 @@ window.SEO_CONTENT.fp={slug:"test-que-fp-estudiar",seoTitle:"Test: ¿qué FP est
 window.TESTS.push({
  id:"trabajo", name:"¿Qué trabajo es para mí?", emoji:"💼", cat:"Carrera", eyebrow:"Tu trabajo ideal",
  blurb:"33 afirmaciones sobre lo que te gusta hacer, lo que se te da bien, lo que buscas y dónde te ves para decirte qué profesión y qué entorno encajan contigo.",
- instrument:"Cuestionario propio de Testia basado en el modelo de intereses de Holland (RIASEC), con puntos fuertes, valores y entorno de trabajo, comparado con 63 profesiones con salida en España.", license:"🟢",
+ instrument:"Cuestionario propio de Testia basado en el modelo de intereses de Holland (RIASEC), con puntos fuertes, valores y entorno de trabajo, comparado con 62 profesiones con salida en España.", license:"🟢",
  mode:"likert", scaleMax:5, minutes:5,
  premiumTitle:"Ya sabes tu profesión. Descubre tus 5 mejores opciones",
  premiumPitch:"Tus cinco profesiones más afines con su porcentaje, por qué encajas, lo que te puede frenar y por dónde empezar en cada una.",
  scales:Object.assign({},ORIENT_SCALES,{GRA:"Gran empresa",PYM:"Empresa pequeña o startup",AUT_:"Por cuenta propia",PUB:"Sector público",REM:"Trabajo en remoto"}),
- result:{type:"match"}, catalog:"trabajo",
+ result:{type:"match"}, catalog:"trabajo", hideCardBars:true,
  items:mix({
   R:[["Disfruto con trabajos prácticos en los que uso las manos o herramientas."],["Las tareas manuales me aburren.",1]],
   I:[["Me gusta analizar un problema a fondo hasta entenderlo."],["Me interesan la ciencia y la tecnología."]],
@@ -3040,8 +3040,8 @@ window.TESTS.push({
  })
 });
 window.SEO_CONTENT.trabajo={slug:"test-que-trabajo-es-para-mi",seoTitle:"Test: ¿qué trabajo es para mí? Gratis y al instante | Testia",h1:"Test: ¿qué trabajo es para mí?",
- metaDesc:"Test gratis para saber qué trabajo es para ti: compara tus intereses, tus puntos fuertes y lo que buscas con 63 profesiones, y descubre tu entorno ideal.",
- intro:"¿No sabes a qué dedicarte o quieres cambiar de trabajo? Este test compara lo que te gusta hacer, lo que se te da bien y lo que buscas en un trabajo con 63 profesiones con salida en España, y te dice cuál encaja más contigo y en qué entorno: gran empresa, empresa pequeña, por tu cuenta o sector público. Son 33 afirmaciones, unos 5 minutos, gratis y sin registro.",
+ metaDesc:"Test gratis para saber qué trabajo es para ti: compara tus intereses, tus puntos fuertes y lo que buscas con 62 profesiones, y descubre tu entorno ideal.",
+ intro:"¿No sabes a qué dedicarte o quieres cambiar de trabajo? Este test compara lo que te gusta hacer, lo que se te da bien y lo que buscas en un trabajo con 62 profesiones con salida en España, y te dice cuál encaja más contigo y en qué entorno: gran empresa, empresa pequeña, por tu cuenta o sector público. Son 33 afirmaciones, unos 5 minutos, gratis y sin registro.",
  updated:"noviembre de 2026",updatedISO:"2026-11-17",
  learn:["La profesión que más encaja contigo","Tu entorno de trabajo ideal","Tus cinco mejores opciones y por qué","Lo que te puede frenar y por dónde empezar"],
  overview:[{label:"Mide",text:"Tus intereses (modelo de Holland), tus puntos fuertes, lo que buscas y el entorno en el que te ves."},{label:"Formato",text:"33 afirmaciones de acuerdo o desacuerdo; unos 5 minutos."},{label:"Resultado",text:"La profesión más afín de 63 y tu entorno de trabajo ideal."}],
@@ -3052,7 +3052,7 @@ window.SEO_CONTENT.trabajo={slug:"test-que-trabajo-es-para-mi",seoTitle:"Test: �
   {title:"Cómo leer tu resultado",body:"El porcentaje de afinidad indica cuánto se parece tu perfil al de la profesión, no tu probabilidad de éxito ni tu sueldo. Si varias profesiones salen casi empatadas, tu perfil está abierto: tienes varias opciones razonables y te conviene probarlas antes de decidir."},
   {title:"Lo que este test no tiene en cuenta",body:"No conoce tu experiencia, tu formación ni el mercado laboral de tu ciudad. Úsalo como punto de partida y habla con gente que ya trabaje en las profesiones que te salgan."}],
  faqs:[
-  {q:"¿Cómo saber qué trabajo es para mí?",a:"Fíjate en tres cosas: lo que disfrutas haciendo, lo que se te da bien y lo que buscas en un trabajo (estabilidad, dinero, ayudar, libertad). Este test cruza las tres con 63 profesiones y añade el entorno en el que te ves."},
+  {q:"¿Cómo saber qué trabajo es para mí?",a:"Fíjate en tres cosas: lo que disfrutas haciendo, lo que se te da bien y lo que buscas en un trabajo (estabilidad, dinero, ayudar, libertad). Este test cruza las tres con 62 profesiones y añade el entorno en el que te ves."},
   {q:"¿A qué me dedico si no sé lo que me gusta?",a:"Es más habitual de lo que parece. Responde pensando en las tareas que disfrutas, aunque no sean de trabajo. Si te sale un perfil abierto, prueba las profesiones de tu top 5 hablando con gente que trabaje en ellas."},
   {q:"¿Sirve si quiero cambiar de trabajo?",a:"Sí. Está pensado también para adultos que se plantean un cambio. La lectura completa incluye por dónde empezar en cada profesión, para que veas qué formación o qué primer paso necesitas."},
   {q:"¿El test tiene en cuenta el sueldo?",a:"Tiene en cuenta cuánto te importa ganar bien y si la profesión suele pagar bien, pero no da cifras: los sueldos cambian mucho según la empresa, la ciudad y la experiencia."},
@@ -3064,5 +3064,5 @@ window.SEO_CONTENT.trabajo={slug:"test-que-trabajo-es-para-mi",seoTitle:"Test: �
 /* El test vocacional enlaza a los tres tests concretos. */
 const RS=window.SEO_CONTENT.riasec;
 if(RS){RS.relatedIds=["carrera","fp","trabajo"];
- RS.sections=(RS.sections||[]).concat([{title:"Del código de Holland a una carrera concreta",body:"Tu código de tres letras dice qué tipo de actividades te atraen, pero no qué estudiar ni a qué dedicarte. Para eso Testia tiene tres tests más concretos que cruzan tus intereses con tus puntos fuertes y lo que buscas: «¿Qué carrera estudiar?», que compara tu perfil con 58 grados universitarios; «¿Qué FP estudiar?», con 86 ciclos de grado medio y superior, y «¿Qué trabajo es para mí?», con 63 profesiones y tu entorno de trabajo ideal."}]);}
+ RS.sections=(RS.sections||[]).concat([{title:"Del código de Holland a una carrera concreta",body:"Tu código de tres letras dice qué tipo de actividades te atraen, pero no qué estudiar ni a qué dedicarte. Para eso Testia tiene tres tests más concretos que cruzan tus intereses con tus puntos fuertes y lo que buscas: «¿Qué carrera estudiar?», que compara tu perfil con 58 grados universitarios; «¿Qué FP estudiar?», con 86 ciclos de grado medio y superior, y «¿Qué trabajo es para mí?», con 62 profesiones y tu entorno de trabajo ideal."}]);}
 })();

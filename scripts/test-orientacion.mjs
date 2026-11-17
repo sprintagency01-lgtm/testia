@@ -156,6 +156,38 @@ test("trabajoIntegrity", () => {
 });
 test("trabajoSpread", () => spread(CAT.trabajo || [], "trabajo"));
 
+// ===== Revisión final =====
+const tw = { TESTS: [], SEO_CONTENT: {} };
+new Function("window", fs.readFileSync(path.join(root, "tests.js"), "utf8"))(tw);
+const TT = (id) => tw.TESTS.find((t) => t.id === id);
+test("cardBarsHidden", () => {
+  for (const id of ["carrera", "fp", "trabajo"]) assert(TT(id) && TT(id).hideCardBars === true, `${id}: la carta gratis enseña las barras de pago`);
+});
+test("envTieNull", () => {
+  assert(win.orientEnv({ GRA: 75, PYM: 75, AUT_: 25, PUB: 25, REM: 50 }).env === null, "empate GRA/PYM debería dar env null");
+  assert(win.orientEnv({ GRA: 50, PYM: 50, AUT_: 50, PUB: 50, REM: 50 }).env === null, "todo a 50 debería dar env null");
+  assert(win.orientEnv({ GRA: 50, PYM: 25, AUT_: 25, PUB: 0, REM: 50 }).env === null, "máximo ≤ 50 debería dar env null");
+});
+test("copyCounts", () => {
+  const n = { carrera: [CAT.carrera.length, "grados"], fp: [CAT.fp.length, "ciclos"], trabajo: [CAT.trabajo.length, "profesiones"] };
+  for (const id in n) {
+    const [k, w] = n[id], S = tw.SEO_CONTENT[id];
+    for (const f of ["metaDesc", "intro"]) assert(S[f].includes(`${k} ${w}`), `${id}.${f} no dice «${k} ${w}»`);
+  }
+  const src = fs.readFileSync(path.join(root, "tests.js"), "utf8");
+  for (const m of src.matchAll(/(\d+) (grados universitarios|ciclos|profesiones)/g)) {
+    const k = m[2] === "profesiones" ? CAT.trabajo.length : m[2] === "ciclos" ? CAT.fp.length : CAT.carrera.length;
+    if (["58", "86", "62", "63"].includes(m[1])) assert(Number(m[1]) === k, `tests.js dice «${m[0]}» y el catálogo tiene ${k}`);
+  }
+});
+test("factsFixed", () => {
+  const T = (id) => CAT.trabajo.find((e) => e.id === id), C = (id) => CAT.carrera.find((e) => e.id === id);
+  assert(!/ciclo/i.test(T("nutricionista").entrada), "dietista-nutricionista exige el grado");
+  assert(!/máster habilitante/.test(T("ingeniero-industrial").entrada), "los grados regulados ya habilitan como ingeniero técnico");
+  for (const c of CAT.carrera) assert(!c.asig.some((a) => /Lengua Castellana y Literatura II/.test(a)), `${c.id}: Lengua II es obligatoria, no se elige`);
+  assert(C("enfermeria").fpAlt !== "lab-clinico", "Laboratorio Clínico no es alternativa natural a Enfermería");
+});
+
 const ok = results.filter((r) => r[1]).length;
 for (const [n, pass, msg] of results) console.log(`${pass ? "OK  " : "FAIL"} ${n}${msg ? " — " + msg : ""}`);
 console.log(`${ok}/${results.length} ${ok === results.length ? "OK" : "FALLAN"}`);
