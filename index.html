@@ -700,13 +700,14 @@
 </form>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261109d"></script>
+<script src="tests.js?v=20261117"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261109b"></script>
 <script src="ccse.js?v=20261020"></script>
 <script src="aacc.js?v=20261026"></script>
 <script src="aptitud.js?v=20261027"></script>
+<script src="orientacion-catalogos.js?v=20261117"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -723,15 +724,17 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={racismo:"bienestar",implicito:"bienestar",orientacion:"relaciones",grinch:"personalidad",bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",atencion:"inteligencia",
+const TEST_CAT={carrera:"profesional",fp:"profesional",trabajo:"profesional",racismo:"bienestar",implicito:"bienestar",orientacion:"relaciones",grinch:"personalidad",bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",razonamiento:"profesional",grit:"profesional",maximizer:"profesional",
   attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",dependencia:"relaciones",
   moral:"bienestar",partido:"bienestar",candidato:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
-const ICON_OF={racismo:"users",implicito:"bolt",orientacion:"heart",grinch:"gift",bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
+const ICON_OF={carrera:"library",fp:"wrench",trabajo:"briefcase",racismo:"users",implicito:"bolt",orientacion:"heart",grinch:"gift",bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
   values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles",ccse:"idcard",candidato:"users",aacc:"bulb",narcisismo:"star",parejanarc:"heart",pareja2:"link",razonamiento:"chip",dependencia:"link",eneagrama:"puzzle",hogwarts:"cap",daltonismo:"eye"};
 const ICONS={
+  briefcase:["M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"],
+  wrench:["M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z","M4.867 19.125h.008v.008h-.008v-.008Z"],
   gift:["M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"],
   idcard:["M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"],
   trophy:["M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.228a25.772 25.772 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"],
@@ -1619,6 +1622,28 @@ function finish(){
       r.card={mono:'DEP',name:tier[0],role:'Test de dependencia emocional',stat:tier[0].toUpperCase()};
       r.full={name:`${ix} % de dependencia emocional`,role:tier[0],desc:`Tu nivel de dependencia emocional es del ${ix} %. ${tier[1]}${safety} Abajo, las seis dimensiones y por dónde empezar.`,
         card:{mono:`${ix}%`,name:`${ix} % de dependencia`,role:tier[0],stat:'DEPENDENCIA EMOCIONAL'},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    }else if(R.type==='match'){
+      /* Tests de orientación: tu perfil frente al catálogo (orientacion-catalogos.js). */
+      const OK=[].concat(ORIENT_DIMS.INT,ORIENT_DIMS.FUE,ORIENT_DIMS.VAL),CATS=window.ORIENT_CATALOGS||{};
+      const CATL=CATS[T.catalog]||[],rk=orientMatch(pct,CATL),top=rk[0],e=top.e,flat=orientFlat(pct,rk);
+      const y=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' y '+a[a.length-1];
+      const WHY={R:'te atrae lo práctico',I:'te mueve entender por qué pasan las cosas',A:'necesitas crear',S:'te gusta ayudar y enseñar',E:'te gusta convencer y decidir',C:'te sientes bien con el orden',NUM:'los números se te dan bien',LEN:'te expresas bien',MAN:'tienes buena mano',PER:'tratas bien a la gente',EST:'buscas estabilidad',ING:'te importa ganar bien',IMP:'quieres ayudar o tener impacto',AUT:'quieres libertad para decidir cómo trabajas'};
+      const whyOf=x=>x.top.length?`Encaja porque ${y(x.top.map(k=>WHY[k]))}.`:'Es la opción que más se parece a tu perfil en conjunto.';
+      const NOUN={carrera:['carreras','grado'],fp:['ciclos de FP','ciclo'],trabajo:['profesiones','profesión']}[T.catalog]||['opciones','opción'];
+      const fpName=id=>{const f=(CATS.fp||[]).find(z=>z.id===id);return f?f.name:'';};
+      const extra=x=>{const o=x.e;let t='';
+        if(T.catalog==='carrera'){t+=` Bachillerato recomendado: ${o.bach}. Asignaturas que conviene elegir: ${y(o.asig)}.`;
+          if(o.alta)t+=' Suele pedir nota de corte alta; compruébala en la universidad que te interese.';
+          if(o.fpAlt&&fpName(o.fpAlt))t+=` Alternativa en FP: ${fpName(o.fpAlt)}.`;}
+        return t;};
+      r.name=e.name;r.role=`${top.score} % de afinidad`+(e.rama?` · ${e.rama}`:'');r.mono=`${top.score}%`;
+      r.desc=(flat?`Tu perfil está abierto: varias ${NOUN[0]} encajan casi igual contigo y esta sale primera por poco. `:'')+`${e.why} ${whyOf(top)} Abajo, tus cinco ${NOUN[0]} más afines, por qué encajas y qué salidas tienen.`;
+      r.traits=top.top.map(k=>T.scales[k]);
+      r.bars=OK.map(k=>({lab:T.scales[k],p:Math.round(pct[k]||0)}));
+      r.stats=[{v:`${top.score}%`,l:'afinidad'},{v:String(CATL.length),l:`${NOUN[0]} comparadas`}];
+      r.analysis=rk.slice(0,5).map((x,i)=>({lab:`${i+1}. ${x.e.name}`,band:`${x.score} % de afinidad`,p:x.score,hidePct:true,text:`${whyOf(x)} Salidas: ${x.e.salidas}${extra(x)}`}))
+        .concat([{lab:'Cómo usar este resultado',band:'Consejo',p:100,hidePct:true,text:(flat?'Tienes un perfil abierto, así que compara tus cinco opciones con calma: habla con gente que las estudie o trabaje en ellas. ':'')+(T.catalog==='carrera'?'Cada universidad pondera las asignaturas de Bachillerato a su manera y la nota de corte cambia cada año: compruébalo en las que te interesen. ':'')+'El porcentaje dice cuánto se parece tu perfil al de cada opción, no tu probabilidad de éxito.'}]);
+      r.card={mono:`${top.score}%`,name:e.name,role:T.eyebrow||T.name,stat:`AFINIDAD ${top.score}%`};
     }else if(R.type==='riasec'){
       const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const code=arr.slice(0,3).map(x=>x.k).join('');
@@ -1984,7 +2009,7 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={racismo:['implicito','politico'],implicito:['racismo','empathy'],orientacion:['lovestyles','attachment'],grinch:['solluna','bruja'],politico:['partido','solluna'],partido:['iq','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],razonamiento:['iq','riasec'],dependencia:['attachment','celos'],eneagrama:['bigfive','attachment'],hogwarts:['bigfive','darktriad'],daltonismo:['atencion','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
+const NEXT_TEST={carrera:['fp','riasec'],fp:['carrera','trabajo'],trabajo:['riasec','values'],racismo:['implicito','politico'],implicito:['racismo','empathy'],orientacion:['lovestyles','attachment'],grinch:['solluna','bruja'],politico:['partido','solluna'],partido:['iq','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],razonamiento:['iq','riasec'],dependencia:['attachment','celos'],eneagrama:['bigfive','attachment'],hogwarts:['bigfive','darktriad'],daltonismo:['atencion','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
   iq:['aacc','memoria'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],

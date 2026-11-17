@@ -2892,3 +2892,69 @@ window.SEO_CONTENT.orientacion={slug:"test-de-orientacion-sexual",seoTitle:"Test
  guide:{url:"/blog/escala-de-kinsey",title:"La escala de Kinsey, explicada",text:"Qué es, cómo funciona y sus límites"},
  relatedIds:["lovestyles","attachment","pareja2"]};
 })();
+
+/* ===== Tests de orientación: qué carrera, qué FP y qué trabajo (noviembre de 2026) =====
+   Emparejan tu perfil (intereses de Holland, puntos fuertes y lo que buscas) con el
+   catálogo de orientacion-catalogos.js. Resultado: tipo «match». */
+(function(){
+const ORIENT_SCALES={R:"Realista",I:"Investigador",A:"Artístico",S:"Social",E:"Emprendedor",C:"Convencional",
+ NUM:"Números y lógica",LEN:"Lenguaje y comunicación",MAN:"Manos y espacio",PER:"Trato con personas",
+ EST:"Estabilidad",ING:"Ingresos",IMP:"Ayudar e impacto",AUT:"Creatividad y autonomía"};
+window.ORIENT_SCALES=ORIENT_SCALES;
+/* Intercala los ítems de cada escala para que no salgan seguidos. [texto, inverso?] */
+const mix=bank=>{const ks=Object.keys(bank),out=[],n=Math.max(...ks.map(k=>bank[k].length));
+ for(let i=0;i<n;i++)ks.forEach(k=>{const it=bank[k][i];if(it)out.push(it[1]?{t:it[0],s:k,r:true}:{t:it[0],s:k});});return out;};
+window.ORIENT_MIX=mix;
+const SRC_HOLLAND={title:"The development, evolution, and status of Holland's theory of vocational personalities",url:"https://doi.org/10.1037/a0018213",note:"Nauta (2010): repaso de la teoría de Holland y de su uso en orientación."};
+const SRC_INTERESTS={title:"The Nature and Power of Interests",url:"https://doi.org/10.1177/0963721414522812",note:"Rounds y Su (2014): los intereses predicen la elección de estudios, el rendimiento y la permanencia."};
+const SRC_ONET={title:"O*NET Interest Profiler",url:"https://www.onetcenter.org/IP.html",note:"Cuestionario de intereses RIASEC del Departamento de Trabajo de EE. UU., de dominio público."};
+
+/* ---------- 1. ¿Qué carrera estudiar? ---------- */
+window.TESTS.push({
+ id:"carrera", name:"¿Qué carrera estudiar?", emoji:"🎓", cat:"Carrera", eyebrow:"Tu carrera ideal",
+ blurb:"34 afirmaciones sobre lo que te gusta, lo que se te da bien y lo que buscas para decirte qué grado universitario encaja contigo.",
+ instrument:"Cuestionario propio de Testia basado en el modelo de intereses de Holland (RIASEC), con puntos fuertes y valores, comparado con 58 grados universitarios españoles.", license:"🟢",
+ mode:"likert", scaleMax:5, minutes:5,
+ premiumTitle:"Ya sabes tu carrera. Descubre tus 5 mejores opciones",
+ premiumPitch:"Tus cinco grados más afines con su porcentaje, por qué encajas, qué Bachillerato y asignaturas te conviene elegir, salidas y una alternativa en FP.",
+ scales:ORIENT_SCALES, result:{type:"match"}, catalog:"carrera",
+ items:mix({
+  R:[["Disfruto montando, arreglando o construyendo cosas."],["Me veo trabajando al aire libre o en movimiento, no sentado todo el día."],["Me aburren las tareas manuales.",1]],
+  I:[["Me pregunto por qué pasan las cosas y busco la explicación."],["Me gustan los experimentos y las asignaturas de ciencias."],["Me aburre investigar un tema a fondo.",1]],
+  A:[["Me gusta crear: dibujar, escribir, hacer música, vídeos o diseñar."],["Me importa que lo que hago tenga un toque original."],["Las actividades artísticas no me llaman nada.",1]],
+  S:[["Me gusta explicar cosas a otros y ayudarles a entenderlas."],["Mis amigos me cuentan sus problemas porque sé escuchar."],["Prefiero trabajar con cosas o con datos que con personas.",1]],
+  E:[["Me gusta convencer a los demás y llevar la voz cantante en un grupo."],["Me veo montando mi propio proyecto o negocio."],["Me incomoda tener que tomar decisiones por un grupo.",1]],
+  C:[["Me siento a gusto con tareas ordenadas y bien organizadas."],["Se me da bien llevar cuentas, listas o registros sin errores."],["Las normas y los procedimientos me agobian.",1]],
+  NUM:[["Las matemáticas se me dan bien."],["Los problemas con números me cuestan más que a la mayoría.",1]],
+  LEN:[["Escribo bien y me explico con claridad."],["Aprendo idiomas con facilidad."]],
+  MAN:[["Tengo buena mano para trabajos de precisión o manualidades."],["Me imagino objetos en 3D y me oriento sin esfuerzo."]],
+  PER:[["Me resulta fácil hablar con gente que no conozco."],["Sé tratar a alguien que está nervioso o enfadado."]],
+  EST:[["Prefiero un trabajo estable aunque sea menos emocionante."],["Me tranquiliza saber qué estaré haciendo dentro de cinco años."]],
+  ING:[["Ganar bien es una de las cosas que más pesan al elegir carrera."],["Si el trabajo me gusta, el sueldo me importa poco.",1]],
+  IMP:[["Quiero que mi trabajo sirva para mejorar la vida de otros o el planeta."],["Me motiva más ayudar que destacar."]],
+  AUT:[["Quiero libertad para decidir cómo hago las cosas."],["Me agobiaría hacer lo mismo cada día siguiendo instrucciones."]]
+ })
+});
+window.SEO_CONTENT.carrera={slug:"test-que-carrera-estudiar",seoTitle:"Test: ¿qué carrera estudiar? Gratis y al instante | Testia",h1:"Test: ¿qué carrera estudiar?",
+ metaDesc:"Test gratis para saber qué carrera estudiar: compara tus intereses, tus puntos fuertes y lo que buscas con 58 grados universitarios. Resultado al instante.",
+ intro:"¿No sabes qué carrera estudiar? Este test compara lo que te gusta, lo que se te da bien y lo que buscas en un trabajo con 58 grados universitarios españoles, y te dice cuál encaja más contigo y por qué. Son 34 afirmaciones, tarda unos 5 minutos, es gratis y no hace falta registrarse.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-17",
+ learn:["El grado universitario que más encaja contigo","Tu porcentaje de afinidad","Tus cinco mejores opciones y por qué","Qué Bachillerato y asignaturas te conviene elegir"],
+ overview:[{label:"Mide",text:"Tus intereses (modelo de Holland), tus puntos fuertes y lo que buscas en un trabajo."},{label:"Formato",text:"34 afirmaciones de acuerdo o desacuerdo; unos 5 minutos."},{label:"Resultado",text:"El grado más afín de 58 carreras de las cinco ramas de conocimiento."}],
+ sections:[
+  {title:"Cómo funciona el test",body:"Cada uno de los 58 grados tiene una ficha con su perfil: qué intereses atrae, qué habilidades pide y qué ofrece (estabilidad, ingresos, ayudar a otros, creatividad). Tus respuestas forman el mismo perfil, y el test busca las carreras que más se le parecen. Los intereses son lo que más pesa, porque son lo que mejor predice que una carrera te guste y la termines."},
+  {title:"Los seis tipos de intereses de Holland",body:"El psicólogo John Holland propuso que casi todos los intereses profesionales se agrupan en seis tipos: realista (lo práctico y manual), investigador (entender y resolver), artístico (crear), social (ayudar y enseñar), emprendedor (convencer y dirigir) y convencional (organizar con orden). Es el modelo más usado en orientación del mundo, y la base del test vocacional de Testia."},
+  {title:"Por qué también cuentan tus puntos fuertes y lo que buscas",body:"Que algo te guste no basta: una carrera de números pide soltura con los números, y no es lo mismo buscar estabilidad que libertad. Por eso el test añade cuatro puntos fuertes (números, lenguaje, manos y trato con personas) y cuatro cosas que puedes buscar en un trabajo, con menos peso que los intereses."},
+  {title:"Cómo leer tu resultado",body:"El porcentaje de afinidad indica cuánto se parece tu perfil al de la carrera, no tu probabilidad de éxito. Si varias carreras salen casi empatadas, tu perfil está abierto: es normal a los 16 o 17 años y significa que tienes varias opciones razonables. La lectura completa compara tus cinco mejores opciones."},
+  {title:"Lo que este test no tiene en cuenta",body:"No sabe tu nota ni la nota de corte de cada universidad, que cambia cada año. Tampoco conoce tu situación personal. Úsalo como punto de partida y contrasta el resultado con la orientadora de tu instituto, con estudiantes de esa carrera y con los planes de estudio de las universidades que te interesen."}],
+ faqs:[
+  {q:"¿Cómo saber qué carrera estudiar?",a:"Empieza por lo que te interesa de verdad, porque es lo que más predice que una carrera te guste y la acabes. Después mira lo que se te da bien y lo que buscas en un trabajo. Este test cruza las tres cosas con 58 grados universitarios."},
+  {q:"¿Qué carrera estudiar si no sé qué me gusta?",a:"Es lo más habitual. Responde al test pensando en lo que disfrutas haciendo, no en lo que crees que deberías estudiar. Si te sale un perfil abierto, tienes varias opciones razonables y conviene que hables con gente que estudie cada una."},
+  {q:"¿El test tiene en cuenta la nota de corte?",a:"No. La nota de corte cambia según la universidad y el año. En las carreras que suelen pedir nota alta, como Medicina, Enfermería o Fisioterapia, la lectura completa te avisa para que la compruebes en la universidad que te interese."},
+  {q:"¿Qué Bachillerato tengo que hacer?",a:"Depende de la carrera. La lectura completa te dice qué modalidad de Bachillerato y qué asignaturas conviene elegir para tus opciones. Cada universidad pondera las asignaturas a su manera, así que compruébalo en la suya."},
+  {q:"¿En qué se diferencia del test vocacional?",a:"El test vocacional te da tu código de intereses de Holland y las áreas que encajan contigo. Este va un paso más allá y te dice qué grado universitario concreto encaja contigo, teniendo en cuenta también tus puntos fuertes y lo que buscas."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu carrera más afín es gratis y sin registro. Tus cinco mejores opciones, por qué encajas, el Bachillerato recomendado y las salidas se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[SRC_HOLLAND,SRC_INTERESTS,SRC_ONET,
+  {title:"Registro de Universidades, Centros y Títulos (RUCT)",url:"https://www.educacion.gob.es/ruct/home",note:"Registro oficial de los grados universitarios de España."}],
+ relatedIds:["riasec","fp","values"]};
+})();
