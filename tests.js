@@ -2957,4 +2957,53 @@ window.SEO_CONTENT.carrera={slug:"test-que-carrera-estudiar",seoTitle:"Test: ¿q
  sources:[SRC_HOLLAND,SRC_INTERESTS,SRC_ONET,
   {title:"Registro de Universidades, Centros y Títulos (RUCT)",url:"https://www.educacion.gob.es/ruct/home",note:"Registro oficial de los grados universitarios de España."}],
  relatedIds:["riasec","fp","values"]};
+
+/* ---------- 2. ¿Qué FP estudiar? ---------- */
+window.TESTS.push({
+ id:"fp", name:"¿Qué FP estudiar?", emoji:"🛠️", cat:"Carrera", eyebrow:"Tu FP ideal",
+ blurb:"34 afirmaciones sobre lo que te gusta hacer, lo que se te da bien y lo que buscas para decirte qué ciclo de FP encaja contigo.",
+ instrument:"Cuestionario propio de Testia basado en el modelo de intereses de Holland (RIASEC), con puntos fuertes y valores, comparado con 86 ciclos de grado medio y superior del catálogo oficial de FP.", license:"🟢",
+ mode:"likert", scaleMax:5, minutes:5,
+ premiumTitle:"Ya sabes tu ciclo. Descubre tus 5 mejores opciones",
+ premiumPitch:"Tus cinco ciclos más afines con su porcentaje, por qué encajas, si son de grado medio o superior, salidas y otros ciclos de la misma familia.",
+ scales:ORIENT_SCALES, result:{type:"match"}, catalog:"fp",
+ items:mix({
+  R:[["Prefiero aprender haciendo que estudiando de un libro."],["Me gusta usar herramientas, máquinas o aparatos."],["Me aburre el trabajo manual.",1]],
+  I:[["Me gusta averiguar por qué algo falla hasta dar con la causa."],["Me interesan la ciencia y la tecnología."],["No tengo paciencia para analizar algo con detalle.",1]],
+  A:[["Me gusta que lo que hago se vea bonito o tenga estilo."],["Disfruto creando cosas: diseños, comida, música, vídeos o ropa."],["Lo artístico no va conmigo.",1]],
+  S:[["Me gusta cuidar o ayudar a la gente."],["Se me da bien enseñar o animar a un grupo."],["Prefiero no tener que tratar con gente en mi trabajo.",1]],
+  E:[["Me gusta vender, negociar o convencer."],["Me veo con mi propio negocio algún día."],["No me gusta llevar la iniciativa.",1]],
+  C:[["Me gusta tener las cosas ordenadas y seguir un procedimiento."],["Trabajo bien con papeles, datos u hojas de cálculo."],["Me agobian las tareas de oficina.",1]],
+  NUM:[["Me manejo bien con números y cálculos."],["Las matemáticas siempre me han costado.",1]],
+  LEN:[["Me expreso bien hablando y escribiendo."],["Se me dan bien los idiomas."]],
+  MAN:[["Tengo buena mano para trabajos que piden precisión."],["Me imagino bien cómo encajan las piezas de algo."]],
+  PER:[["Me resulta fácil tratar con clientes o con desconocidos."],["Mantengo la calma cuando alguien está nervioso o enfadado."]],
+  EST:[["Quiero un trabajo estable con horario fijo."],["Me tranquiliza tener un sueldo seguro cada mes."]],
+  ING:[["Quiero empezar a ganar dinero pronto y ganar bien."],["El sueldo no es lo que más me importa.",1]],
+  IMP:[["Quiero que mi trabajo ayude a otras personas o al planeta."],["Me gusta sentir que lo que hago sirve para algo."]],
+  AUT:[["Me gustaría trabajar a mi aire, sin que me digan cada paso."],["Me agobiaría hacer siempre lo mismo."]]
+ })
+});
+window.SEO_CONTENT.fp={slug:"test-que-fp-estudiar",seoTitle:"Test: ¿qué FP estudiar? Gratis y al instante | Testia",h1:"Test: ¿qué FP estudiar?",
+ metaDesc:"Test gratis para saber qué FP estudiar: compara tus gustos, tus puntos fuertes y lo que buscas con 86 ciclos de grado medio y superior. Resultado al instante.",
+ intro:"¿Dudas entre varios ciclos o no sabes por dónde empezar? Este test compara lo que te gusta hacer, lo que se te da bien y lo que buscas en un trabajo con 86 ciclos de Formación Profesional de grado medio y superior, de 26 familias profesionales, y te dice cuál encaja más contigo. Son 34 afirmaciones, unos 5 minutos, gratis y sin registro.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-17",
+ learn:["El ciclo de FP que más encaja contigo","Tu familia profesional","Tus cinco mejores opciones y por qué","Si te conviene grado medio o superior"],
+ overview:[{label:"Mide",text:"Tus intereses (modelo de Holland), tus puntos fuertes y lo que buscas en un trabajo."},{label:"Formato",text:"34 afirmaciones de acuerdo o desacuerdo; unos 5 minutos."},{label:"Resultado",text:"El ciclo más afín de 86 ciclos de grado medio y superior de 26 familias."}],
+ sections:[
+  {title:"Cómo funciona el test",body:"Cada ciclo tiene una ficha con su perfil: qué intereses atrae, qué habilidades pide y qué ofrece. Tus respuestas forman el mismo perfil y el test busca los ciclos que más se le parecen. Los intereses pesan más que el resto, porque son lo que mejor predice que un ciclo te guste y lo termines."},
+  {title:"Grado medio o grado superior",body:"El grado medio se cursa al terminar la ESO y prepara para un oficio concreto. El grado superior pide Bachillerato, un grado medio o una prueba de acceso, profundiza más y da acceso directo a la universidad. Muchas personas hacen primero un grado medio y después uno superior de la misma familia."},
+  {title:"Las familias profesionales",body:"El catálogo oficial de FP agrupa los ciclos en familias profesionales: Sanidad, Informática y Comunicaciones, Electricidad y Electrónica, Imagen y Sonido, Hostelería y Turismo y muchas más. El test incluye ciclos representativos de las 26 familias que tienen ciclos de grado medio o superior."},
+  {title:"Cómo leer tu resultado",body:"El porcentaje de afinidad indica cuánto se parece tu perfil al del ciclo, no tu probabilidad de éxito. Si varios ciclos salen casi empatados, tu perfil está abierto y tienes varias opciones razonables. La lectura completa compara tus cinco mejores opciones."},
+  {title:"Lo que este test no tiene en cuenta",body:"No sabe qué ciclos se ofrecen cerca de ti ni cuántas plazas hay, que cambia según la comunidad autónoma. Consulta la oferta de tu comunidad en TodoFP y habla con la orientadora de tu centro antes de decidir."}],
+ faqs:[
+  {q:"¿Cómo saber qué FP estudiar?",a:"Piensa en lo que disfrutas haciendo con las manos, con la cabeza o con la gente, en lo que se te da bien y en lo que buscas en un trabajo. Este test cruza las tres cosas con 86 ciclos de grado medio y superior."},
+  {q:"¿Qué FP tiene más salidas?",a:"Depende de la zona, pero los ciclos de Informática, Sanidad, Electricidad y Electrónica e Instalación y Mantenimiento suelen tener mucha demanda. Más que elegir solo por salidas, conviene que el ciclo encaje contigo: es lo que hace que lo termines."},
+  {q:"¿Es mejor hacer FP o ir a la universidad?",a:"Ninguna opción es mejor en general. La FP es más práctica y corta, y un grado superior también da acceso a la universidad. Si dudas, haz también el test de qué carrera estudiar y compara."},
+  {q:"¿Qué diferencia hay entre grado medio y grado superior?",a:"El grado medio se hace tras la ESO y prepara para un oficio. El grado superior pide Bachillerato, un grado medio o una prueba de acceso, profundiza más y permite entrar en la universidad."},
+  {q:"¿En qué se diferencia del test vocacional?",a:"El test vocacional te da tu código de intereses y las áreas que encajan contigo. Este te dice qué ciclo de FP concreto encaja contigo, teniendo en cuenta también tus puntos fuertes y lo que buscas."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu ciclo más afín es gratis y sin registro. Tus cinco mejores opciones, por qué encajas, las salidas y otros ciclos de tu familia se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}],
+ sources:[SRC_HOLLAND,SRC_INTERESTS,
+  {title:"Familias profesionales y ciclos formativos (TodoFP)",url:"https://www.todofp.es/que-estudiar/familias-profesionales.html",note:"Catálogo oficial del Ministerio de Educación, Formación Profesional y Deportes."},SRC_ONET],
+ relatedIds:["carrera","riasec","trabajo"]};
 })();

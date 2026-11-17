@@ -112,6 +112,29 @@ test("carreraIntegrity", () => {
 });
 test("carreraSpread", () => spread(CAT.carrera || [], "carrera"));
 
+// Familias con ciclos de grado medio o superior en todofp.es (consultado el 2026-11-17).
+// «Inteligencia artificial y data» aún no tiene ciclos de grado medio ni superior.
+const FAMILIAS = ["Actividades Físicas y Deportivas","Administración y Gestión","Agraria","Artes y Artesanías","Artes Gráficas","Comercio y Marketing","Edificación y Obra Civil","Electricidad y Electrónica","Energía y Agua","Fabricación Mecánica","Hostelería y Turismo","Imagen Personal","Imagen y Sonido","Industrias Alimentarias","Industrias Extractivas","Informática y Comunicaciones","Instalación y Mantenimiento","Madera, Mueble y Corcho","Marítimo Pesquera","Química","Sanidad","Seguridad y Medio Ambiente","Servicios Socioculturales y a la Comunidad","Textil, Confección y Piel","Transporte y Mantenimiento de Vehículos","Vidrio y Cerámica"];
+test("fpIntegrity", () => {
+  const L = CAT.fp || [];
+  checkCommon(L, "fp");
+  for (const f of FAMILIAS) {
+    const n = L.filter((e) => e.familia === f).length;
+    assert(n >= 1 && n <= 6, `familia ${f}: ${n} ciclos`);
+  }
+  for (const e of L) {
+    assert(FAMILIAS.includes(e.familia), `fp/${e.id}: familia desconocida ${e.familia}`);
+    assert(e.nivel === "GM" || e.nivel === "GS", `fp/${e.id}: nivel ${e.nivel}`);
+    assert(e.puente === (e.nivel === "GS"), `fp/${e.id}: puente incoherente con el nivel`);
+    assert(e.name.startsWith(e.nivel === "GS" ? "Técnico Superior en " : "Técnico en "), `fp/${e.id}: nombre no oficial «${e.name}»`);
+  }
+  for (const c of CAT.carrera || []) if (c.fpAlt) {
+    const f = L.find((x) => x.id === c.fpAlt);
+    assert(f && f.nivel === "GS", `carrera/${c.id}: fpAlt ${c.fpAlt} no existe o no es de grado superior`);
+  }
+});
+test("fpSpread", () => spread(CAT.fp || [], "fp"));
+
 const ok = results.filter((r) => r[1]).length;
 for (const [n, pass, msg] of results) console.log(`${pass ? "OK  " : "FAIL"} ${n}${msg ? " — " + msg : ""}`);
 console.log(`${ok}/${results.length} ${ok === results.length ? "OK" : "FALLAN"}`);

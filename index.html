@@ -1635,8 +1635,10 @@ function finish(){
         if(T.catalog==='carrera'){t+=` Bachillerato recomendado: ${o.bach}. Asignaturas que conviene elegir: ${y(o.asig)}.`;
           if(o.alta)t+=' Suele pedir nota de corte alta; compruébala en la universidad que te interese.';
           if(o.fpAlt&&fpName(o.fpAlt))t+=` Alternativa en FP: ${fpName(o.fpAlt)}.`;}
+        if(T.catalog==='fp'){t+=` ${o.nivel==='GS'?'Grado superior: pide Bachillerato, un grado medio o prueba de acceso, y da acceso a la universidad.':'Grado medio: se hace al terminar la ESO.'}`;
+          const sib=CATL.filter(z=>z.familia===o.familia&&z.id!==o.id).map(z=>z.name);if(sib.length)t+=` Otros ciclos de ${o.familia}: ${y(sib)}.`;}
         return t;};
-      r.name=e.name;r.role=`${top.score} % de afinidad`+(e.rama?` · ${e.rama}`:'');r.mono=`${top.score}%`;
+      r.name=e.name;r.role=`${top.score} % de afinidad`+((e.rama||e.familia)?` · ${e.rama||e.familia}`:'');r.mono=`${top.score}%`;
       r.desc=(flat?`Tu perfil está abierto: varias ${NOUN[0]} encajan casi igual contigo y esta sale primera por poco. `:'')+`${e.why} ${whyOf(top)} Abajo, tus cinco ${NOUN[0]} más afines, por qué encajas y qué salidas tienen.`;
       r.traits=top.top.map(k=>T.scales[k]);
       r.bars=OK.map(k=>({lab:T.scales[k],p:Math.round(pct[k]||0)}));
