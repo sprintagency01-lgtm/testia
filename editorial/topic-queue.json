@@ -493,7 +493,9 @@
       "test_slug": "test-estado-de-animo",
       "test_id": "panas",
       "why": "Búsqueda informativa de cola larga que conecta con la guía de PANAS; requiere tono descriptivo por tocar salud mental.",
-      "status": "pending"
+      "status": "done",
+      "published": "2026-11-20",
+      "slug": "diferencia-entre-rumiacion-y-reflexion"
     },
     {
       "keyword": "sesgo de confirmación en el día a día",
