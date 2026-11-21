@@ -1272,8 +1272,8 @@ window.SEO_CONTENT = {
  politico:{slug:"test-cuanto-facha-eres", metaDesc:"Test político: ¿cuánto facha eres? Descubre tu posición real en el eje izquierda-derecha con 22 preguntas. Gratis, sin registro y al instante.",
    intro:"¿De izquierdas, de derechas o te lo montas a tu manera? Este test sitúa tu posición real en el eje político combinando economía y valores sociales, sin postureo ni titulares.",
    learn:["Tu posición en el eje izquierda-derecha","Tu peso económico y social","Cómo te comparas con la media","Una carta de resultado para compartir"]},
- lovelang:{slug:"test-lenguaje-del-amor", seoTitle:"Test de lenguajes del amor: descubre el tuyo | Testia", h1:"Test de lenguajes del amor",
-   metaDesc:"Test de lenguajes del amor: 20 preguntas para explorar palabras, tiempo, detalles, actos de servicio y contacto físico. Sin registro.",
+ lovelang:{slug:"test-lenguaje-del-amor", seoTitle:"Test de lenguajes del amor gratis: ¿cuál es el tuyo? | Testia", h1:"Test de lenguajes del amor",
+   metaDesc:"¿Palabras, tiempo, detalles, ayuda o contacto físico? Descubre cuál es tu lenguaje del amor: 20 preguntas, 3 minutos, gratis y sin registro.",
    intro:"¿Palabras, tiempo, regalos, actos o contacto físico? Descubre cuál es tu lenguaje del amor —cómo das y cómo necesitas recibir cariño— y por qué a veces tú y tu pareja no os entendéis.",
    learn:["Tu lenguaje del amor dominante","Cómo das y cómo necesitas recibir cariño","El desglose de los 5 lenguajes en ti","Una carta para compartir con tu pareja"],
    overview:[
@@ -1316,8 +1316,8 @@ window.SEO_CONTENT = {
     {title:"Measuring romantic jealousy: Validation of the multidimensional jealousy scale in Australian samples",url:"https://doi.org/10.1111/j.1742-9536.2011.00026.x",note:"Validación posterior de la escala y su estructura en tres factores."}
    ],
    relatedIds:["attachment","lovelang","redflag"]},
- dificil:{slug:"test-persona-dificil", seoTitle:"Test de persona difícil: ¿eres difícil de tratar? 21 preguntas | Testia", h1:"Test de persona difícil",
-   metaDesc:"Test de persona difícil: 21 preguntas sobre los siete rasgos que complican el trato con los demás, según la investigación sobre antagonismo. Gratis.",
+ dificil:{slug:"test-persona-dificil", seoTitle:"Test de persona difícil gratis: ¿eres difícil de tratar? | Testia", h1:"Test de persona difícil",
+   metaDesc:"¿Cuesta llevarse bien contigo? Test de persona difícil gratis y sin registro: 21 preguntas, 3 minutos y tu nivel al momento según los 7 rasgos del antagonismo.",
    intro:"¿Cuesta llevarse bien contigo? La investigación sobre antagonismo identifica siete rasgos que hacen difícil a una persona: insensibilidad, grandiosidad, agresividad, desconfianza, manipulación, dominancia y gusto por el riesgo. Descubre cuánto tienes de cada uno.",
    learn:["Tu nivel general de persona difícil","Los siete rasgos que complican el trato","Cuál de ellos pesa más en tu caso","Carta de resultado para compartir"],
    overview:[{label:"Mide",text:"Siete rasgos de antagonismo en el trato con los demás."},{label:"Formato",text:"21 afirmaciones; tres por cada rasgo."},{label:"Límite",text:"No detecta trastornos de la personalidad ni sustituye una evaluación."}],
@@ -1335,8 +1335,8 @@ window.SEO_CONTENT = {
     {title:"Uncovering the structure of antagonism",url:"https://pubmed.ncbi.nlm.nih.gov/34323587/",note:"Sleep, Crowe, Carter, Lynam y Miller (2021) identifican siete rasgos que componen el antagonismo."}
    ],
    relatedIds:["darktriad","honesty","redflag"]},
- lovestyles:{slug:"test-estilos-de-amor", seoTitle:"Test de estilos de amor: descubre cómo quieres (6 estilos) | Testia", h1:"Test de estilos de amor",
-   metaDesc:"Test de estilos de amor basado en la escala de Hendrick: 24 preguntas para saber si amas con pasión, amistad, cabeza, juego, intensidad o entrega. Gratis.",
+ lovestyles:{slug:"test-estilos-de-amor", seoTitle:"Test de estilos de amor gratis: ¿cuál de los 6 es el tuyo? | Testia", h1:"Test de estilos de amor",
+   metaDesc:"¿Pasión, amistad, cabeza, juego, intensidad o entrega? Haz el test de estilos de amor de la escala de Hendrick: 24 preguntas, 3 minutos, gratis y sin registro.",
    intro:"¿Te enamoras de golpe o poco a poco? ¿Con la cabeza o a todo o nada? El sociólogo John Alan Lee describió seis estilos de amor y Clyde y Susan Hendrick crearon la escala para medirlos. Descubre cuál manda en tu forma de querer.",
    learn:["Tu estilo de amor principal","Cuánto tienes de cada uno de los seis estilos","Qué dice cada estilo de tu forma de querer","Carta de resultado para compartir"],
    overview:[{label:"Mide",text:"Seis estilos de amor: pasión, juego, amistad, sentido práctico, intensidad y entrega."},{label:"Formato",text:"24 afirmaciones; cuatro por cada estilo."},{label:"Límite",text:"Describe actitudes ante el amor, no evalúa tu relación."}],
@@ -2659,7 +2659,7 @@ const FIX={
   metaDesc:"Test psicotécnico de razonamiento numérico, verbal y lógico como los de las entrevistas de trabajo: 20 preguntas, 20 minutos y tu percentil. Gratis."},
  aacc:{seoTitle:"Test de altas capacidades para adultos, gratis | Testia",
   metaDesc:"Test de altas capacidades para adultos: 15 problemas de razonamiento y 20 preguntas sobre rasgos para saber si tu perfil encaja. Gratis y sin registro."},
- dificil:{seoTitle:"Test de persona difícil: ¿eres difícil de tratar? | Testia"},
+ dificil:{seoTitle:"Test de persona difícil gratis: ¿eres difícil de tratar? | Testia"},
  parejanarc:{seoTitle:"Test de pareja narcisista: señales en tu relación | Testia",
   metaDesc:"Test de pareja narcisista gratis: 20 conductas concretas para saber si en tu relación hay un patrón narcisista y qué hacer. Sin registro."},
  pareja2:{metaDesc:"Test de compatibilidad de pareja para dos: cada uno responde en su móvil y veis vuestro porcentaje de compatibilidad en ocio, dinero, futuro y afecto."},
@@ -2765,8 +2765,8 @@ window.TESTS.push({
  },
  items:ritems
 });
-window.SEO_CONTENT.racismo={slug:"test-de-racismo",seoTitle:"Test de racismo: ¿tienes prejuicios? | Testia",h1:"Test de racismo: ¿tienes prejuicios?",
- metaDesc:"Test de racismo gratis: 20 afirmaciones para medir tu nivel de prejuicio y saber si es sutil o manifiesto. Basado en escalas científicas. Sin registro.",
+window.SEO_CONTENT.racismo={slug:"test-de-racismo",seoTitle:"Test de racismo gratis y anónimo: ¿tienes prejuicios? | Testia",h1:"Test de racismo: ¿tienes prejuicios?",
+ metaDesc:"¿Soy racista? Test de racismo de 20 afirmaciones: tu nivel de prejuicio y si es sutil o manifiesto, en 3 minutos. Gratis, sin registro y sin guardar respuestas.",
  intro:"¿Soy racista? Casi nadie se ve así, pero todos tenemos prejuicios en algún grado. Este test de racismo mide los tuyos con 20 afirmaciones sobre inmigración, convivencia y diferencias culturales, y distingue entre el prejuicio manifiesto, el que se dice en voz alta, y el sutil, el que no se nota. Es gratis, sin registro, tarda unos 3 minutos y no guardamos tus respuestas.",
  updated:"noviembre de 2026",updatedISO:"2026-11-15",
  learn:["Tu nivel de prejuicio","Tu porcentaje de prejuicio","Si tu patrón es sutil o manifiesto","Tu puntuación en amenaza, distancia, cultura, emociones y negación de la discriminación"],
