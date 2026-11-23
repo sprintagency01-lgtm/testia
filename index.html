@@ -279,6 +279,9 @@
   .paywallcard h2{font-family:var(--disp);font-weight:600;font-size:1.5rem;letter-spacing:-.02em;margin:8px 0 6px}
   .paywallcard p{color:var(--ink3);margin:0 auto 24px;max-width:42ch}
   .paywallcard .btn{font-size:1.04rem;padding:18px 34px}#resPremium.locked{filter:blur(7px);min-height:220px}#resBody.hardlock .hl{filter:blur(9px);pointer-events:none;user-select:none;opacity:.9}#resBody.hardlock #paywall .paywallcard{margin-top:0}
+  .paywallcard .pwexpress{margin:18px 0 0;min-height:50px}
+  .paywallcard .pwor{align-items:center;gap:10px;color:var(--mut);font-size:.76rem;margin:12px 0;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+  .paywallcard .pwor:before,.paywallcard .pwor:after{content:'';flex:1;height:1px;background:var(--line,#e6e6e3)}
   .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .pwprice{font-family:var(--disp);font-weight:700}
   .pwalt{margin-top:12px;display:flex;flex-direction:column;gap:6px;align-items:center}.pwalt .btn{font-size:.9rem;padding:13px 22px}.pwalt span{font-size:.8rem;color:var(--mut)}
@@ -1793,6 +1796,8 @@ function lockResultInner(v){
     <p>${pitch}</p>
     ${peek}
     <ul class="pwinc">${inc.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <div id="pwExpress" class="pwexpress" style="display:none"></div>
+    <div id="pwExpressOr" class="pwor" style="display:none"><span>o con tarjeta</span></div>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">${fmtEur(singlePrice())}</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}${payLocal()?' · pagas en tu moneda':''}</div>
@@ -1800,6 +1805,7 @@ function lockResultInner(v){
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
   $('paywall').style.display='block';
+  mountExpress();
   $('resPremium').classList.add('locked');
   updateMailbox();
   paywallSeen=false;
@@ -1844,10 +1850,12 @@ async function downloadCert(){
   trackEvent('certificate_downloaded',{test_id:T.id,test_name:T.name});
 }
 function passSid(){try{const p=JSON.parse(localStorage.getItem('atlas_pass'));return p&&p.sid||null;}catch(e){return null;}}
+// Un pago de Stripe Checkout llega como cs_…; uno del botón exprés del muro, como pi_….
+const verifyUrl=id=>'/api/verify-payment?'+(/^pi_/.test(id||'')?'payment_intent=':'session_id=')+encodeURIComponent(id||'');
 function creditFor(id){try{const c=JSON.parse(localStorage.getItem('atlas_credit'));return c&&c.sid&&(!c.testId||c.testId===id)?c:null;}catch(e){return null;}}
 async function checkCredit(){
   const c=T&&creditFor(T.id);if(!c)return false;
-  try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(c.sid));const d=await r.json();
+  try{const r=await fetch(verifyUrl(c.sid));const d=await r.json();
     if(d.paid){try{localStorage.removeItem('atlas_credit');}catch(e){}revealResult();trackEvent('credit_unlocked',{test_id:T.id,test_name:T.name});toast('Pago confirmado: resultado completo desbloqueado ✓');return true;}
   }catch(e){}
   return false;
@@ -1855,7 +1863,7 @@ async function checkCredit(){
 async function checkPass(){
   if(await checkCredit())return;
   const sid=passSid();if(!sid)return;
-  try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(sid));const d=await r.json();
+  try{const r=await fetch(verifyUrl(sid));const d=await r.json();
     if(d.paid&&d.plan==='pass'){revealResult();trackEvent('pass_unlocked',{test_id:T.id,test_name:T.name});toast('Pase activo: resultado completo desbloqueado ✓');}
     else{try{localStorage.removeItem('atlas_pass');}catch(e){}}
   }catch(e){}
@@ -1952,6 +1960,59 @@ async function askSubmit(ev){
 }
 // En ordenador: si el ratón sale por arriba (va a cerrar la pestaña) después de ver el muro.
 document.addEventListener('mouseout',e=>{if(e.relatedTarget||e.clientY>0)return;if(typeof paywallSeen!=='undefined'&&paywallSeen&&$('paywall')&&$('paywall').style.display!=='none')showAsk('exit');});
+/* === Botón exprés del muro: Apple Pay / Google Pay sin salir de Testia ===
+   De 133 pagos empezados en Stripe Checkout terminan 19 y solo 1 falla (sep–nov 2026): se abandona
+   en la página de pago. Este botón cobra el resultado suelto con la hoja del móvil, en la propia
+   página. Solo aparece si hay clave publicable (/api/stripe-config), el dominio está dado de alta
+   en Stripe y el dispositivo tiene un monedero; si no, el muro queda como estaba.
+   El desbloqueo es el mismo que el de Checkout: handleReturn() verifica el cobro en el servidor. */
+let STRIPE_PK,stripeJsP=null,stripeInst=null;
+function stripeConfig(){if(STRIPE_PK!==undefined)return Promise.resolve(STRIPE_PK);return fetch('/api/stripe-config').then(r=>r.json()).then(d=>(STRIPE_PK=d.publishableKey||null)).catch(()=>(STRIPE_PK=null));}
+function loadStripeJs(){if(window.Stripe)return Promise.resolve(window.Stripe);if(!stripeJsP)stripeJsP=new Promise((ok,ko)=>{const s=document.createElement('script');s.src='https://js.stripe.com/v3/';s.onload=()=>ok(window.Stripe);s.onerror=()=>{stripeJsP=null;ko(new Error('stripe.js'));};document.head.appendChild(s);});return stripeJsP;}
+async function mountExpress(){
+  if(!T||(lastResult&&lastResult.noPaywall))return;
+  try{
+    const pk=await stripeConfig();if(!pk)return;
+    const S=await loadStripeJs();const box=$('pwExpress');if(!S||!box)return;
+    if(!stripeInst)stripeInst=S(pk,{locale:'es'});
+    const stripe=stripeInst,t=T,price=singlePrice();
+    const elements=stripe.elements({mode:'payment',amount:Math.round(price*100),currency:'eur'});
+    const ece=elements.create('expressCheckout',{buttonType:{applePay:'buy',googlePay:'buy'},buttonHeight:50,
+      paymentMethods:{applePay:'auto',googlePay:'auto',link:'never',paypal:'never',amazonPay:'never',klarna:'never'}});
+    ece.on('ready',({availablePaymentMethods:m})=>{
+      const on=m?Object.keys(m).filter(k=>m[k]):[];
+      if(!on.length){box.style.display='none';return;}
+      box.style.display='block';const or=$('pwExpressOr');if(or)or.style.display='flex';
+      trackEvent('express_available',{test_id:t.id,methods:on.join(',')});
+    });
+    ece.on('click',e=>{
+      trackEvent('checkout_started',{test_id:t.id,test_name:t.name,plan:'single',price,currency:'EUR',paywall_variant:PW_VARIANT,price_variant:PRICE_VARIANT,method:'express'});
+      e.resolve({emailRequired:true});
+    });
+    ece.on('cancel',()=>trackEvent('express_cancelled',{test_id:t.id}));
+    ece.on('loaderror',ev=>{box.style.display='none';trackEvent('express_load_error',{test_id:t.id,code:String((ev&&ev.error&&(ev.error.code||ev.error.type))||'error').slice(0,60)});});
+    ece.on('confirm',async ev=>{
+      const r=lastResult;
+      try{
+        const sub=await elements.submit();if(sub&&sub.error)throw sub.error;
+        const email=(ev.billingDetails&&ev.billingDetails.email)||(()=>{try{return localStorage.getItem('atlas_email')||''}catch(e){return ''}})();
+        const res=await fetch('/api/create-payment-intent',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({testId:t.id,testName:t.name,email})});
+        const d=await res.json();if(!d.clientSecret)throw new Error(d.error||'sin cobro');
+        // Igual que con Checkout: el resultado queda ligado a ESTE cobro y solo se revela si el servidor lo confirma.
+        try{localStorage.setItem('atlas_pending',JSON.stringify({sid:d.id,testId:t.id,r,plan:'single',pwv:PW_VARIANT,prv:PRICE_VARIANT,price,ts:Date.now(),express:true}));}catch(e){}
+        const base=location.origin+location.pathname;
+        const {error,paymentIntent}=await stripe.confirmPayment({elements,clientSecret:d.clientSecret,confirmParams:{return_url:base},redirect:'if_required'});
+        if(error)throw error;
+        try{history.replaceState({},'',location.pathname+'?payment_intent='+encodeURIComponent(paymentIntent.id));}catch(e){}
+        await handleReturn();
+      }catch(e){
+        trackEvent('express_failed',{test_id:t.id,code:String((e&&(e.code||e.type||e.message))||'error').slice(0,60)});
+        toast('No se pudo completar el pago. Prueba otra vez o paga con tarjeta.');
+      }
+    });
+    ece.mount(box);
+  }catch(e){/* sin botón exprés: el muro sigue con Stripe Checkout */}
+}
 async function payAndUnlock(plan){
   plan=plan==='pass'?'pass':'single';
   try{
@@ -1983,7 +2044,9 @@ function restorePending(pend,how){
 }
 async function handleReturn(){
   const p=new URLSearchParams(location.search);
-  const sid=p.get('session_id');
+  // session_id: vuelta de Stripe Checkout. payment_intent: pago del botón exprés (Stripe lo añade
+  // si el método redirige; si no, expressPaid() lo pone en la URL y llama aquí).
+  const sid=p.get('session_id')||p.get('payment_intent');
   if(!sid){
     let pend=null; try{pend=JSON.parse(localStorage.getItem('atlas_pending'));}catch(e){}
     const canceled=p.get('canceled')==='1';
@@ -1999,7 +2062,7 @@ async function handleReturn(){
   toast('Verificando tu pago…');
   let ok=false,plan='single',paidTest=null,recovered=false;
   for(let i=0;i<8;i++){                   // el cobro puede tardar un instante en confirmarse: reintentos
-    try{const r=await fetch('/api/verify-payment?session_id='+encodeURIComponent(sid));
+    try{const r=await fetch(verifyUrl(sid));
       const d=await r.json(); if(d.paid){ok=true;plan=d.plan==='pass'?'pass':'single';paidTest=d.testId||null;recovered=!!d.recovered;break;}}catch(e){}
     await new Promise(r=>setTimeout(r,1500));
   }
