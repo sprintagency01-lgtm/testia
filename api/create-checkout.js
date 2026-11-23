@@ -70,9 +70,10 @@ module.exports = async (req, res) => {
     recovery.append('after_expiration[recovery][enabled]', 'true');
     recovery.append('consent_collection[promotions]', 'auto');
     // Moneda local (Adaptive Pricing): fuera de la zona euro Stripe enseña y cobra el precio en la
-    // moneda del comprador (MXN, ARS, COP…) y Testia sigue recibiendo euros. Datos de PostHog
-    // (sep–nov 2026): Latinoamérica ve el 18 % de los muros, abre ~39 pagos y termina 2; España
-    // abre 78 y termina 15. Un precio en euros es fricción y, con muchas tarjetas, un rechazo.
+    // moneda del comprador (MXN, ARS, COP…) y Testia sigue recibiendo euros. Ya está activado en
+    // el panel de Stripe (comprobado el 2026-11-23); se pide también aquí para que no dependa de
+    // ese ajuste. Ojo: no explica la caída de Latinoamérica en el pago (~39 pagos abiertos, 2
+    // terminados, sep–nov 2026), porque ya veían su moneda.
     const local = p => { const q = new URLSearchParams(p); q.append('adaptive_pricing[enabled]', 'true'); return q; };
     // De más a menos completa: si la cuenta no admite algo (recuperación o moneda local), se prueba
     // sin ello. El pago no se bloquea nunca por una opción.
