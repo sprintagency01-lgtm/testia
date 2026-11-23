@@ -30,6 +30,7 @@ if (!html.includes('<h2>Preguntas frecuentes</h2>')) errors.push("falta la secci
 if (!html.includes('<h2>Fuentes consultadas</h2>')) errors.push("falta la sección Fuentes consultadas");
 if (!html.includes('<div class="related">')) errors.push("falta el bloque .related");
 if (!html.includes('<p class="disc">')) errors.push("falta el aviso final .disc");
+if (!/<main\b[^>]*>\s*<article class="article">/.test(html)) errors.push("falta <main> alrededor de <article class=\"article\">");
 if (/<img\b|<figure\b/.test(html)) errors.push("no se permiten <img> ni <figure>");
 if (/[\u{1F300}-\u{1FAFF}]/u.test(html)) errors.push("hay emojis");
 
