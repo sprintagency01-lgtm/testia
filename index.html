@@ -347,12 +347,13 @@
 </head>
 <body>
 <header><div class="wrap nav">
-  <a class="brand" onclick="go('home')"><span class="nm">Testia</span><span class="tag">Tests · Autoconocimiento</span></a>
+  <a class="brand" href="/" onclick="event.preventDefault();go('home')"><span class="nm">Testia</span><span class="tag">Tests · Autoconocimiento</span></a>
   <nav>
-    <a onclick="go('catalog')">Catálogo</a>
-    <a class="hideMob" onclick="go('home');setTimeout(()=>{var e=document.getElementById('ciencia');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Ciencia</a>
-    <a class="hideMob" onclick="go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">FAQ</a>
-    <a onclick="startTarot()">Tarot</a>
+    <a href="/#catalogo" onclick="event.preventDefault();go('catalog')">Catálogo</a>
+    <a href="/blog">Guías</a>
+    <a class="hideMob" href="/#ciencia" onclick="event.preventDefault();go('home');setTimeout(()=>{var e=document.getElementById('ciencia');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Ciencia</a>
+    <a class="hideMob" href="/#faq" onclick="event.preventDefault();go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">FAQ</a>
+    <a href="/#tarot" onclick="event.preventDefault();startTarot()">Tarot</a>
   </nav>
 </div></header>
 
@@ -370,7 +371,7 @@
           <p class="lead" style="margin:26px 0 0">Hazte los tests y descúbrete. Más de 40 tests inspirados en modelos publicados para explorar quién eres, cómo piensas y por qué haces lo que haces.</p>
           <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-top:36px">
             <button class="btn lg" data-analytics-name="Empezar test destacado" onclick="startTest(FLAGSHIP)">Conócete ahora →</button>
-            <a onclick="go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver todos los tests</a>
+            <a href="/#catalogo" onclick="event.preventDefault();go('catalog')" style="cursor:pointer;font-weight:600;color:var(--ink);border-bottom:1.5px solid #cfcfca;padding-bottom:3px">Ver todos los tests</a>
           </div>
           <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;font-size:.8rem;font-weight:600;letter-spacing:.03em;text-transform:uppercase;color:var(--mut)">
             <span>✓ Sin registro</span><span>✓ +40 tests</span><span>✓ Método explicado</span>
@@ -382,7 +383,7 @@
             <span style="font-size:.66rem;font-weight:600;letter-spacing:.08em;color:#bdbdb8">Destacados</span>
           </div>
           <div id="heroList"></div>
-          <a onclick="go('catalog')" style="display:inline-block;margin-top:14px;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cobalt);cursor:pointer">Ver el catálogo ↗</a>
+          <a href="/#catalogo" onclick="event.preventDefault();go('catalog')" style="display:inline-block;margin-top:14px;font-size:.76rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cobalt);cursor:pointer">Ver el catálogo ↗</a>
         </div>
       </div></div>
     </div>
@@ -399,6 +400,15 @@
       <a href="/test/test-triada-oscura">Test de la tríada oscura</a>
       <a href="/test/test-lenguaje-del-amor">Test de lenguajes del amor</a>
       <a href="/test/test-honestidad-humildad">Test de honestidad y humildad</a>
+    </nav>
+    <nav class="wrap priorityLinks" aria-label="Guías para entender tus resultados">
+      <strong>Guías para entender tu resultado</strong>
+      <a href="/blog/cinco-grandes-rasgos-personalidad">Los cinco grandes rasgos (OCEAN)</a>
+      <a href="/blog/como-interpretar-un-test-de-personalidad">Cómo interpretar un test de personalidad</a>
+      <a href="/blog/escala-ci-percentiles">Escala de CI y percentiles</a>
+      <a href="/blog/tipos-de-apego-adulto">Tipos de apego adulto</a>
+      <a href="/blog/que-es-la-inteligencia-emocional">Qué es la inteligencia emocional</a>
+      <a href="/blog">Todas las guías</a>
     </nav>
     <div class="wrap" style="padding-top:10px"><div id="homeSections"></div></div>
 
@@ -492,7 +502,7 @@
       </div>
     </div>
 
-    <!--ALLTESTS--><style>.alltests{border-top:1px solid #e6e6e3;margin-top:40px;padding:34px 0 10px;font-family:'Instrument Sans',sans-serif}.alltests h2{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:700;margin:0 0 18px;color:#14161c}.alltests .atg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:22px}.alltests strong{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#9a9b9f;margin-bottom:8px}.alltests a,.alltests span{display:block;font-size:.88rem;line-height:1.35;padding:3px 0;color:#3a3c42;text-decoration:none}.alltests a:hover{color:#2f4bd6}.alltests span{color:#9a9b9f}</style><nav class="alltests" aria-label="Todos los tests"><div class="wrap"><h2>Todos los tests de Testia</h2><div class="atg"><div><strong>Personalidad</strong><a href="/test/test-de-personalidad">Test de personalidad</a><a href="/test/test-de-personalidad-rapido">Test de personalidad rápido</a><a href="/test/test-honestidad-humildad">Test de honestidad y humildad</a><a href="/test/test-triada-oscura">Test de la tríada oscura</a><a href="/test/test-persona-dificil">Test de persona difícil</a><a href="/test/test-edad-mental">Test de edad mental</a><a href="/test/test-que-entrenador-de-futbol-eres">Test: ¿qué entrenador de fútbol eres?</a><a href="/test/test-sol-luna-estrella-o-eclipse">Test: ¿eres sol, luna, estrella o eclipse?</a><a href="/test/test-eres-bruja-hada-vampiro-o-sirena">Test: ¿eres bruja, hada, vampiro o sirena?</a><a href="/test/test-de-narcisista">Test de narcisismo</a><a href="/test/test-eneagrama">Test de eneagrama</a><a href="/test/test-de-hogwarts">Test de Hogwarts</a><a href="/test/test-cuanto-grinch-eres">Test: ¿cuánto Grinch eres?</a></div><div><strong>Inteligencia</strong><a href="/test/test-de-ci">Test de CI online</a><a href="/test/test-pensamiento-reflexivo">Test de pensamiento reflexivo</a><a href="/test/test-necesidad-de-cognicion">Test de necesidad de cognición</a><a href="/test/test-de-memoria">Test de memoria</a><a href="/test/test-de-atencion">Test de atención y concentración</a><a href="/test/test-de-nacionalidad-espanola">Test de nacionalidad española</a><a href="/test/test-altas-capacidades-adultos">Test de altas capacidades para adultos</a></div><div><strong>Profesional y decisiones</strong><a href="/test/test-vocacional">Test vocacional</a><a href="/test/test-de-determinacion">Test de determinación</a><a href="/test/test-maximizador">Test: ¿maximizador o conformista?</a><a href="/test/test-de-razonamiento-para-entrevistas">Test de razonamiento para entrevistas de trabajo</a><a href="/test/test-que-carrera-estudiar">Test: ¿qué carrera estudiar?</a><a href="/test/test-que-fp-estudiar">Test: ¿qué FP estudiar?</a><a href="/test/test-que-trabajo-es-para-mi">Test: ¿qué trabajo es para mí?</a></div><div><strong>Relaciones y emociones</strong><a href="/test/test-inteligencia-emocional">Test de inteligencia emocional</a><a href="/test/test-de-empatia">Test de empatía</a><a href="/test/test-de-apego">Test de estilo de apego</a><a href="/test/test-lenguaje-del-amor">Test de lenguajes del amor</a><a href="/test/test-eres-la-red-flag">Test: ¿eres tú la red flag?</a><a href="/test/test-de-celos">Test de celos</a><a href="/test/test-estilos-de-amor">Test de estilos de amor</a><a href="/test/test-pareja-narcisista">Test de pareja narcisista</a><a href="/test/test-de-compatibilidad-de-pareja">Test de compatibilidad de pareja</a><a href="/test/test-de-dependencia-emocional">Test de dependencia emocional</a><a href="/test/test-de-orientacion-sexual">Test de orientación sexual</a></div><div><strong>Valores y bienestar</strong><a href="/test/test-brujula-moral">Test de brújula moral</a><a href="/test/test-de-autoestima">Test de autoestima de Rosenberg</a><a href="/test/test-de-felicidad">Test de felicidad</a><a href="/test/test-estado-de-animo">Test PANAS de estado de ánimo</a><a href="/test/test-de-resiliencia">Test de resiliencia</a><a href="/test/test-de-valores">Test de valores personales</a><a href="/test/test-cronotipo">Test de cronotipo</a><a href="/test/test-cuanto-facha-eres">Test: ¿cuánto facha eres?</a><a href="/test/test-a-que-partido-votar-en-espana">Test de a qué partido votar</a><a href="/test/test-con-que-candidato-coincides">Test: ¿con qué candidato coincides?</a><a href="/test/test-de-daltonismo">Test de daltonismo</a><a href="/test/test-de-racismo">Test de racismo</a><a href="/test/test-de-racismo-implicito">Test de racismo implícito</a></div></div></div></nav><!--/ALLTESTS-->
+    <!--ALLTESTS--><style>.alltests{border-top:1px solid #e6e6e3;margin-top:40px;padding:34px 0 10px;font-family:'Instrument Sans',sans-serif}.alltests h2{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:700;margin:0 0 18px;color:#14161c}.alltests .atg{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:22px}.alltests strong{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#6b6d72;margin-bottom:8px}.alltests a,.alltests span{display:block;font-size:.88rem;line-height:1.35;padding:3px 0;color:#3a3c42;text-decoration:none}.alltests a:hover{color:#2f4bd6}.alltests span{color:#6b6d72}</style><nav class="alltests" aria-label="Todos los tests"><div class="wrap"><h2>Todos los tests de Testia</h2><div class="atg"><div><strong>Personalidad</strong><a href="/test/test-de-personalidad">Test de personalidad</a><a href="/test/test-de-personalidad-rapido">Test de personalidad rápido</a><a href="/test/test-honestidad-humildad">Test de honestidad y humildad</a><a href="/test/test-triada-oscura">Test de la tríada oscura</a><a href="/test/test-persona-dificil">Test de persona difícil</a><a href="/test/test-edad-mental">Test de edad mental</a><a href="/test/test-que-entrenador-de-futbol-eres">Test: ¿qué entrenador de fútbol eres?</a><a href="/test/test-sol-luna-estrella-o-eclipse">Test: ¿eres sol, luna, estrella o eclipse?</a><a href="/test/test-eres-bruja-hada-vampiro-o-sirena">Test: ¿eres bruja, hada, vampiro o sirena?</a><a href="/test/test-de-narcisista">Test de narcisismo</a><a href="/test/test-eneagrama">Test de eneagrama</a><a href="/test/test-de-hogwarts">Test de Hogwarts</a><a href="/test/test-cuanto-grinch-eres">Test: ¿cuánto Grinch eres?</a></div><div><strong>Inteligencia</strong><a href="/test/test-de-ci">Test de CI online</a><a href="/test/test-pensamiento-reflexivo">Test de pensamiento reflexivo</a><a href="/test/test-necesidad-de-cognicion">Test de necesidad de cognición</a><a href="/test/test-de-memoria">Test de memoria</a><a href="/test/test-de-atencion">Test de atención y concentración</a><a href="/test/test-de-nacionalidad-espanola">Test de nacionalidad española</a><a href="/test/test-altas-capacidades-adultos">Test de altas capacidades para adultos</a></div><div><strong>Profesional y decisiones</strong><a href="/test/test-vocacional">Test vocacional</a><a href="/test/test-de-determinacion">Test de determinación</a><a href="/test/test-maximizador">Test: ¿maximizador o conformista?</a><a href="/test/test-de-razonamiento-para-entrevistas">Test de razonamiento para entrevistas de trabajo</a><a href="/test/test-que-carrera-estudiar">Test: ¿qué carrera estudiar?</a><a href="/test/test-que-fp-estudiar">Test: ¿qué FP estudiar?</a><a href="/test/test-que-trabajo-es-para-mi">Test: ¿qué trabajo es para mí?</a></div><div><strong>Relaciones y emociones</strong><a href="/test/test-inteligencia-emocional">Test de inteligencia emocional</a><a href="/test/test-de-empatia">Test de empatía</a><a href="/test/test-de-apego">Test de estilo de apego</a><a href="/test/test-lenguaje-del-amor">Test de lenguajes del amor</a><a href="/test/test-eres-la-red-flag">Test: ¿eres tú la red flag?</a><a href="/test/test-de-celos">Test de celos</a><a href="/test/test-estilos-de-amor">Test de estilos de amor</a><a href="/test/test-pareja-narcisista">Test de pareja narcisista</a><a href="/test/test-de-compatibilidad-de-pareja">Test de compatibilidad de pareja</a><a href="/test/test-de-dependencia-emocional">Test de dependencia emocional</a><a href="/test/test-de-orientacion-sexual">Test de orientación sexual</a></div><div><strong>Valores y bienestar</strong><a href="/test/test-brujula-moral">Test de brújula moral</a><a href="/test/test-de-autoestima">Test de autoestima de Rosenberg</a><a href="/test/test-de-felicidad">Test de felicidad</a><a href="/test/test-estado-de-animo">Test PANAS de estado de ánimo</a><a href="/test/test-de-resiliencia">Test de resiliencia</a><a href="/test/test-de-valores">Test de valores personales</a><a href="/test/test-cronotipo">Test de cronotipo</a><a href="/test/test-cuanto-facha-eres">Test: ¿cuánto facha eres?</a><a href="/test/test-a-que-partido-votar-en-espana">Test de a qué partido votar</a><a href="/test/test-con-que-candidato-coincides">Test: ¿con qué candidato coincides?</a><a href="/test/test-de-daltonismo">Test de daltonismo</a><a href="/test/test-de-racismo">Test de racismo</a><a href="/test/test-de-racismo-implicito">Test de racismo implícito</a></div></div></div></nav><!--/ALLTESTS-->
     <div id="footer1"></div>
   </div>
 </section>
@@ -516,7 +526,7 @@
   <div style="animation:inFade .45s ease">
     <div class="wrap" style="padding:70px 40px 20px">
       <div class="eyebrow">El catálogo completo</div>
-      <h1 class="disp" style="font-weight:600;font-size:clamp(2.5rem,5.4vw,4.2rem);line-height:1;letter-spacing:-.03em;margin:0;max-width:18ch">Todos los tests. Un solo sitio, bien hechos.</h1>
+      <h2 class="disp" style="font-weight:600;font-size:clamp(2.5rem,5.4vw,4.2rem);line-height:1;letter-spacing:-.03em;margin:0;max-width:18ch">Todos los tests. Un solo sitio, bien hechos.</h2>
       <p class="lead" style="max-width:54ch;margin:22px 0 0">Más de 40 tests inspirados en modelos publicados. Filtra por lo que te apetezca ahora.</p>
       <div class="filters" id="filters"></div>
     </div>
@@ -554,7 +564,7 @@
         <div class="upper" style="font-size:.72rem;color:var(--mut)" id="resEyebrow">Tu lectura · El espejo</div>
         <div style="display:flex;align-items:center;gap:18px;margin-top:16px">
           <span class="mono" id="resMono" style="width:58px;height:58px;border-radius:15px;font-family:var(--disp);font-size:1.18rem;font-weight:700"></span>
-          <h1 class="resName" id="resName">—</h1>
+          <h2 class="resName" id="resName">—</h2>
         </div>
         <div class="ital" id="resRole" style="font-size:1.4rem;color:var(--ink3);margin-top:14px"></div>
         <p id="resDesc" style="font-size:1.2rem;color:var(--ink2);line-height:1.55;margin:18px 0 0"></p>
@@ -601,7 +611,7 @@
   <div style="animation:inFade .45s ease">
     <div class="wrap" style="padding:72px 40px 24px;text-align:center">
       <div class="eyebrow">Premium</div>
-      <h1 class="disp" style="font-weight:600;font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1;letter-spacing:-.03em;margin:0 auto;max-width:18ch">Un informe a la altura de lo que descubres</h1>
+      <h2 class="disp" style="font-weight:600;font-size:clamp(2.3rem,5.4vw,3.9rem);line-height:1;letter-spacing:-.03em;margin:0 auto;max-width:18ch">Un informe a la altura de lo que descubres</h2>
       <p class="lead" style="max-width:52ch;margin:22px auto 0">Sin suscripciones ni letra pequeña. Pagas una vez, solo por el resultado que te interesa.</p>
     </div>
     <div class="wrap pricegrid" style="padding:30px 40px 70px">
@@ -656,7 +666,7 @@
 <section id="tarot" class="screen">
   <div class="wrap" style="max-width:880px;padding:60px 40px 0;text-align:center;animation:inFade .45s ease">
     <div class="eyebrow" style="color:#7b3fa0">Tarot · Entretenimiento</div>
-    <h1 class="disp" style="font-weight:600;font-size:clamp(2.3rem,5.2vw,3.6rem);line-height:1;letter-spacing:-.03em;margin:0">Echa las cartas</h1>
+    <h2 class="disp" style="font-weight:600;font-size:clamp(2.3rem,5.2vw,3.6rem);line-height:1;letter-spacing:-.03em;margin:0">Echa las cartas</h2>
     <p class="lead" style="max-width:54ch;margin:18px auto 0">Concéntrate en tu pregunta y elige una tirada. El tarot no predice el futuro, pero a veces ordena las ideas.</p>
     <div id="tarotIntro">
       <div id="tarotHero"></div>
@@ -701,7 +711,6 @@
 <div class="toast" id="toast"></div>
 
 <script src="tests.js?v=20261117"></script>
-<script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261109b"></script>
 <script src="ccse.js?v=20261020"></script>
@@ -823,9 +832,9 @@ function buildFooter(){
   const f=`<footer><div class="wrap"><div class="fcols">
     <div><div class="disp" style="font-size:1.4rem;font-weight:700;letter-spacing:-.02em;color:var(--ink)">Testia</div>
       <p style="margin:12px 0 0;font-size:.94rem;max-width:32ch;line-height:1.5">El atlas de los tests: todos en un solo sitio, bien hechos. Autoconocimiento sin letra pequeña.</p></div>
-    <div><div class="fhead">Tests</div><div style="display:grid;gap:9px">${CAT_ORDER.map(c=>`<a onclick="go('catalog')">${CATS[c].name}</a>`).join('')}</div></div>
-    <div><div class="fhead">Testia</div><div style="display:grid;gap:9px"><a onclick="go('catalog')">Catálogo</a><a href="/blog">Guías</a><a onclick="startTarot()">Tarot</a><a style="cursor:pointer" onclick="go('home');setTimeout(()=>{var e=document.getElementById('ciencia');if(e)e.scrollIntoView({behavior:'smooth'})},70)">La ciencia detrás</a></div></div>
-    <div><div class="fhead">Legal</div><div style="display:grid;gap:9px"><a style="cursor:pointer" onclick="go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Privacidad y datos</a><a style="cursor:pointer" onclick="go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Preguntas frecuentes</a><a style="cursor:pointer" onclick="go('premium')">Precios</a></div></div>
+    <div><div class="fhead">Tests</div><div style="display:grid;gap:9px">${CAT_ORDER.map(c=>`<a href="/#catalogo" onclick="event.preventDefault();go('catalog')">${CATS[c].name}</a>`).join('')}</div></div>
+    <div><div class="fhead">Testia</div><div style="display:grid;gap:9px"><a href="/#catalogo" onclick="event.preventDefault();go('catalog')">Catálogo</a><a href="/blog">Guías</a><a href="/#tarot" onclick="event.preventDefault();startTarot()">Tarot</a><a style="cursor:pointer" href="/#ciencia" onclick="event.preventDefault();go('home');setTimeout(()=>{var e=document.getElementById('ciencia');if(e)e.scrollIntoView({behavior:'smooth'})},70)">La ciencia detrás</a></div></div>
+    <div><div class="fhead">Legal</div><div style="display:grid;gap:9px"><a style="cursor:pointer" href="/#faq" onclick="event.preventDefault();go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Privacidad y datos</a><a style="cursor:pointer" href="/#faq" onclick="event.preventDefault();go('home');setTimeout(()=>{var e=document.getElementById('faq');if(e)e.scrollIntoView({behavior:'smooth'})},70)">Preguntas frecuentes</a><a style="cursor:pointer" href="/#precios" onclick="event.preventDefault();go('premium')">Precios</a></div></div>
   </div><div class="fbar"><span>© 2026 Testia · Tests de entretenimiento y autoconocimiento.</span><span>Sin valor diagnóstico · Privacy-first · RGPD</span></div></div></footer>`;
   ['footer1','footer2','footer3','footer4','footer5'].forEach(id=>$(id).innerHTML=f);
 }
@@ -2154,7 +2163,10 @@ function todayStr(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+
 function discover(ci){if(!G.found.includes(ci)){G.found.push(ci);saveG(G);checkBadges();renderTarotHome();}}
 function checkBadges(){const n=G.found.length,hits=[[1,'Primera carta descubierta 🃏'],[10,'10 cartas en tu álbum'],[39,'¡Media baraja! 39/78'],[78,'¡Baraja completa! 78/78 🏆']];
   G.badges=G.badges||[];hits.forEach(([t,msg])=>{if(n>=t&&!G.badges.includes(t)){G.badges.push(t);saveG(G);toast('🏅 '+msg);}});}
-function startTarot(){clearInterval(timerId);G=loadG();if(!G.found)G.found=[];$('tarotIntro').style.display='block';$('tarotAlbum').style.display='none';$('tarotBoard').style.display='none';$('tarotActions').style.display='none';$('tarotReading').innerHTML='';renderTarotHome();go('tarot');}
+// tarot.js (78 cartas) solo se descarga al abrir el tarot: la portada no lo necesita.
+let tarotLoading=null;
+function loadTarot(){return tarotLoading||(tarotLoading=new Promise((ok,ko)=>{const s=document.createElement('script');s.src='tarot.js?v=20261123';s.onload=ok;s.onerror=()=>{tarotLoading=null;ko();};document.head.appendChild(s);}));}
+function startTarot(){if(!window.TAROT){loadTarot().then(startTarot).catch(()=>{try{toast('No se ha podido cargar el tarot. Prueba de nuevo.');}catch(e){}});return;}clearInterval(timerId);G=loadG();if(!G.found)G.found=[];$('tarotIntro').style.display='block';$('tarotAlbum').style.display='none';$('tarotBoard').style.display='none';$('tarotActions').style.display='none';$('tarotReading').innerHTML='';renderTarotHome();go('tarot');}
 function renderTarotHome(){
   // hero (vídeo si existe, si no imagen)
   $('tarotHero').innerHTML=`<div class="thero"><video src="${TAROT_HERO_VID}" autoplay muted loop playsinline poster="${TAROT_HERO_IMG}" onerror="this.replaceWith(Object.assign(document.createElement('img'),{src:'${TAROT_HERO_IMG}',onerror:function(){this.closest('.thero').style.display='none';}}))"></video><div class="ov"></div></div>`;
@@ -2288,7 +2300,9 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='ArrowLeft'){if(idx>0){prev();e.preventDefault();}}
 });
 
-function handleStart(){const p=new URLSearchParams(location.search);const s=p.get('start');if(s&&TESTS.find(t=>t.id===s)){startTest(s);try{history.replaceState({},'',location.pathname);}catch(e){}}}
+function handleStart(){const p=new URLSearchParams(location.search);const s=p.get('start');if(s&&TESTS.find(t=>t.id===s)){startTest(s);try{history.replaceState({},'',location.pathname);}catch(e){}return;}
+  // Los enlaces rastreables del menú (/#catalogo, /#tarot, /#precios) abren su vista al entrar desde otra página.
+  const h=location.hash;if(h==='#catalogo')go('catalog');else if(h==='#tarot')startTarot();else if(h==='#precios')go('premium');}
 buildHome();buildCatalog();buildFooter();handleReturn().then(st=>{if(st!=='restored')handleStart();});if(COUPLE_BOTH)openCoupleResult();
 </script>
 </body>
