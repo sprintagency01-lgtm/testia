@@ -14,6 +14,7 @@ Web de tests psicológicos y de identidad con base científica, resultado de pag
 index.html          Aplicación principal (motor de tests + resultado + paywall)
 testia.html         Copia sincronizada de index.html (heredada)
 tests.js            Banco de los 23 tests + contenido SEO (SEO_CONTENT)
+tests-app.js        GENERADO: tests.js sin SEO_CONTENT; es lo que carga la app (no editar)
 iq.js               Ítems del test de CI
 tarot.js            Módulo de tarot (entretenimiento)
 build-pages.mjs     Genera /test/<slug>.html + sitemap.xml + robots.txt
@@ -50,7 +51,7 @@ La rutina diaria del blog (`scripts/blog-worktree.sh publish`) hace push y despl
 ## Flujo de trabajo al cambiar tests
 
 1. Edita `tests.js` (preguntas, resultados, `SEO_CONTENT`).
-2. Regenera las landings SEO y el sitemap:
+2. Regenera las landings SEO, el sitemap y `tests-app.js` (lo que carga la app; sin este paso la web sigue con el banco anterior):
    ```bash
    node build-pages.mjs
    ```

@@ -1,6 +1,7 @@
 /* Validación ligera de las landings generadas. No requiere dependencias. */
 import fs from "node:fs";
 import path from "node:path";
+import { checkTestsApp } from "./scripts/tests-app.mjs";
 
 const dir = "test";
 const files = fs.readdirSync(dir).filter(file => file.endsWith(".html"));
@@ -44,6 +45,8 @@ for (const file of files) {
     if (!existing.has(slug)) errors.push(`${file}: enlace interno roto /test/${slug}`);
   }
 }
+
+errors.push(...checkTestsApp());
 
 if (errors.length) {
   console.error(errors.join("\n"));
