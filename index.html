@@ -1756,6 +1756,9 @@ function priceVariant(){
 }
 const pwEsc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 const PAY_METHODS=['Tarjeta','Apple Pay','Google Pay','PayPal']; // los que muestra Stripe Checkout (métodos dinámicos)
+// Fuera de Europa Stripe cobra en la moneda local (Adaptive Pricing, api/create-checkout.js): se avisa
+// en el muro para que «1,99 €» no frene a quien paga en pesos. Se decide por la zona horaria del navegador.
+const payLocal=()=>{try{return /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');}catch(e){return false;}};
 const singlePrice=()=>PRICE_EUR[PRICE_VARIANT]||1.99,fmtEur=n=>n.toFixed(2).replace('.',',')+'&nbsp;€';
 function setHardLock(on){
   const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
@@ -1792,7 +1795,7 @@ function lockResultInner(v){
     <ul class="pwinc">${inc.map(x=>`<li>${x}</li>`).join('')}</ul>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">${fmtEur(singlePrice())}</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
-    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}</div>
+    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}${payLocal()?' · pagas en tu moneda':''}</div>
     <div class="pwpay">${PAY_METHODS.map(m=>`<span>${m}</span>`).join('')}</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;

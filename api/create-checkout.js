@@ -1,6 +1,7 @@
 // POST /api/create-checkout  -> crea una Checkout Session de Stripe.
 //   { testId, testName, email? } -> resultado de un test (1,99 €)
 //   { plan: "pass", testId?, testName? } -> pase para todos los tests (4,99 €)
+// Moneda local: Adaptive Pricing (ver más abajo). Si la cuenta no lo admite, se crea la sesión sin él.
 // Recuperación de carritos: la sesión caduca a la hora y, si el cliente aceptó recibir novedades
 // (casilla de Stripe), Stripe le envía un email con un enlace para terminar el pago. Hay que tener
 // activados los emails de carritos abandonados en Stripe → Ajustes → Checkout.
@@ -68,10 +69,19 @@ module.exports = async (req, res) => {
     recovery.append('expires_at', String(Math.floor(Date.now() / 1000) + 60 * 60));
     recovery.append('after_expiration[recovery][enabled]', 'true');
     recovery.append('consent_collection[promotions]', 'auto');
-    let r = await create(recovery);
-    let data = await r.json();
-    // Si Stripe rechaza la recuperación (cuenta sin configurar), el pago no se bloquea: sesión normal.
-    if (!r.ok) { r = await create(params); data = await r.json(); }
+    // Moneda local (Adaptive Pricing): fuera de la zona euro Stripe enseña y cobra el precio en la
+    // moneda del comprador (MXN, ARS, COP…) y Testia sigue recibiendo euros. Datos de PostHog
+    // (sep–nov 2026): Latinoamérica ve el 18 % de los muros, abre ~39 pagos y termina 2; España
+    // abre 78 y termina 15. Un precio en euros es fricción y, con muchas tarjetas, un rechazo.
+    const local = p => { const q = new URLSearchParams(p); q.append('adaptive_pricing[enabled]', 'true'); return q; };
+    // De más a menos completa: si la cuenta no admite algo (recuperación o moneda local), se prueba
+    // sin ello. El pago no se bloquea nunca por una opción.
+    let r, data;
+    for (const p of [local(recovery), recovery, local(params), params]) {
+      r = await create(p);
+      data = await r.json();
+      if (r.ok) break;
+    }
     if (!r.ok) {
       res.status(502).json({ error: (data.error && data.error.message) || 'stripe error' });
       return;

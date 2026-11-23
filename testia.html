@@ -151,7 +151,7 @@
   /* result */
   .res{display:grid;grid-template-columns:1.08fr .92fr;gap:58px;align-items:start;padding:54px 0 26px}
   @media(max-width:920px){.res{grid-template-columns:1fr;gap:36px}}
-  .resName{font-family:var(--disp);font-weight:600;font-size:clamp(2.3rem,5.6vw,4rem);line-height:.96;letter-spacing:-.03em;margin:0}
+  .resName{font-family:var(--disp);font-weight:600;font-size:clamp(2.3rem,5.6vw,4rem);line-height:.96;letter-spacing:-.03em;margin:0;min-width:0;overflow-wrap:break-word}.resName.long{font-size:clamp(1.55rem,3.6vw,2.5rem);line-height:1.08}
   .bars{display:grid;gap:14px;margin:26px 0 0}
   .barrow .bl{display:flex;justify-content:space-between;font-weight:600;font-size:.95rem;margin-bottom:6px}
   .barrow .bl .tg{color:var(--mut);font-weight:600;font-size:.82rem}
@@ -305,6 +305,19 @@
   details[open] summary::after{content:"–"}
   details[open]{border-color:#c3ccf2!important}
   details{transition:border-color .15s}
+.iat{user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.iatcats{display:flex;justify-content:space-between;gap:12px;font-weight:600;font-size:.98rem;line-height:1.3}
+.iatcats div{max-width:46%}.iatcats .r{text-align:right}.iatcats small{display:block;color:var(--mut);font-weight:500;font-size:.75rem;margin:2px 0}
+.iatcats .tg{color:var(--accent,#2f4bd6)}
+.iatstage{position:relative;min-height:170px;display:flex;align-items:center;justify-content:center}
+.iatstim{font-family:'Bricolage Grotesque',sans-serif;font-size:2.1rem;font-weight:700;letter-spacing:-.02em}
+.iatstim.tg{color:var(--accent,#2f4bd6)}
+.iatx{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:#b8434c;font-size:2.2rem;font-weight:700;visibility:hidden}
+.iatbtns{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.iatbtn{font:inherit;font-weight:700;font-size:1.05rem;padding:30px 10px;border-radius:16px;border:2px solid var(--line,#e6e6e3);background:#fff;color:var(--ink,#14161c);cursor:pointer;touch-action:manipulation}
+.iatbtn:active{background:#f1f2ff}
+.iathint{text-align:center;color:var(--mut);font-size:.8rem;margin-top:12px}
+.iatintro{line-height:1.55;font-size:1rem}.iatintro ul{padding-left:18px}.iatintro .btn{margin-top:18px}
 </style>
 <script type="application/ld+json">
 {
@@ -687,13 +700,14 @@
 </form>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261109d"></script>
+<script src="tests.js?v=20261117"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261109b"></script>
 <script src="ccse.js?v=20261020"></script>
 <script src="aacc.js?v=20261026"></script>
 <script src="aptitud.js?v=20261027"></script>
+<script src="orientacion-catalogos.js?v=20261117"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -710,15 +724,18 @@ const CATS={
   bienestar:{name:"Valores y bienestar",color:"#e0892f",desc:"Cómo estás"},
 };
 const CAT_ORDER=["personalidad","inteligencia","profesional","relaciones","bienestar"];
-const TEST_CAT={bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",atencion:"inteligencia",
+const TEST_CAT={carrera:"profesional",fp:"profesional",trabajo:"profesional",racismo:"bienestar",implicito:"bienestar",orientacion:"relaciones",grinch:"personalidad",bigfive:"personalidad",tipi:"personalidad",honesty:"personalidad",darktriad:"personalidad",dificil:"personalidad",edadmental:"personalidad",entrenador:"personalidad",narcisismo:"personalidad",eneagrama:"personalidad",hogwarts:"personalidad",daltonismo:"bienestar",solluna:"personalidad",bruja:"personalidad",memoria:"inteligencia",ccse:"inteligencia",aacc:"inteligencia",atencion:"inteligencia",
   iq:"inteligencia",crt:"inteligencia",ncs:"inteligencia",
   riasec:"profesional",razonamiento:"profesional",grit:"profesional",maximizer:"profesional",
   attachment:"relaciones",ei:"relaciones",empathy:"relaciones",lovelang:"relaciones",redflag:"relaciones",celos:"relaciones",lovestyles:"relaciones",parejanarc:"relaciones",pareja2:"relaciones",dependencia:"relaciones",
   moral:"bienestar",partido:"bienestar",candidato:"bienestar",values:"bienestar",selfesteem:"bienestar",swls:"bienestar",panas:"bienestar",resilience:"bienestar",chronotype:"bienestar",politico:"bienestar"};
-const ICON_OF={bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
+const ICON_OF={carrera:"library",fp:"wrench",trabajo:"briefcase",racismo:"users",implicito:"bolt",orientacion:"heart",grinch:"gift",bigfive:"user",tipi:"bolt",honesty:"heart",darktriad:"moon",iq:"bulb",crt:"cube",ncs:"chip",
   riasec:"cap",grit:"fire",maximizer:"cart",attachment:"link",ei:"chat",empathy:"users",moral:"scale",
   values:"sparkles",selfesteem:"star",swls:"sun",panas:"smile",resilience:"shield",chronotype:"clock",politico:"scale",lovelang:"heart",redflag:"flag",celos:"eye",dificil:"warn",lovestyles:"puzzle",memoria:"squares",atencion:"search",edadmental:"cake",partido:"library",entrenador:"trophy",solluna:"sun",bruja:"sparkles",ccse:"idcard",candidato:"users",aacc:"bulb",narcisismo:"star",parejanarc:"heart",pareja2:"link",razonamiento:"chip",dependencia:"link",eneagrama:"puzzle",hogwarts:"cap",daltonismo:"eye"};
 const ICONS={
+  briefcase:["M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z"],
+  wrench:["M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z","M4.867 19.125h.008v.008h-.008v-.008Z"],
+  gift:["M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"],
   idcard:["M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z"],
   trophy:["M16.5 18.75h-9m9 0a3 3 0 0 1 3 3h-15a3 3 0 0 1 3-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 0 1-.982-3.172M9.497 14.25a7.454 7.454 0 0 0 .981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 0 0 7.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 0 0 2.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.228a25.772 25.772 0 0 1 2.916.52 6.003 6.003 0 0 1-5.395 4.972m0 0a6.726 6.726 0 0 1-2.749 1.35m0 0a6.772 6.772 0 0 1-3.044 0"],
   library:["M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z"],
@@ -773,7 +790,7 @@ function cardHTML(t,showCat){
       <span class="status">Disponible</span>
     </div>
     <h3>${t.name}</h3><p>${t.blurb}</p>
-    <div class="foot"><span class="meta">${showCat?cat.name+' · ':''}${t.items.length} preguntas</span><span style="font-size:1.05rem;color:${cat.color}">→</span></div>
+    <div class="foot"><span class="meta">${showCat?cat.name+' · ':''}${t.countLabel||t.items.length+' preguntas'}</span><span style="font-size:1.05rem;color:${cat.color}">→</span></div>
   </a>`;
 }
 function buildHome(){
@@ -834,6 +851,7 @@ function startTest(id){
   else{tm.style.display='none';clearInterval(timerId);}
   if(T.prompt){$('qprompt').style.display='block';$('qprompt').textContent=T.prompt;}else $('qprompt').style.display='none';
   go('quiz');
+  if(T.mode==='iat'){startIAT();return;}
   // El reloj se arranca después de go(), que limpia cualquier intervalo al cambiar de pantalla.
   if(T.mode==='correct'&&!T.noTimer){clearInterval(timerId);timerId=setInterval(tick,1000);}
   renderItem();
@@ -936,6 +954,84 @@ function pick(v){
 }
 function next(){if(memActive||answers[idx]===null)return;if(idx<items.length-1){idx++;renderItem();window.scrollTo({top:0});}else finish();}
 function prev(){if(memActive||T.noBack)return;if(idx>0){idx--;renderItem();window.scrollTo({top:0});}}
+
+/* ----- test de asociación implícita (IAT) ----- */
+let IAT=null;
+function startIAT(){
+  const C=T.iat,order=Math.random()<.5?0:1; // 0: primero el emparejamiento A+agradable
+  const t1=order===0?[['A'],['B']]:[['B'],['A']];
+  const first=order===0?[['A','P'],['B','N']]:[['B','P'],['A','N']];
+  const second=order===0?[['B','P'],['A','N']]:[['A','P'],['B','N']];
+  const defs=[{l:t1[0],r:t1[1]},{l:['P'],r:['N']},{l:first[0],r:first[1]},{l:first[0],r:first[1]},{l:t1[1],r:t1[0]},{l:second[0],r:second[1]},{l:second[0],r:second[1]}];
+  const total=C.blocks.reduce((a,b)=>a+b,0);
+  IAT={order,defs,b:0,i:0,trials:[],seq:[],done:0,total,active:false,cur:null,t0:0,err:false};
+  $('timer').style.display='none';$('prevBtn').style.visibility='hidden';$('nextBtn').style.visibility='hidden';
+  iatIntro();
+}
+function iatLab(keys){const C=T.iat;return keys.map((k,j)=>`${j?'<small>o</small>':''}<span class="${'AB'.includes(k)?'tg':''}">${C[k].lab}</span>`).join('');}
+function iatSeq(b){
+  const C=T.iat,d=IAT.defs[b],n=C.blocks[b],cats=d.l.concat(d.r),tg=cats.filter(k=>'AB'.includes(k)),at=cats.filter(k=>'PN'.includes(k));
+  const out=[];let last='';
+  for(let i=0;i<n;i++){
+    const pool=(tg.length&&at.length)?(i%2===0?tg:at):cats;
+    let k,w;do{k=pool[Math.floor(Math.random()*pool.length)];w=C[k].items[Math.floor(Math.random()*C[k].items.length)];}while(w===last);
+    last=w;out.push({k,w,side:d.l.includes(k)?'L':'R'});
+  }
+  return out;
+}
+function iatIntro(){
+  const b=IAT.b,d=IAT.defs[b],combo=d.l.length>1;
+  $('qcount').textContent=`Ronda ${b+1} de 7`;$('qbig').textContent=String(b+1).padStart(2,'0');
+  $('qbar').style.width=(IAT.done/IAT.total*100)+'%';
+  $('qtext').textContent=b===0?'Clasifica lo más rápido que puedas':(b===4?'Atención: los nombres cambian de lado':'Siguiente ronda');
+  const how=`<ul><li>A la <b>izquierda</b>: ${iatLab(d.l).replace(/<small>o<\/small>/g,' o ')}</li><li>A la <b>derecha</b>: ${iatLab(d.r).replace(/<small>o<\/small>/g,' o ')}</li></ul>`;
+  const first=b===0?'<p>Aparecerán nombres y palabras en el centro. Clasifícalos con los botones de abajo o con las teclas <b>E</b> (izquierda) e <b>I</b> (derecha). Si te equivocas, sale una cruz roja: pulsa el otro lado y sigue. Ve rápido: los errores no importan tanto como la velocidad.</p>':'';
+  $('opts').innerHTML=`<div class="iatintro">${first}${how}${combo?'<p>Ahora aparecen nombres y palabras mezclados.</p>':''}<button class="btn" onclick="iatBlock()">Empezar ronda ${b+1} →</button></div>`;
+}
+function iatBlock(){
+  const d=IAT.defs[IAT.b];IAT.seq=iatSeq(IAT.b);IAT.i=0;
+  $('opts').innerHTML=`<div class="iat"><div class="iatcats"><div>${iatLab(d.l)}</div><div class="r">${iatLab(d.r)}</div></div>
+    <div class="iatstage"><div class="iatstim" id="iatStim"></div><div class="iatx" id="iatX">✕</div></div>
+    <div class="iatbtns"><button class="iatbtn" id="iatL" aria-label="Izquierda">← Izquierda</button><button class="iatbtn" id="iatR" aria-label="Derecha">Derecha →</button></div>
+    <div class="iathint">En el ordenador: tecla E para la izquierda e I para la derecha</div></div>`;
+  $('iatL').addEventListener('pointerdown',e=>{e.preventDefault();iatAnswer('L');});
+  $('iatR').addEventListener('pointerdown',e=>{e.preventDefault();iatAnswer('R');});
+  IAT.active=true;setTimeout(iatTrial,600);
+}
+function iatTrial(){
+  if(!IAT||!IAT.active)return;
+  const t=IAT.seq[IAT.i],el=$('iatStim');if(!el)return;
+  IAT.cur=t;IAT.err=false;$('iatX').style.visibility='hidden';
+  el.textContent=t.w;el.className='iatstim'+('AB'.includes(t.k)?' tg':'');
+  IAT.t0=performance.now();
+}
+function iatAnswer(side){
+  if(!IAT||!IAT.active||!IAT.cur)return;
+  if(side!==IAT.cur.side){IAT.err=true;$('iatX').style.visibility='visible';return;}
+  const rt=performance.now()-IAT.t0;
+  IAT.trials.push({b:IAT.b+1,rt,err:IAT.err});IAT.cur=null;IAT.done++;IAT.i++;
+  $('qbar').style.width=(IAT.done/IAT.total*100)+'%';
+  const el=$('iatStim');if(el)el.textContent='';$('iatX').style.visibility='hidden';
+  if(IAT.i<IAT.seq.length){setTimeout(iatTrial,250);return;}
+  IAT.active=false;IAT.b++;
+  if(IAT.b<7)iatIntro();else finish();
+}
+document.addEventListener('keydown',e=>{
+  if(!IAT||!IAT.active||!$('quiz').classList.contains('active'))return;
+  const k=e.key.toLowerCase();if(k==='e'){e.preventDefault();iatAnswer('L');}else if(k==='i'){e.preventDefault();iatAnswer('R');}
+});
+function iatScore(){
+  const tr=(IAT&&IAT.trials)||[],crit=tr.filter(x=>[3,4,6,7].includes(x.b));
+  const fast=crit.filter(x=>x.rt<300).length/Math.max(1,crit.length),ok=crit.filter(x=>x.rt<=10000);
+  const vals=bs=>ok.filter(x=>bs.includes(x.b)).map(x=>x.rt);
+  const mean=a=>a.reduce((s,v)=>s+v,0)/Math.max(1,a.length);
+  const sd=a=>{const m=mean(a);return Math.sqrt(a.reduce((s,v)=>s+(v-m)*(v-m),0)/Math.max(1,a.length-1));};
+  const part=(x,y)=>{const s=sd(vals([x,y]));return s>0?(mean(vals([y]))-mean(vals([x])))/s:0;};
+  let D=(part(3,6)+part(4,7))/2;if(IAT.order===1)D=-D; // positivo = asociación más fácil de A con lo agradable
+  const firstMs=mean(vals([3,4])),secondMs=mean(vals([6,7]));
+  const msA=IAT.order===0?firstMs:secondMs,msB=IAT.order===0?secondMs:firstMs; // A+agradable frente a B+agradable
+  return {D,valid:fast<=0.10&&ok.length>=60,errPct:Math.round(crit.filter(x=>x.err).length/Math.max(1,crit.length)*100),msA:Math.round(msA),msB:Math.round(msB)};
+}
 
 /* ----- scoring ----- */
 function erf(x){const t=1/(1+0.3275911*Math.abs(x));const y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-x*x);return x>=0?y:-y;}
@@ -1216,6 +1312,28 @@ function finish(){
           return {lab:`Acertijo ${i+1}`,p:ok?100:0,band:ok?'Reflexivo':intu?'Intuitivo':none?'Sin responder':'Otra respuesta',
             text:`«${it.q}» `+(ok?'Acertaste. ':intu?`Elegiste «${it.o[it.i]}», la respuesta que primero viene a la cabeza. `:none?'No llegaste a responder. ':`Elegiste «${it.o[answers[i]]}». `)+(it.why||'')};}));}
     }
+  }else if(T.scoring==='iat'){
+    const S=iatScore(),C=T.iat,a=Math.abs(S.D),fmt=x=>x.toFixed(2).replace('.',',');
+    const str=a<.15?null:a<.35?'leve':a<.65?'moderada':'fuerte',fav=S.D>0?C.A.lab.toLowerCase():C.B.lab.toLowerCase(),other=S.D>0?C.B.lab.toLowerCase():C.A.lab.toLowerCase();
+    r.eyebrow=T.eyebrow;r.role='Test de racismo implícito';r.mono='IAT';r.traits=[];
+    if(!S.valid){
+      r.name='Resultado no válido';r.desc='Respondiste demasiado rápido en muchas pruebas, así que no podemos calcular tu sesgo con fiabilidad. Vuelve a hacerlo con calma: ve rápido, pero leyendo cada palabra.';
+      r.stats=[{v:'—',l:'sin resultado'}];r.noPaywall=true;r.card={mono:'IAT',name:'Sin resultado',role:'Test de racismo implícito',stat:'REPETIR'};
+    }else{
+      const name=str?`Preferencia automática ${str} por ${fav}`:'Sin preferencia automática';
+      const desc=str?`Te ha resultado más fácil asociar los ${fav} con palabras agradables que los ${other}. Es una asociación automática ${str}, de las que se absorben del entorno sin darse cuenta: no dice si eres racista ni cómo vas a tratar a nadie.`
+        :`Has clasificado igual de rápido los dos emparejamientos: no hay una asociación automática clara a favor de ningún grupo. Recuerda que el resultado puede variar si repites el test.`;
+      r.name=name;r.desc=desc+' Tu puntuación exacta, tus tiempos y tus errores están en la lectura completa.';
+      r.stats=[{v:str?str.charAt(0).toUpperCase()+str.slice(1):'Ninguna',l:'fuerza del sesgo'},{v:str?(S.D>0?C.A.lab:C.B.lab):'—',l:'a favor de'}];
+      r.analysis=[
+        {lab:'Tu puntuación D',band:fmt(S.D),p:Math.min(100,a/0.8*100),hidePct:true,text:`La puntuación D compara tus tiempos en los dos emparejamientos y los divide por tu variabilidad. Por debajo de 0,15 no hay preferencia; hasta 0,35 es leve; hasta 0,65, moderada, y por encima, fuerte. El signo positivo indica preferencia por ${C.A.lab.toLowerCase()}.`},
+        {lab:`${C.A.lab} + ${C.P.lab.toLowerCase()}`,band:`${S.msA} ms`,p:Math.min(100,S.msA/15),hidePct:true,text:`Tu tiempo medio cuando los ${C.A.lab.toLowerCase()} compartían lado con las palabras agradables.`},
+        {lab:`${C.B.lab} + ${C.P.lab.toLowerCase()}`,band:`${S.msB} ms`,p:Math.min(100,S.msB/15),hidePct:true,text:`Tu tiempo medio cuando los ${C.B.lab.toLowerCase()} compartían lado con las palabras agradables.`},
+        {lab:'Errores',band:`${S.errPct} %`,p:S.errPct,hidePct:true,text:'El porcentaje de veces que pulsaste el lado equivocado. Los errores cuentan en el tiempo, porque había que corregirlos.'},
+        {lab:'Cómo tomarlo',band:'Contexto',p:100,hidePct:true,text:'El test de asociación implícita mide asociaciones automáticas y su resultado varía bastante de una vez a otra. Predice poco cómo actúa una persona concreta. Tómalo como una pista para pensar, no como un veredicto.'}];
+      r.card={mono:'IAT',name:str?`Sesgo ${str}`:'Sin sesgo claro',role:'Test de racismo implícito',stat:str?`A FAVOR DE ${(S.D>0?C.A.lab:C.B.lab).toUpperCase()}`:'SIN PREFERENCIA'};
+      r.full={name,role:`Puntuación D: ${fmt(S.D)}`,desc:`${desc} Tu puntuación D es ${fmt(S.D)}. Abajo, tus tiempos y tus errores.`,card:{mono:fmt(S.D),name:str?`Sesgo ${str}`:'Sin sesgo claro',role:`D = ${fmt(S.D)}`,stat:r.card.stat}};
+    }
   }else{
     const pct=(R.type==='mentalage'||R.type==='party')?{}:scalePcts();
     if(R.type==='party'){
@@ -1349,6 +1467,69 @@ function finish(){
       r.card={mono:'EGO',name:tier[0],role:'Test de pareja narcisista',stat:tier[0].toUpperCase()};
       r.full={name:`${ix} % de narcisismo`,role:`${tier[0]} · en tu pareja`,desc:`Las conductas que describes reflejan un nivel de narcisismo del ${ix} % en tu pareja. ${tier[1]}${safety} Abajo, las cinco dimensiones y las conductas que más pesan.`,
         card:{mono:`${ix}%`,name:`${ix} % de narcisismo`,role:'En tu pareja',stat:tier[0].toUpperCase()},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    }else if(R.type==='racism'){
+      const K=Object.keys(T.scales),ix=Math.round(K.reduce((a,k)=>a+pct[k],0)/K.length),man=(pct.AME+pct.DIS)/2;
+      const tier=ix>=70?['Prejuicio fuerte','Tus respuestas muestran un prejuicio fuerte hacia personas de otros orígenes: pesa en cómo las ves y en cómo te relacionas con ellas.']
+        :ix>=55?['Prejuicio marcado','Tus respuestas muestran un prejuicio claro hacia personas de otros orígenes, más de lo habitual.']
+        :ix>=30?['Prejuicios puntuales','Tienes algunos prejuicios, como buena parte de la población, sin que dominen tu forma de ver a las personas de otros orígenes.']
+        :['Sin prejuicios a la vista','Tus respuestas no muestran prejuicios hacia personas de otros orígenes: las juzgas por lo que hacen, no por de dónde vienen.'];
+      const sub=ix<30?['Sin patrón definido','No hay un patrón de prejuicio, ni sutil ni manifiesto.']
+        :man>=55?['Manifiesto','Tu prejuicio es sobre todo manifiesto: se nota en la sensación de amenaza y en el rechazo a la cercanía con personas de otros orígenes.']
+        :['Sutil','Tu prejuicio es sobre todo sutil: no rechazas a nadie abiertamente, pero exageras las diferencias culturales, te cuesta conectar o crees que la discriminación se exagera.'];
+      const lv=p=>p>=66?['hi','Alto']:p>=40?['mid','Medio']:['lo','Bajo'];
+      r.eyebrow=T.eyebrow;r.name=tier[0];r.role='Test de racismo';r.mono='%';r.traits=[];
+      r.desc=`${tier[1]} Tu porcentaje exacto, si tu patrón es sutil o manifiesto y tus cinco dimensiones están en la lectura completa.`;
+      r.bars=K.map(k=>({lab:T.scales[k],p:pct[k],tag:lv(pct[k])[1],premium:true,hidePct:true}));
+      r.stats=[{v:`${ix} %`,l:'nivel de prejuicio'}];
+      r.analysis=[{lab:'Tu patrón',band:sub[0],p:ix,hidePct:true,text:sub[1]}]
+        .concat(K.map(k=>({lab:T.scales[k],band:lv(pct[k])[1],p:pct[k],hidePct:true,text:(T.interp[k]&&T.interp[k][lv(pct[k])[0]])||''})))
+        .concat([{lab:'Qué puedes hacer',band:'Siguiente paso',p:100,hidePct:true,text:'Los prejuicios se aprenden y se pueden desaprender. Lo que más ayuda, según la investigación, es el contacto real y en igualdad con personas de otros orígenes: en el trabajo, en el barrio o entre amistades.'}]);
+      r.card={mono:'%',name:tier[0],role:'Test de racismo',stat:tier[0].toUpperCase()};
+      r.full={name:`${ix} % de prejuicio`,role:ix>=30?`${tier[0]} · patrón ${sub[0].toLowerCase()}`:tier[0],desc:`Tu nivel de prejuicio es del ${ix} %. ${tier[1]} ${ix>=30?sub[1]:''} Abajo, tus cinco dimensiones.`,
+        card:{mono:`${ix}%`,name:`${ix} % de prejuicio`,role:tier[0],stat:ix>=30?`PATRÓN ${sub[0].toUpperCase()}`:tier[0].toUpperCase()},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    }else if(R.type==='orient'){
+      const val=f=>{let s=0,w=0;items.forEach((it,i)=>{if(it.s!=='K'||!f(it))return;const v=answers[i];if(v==null||v<0)return;const ww=it.w||1;s+=v*ww;w+=ww;});return w?s/w:null;};
+      const now=val(it=>!it.past),past=val(it=>it.past),dim=d=>val(it=>!it.past&&it.d===d);
+      const ax=d=>{const i=items.findIndex(it=>it.d===d);return answers[i];};
+      const ace=ax('SEXG')<=1&&ax('DES')<=1,aro=ax('ROMG')<=1,k=Math.round(now==null?3:now),dec=x=>x==null?'—':x.toFixed(1).replace('.',',');
+      const L=[['Heterosexual','Tu atracción, tus fantasías y tus relaciones se dirigen a personas de otro género.'],
+        ['Mayoritariamente heterosexual','Te atraen sobre todo personas de otro género, con alguna atracción ocasional hacia tu mismo género. Es más común de lo que parece.'],
+        ['Heterosexual con atracción hacia tu mismo género','Te atraen más las personas de otro género, pero la atracción hacia tu mismo género es clara, no ocasional.'],
+        ['Bisexual','Te atraen personas de tu mismo género y de otro, en una medida parecida.'],
+        ['Homosexual con atracción hacia otro género','Te atraen más las personas de tu mismo género, pero la atracción hacia otro género es clara, no ocasional.'],
+        ['Mayoritariamente homosexual','Te atraen sobre todo personas de tu mismo género, con alguna atracción ocasional hacia otro.'],
+        ['Homosexual','Tu atracción, tus fantasías y tus relaciones se dirigen a personas de tu mismo género.']];
+      const head=ace?['Espectro asexual','Sientes poca o ninguna atracción sexual por otras personas. En la escala de Kinsey es la categoría X, y es una orientación más.'+(aro?' Tampoco sientes mucha atracción romántica: es lo que se llama arromanticismo.':' Puedes sentir atracción romántica aunque no sea sexual.')]:L[k];
+      const kin=ace?'X':String(k);
+      r.eyebrow=T.eyebrow;r.name=head[0];r.role=`Escala de Kinsey: ${kin}`;r.mono=kin;r.traits=[];
+      r.desc=`${head[1]} Solo tú decides cómo te defines. El desglose por dimensiones y cómo ha cambiado entre el pasado y hoy están en la lectura completa.`;
+      const tag=v=>v==null?'Sin datos':v<1.5?'Hacia otro género':v<2.5?'Más hacia otro género':v<3.5?'Hacia los dos':v<4.5?'Más hacia tu género':'Hacia tu mismo género';
+      const D=[['SEX','Atracción sexual'],['ROM','Atracción romántica'],['FAN','Fantasías']];
+      r.bars=D.map(([d,l])=>{const v=dim(d);return {lab:l,p:v==null?0:v/6*100,tag:tag(v),premium:true,hidePct:true};});
+      r.stats=[{v:kin,l:'escala de Kinsey'}];
+      const sx=dim('SEX'),rm=dim('ROM'),gap=(sx!=null&&rm!=null)?rm-sx:0;
+      const pasT=past==null||now==null?'No hay datos suficientes para comparar.':Math.abs(now-past)<1?'Tu orientación se ha mantenido estable entre hace unos años y hoy.':now>past?'Hoy te sientes más atraído o atraída por tu mismo género que hace unos años. Es un cambio frecuente y no significa que antes te engañaras.':'Hoy te sientes más atraído o atraída por otro género que hace unos años. Es un cambio frecuente y no invalida lo que sentías antes.';
+      r.analysis=[
+        {lab:'Atracción sexual y romántica',band:Math.abs(gap)>=1.5?'Caminos distintos':'En la misma dirección',p:100,hidePct:true,text:Math.abs(gap)>=1.5?`Tu atracción romántica va ${gap>0?'más hacia tu mismo género':'más hacia otro género'} que tu atracción sexual. Les pasa a muchas personas: de quién te enamoras y quién te atrae físicamente no siempre coinciden.`:'De quién te enamoras y quién te atrae físicamente van en la misma dirección.'},
+        {lab:'Antes y ahora',band:`Antes ${dec(past)} · hoy ${dec(now)}`,p:100,hidePct:true,text:pasT},
+        {lab:'Atracción sexual en general',band:ace?'Baja':'Presente',p:100,hidePct:true,text:ace?'Sientes poca atracción sexual en general: encajas en el espectro asexual.':'Sientes atracción sexual con normalidad. Si a veces es baja, también es normal: varía con la edad, el estrés y la etapa de la vida.'},
+        {lab:'Si necesitas hablar',band:'Recursos',p:100,hidePct:true,text:'La FELGTBI+ (felgtbi.org) reúne asociaciones de toda España con orientación gratuita. Si eres menor, la Fundación ANAR atiende gratis en el 900 20 20 10. Y si te sientes muy mal, el 024 atiende las 24 horas.'}];
+      r.card={mono:kin,name:head[0],role:`Escala de Kinsey: ${kin}`,stat:`KINSEY ${kin}`};
+      r.full={name:head[0],role:ace?'Escala de Kinsey: X':`Escala de Kinsey: ${dec(now)} sobre 6`,desc:`${head[1]} ${ace?'':`Tu posición exacta en la escala es ${dec(now)}.`} Abajo, cómo se reparten tu atracción sexual, tu atracción romántica y tus fantasías.`,
+        card:{mono:kin,name:head[0],role:ace?'Kinsey X':`Kinsey ${dec(now)}`,stat:`KINSEY ${kin}`},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    }else if(R.type==='grinch'){
+      const K=Object.keys(T.scales),ix=Math.round(K.reduce((a,k)=>a+pct[k],0)/K.length);
+      const arr=K.map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p),top=arr[0];
+      const tier=ix>=80?['Grinch de manual','Si de ti dependiera, diciembre pasaría directamente a enero. Luces, cenas, regalos: te sobra casi todo, y lo sabe todo tu entorno.']
+        :ix>=60?['Grinch a tiempo parcial','La Navidad se te hace larga. No la odias entera, pero hay partes que soportas con la sonrisa justa y cuentas los días para que acaben.']
+        :ix>=40?['Ni Grinch ni elfo','Te tomas la Navidad con calma: disfrutas de unas cosas y otras te dan bastante igual. Ni la esperas desde octubre ni huyes de ella.']
+        :ix>=20?['Espíritu navideño de serie','Te gusta la Navidad y se nota: las cenas, los regalos y el ambiente te ponen de buen humor, aunque alguna cosa te sobre.']
+        :['Navidad desde octubre','Para ti la Navidad empieza cuando aparecen los turrones en el súper. Luces, villancicos, regalos y cenas: lo vives todo, y contagias el espíritu a quien tengas cerca.'];
+      const sobra=ix>=40?` Lo que más te sobra: ${top.lab.toLowerCase()}.`:'';
+      r.eyebrow=T.eyebrow;r.name=`${ix} % Grinch`;r.role=tier[0];r.desc=tier[1]+sobra;r.mono=`${ix}%`;r.traits=[];
+      r.bars=arr;r.stats=[{v:`${ix} %`,l:'nivel de Grinch'},{v:ix>=40?top.lab:'Nada',l:'lo que más te sobra'}];
+      r.analysis=K.map(k=>{const p=pct[k],bn=p>=66?'Alto':p>=40?'Medio':'Bajo',key=p>=66?'hi':p>=40?'mid':'lo';return {lab:T.scales[k],p,band:bn,text:(T.interp[k]&&T.interp[k][key])||''};});
+      r.card={mono:`${ix}%`,name:`${ix} % Grinch`,role:tier[0],stat:tier[0].toUpperCase()};
     }else if(R.type==='couple'){
       const N=items.length,mine=answers.map(v=>v==null?3:v),code=mine.join('');
       const P=COUPLE_PARTNER&&COUPLE_PARTNER.length===N&&/^[1-5]+$/.test(COUPLE_PARTNER)?COUPLE_PARTNER.split('').map(Number):null;
@@ -1441,6 +1622,43 @@ function finish(){
       r.card={mono:'DEP',name:tier[0],role:'Test de dependencia emocional',stat:tier[0].toUpperCase()};
       r.full={name:`${ix} % de dependencia emocional`,role:tier[0],desc:`Tu nivel de dependencia emocional es del ${ix} %. ${tier[1]}${safety} Abajo, las seis dimensiones y por dónde empezar.`,
         card:{mono:`${ix}%`,name:`${ix} % de dependencia`,role:tier[0],stat:'DEPENDENCIA EMOCIONAL'},bars:r.bars.map(b=>({lab:b.lab,p:b.p,tag:b.tag,hidePct:true}))};
+    }else if(R.type==='match'){
+      /* Tests de orientación: tu perfil frente al catálogo (orientacion-catalogos.js). */
+      const OK=[].concat(ORIENT_DIMS.INT,ORIENT_DIMS.FUE,ORIENT_DIMS.VAL),CATS=window.ORIENT_CATALOGS||{};
+      const CATL=CATS[T.catalog]||[],rk=orientMatch(pct,CATL),top=rk[0],e=top.e,flat=orientFlat(pct,rk);
+      const y=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' y '+a[a.length-1];
+      const WHY={R:'te atrae lo práctico',I:'te mueve entender por qué pasan las cosas',A:'necesitas crear',S:'te gusta ayudar y enseñar',E:'te gusta convencer y decidir',C:'te sientes bien con el orden',NUM:'los números se te dan bien',LEN:'te expresas bien',MAN:'tienes buena mano',PER:'tratas bien a la gente',EST:'buscas estabilidad',ING:'te importa ganar bien',IMP:'quieres ayudar o tener impacto',AUT:'quieres libertad para decidir cómo trabajas'};
+      const whyOf=x=>x.top.length?`Encaja porque ${y(x.top.map(k=>WHY[k]))}.`:'Es la opción que más se parece a tu perfil en conjunto.';
+      const NOUN={carrera:['carreras','grado'],fp:['ciclos de FP','ciclo'],trabajo:['profesiones','profesión']}[T.catalog]||['opciones','opción'];
+      let ENVI=[];
+      const fpName=id=>{const f=(CATS.fp||[]).find(z=>z.id===id);return f?f.name:'';};
+      const extra=x=>{const o=x.e;let t='';
+        if(T.catalog==='carrera'){t+=` Bachillerato recomendado: ${o.bach}. Asignaturas que conviene elegir: ${y(o.asig)}.`;
+          if(o.alta)t+=' Suele pedir nota de corte alta; compruébala en la universidad que te interese.';
+          if(o.fpAlt&&fpName(o.fpAlt))t+=` Alternativa en FP: ${fpName(o.fpAlt)}.`;}
+        if(T.catalog==='fp'){t+=` ${o.nivel==='GS'?'Grado superior: pide Bachillerato, un grado medio o prueba de acceso, y da acceso a la universidad.':'Grado medio: se hace al terminar la ESO.'}`;
+          const sib=CATL.filter(z=>z.familia===o.familia&&z.id!==o.id).map(z=>z.name);if(sib.length)t+=` Otros ciclos de ${o.familia}: ${y(sib)}.`;}
+        if(T.catalog==='trabajo')t+=` Por dónde empezar: ${o.entrada}`;
+        return t;};
+      const grp=e.rama||e.familia;
+      r.name=e.name;r.role=(flat?'Perfil abierto':`${top.score} % de afinidad`)+(grp?` · ${grp}`:'');r.mono=flat?'≈':`${top.score}%`;
+      r.desc=(flat?`Tu perfil está abierto: tus respuestas no se inclinan claramente hacia ningún tipo de ${NOUN[1]}, así que varias ${NOUN[0]} encajan casi igual contigo. De momento, la que sale primera por poco es esta.${top.top.length?' '+whyOf(top):''}`:`${e.why} ${whyOf(top)}`)+` Abajo, tus cinco ${NOUN[0]} más afines, por qué encajas y qué salidas tienen.`;
+      if(T.catalog==='trabajo'){const EV=orientEnv(pct),EL=Object.assign({null:'sin un entorno claro'},ORIENT_ENV_LABEL),ELW={GRA:'en una gran empresa',PYM:'en una empresa pequeña o una startup',AUT_:'por cuenta propia',PUB:'en el sector público'},remTxt=EV.remote==='remoto'?(e.rem?(EV.env?', mejor en remoto':'; eso sí, prefieres el remoto'):'. Prefieres el remoto, pero esta profesión es sobre todo presencial'):EV.remote==='presencial'?(EV.env?', mejor presencial':'; eso sí, prefieres lo presencial'):'',envTxt=EV.env?`Tu entorno ideal: ${EL[EV.env]}${remTxt}.`:`Ningún entorno de trabajo destaca en tus respuestas${remTxt}.`;
+        const usual=EV.env&&e.entornos.includes(EV.env)?'':` En esta profesión lo habitual es trabajar ${ELW[e.entornos[0]]}.`;
+        r.desc=r.desc.replace(' Abajo,',` ${envTxt}${usual} Abajo,`);
+        const FR={EST:['Buscas más estabilidad de la que suele dar esta profesión: entrar por un puesto fijo o una empresa grande ayuda.','Es una profesión bastante estable y previsible; si te aburre la rutina, busca un puesto con variedad.'],
+          ING:['Te importa ganar bien y no es de las profesiones mejor pagadas al empezar; especializarte es lo que más sube el sueldo.','Paga bien a cambio de presión por resultados; si el dinero no te mueve, esa presión puede pesar.'],
+          IMP:['Quieres que tu trabajo ayude a otros y esta profesión no lo hace de forma directa; un proyecto con impacto social puede compensarlo.','Es una profesión de servicio a otros que pide mucha implicación emocional.'],
+          AUT:['Buscas libertad y aquí lo normal es seguir procedimientos; con experiencia se gana autonomía.','Pide mucha iniciativa propia y aguantar la incertidumbre.']};
+        const dv=ORIENT_DIMS.VAL.map(k=>({k,d:(pct[k]||0)-e.prof[k]})).sort((a,b)=>Math.abs(b.d)-Math.abs(a.d))[0];
+        ENVI=[{lab:'Tu entorno ideal',band:EL[EV.env],p:100,hidePct:true,text:EV.env?`Te ves trabajando ${ELW[EV.env]}${remTxt}.${usual}`:`Ningún entorno de trabajo destaca en tus respuestas${remTxt}.${usual}`},
+          {lab:'Lo que te puede frenar',band:Math.abs(dv.d)<25?'Sin choque claro':T.scales[dv.k],p:100,hidePct:true,text:Math.abs(dv.d)<25?'No hay un choque claro entre lo que buscas y lo que da esta profesión.':FR[dv.k][dv.d>0?0:1]}];}
+      r.traits=top.top.map(k=>T.scales[k]);
+      r.bars=OK.map(k=>({lab:T.scales[k],p:Math.round(pct[k]||0)}));
+      r.stats=[{v:flat?'Abierto':`${top.score}%`,l:flat?'perfil':'afinidad'},{v:String(CATL.length),l:`${NOUN[0]} comparadas`}];
+      r.analysis=rk.slice(0,5).map((x,i)=>({lab:`${i+1}. ${x.e.name}`,band:`${x.score} % de afinidad`,p:x.score,hidePct:true,text:`${whyOf(x)} Salidas: ${x.e.salidas}${extra(x)}`}))
+        .concat(ENVI).concat([{lab:'Cómo usar este resultado',band:'Consejo',p:100,hidePct:true,text:(flat?'Tienes un perfil abierto, así que compara tus cinco opciones con calma: habla con gente que las estudie o trabaje en ellas. ':'')+(T.catalog==='carrera'?'Cada universidad pondera las asignaturas de Bachillerato a su manera y la nota de corte cambia cada año: compruébalo en las que te interesen. ':'')+'El porcentaje dice cuánto se parece tu perfil al de cada opción, no tu probabilidad de éxito.'}]);
+      r.card={mono:flat?'≈':`${top.score}%`,name:e.name,role:T.eyebrow||T.name,stat:flat?'PERFIL ABIERTO':`AFINIDAD ${top.score}%`};
     }else if(R.type==='riasec'){
       const arr=Object.keys(T.scales).map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
       const code=arr.slice(0,3).map(x=>x.k).join('');
@@ -1538,6 +1756,9 @@ function priceVariant(){
 }
 const pwEsc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 const PAY_METHODS=['Tarjeta','Apple Pay','Google Pay','PayPal']; // los que muestra Stripe Checkout (métodos dinámicos)
+// Fuera de Europa Stripe cobra en la moneda local (Adaptive Pricing, api/create-checkout.js): se avisa
+// en el muro para que «1,99 €» no frene a quien paga en pesos. Se decide por la zona horaria del navegador.
+const payLocal=()=>{try{return /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');}catch(e){return false;}};
 const singlePrice=()=>PRICE_EUR[PRICE_VARIANT]||1.99,fmtEur=n=>n.toFixed(2).replace('.',',')+'&nbsp;€';
 function setHardLock(on){
   const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
@@ -1574,7 +1795,7 @@ function lockResultInner(v){
     <ul class="pwinc">${inc.map(x=>`<li>${x}</li>`).join('')}</ul>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice">${fmtEur(singlePrice())}</span></button>
     <div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>
-    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}</div>
+    <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}${payLocal()?' · pagas en tu moneda':''}</div>
     <div class="pwpay">${PAY_METHODS.map(m=>`<span>${m}</span>`).join('')}</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
@@ -1806,8 +2027,8 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={politico:['partido','solluna'],partido:['iq','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],razonamiento:['iq','riasec'],dependencia:['attachment','celos'],eneagrama:['bigfive','attachment'],hogwarts:['bigfive','darktriad'],daltonismo:['atencion','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
-  iq:['aacc','memoria'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['bigfive','values'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
+const NEXT_TEST={carrera:['fp','riasec'],fp:['carrera','trabajo'],trabajo:['riasec','values'],racismo:['implicito','politico'],implicito:['racismo','empathy'],orientacion:['lovestyles','attachment'],grinch:['solluna','bruja'],politico:['partido','solluna'],partido:['iq','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],razonamiento:['iq','riasec'],dependencia:['attachment','celos'],eneagrama:['bigfive','attachment'],hogwarts:['bigfive','darktriad'],daltonismo:['atencion','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
+  iq:['aacc','memoria'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['carrera','trabajo'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],
   redflag:['celos','attachment'],celos:['lovestyles','attachment'],dificil:['darktriad','redflag'],lovestyles:['lovelang','celos'],bigfive:['honesty','darktriad'],tipi:['bigfive','darktriad']};
@@ -1826,7 +2047,7 @@ function goNextTest(id,pos){trackEvent('next_test_clicked',{from_test:T&&T.id,to
 function renderResult(r){
   $('resEyebrow').textContent=r.eyebrow;
   const m=$('resMono');m.style.background=`linear-gradient(135deg,${hexA(r.accent,.2)},${hexA(r.accent,.08)})`;m.style.color=r.accent;m.innerHTML=svgIcon((T&&ICON_OF[T.id])||'user',r.accent);
-  const n=$('resName');n.textContent=r.name;n.style.color=r.accent;
+  const n=$('resName');n.textContent=r.name;n.style.color=r.accent;n.classList.toggle('long',String(r.name||'').length>34);
   $('resRole').textContent=r.role;$('resDesc').textContent=r.desc;
   $('resTraits').innerHTML=(r.traits||[]).map(t=>`<span class="chip">${t}</span>`).join('');
   {const cb=$('coupleBox');if(cb)cb.innerHTML=r.coupleHtml||'';}
@@ -1850,6 +2071,13 @@ function restart(){if(T)startTest(T.id);}
 function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();}
 function lightenHex(hex,amt){const h=hex.replace('#','');let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);r=Math.round(r+(255-r)*amt);g=Math.round(g+(255-g)*amt);b=Math.round(b+(255-b)*amt);return`rgb(${r},${g},${b})`;}
 function drawCard(r){drawCardOn($('idcard'),r);}
+/* Titular de la carta: reduce la letra hasta 40 px y, si aún no cabe, lo parte en hasta 3 líneas. */
+function cardTitleFit(x,big,start,maxW){let bs=start;const F=s=>`700 ${s}px "Bricolage Grotesque",sans-serif`;
+  x.font=F(bs);while(bs>40&&x.measureText(big).width>maxW){bs-=6;x.font=F(bs);}
+  if(x.measureText(big).width<=maxW)return {bs,lines:[big]};
+  const wrap=()=>{x.font=F(bs);const out=[];let cur='';big.split(' ').forEach(w=>{const t=cur?cur+' '+w:w;if(cur&&x.measureText(t).width>maxW){out.push(cur);cur=w;}else cur=t;});out.push(cur);return out;};
+  bs=64;let lines=wrap();while(bs>28&&(lines.length>3||lines.some(l=>x.measureText(l).width>maxW))){bs-=4;lines=wrap();}
+  return {bs,lines};}
 function drawCardOn(c,r){
   const x=c.getContext('2d'),W=c.width,H=c.height,col=r.accent,colL=lightenHex(col,.42),cd=r.card||{mono:r.mono,name:r.name,role:r.role,stat:''},P=72;
   const E=Math.round(H*0.205),B=Math.round(H*0.315),tall=H>1600;
@@ -1867,11 +2095,11 @@ function drawCardOn(c,r){
   const heroNum=/^\d+$/.test(String(cd.mono||''))&&bars.length!==1, big=heroNum?String(cd.mono):String(cd.name||r.name||''), sub=heroNum?String(cd.name||''):String(cd.role||'');
   x.textAlign='center';
   x.fillStyle=colL;x.font='700 24px "Instrument Sans",sans-serif';x.fillText('MI RESULTADO',W/2,E);
-  let bs=big.length<=3?206:big.length<=10?122:big.length<=16?88:66;
-  x.font=`700 ${bs}px "Bricolage Grotesque",sans-serif`;while(bs>40&&x.measureText(big).width>W-2*P-16){bs-=6;x.font=`700 ${bs}px "Bricolage Grotesque",sans-serif`;}
-  const tg=x.createLinearGradient(0,B-120,0,B+15);tg.addColorStop(0,'#ffffff');tg.addColorStop(1,colL);x.fillStyle=tg;
-  x.fillText(big,W/2,B);
-  if(sub){x.fillStyle='rgba(255,255,255,.82)';x.font='italic 400 42px "Instrument Sans",sans-serif';x.fillText(sub.slice(0,42),W/2,B+60);}
+  const fit=cardTitleFit(x,big,big.length<=3?206:big.length<=10?122:big.length<=16?88:66,W-2*P-16),bs=fit.bs,lh=Math.round(bs*1.05);
+  x.font=`700 ${bs}px "Bricolage Grotesque",sans-serif`;
+  const ex=(fit.lines.length-1)*lh,tg=x.createLinearGradient(0,B-120,0,B+15+ex);tg.addColorStop(0,'#ffffff');tg.addColorStop(1,colL);x.fillStyle=tg;
+  fit.lines.forEach((l,i)=>x.fillText(l,W/2,B+i*lh));
+  if(sub){x.fillStyle='rgba(255,255,255,.82)';x.font='italic 400 42px "Instrument Sans",sans-serif';x.fillText(sub.slice(0,42),W/2,B+60+ex);}
   // visualización
   const vizTop=Math.round(H*0.44);
   if(bars.length>=2){
