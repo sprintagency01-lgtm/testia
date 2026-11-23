@@ -1,5 +1,5 @@
 {
-  "_doc": "Cola de temas para la rutina diaria del blog de Testia. La rutina coge la primera entrada 'pending', la escribe y la marca 'done' con la fecha y el slug publicado. Cuando quedan menos de cinco pendientes, añade cinco nuevas cumpliendo las tres reglas: se busca de verdad (cola larga), no compite con webs de altísima autoridad y enlaza con un test real de /test/.",
+  "_doc": "Cola de temas para la rutina diaria del blog de Testia. La rutina coge la primera entrada 'pending', la escribe y la marca 'done' con la fecha y el slug publicado. Cuando quedan menos de cinco pendientes, añade cinco nuevas cumpliendo las tres reglas: se busca de verdad (cola larga), no compite con webs de altísima autoridad y enlaza con un test real de /test/. Orden (2026-11-23): primero los temas que llevan a tests que venden (CI, altas capacidades, razonamiento para entrevistas, CCSE); los de curiosidad general van detrás.",
   "topics": [
     {
       "keyword": "qué mide un test de ideología política",
@@ -498,6 +498,104 @@
       "slug": "diferencia-entre-rumiacion-y-reflexion"
     },
     {
+      "keyword": "de qué disfrazarse en Halloween según tu personalidad",
+      "secondary": [
+        "ideas de disfraz de Halloween",
+        "disfraz de bruja",
+        "disfraz de vampiro",
+        "origen de Halloween"
+      ],
+      "intent": "Guía estacional que propone disfraces según rasgos de personalidad y enlaza al test de criatura; publicar antes del 31 de octubre.",
+      "test_slug": "test-eres-bruja-hada-vampiro-o-sirena",
+      "test_id": "bruja",
+      "why": "Estacional: Halloween el 31 de octubre; 'test eres bruja o hada' y 'test bruja vampiro hada o sirena' en el autocompletado. Test lanzado el 2026-10-18. · Saltado el 2026-11-23: Halloween ya pasó; recuperarlo en septiembre de 2027.",
+      "status": "skipped"
+    },
+    {
+      "keyword": "cómo saber si tengo altas capacidades siendo adulto",
+      "secondary": [
+        "rasgos de altas capacidades en adultos",
+        "altas capacidades no diagnosticadas en adultos",
+        "diferencia entre altas capacidades y alta sensibilidad",
+        "dónde hacer una evaluación de altas capacidades"
+      ],
+      "intent": "Guía para adultos que sospechan tener altas capacidades: rasgos descritos en la investigación (con prudencia), criterio de CI, modelos como el de Renzulli, diferencia con la alta sensibilidad y cómo es una evaluación profesional. Enlazar al test sin presentarlo como diagnóstico.",
+      "test_slug": "test-altas-capacidades-adultos",
+      "test_id": "aacc",
+      "why": "'test de altas capacidades adultos gratis' y variantes en el autocompletado de España y México; tema con mayor intención de pago en el análisis del 2026-10-26. Test lanzado el 2026-10-26 sin guía.",
+      "status": "pending"
+    },
+    {
+      "keyword": "cómo aprobar el examen CCSE de nacionalidad",
+      "secondary": [
+        "preguntas más falladas del CCSE",
+        "cuánto se tarda en preparar el CCSE",
+        "qué entra en el examen de nacionalidad",
+        "diferencia entre DELE y CCSE"
+      ],
+      "intent": "Guía práctica para preparar el CCSE: estructura, temas que más se fallan, cómo usar el manual oficial del Instituto Cervantes y simulacros; enlazar al simulacro de Testia sin presentarlo como oficial. Verificar datos en el BOE (RD 1004/2015, Orden JUS/1625/2016).",
+      "test_slug": "test-de-nacionalidad-espanola",
+      "test_id": "ccse",
+      "why": "'test de nacionalidad española 2026' y 'test ccse 2026' en el autocompletado de Google; búsqueda constante todo el año. Test lanzado el 2026-10-20 sin guía.",
+      "status": "pending"
+    },
+    {
+      "keyword": "qué CI se considera superdotado en adultos",
+      "secondary": [
+        "CI de altas capacidades",
+        "a partir de qué CI eres superdotado",
+        "CI 130 qué significa",
+        "diferencia entre superdotación y altas capacidades"
+      ],
+      "intent": "Respuesta directa con la cifra (CI ≥ 130, dos desviaciones típicas), percentiles, por qué el CI no lo es todo (modelo de Renzulli) y cómo se evalúa de verdad. Enlazar al test de CI y al de altas capacidades sin presentarlos como diagnóstico. No repetir escala-ci-percentiles: aquí la intención es el umbral de superdotación.",
+      "test_slug": "test-de-ci",
+      "test_id": "iq",
+      "why": "Prioridad por ventas (PostHog, sep–nov 2026): los tests de CI y de altas capacidades convierten ~10 % de los muros vistos en compra, frente al 0,6 % del test electoral. Cola larga con intención clara.",
+      "status": "pending"
+    },
+    {
+      "keyword": "ejemplos de test psicotécnico de razonamiento para entrevista de trabajo",
+      "secondary": [
+        "cómo preparar un psicotécnico de empresa",
+        "preguntas de razonamiento numérico con solución",
+        "series numéricas psicotécnicos ejemplos",
+        "cuánto tiempo dura un psicotécnico de selección"
+      ],
+      "intent": "Guía práctica con ejemplos resueltos de razonamiento numérico, verbal y lógico como los de los procesos de selección, cómo se puntúan (percentiles) y cómo practicar. Enlazar al test de razonamiento para entrevistas como práctica.",
+      "test_slug": "test-de-razonamiento-para-entrevistas",
+      "test_id": "razonamiento",
+      "why": "Intención de pago alta (alguien que se juega un trabajo) y búsqueda constante todo el año. Prioridad por ventas (PostHog, nov 2026).",
+      "status": "pending"
+    },
+    {
+      "keyword": "cuál es el CI medio en España por edad",
+      "secondary": [
+        "CI medio de un adulto",
+        "CI normal por edades",
+        "qué CI es bajo",
+        "CI medio por países"
+      ],
+      "intent": "Dato directo (media 100, DT 15, por construcción del test), qué cambia con la edad (inteligencia fluida y cristalizada, efecto Flynn) y cómo leer tu resultado. Enlazar al test de CI. Evitar cifras por país sin fuente.",
+      "test_slug": "test-de-ci",
+      "test_id": "iq",
+      "why": "Pregunta muy buscada que lleva al test de CI, uno de los dos que más venden. Prioridad por ventas (PostHog, nov 2026).",
+      "status": "pending"
+    },
+    {
+      "keyword": "qué carrera estudiar si no sé qué me gusta",
+      "secondary": [
+        "no sé qué estudiar después de bachillerato",
+        "cómo elegir carrera universitaria",
+        "test para saber qué estudiar",
+        "carreras con salida según tus intereses"
+      ],
+      "intent": "Guía para estudiantes indecisos antes de la preinscripción (mayo–junio): método por intereses (RIASEC), aptitudes y salidas; cuándo considerar FP. Enlazar al test de qué carrera estudiar.",
+      "test_slug": "test-que-carrera-estudiar",
+      "test_id": "carrera",
+      "why": "Demanda estacional fuerte en primavera (selectividad y preinscripción); publicar antes de marzo para que indexe a tiempo.",
+      "status": "pending"
+    },
+    {
       "keyword": "sesgo de confirmación en el día a día",
       "secondary": [
         "qué es el sesgo de confirmación",
@@ -607,48 +705,6 @@
       "test_slug": "test-sol-luna-estrella-o-eclipse",
       "test_id": "solluna",
       "why": "Trend de TikTok en octubre de 2026; 'test sol o luna', 'test sol luna o estrellas' y 'test sol luna o eclipse' en el autocompletado. Test lanzado el 2026-10-18 sin guía.",
-      "status": "pending"
-    },
-    {
-      "keyword": "de qué disfrazarse en Halloween según tu personalidad",
-      "secondary": [
-        "ideas de disfraz de Halloween",
-        "disfraz de bruja",
-        "disfraz de vampiro",
-        "origen de Halloween"
-      ],
-      "intent": "Guía estacional que propone disfraces según rasgos de personalidad y enlaza al test de criatura; publicar antes del 31 de octubre.",
-      "test_slug": "test-eres-bruja-hada-vampiro-o-sirena",
-      "test_id": "bruja",
-      "why": "Estacional: Halloween el 31 de octubre; 'test eres bruja o hada' y 'test bruja vampiro hada o sirena' en el autocompletado. Test lanzado el 2026-10-18.",
-      "status": "pending"
-    },
-    {
-      "keyword": "cómo aprobar el examen CCSE de nacionalidad",
-      "secondary": [
-        "preguntas más falladas del CCSE",
-        "cuánto se tarda en preparar el CCSE",
-        "qué entra en el examen de nacionalidad",
-        "diferencia entre DELE y CCSE"
-      ],
-      "intent": "Guía práctica para preparar el CCSE: estructura, temas que más se fallan, cómo usar el manual oficial del Instituto Cervantes y simulacros; enlazar al simulacro de Testia sin presentarlo como oficial. Verificar datos en el BOE (RD 1004/2015, Orden JUS/1625/2016).",
-      "test_slug": "test-de-nacionalidad-espanola",
-      "test_id": "ccse",
-      "why": "'test de nacionalidad española 2026' y 'test ccse 2026' en el autocompletado de Google; búsqueda constante todo el año. Test lanzado el 2026-10-20 sin guía.",
-      "status": "pending"
-    },
-    {
-      "keyword": "cómo saber si tengo altas capacidades siendo adulto",
-      "secondary": [
-        "rasgos de altas capacidades en adultos",
-        "altas capacidades no diagnosticadas en adultos",
-        "diferencia entre altas capacidades y alta sensibilidad",
-        "dónde hacer una evaluación de altas capacidades"
-      ],
-      "intent": "Guía para adultos que sospechan tener altas capacidades: rasgos descritos en la investigación (con prudencia), criterio de CI, modelos como el de Renzulli, diferencia con la alta sensibilidad y cómo es una evaluación profesional. Enlazar al test sin presentarlo como diagnóstico.",
-      "test_slug": "test-altas-capacidades-adultos",
-      "test_id": "aacc",
-      "why": "'test de altas capacidades adultos gratis' y variantes en el autocompletado de España y México; tema con mayor intención de pago en el análisis del 2026-10-26. Test lanzado el 2026-10-26 sin guía.",
       "status": "pending"
     }
   ]
