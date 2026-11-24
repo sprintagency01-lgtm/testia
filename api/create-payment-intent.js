@@ -1,5 +1,5 @@
 // POST /api/create-payment-intent  -> cobro para el botón exprés del muro (Apple Pay / Google Pay).
-//   { testId, testName, email? } -> PaymentIntent de 1,99 € (resultado de un test)
+//   { testId, testName, email? } -> PaymentIntent del resultado de un test (1,99 €; 0,99 € en Latinoamérica, ver _pricing.js)
 // Es la alternativa a /api/create-checkout sin salir de Testia: el muro monta el Express Checkout
 // Element de Stripe y, al confirmar en la hoja del móvil, pide aquí el cobro y lo confirma en la
 // página. El desbloqueo sigue pasando por /api/verify-payment, que pregunta a Stripe.
@@ -8,7 +8,7 @@
 // Solo el resultado suelto: el pase sigue yendo por Stripe Checkout, porque /api/recover-pass
 // busca pases en las Checkout Sessions.
 // Sin dependencias: usa la API REST de Stripe con fetch. Requiere STRIPE_SECRET_KEY en Vercel.
-const AMOUNT = 199;
+const { single } = require('./_pricing');
 
 module.exports = async (req, res) => {
   if (req.method !== 'POST') {
@@ -28,8 +28,9 @@ module.exports = async (req, res) => {
     const testName = String(body.testName || 'tu resultado').slice(0, 120);
     const email = String(body.email || '').trim().slice(0, 200);
 
+    const price = single(req);
     const params = new URLSearchParams();
-    params.append('amount', String(AMOUNT));
+    params.append('amount', String(price.amount));
     params.append('currency', 'eur');
     // Los métodos los decide el panel de Stripe; el botón exprés solo enseña los monederos.
     params.append('automatic_payment_methods[enabled]', 'true');
@@ -37,6 +38,7 @@ module.exports = async (req, res) => {
     params.append('metadata[testId]', testId);
     params.append('metadata[plan]', 'single');
     params.append('metadata[source]', 'express');
+    params.append('metadata[priceVariant]', price.variant);
     if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) params.append('receipt_email', email);
 
     const r = await fetch('https://api.stripe.com/v1/payment_intents', {
