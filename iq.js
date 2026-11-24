@@ -33,10 +33,13 @@
     {q:"Guante es a Mano como Zapato es a…", o:["Calcetín","Pie","Suelo","Cuero"], a:1},
   ].map(x=>({...x,d:"verbal"}));
 
+  // La primera es la misma serie que enseña el anuncio de Meta y la página del test
+  // (2, 6, 12, 20 → 30): quien llega desde ahí empieza por el problema que ya ha visto.
+  // Sustituye a «3, 6, 11, 18, 27», que es el mismo tipo de serie (diferencias que crecen de dos en dos).
   const NUMERICO = [
+    {q:"¿Qué número sigue?  2, 6, 12, 20, …", o:["28","30","32","36"], a:1},
     {q:"¿Qué número continúa?  2, 4, 8, 16, …", o:["20","24","32","30"], a:2},
     {q:"Serie de Fibonacci:  1, 1, 2, 3, 5, 8, …", o:["11","13","12","15"], a:1},
-    {q:"¿Qué número sigue?  3, 6, 11, 18, 27, …", o:["36","38","40","35"], a:1},
     {q:"¿Qué número sigue?  100, 95, 85, 70, 50, …", o:["30","25","20","35"], a:1},
     {q:"¿Qué número sigue?  1, 4, 9, 16, 25, …", o:["30","49","36","35"], a:2},
     {q:"Continúa la serie de letras:  A, C, E, G, …", o:["H","I","J","K"], a:1},
@@ -79,7 +82,12 @@
      osvg:[SV(glyph("P",200,false)),SV(glyph("P",80,true)),SV(glyph("P",260,true)),SV(glyph("P",20,true))], a:0, d:"espacial"},
   ];
 
-  const ITEMS = [...VERBAL, ...NUMERICO, ...LOGICO, ...ABSTRACTO, ...ESPACIAL];
+  // Las aptitudes se van alternando (numérico, verbal, lógico, abstracto, espacial, y vuelta)
+  // en vez de ir en bloques: con los bloques, las ocho series de números seguidas de las
+  // preguntas 9 a 16 eran justo donde abandonaba la gente que llegaba desde Instagram.
+  // Dentro de cada aptitud se mantiene el orden, de más fácil a más difícil.
+  const interleave = (...groups) => { const out = []; for (let i = 0; groups.some(g => i < g.length); i++) groups.forEach(g => { if (i < g.length) out.push(g[i]); }); return out; };
+  const ITEMS = interleave(NUMERICO, VERBAL, LOGICO, ABSTRACTO, ESPACIAL);
 
   const t = (window.TESTS||[]).find(x=>x.id==="iq");
   if(t){

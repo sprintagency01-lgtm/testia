@@ -860,6 +860,7 @@ function startTest(id){
   if(T.prompt){$('qprompt').style.display='block';$('qprompt').textContent=T.prompt;}else $('qprompt').style.display='none';
   go('quiz');
   if(T.mode==='iat'){startIAT();return;}
+  armBackGuard();
   // El reloj se arranca después de go(), que limpia cualquier intervalo al cambiar de pantalla.
   if(T.mode==='correct'&&!T.noTimer){clearInterval(timerId);timerId=setInterval(tick,1000);}
   renderItem();
@@ -2400,7 +2401,27 @@ document.addEventListener('keydown',e=>{
   else if(e.key==='ArrowLeft'){if(idx>0){prev();e.preventDefault();}}
 });
 
-function handleStart(){const p=new URLSearchParams(location.search);const s=p.get('start');if(s&&TESTS.find(t=>t.id===s)){startTest(s);try{history.replaceState({},'',location.pathname);}catch(e){}}}
+function handleStart(){const p=new URLSearchParams(location.search);const s=p.get('start');if(s&&TESTS.find(t=>t.id===s)){startTest(s);
+  // ?q1=N llega desde el acertijo de la página del test: la respuesta que tocó allí ya sale marcada en la pregunta 1.
+  const q1=p.get('q1');if(q1!==null&&/^[0-9]$/.test(q1)&&T.mode==='correct'&&items[0]&&items[0].o&&+q1<items[0].o.length){answers[0]=+q1;renderItem();}
+  // Se quitan solo start y q1: las utm_* tienen que seguir en la URL cuando PostHog, que carga después, registra la visita.
+  // Si no, el tráfico de un anuncio que enlaza directo a la primera pregunta llega sin campaña.
+  p.delete('start');p.delete('q1');const rest=p.toString();try{history.replaceState(history.state,'',location.pathname+(rest?'?'+rest:''));}catch(e){}}}
+// «Atrás» del móvil durante un test vuelve a la pregunta anterior en vez de sacarte del test.
+// Sin esto, el gesto de atrás de Android devolvía a la página de antes y se perdían todas las respuestas:
+// así acababan los abandonos del test de CI que llegaban desde Instagram.
+let backGuard=false;
+function armBackGuard(){if(backGuard)return;try{history.pushState({testiaQuiz:1},'');backGuard=true;}catch(e){}}
+function rearmBackGuard(){try{history.pushState({testiaQuiz:1},'');}catch(e){}}
+window.addEventListener('popstate',()=>{
+  if(!backGuard)return;
+  const inQuiz=T&&T.mode!=='iat'&&$('quiz')&&$('quiz').classList.contains('active');
+  if(!inQuiz){backGuard=false;return;}
+  if(memActive){rearmBackGuard();return;}
+  if(idx>0&&!T.noBack){prev();rearmBackGuard();return;}
+  if(idx>0&&!confirm('¿Salir del test? Se perderán tus respuestas.')){rearmBackGuard();return;}
+  backGuard=false;history.back();
+});
 buildHome();buildCatalog();buildFooter();handleReturn().then(st=>{if(st!=='restored')handleStart();});if(COUPLE_BOTH)openCoupleResult();
 </script>
 </body>
