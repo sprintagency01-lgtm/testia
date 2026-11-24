@@ -4,6 +4,7 @@ Este registro evita repetir intención de búsqueda entre guías y páginas de t
 
 ## Publicaciones
 
+- 2026-11-24 — `/blog/como-saber-si-tengo-altas-capacidades` — keyword principal: `cómo saber si tengo altas capacidades siendo adulto` — secundarias: `rasgos de altas capacidades en adultos`, `altas capacidades no diagnosticadas en adultos`, `diferencia entre altas capacidades y alta sensibilidad`, `dónde hacer una evaluación de altas capacidades`.
 - 2026-11-20 — `/blog/diferencia-entre-rumiacion-y-reflexion` — keyword principal: `diferencia entre rumiación y reflexión` — secundarias: `qué es la rumiación mental`, `darle vueltas a las cosas`, `autofocalización`, `rumiación y estado de ánimo`.
 - 2026-11-15 — `/blog/escala-de-kinsey` — keyword principal: `escala de Kinsey` — secundarias: `qué es la escala de Kinsey`, `Kinsey 1 2 3`, `cuadrícula de Klein`, `espectro asexual`.
 - 2026-11-15 — `/blog/racismo-implicito-que-es` — keyword principal: `racismo implícito` — secundarias: `sesgo implícito`, `test de asociación implícita`, `test de Harvard racismo`, `puntuación D IAT`.
