@@ -45,12 +45,26 @@ const PAYMENT_FAQ = {
   a:"Responder el cuestionario es gratis y no requiere registro. Al terminar puedes desbloquear el informe completo por 1,99 € en un único pago, sin suscripción."
 };
 
+// Acertijo de arriba en la landing del test de CI: es la pregunta 1 del test y la misma serie del
+// anuncio de Meta. Tocar una respuesta abre el test con esa respuesta ya marcada (?q1=).
+// Se construye desde iq.js para que la landing y el test no se desincronicen.
+function teaser(t){
+  if (t.id !== "iq") return "";
+  const it = t.items[0], parts = (it && it.q || "").split(/\s{2,}/);
+  if (!it || !it.o || parts.length < 2) return "";
+  const nums = parts[1].replace(/,?\s*…\s*$/, "").split(/,\s*/);
+  return `  <div class="teaser"><div class="tk">Pregunta 1 de ${t.items.length}</div><p class="tq">${esc(parts[0])}</p><div class="tseq" aria-label="${esc(nums.join(", "))} y ¿qué número sigue?">${nums.map(n=>`<span>${esc(n)}</span>`).join("")}<span class="q">?</span></div><div class="topts">${it.o.map((o,i)=>`<a href="/?start=${t.id}&amp;q1=${i}" rel="nofollow">${esc(o)}</a>`).join("")}</div><p class="tn">Toca tu respuesta y sigue con el test. Responder es gratis y sin registro.</p></div>
+`;
+}
 const CSS = `*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Instrument Sans',system-ui,sans-serif;background:linear-gradient(180deg,#f4f4f2,#eeefea);color:#17181c;line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{max-width:920px;margin:0 auto;padding:0 28px}.disp{font-family:'Bricolage Grotesque',sans-serif}
 header{position:sticky;top:0;z-index:9;backdrop-filter:blur(10px);background:rgba(244,244,242,.82);border-bottom:1px solid #e4e4e1}.nav{height:70px;display:flex;align-items:center;justify-content:space-between}.brand{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.5rem;letter-spacing:-.02em}.nav a.lnk{font-size:.72rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#6e7075;margin-left:22px}
 .eyebrow{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin:54px 0 18px}h1{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(2.2rem,5.5vw,3.4rem);line-height:1.04;letter-spacing:-.03em}
 .lead{font-size:1.2rem;color:#54565c;margin:20px 0 0;max-width:60ch}.meta{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 0}.chip{padding:7px 15px;border:1px solid #dcdcd8;border-radius:999px;font-size:.78rem;font-weight:600;background:#fff;color:#54565c}
 .btn{display:inline-block;font-weight:600;font-size:1.02rem;padding:17px 34px;border-radius:999px;color:#fff;box-shadow:0 14px 34px rgba(47,75,214,.28);margin:30px 14px 0 0}.btn.alt{background:#fff;color:#17181c;border:1px solid #dcdcd8;box-shadow:none}
 .cta-note{font-size:.84rem;color:#6e7075;margin-top:12px}.cta-note strong{color:#34363b}
+.teaser{margin:26px 0 0;background:#fff;border:1px solid #e1e1dd;border-radius:20px;padding:22px 22px 18px;max-width:560px}.teaser .tk{font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3a57e8}.teaser .tq{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.35rem;letter-spacing:-.01em;margin:6px 0 14px}
+.tseq{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:2.2rem;letter-spacing:-.02em;line-height:1.2}.tseq .q{background:linear-gradient(135deg,#3a57e8,#2840c4);color:#fff;border-radius:12px;padding:0 14px}
+.topts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0 0}.topts a{display:block;text-align:center;padding:14px 0;border:1px solid #dcdcd8;border-radius:14px;background:#fafaf8;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.3rem}.topts a:hover,.topts a:focus-visible{border-color:#3a57e8;color:#2840c4}.teaser .tn{font-size:.82rem;color:#6e7075;margin:12px 0 0}
 h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:1.7rem;letter-spacing:-.02em;margin:54px 0 18px;padding-bottom:12px;border-bottom:2px solid #17181c}
 .learn{display:grid;gap:14px;margin:0}.learn li{list-style:none;display:flex;gap:13px;font-size:1.08rem}.learn li::before{content:"✓";font-weight:800}
 .overview{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:34px 0 0}@media(max-width:680px){.overview{grid-template-columns:1fr}}.overview div{background:rgba(255,255,255,.68);border:1px solid #e1e1dd;border-radius:14px;padding:17px}.overview dt{font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#8a8b90;margin-bottom:5px}.overview dd{font-size:.94rem;color:#34363b;line-height:1.45}
@@ -121,7 +135,7 @@ function page(t){
 <main class="wrap">
   <div class="eyebrow" style="color:${cat.color}">${esc(cat.name)}</div>
   <h1>${esc(pageName)}</h1>
-  <p class="lead">${esc(s.intro)}</p>
+${teaser(t)}  <p class="lead">${esc(s.intro)}</p>
   <div class="meta"><span class="chip">${t.countLabel||t.items.length+" preguntas"}</span><span class="chip">~${mins(t)} min</span><span class="chip">Sin registro</span><span class="chip">${t.free?"Gratis entero":"Cuestionario gratis"}</span></div>
   <div><a class="btn" style="background:linear-gradient(135deg,#3a57e8,#2840c4)" href="/?start=${t.id}" aria-label="Responder ${esc(pageName)} gratis">Responder gratis →</a><a class="btn alt" href="/#catalogo">Ver todos los tests</a></div>
 ${s.updated?`  <p class="updated">Actualizado: <time datetime="${esc(s.updatedISO||"")}">${esc(s.updated)}</time></p>
