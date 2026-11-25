@@ -284,6 +284,10 @@
   .paywallcard .pwexpress{margin:18px 0 0;min-height:50px}
   .paywallcard .pwor{align-items:center;gap:10px;color:var(--mut);font-size:.76rem;margin:12px 0;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .paywallcard .pwor:before,.paywallcard .pwor:after{content:'';flex:1;height:1px;background:var(--line,#e6e6e3)}
+  .paywallcard .pwiab{margin:18px 0 0}.paywallcard .pwiab .pwwallet{width:100%;background:#000;color:#fff;border-color:#000}
+  .paywallcard .pwiab small{display:block;font-size:.8rem;color:var(--mut);margin-top:8px;line-height:1.45}
+  .paywallcard .pwiabhelp{margin-top:12px;padding:12px 14px;border:1px dashed var(--line2);border-radius:12px;font-size:.85rem;line-height:1.5;color:var(--ink2);text-align:left}
+  .paywallcard .pwiabhelp button{margin-top:8px;font:inherit;font-weight:600;font-size:.82rem;background:none;border:1px solid var(--line2);border-radius:999px;padding:6px 14px;cursor:pointer;color:var(--ink)}
   .paywallcard .pwsec{font-size:.76rem;color:var(--mut);margin-top:16px;text-transform:uppercase;letter-spacing:.06em;font-weight:600}
   .pwprice{font-family:var(--disp);font-weight:700}
   .pwalt{margin-top:12px;display:flex;flex-direction:column;gap:6px;align-items:center}.pwalt .btn{font-size:.9rem;padding:13px 22px}.pwalt span{font-size:.8rem;color:var(--mut)}
@@ -350,6 +354,9 @@
 }
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script src="/iab-handoff.js?v=20261125"></script>
+<script>/* Resultado traído desde el navegador de Instagram (#res=…): se guarda y se borra de la URL antes de que PostHog la lea. */
+try{window.__RES_IN=IAB.fromHash(location.hash);if(window.__RES_IN)history.replaceState(null,'',location.pathname+location.search);}catch(e){}</script>
 <script src="/posthog-analytics.js"></script>
 </head>
 <body>
@@ -1768,6 +1775,9 @@ function priceVariant(){
 }
 const pwEsc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 const PAY_METHODS=['Tarjeta','Apple Pay','Google Pay','PayPal']; // los que muestra Stripe Checkout (métodos dinámicos)
+// Navegador interno de Instagram/Facebook/TikTok: ahí no hay Apple Pay ni Google Pay (iab-handoff.js).
+const IAB_ENV=(()=>{try{const d=IAB.detect(navigator.userAgent);return d&&(d.os==='ios'||d.os==='android')?d:null;}catch(e){return null;}})();
+const payMethods=()=>IAB_ENV?PAY_METHODS.filter(m=>!/Pay$/.test(m)||m==='PayPal'):PAY_METHODS;
 // Fuera de Europa Stripe cobra en la moneda local (Adaptive Pricing, api/create-checkout.js): se avisa
 // en el muro para que «1,99 €» no frene a quien paga en pesos. Se decide por la zona horaria del navegador.
 const payLocal=()=>{try{return /^America\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone||'');}catch(e){return false;}};
@@ -1776,7 +1786,9 @@ function setHardLock(on){
   const body=$('resBody'),pw=$('paywall'),left=pw&&pw.parentElement,side=$('resSide');if(!body||!pw)return;
   body.classList.toggle('hardlock',on);
   if(on){left.insertBefore(pw,left.firstElementChild);}else{left.insertBefore(pw,$('resPremium'));}
-  const nt=$('nextTop');if(nt)pw.insertAdjacentElement('afterend',nt); // el siguiente test va siempre justo debajo del muro y sin difuminar
+  // El siguiente test va justo debajo del muro y sin difuminar. En el navegador de Instagram (tráfico del
+  // anuncio) va al final: debajo del muro era una salida gratis justo en el momento de pagar.
+  const nt=$('nextTop');if(nt){if(IAB_ENV)left.appendChild(nt);else pw.insertAdjacentElement('afterend',nt);}
   [...left.children].forEach(el=>el.classList.toggle('hl',on&&el!==pw&&el!==nt&&el.id!=='coupleBox'));
   if(side)[...side.children].forEach(el=>el.classList.toggle('hl',on&&el.id!=='nextBox'));
 }
@@ -1805,13 +1817,14 @@ function lockResultInner(v){
     <p>${pitch}</p>
     ${peek}
     <ul class="pwinc">${inc.map(x=>`<li>${x}</li>`).join('')}</ul>
+    ${IAB_ENV?iabBlock():''}
     <div id="pwExpress" class="pwexpress" style="display:none"></div>
     <div id="pwExpressOr" class="pwor" style="display:none"><span>o con tarjeta</span></div>
     <button class="btn lg" data-analytics-name="Comprar resultado premium" onclick="payAndUnlock('single')">${hard?'Ver mi resultado':'Ver mi lectura completa'} · <span class="pwprice pwsingle">${fmtEur(singlePrice())}</span></button>
     ${upgradeFrom()?`<div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase (diferencia)" onclick="payAndUnlock('upgrade')">Pase para todos los tests · <span class="pwprice"><s>4,99&nbsp;€</s> ${fmtEur(upgradePrice())}</span></button><span>Ya pagaste un resultado: te lo descontamos. Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>`
     :`<div class="pwalt"><button class="btn out" data-analytics-name="Comprar pase" onclick="payAndUnlock('pass')">Pase para todos los tests · <span class="pwprice">4,99&nbsp;€</span></button><span>Este y los otros ${TESTS.length-1} tests, para siempre.</span></div>`}
     <div class="pwsec">🔒 Pago seguro con Stripe · pago único, sin suscripción${hard?'':' · la carta ya es tuya'}${payLocal()?' · pagas en tu moneda':''}</div>
-    <div class="pwpay">${PAY_METHODS.map(m=>`<span>${m}</span>`).join('')}</div>
+    <div class="pwpay">${payMethods().map(m=>`<span>${m}</span>`).join('')}</div>
     <span class="pwrecover" onclick="recoverPass()">¿Ya tienes un pase? Recupéralo con tu email</span>
   </div>`;
   $('paywall').style.display='block';
@@ -1819,8 +1832,60 @@ function lockResultInner(v){
   $('resPremium').classList.add('locked');
   updateMailbox();
   paywallSeen=false;
-  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
-  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v});}
+  if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)&&!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v,iab:IAB_ENV?IAB_ENV.app:null});io.disconnect();}},{threshold:.5});io.observe($('paywall'));}
+  else if(!paywallSeen){paywallSeen=true;trackEvent('paywall_viewed',{test_id:T.id,test_name:T.name,price:singlePrice(),price_variant:PRICE_VARIANT,currency:'EUR',teaser:(tz&&tz.kind)||'generic',paywall_variant:v,iab:IAB_ENV?IAB_ENV.app:null});}
+}
+function iabBlock(){
+  const ios=IAB_ENV.os==='ios',wallet=ios?'Apple Pay':'Google Pay',br=ios?'Safari':'Chrome';
+  return `<div id="pwIab" class="pwiab">
+      <button class="btn lg pwwallet" data-analytics-name="Pagar con ${wallet} fuera de ${IAB_ENV.app}" onclick="iabHandoff()">Pagar con ${wallet} · <span class="pwprice pwsingle">${fmtEur(singlePrice())}</span></button>
+      <small>${IAB_ENV.app} no deja usar ${wallet} en su navegador. Se abre ${br} con tu resultado y pagas con un toque.</small>
+      <div id="pwIabHelp" class="pwiabhelp" style="display:none"></div>
+    </div>
+    <div id="pwIabOr" class="pwor" style="display:flex"><span>o con tarjeta aquí</span></div>`;
+}
+async function iabHandoff(){
+  if(!IAB_ENV||!T||!lastResult)return;
+  const t=T,payload=await IAB.encode({v:1,t:t.id,r:lastResult,pwv:PW_VARIANT,ts:Date.now()});
+  // Solo viajan las utm (no ?start=…, que volvería a empezar el test en Safari/Chrome).
+  const q=new URLSearchParams(location.search),keep=new URLSearchParams();
+  q.forEach((v,k)=>{if(/^utm_/.test(k))keep.set(k,v);});
+  const path=location.pathname+(keep.toString()?'?'+keep:'');
+  // También en la URL de esta página: si el enlace no abre, «··· → Abrir en el navegador» se lleva el resultado.
+  try{history.replaceState(history.state,'',path+'#res='+payload);}catch(e){}
+  trackEvent('iab_handoff_clicked',{test_id:t.id,app:IAB_ENV.app,os:IAB_ENV.os,size:payload.length});
+  location.href=IAB.openUrl({os:IAB_ENV.os,origin:location.origin,path,payload});
+  // Si sigue aquí al rato, o vuelve a Instagram sin haber pagado, se le explica cómo abrirlo a mano.
+  const help=()=>{
+    const h=$('pwIabHelp');if(!h||h.style.display==='block')return;
+    const ios=IAB_ENV.os==='ios';
+    h.innerHTML=`¿No se ha abierto ${ios?'Safari':'Chrome'}? Toca <b>${ios?'···':'⋮'}</b> arriba a la derecha y elige <b>«Abrir en el navegador»</b>: tu resultado va incluido.<br><button type="button" onclick="iabCopy()">Copiar enlace</button>`;
+    h.style.display='block';try{h.scrollIntoView({behavior:'smooth',block:'center'});}catch(e){}
+    trackEvent('iab_handoff_help_shown',{test_id:t.id,app:IAB_ENV.app,os:IAB_ENV.os});
+  };
+  setTimeout(()=>{
+    if(document.visibilityState==='visible')help();
+    else document.addEventListener('visibilitychange',function f(){if(document.visibilityState==='visible'){document.removeEventListener('visibilitychange',f);help();}});
+  },1800);
+}
+function iabCopy(){
+  const u=location.href;
+  const done=()=>{toast('Enlace copiado. Pégalo en '+(IAB_ENV&&IAB_ENV.os==='ios'?'Safari':'Chrome')+'.');trackEvent('iab_handoff_copied',{test_id:T&&T.id});};
+  try{navigator.clipboard.writeText(u).then(done,()=>{prompt('Copia este enlace:',u);});}catch(e){prompt('Copia este enlace:',u);}
+}
+// En Safari/Chrome: abre el resultado traído desde la app con el muro de pago (el desbloqueo sigue
+// necesitando que el servidor confirme el cobro, como siempre).
+async function restoreHandoff(s){
+  const o=await IAB.decode(s);
+  const t=o&&o.v===1&&o.r&&IAB.fresh(o)&&TESTS.find(x=>x.id===o.t);
+  if(!t){trackEvent('iab_handoff_failed',{reason:!o?'decode':!IAB.fresh(o)?'expired':'test'});return false;}
+  T=t;items=T.items;lastResult=o.r;
+  renderResult(o.r);go('result');try{drawCard(o.r);}catch(e){}
+  lockResult(o.pwv||PW_VARIANT);checkPass();
+  trackEvent('iab_handoff_opened',{test_id:T.id});
+  setTimeout(()=>{const pw=$('paywall');if(pw&&pw.style.display!=='none')pw.scrollIntoView({behavior:'smooth',block:'center'});},350);
+  toast('Aquí tienes tu resultado. Ya puedes pagar con Apple Pay o Google Pay.');
+  return true;
 }
 function revealResult(){
   hideAsk();
@@ -2020,6 +2085,7 @@ async function mountExpress(){
       const on=m?Object.keys(m).filter(k=>m[k]):[];
       if(!on.length){box.style.display='none';return;}
       box.style.display='block';const or=$('pwExpressOr');if(or)or.style.display='flex';
+      ['pwIab','pwIabOr'].forEach(id=>{const el=$(id);if(el)el.style.display='none';});
       trackEvent('express_available',{test_id:t.id,methods:on.join(',')});
     });
     ece.on('click',e=>{
@@ -2422,7 +2488,7 @@ window.addEventListener('popstate',()=>{
   if(idx>0&&!confirm('¿Salir del test? Se perderán tus respuestas.')){rearmBackGuard();return;}
   backGuard=false;history.back();
 });
-buildHome();buildCatalog();buildFooter();handleReturn().then(st=>{if(st!=='restored')handleStart();});if(COUPLE_BOTH)openCoupleResult();
+buildHome();buildCatalog();buildFooter();(window.__RES_IN?restoreHandoff(window.__RES_IN):Promise.resolve(false)).then(ok=>ok?'restored':handleReturn()).then(st=>{if(st!=='restored')handleStart();});if(COUPLE_BOTH)openCoupleResult();
 </script>
 </body>
 </html>
