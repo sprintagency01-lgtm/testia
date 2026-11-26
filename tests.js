@@ -3189,6 +3189,102 @@ const ANSIEDAD={
  ]
 };
 window.TESTS.push(ANSIEDAD);
+
+/* --- Rasgos autistas ---
+   Preguntas propias de Testia sobre las tres áreas de los criterios del DSM-5 (comunicación e interacción social;
+   rutinas, rigidez e intereses; sensibilidad sensorial). No reproducen ítems del AQ, AQ-10, CATI ni RAADS-R,
+   cuyas licencias no permiten este uso. Sin puntos de corte validados: bandas orientativas con traitBand(). */
+const NOVAL='<p class="rhnote">Este test usa preguntas propias basadas en los criterios del DSM-5 y no está validado clínicamente: solo una evaluación profesional puede diagnosticar el autismo.</p>';
+const AUTISMO={
+ id:"autismo", name:"Test: ¿tengo rasgos autistas?", emoji:"♾️", cat:"Bienestar", eyebrow:"Tus rasgos autistas",
+ blurb:"30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial para saber si tienes rasgos autistas y dónde pedir una evaluación.",
+ instrument:"Preguntas propias de Testia basadas en las tres áreas de los criterios del DSM-5 (APA, 2013) · sin validar clínicamente.",
+ license:"🟡", sensitive:true, screening:true, official:0,
+ mode:"likert", scaleMax:5,
+ scales:{SOC:"Comunicación e interacción social",RUT:"Rutinas e intereses intensos",SEN:"Sensibilidad sensorial"},
+ result:{type:"screen",kind:"traits"},
+ premiumPitch:"Tu perfil en las tres áreas del autismo (comunicación social, rutinas e intereses, y sensibilidad sensorial), qué significa cada una en la vida adulta, los puntos fuertes asociados y un resumen para llevar a una evaluación.",
+ verdicts:{
+  bajo:{name:"Rasgos autistas bajos",desc:"Tus respuestas muestran pocos rasgos de los que se asocian al autismo en comunicación social, rutinas y sensibilidad sensorial.",
+   help:"<p>Si aun así te identificas con el autismo o hay cosas que te complican el día a día, coméntalo con tu médico de cabecera, que puede derivarte a salud mental. Asociaciones como Autismo España orientan sobre la evaluación en adultos.</p>"+NOVAL},
+  medio:{name:"Rasgos autistas moderados",desc:"Tus respuestas muestran algunos rasgos de los que se asocian al autismo, sobre todo en un área más que en las otras. Mucha gente tiene rasgos de este tipo sin ser autista.",
+   help:"<p>Si estos rasgos te generan malestar o te complican el trabajo o las relaciones, coméntalo con tu médico de cabecera, que puede derivarte a salud mental para una evaluación. Asociaciones como Autismo España te orientan sobre dónde se hace en tu comunidad.</p>"+NOVAL},
+  alto:{name:"Rasgos autistas altos",desc:"Tus respuestas muestran muchos de los rasgos que se asocian al autismo en las tres áreas. No es un diagnóstico, pero sí una buena razón para pedir una evaluación si te lo planteas.",
+   help:"<p><b>Si quieres una evaluación:</b> pide cita con tu médico de cabecera y explícale qué te pasa; puede derivarte a psiquiatría o psicología clínica. Asociaciones como Autismo España te orientan sobre dónde se hace el diagnóstico de adultos en tu comunidad.</p><p>Mucha gente recibe el diagnóstico de adulta, sobre todo mujeres y personas que han aprendido a camuflar sus rasgos.</p>"+NOVAL}
+ },
+ interp:{
+  SOC:{hi:"La interacción social te supone un esfuerzo extra: interpretar indirectas, saber cuándo hablar o sostener la mirada no te sale de forma automática, y después necesitas recuperarte. Muchas personas autistas aprenden a imitar lo que se espera de ellas, lo que agota. Como punto fuerte, sueles ser directo, sincero y fiel a lo que dices.",mid:"Algunas situaciones sociales te cuestan más que a la mayoría, sobre todo en grupo o con gente nueva. Elegir bien cuánto tiempo socializas y con quién te ayuda a no acabar agotado.",lo:"La comunicación y la interacción social te salen con naturalidad: lees bien a los demás y te mueves con soltura en grupo."},
+  RUT:{hi:"Las rutinas te dan seguridad y los cambios inesperados te desestabilizan. Además, tienes intereses que te absorben por completo. Es uno de los rasgos más característicos del autismo y también una fuente de talento: la constancia y la profundidad con la que dominas un tema son poco comunes. Avisar con tiempo de los cambios y reservar ratos para tus intereses te ayuda a estar bien.",mid:"Te gustan tus rutinas y tienes algún interés que te absorbe, aunque te adaptas a los cambios con algo de esfuerzo.",lo:"Llevas bien los cambios y la improvisación: no necesitas rutinas fijas para sentirte a gusto."},
+  SEN:{hi:"Tus sentidos van al máximo: ruidos, luces, texturas u olores que otros ni notan a ti te saturan, y los sitios concurridos te agotan rápido. Tapones o cascos, ropa cómoda y pausas en sitios tranquilos marcan mucha diferencia. Esa misma sensibilidad te hace captar detalles que a otros se les escapan.",mid:"Hay estímulos concretos que te molestan más que a la mayoría, sobre todo cuando estás cansado o estresado.",lo:"Los estímulos sensoriales no te afectan más que a la media."}
+ },
+ guide(pct,k,own){
+  return `Lleva a la evaluación ejemplos concretos de las dos áreas donde más se nota en tu caso: ${top2(pct,own,this)}. `
+   +"Para cada una, piensa en situaciones reales de tu día a día, cuánto esfuerzo te suponen y qué haces para compensarlas. "
+   +"El profesional también te preguntará por tu infancia: si puedes, pregunta a tu familia cómo eras de pequeño en el colegio, con otros niños y con los cambios.";
+ },
+ items:[
+  {t:"Después de una reunión o una comida con mucha gente, necesito tiempo a solas para recuperarme.",s:"SOC"},
+  {t:"Me cuesta saber cuándo me toca hablar en una conversación de grupo.",s:"SOC"},
+  {t:"A veces la gente se molesta por algo que he dicho y no entiendo bien por qué.",s:"SOC"},
+  {t:"Prefiero que me digan las cosas de forma literal y directa, sin indirectas.",s:"SOC"},
+  {t:"En situaciones sociales nuevas sé qué decir sin tener que pensarlo.",s:"SOC",r:true},
+  {t:"Mirar a los ojos mientras hablo me resulta incómodo o me desconcentra.",s:"SOC"},
+  {t:"Observo cómo se comportan los demás para copiarlo en situaciones nuevas.",s:"SOC"},
+  {t:"Las conversaciones de cortesía, como hablar del tiempo, me salen solas.",s:"SOC",r:true},
+  {t:"Me doy cuenta enseguida de si alguien se aburre mientras le hablo.",s:"SOC",r:true},
+  {t:"Hacer amigos nuevos me resulta sencillo.",s:"SOC",r:true},
+  {t:"Cuando cambian un plan en el último momento, me cuesta mucho adaptarme.",s:"RUT"},
+  {t:"Tengo temas que me apasionan y sobre los que podría leer o hablar durante horas.",s:"RUT"},
+  {t:"Me gusta hacer las cosas cotidianas siempre en el mismo orden.",s:"RUT"},
+  {t:"Cuando algo me interesa, me cuesta parar aunque tenga otras cosas que hacer.",s:"RUT"},
+  {t:"Me tranquiliza saber exactamente qué va a pasar durante el día.",s:"RUT"},
+  {t:"Cuando estoy nervioso o muy concentrado, repito movimientos como balancearme o mover las manos.",s:"RUT"},
+  {t:"Si alguien cambia de sitio mis cosas, me da igual.",s:"RUT",r:true},
+  {t:"Improvisar un plan sobre la marcha me resulta divertido.",s:"RUT",r:true},
+  {t:"Me adapto sin problema cuando cambian mi forma de trabajar.",s:"RUT",r:true},
+  {t:"Mis aficiones cambian a menudo y ninguna me absorbe demasiado.",s:"RUT",r:true},
+  {t:"Hay ruidos que a otros no les molestan y a mí me resultan insoportables.",s:"SEN"},
+  {t:"Algunas texturas de ropa o algunas etiquetas me molestan tanto que no puedo llevarlas.",s:"SEN"},
+  {t:"Los sitios con mucha luz, ruido y gente me agotan rápido.",s:"SEN"},
+  {t:"Evito ciertas comidas por su textura más que por su sabor.",s:"SEN"},
+  {t:"Sigo sin esfuerzo una conversación aunque haya otras a mi alrededor.",s:"SEN",r:true},
+  {t:"Hay olores de comida, perfumes o productos de limpieza que me resultan muy intensos.",s:"SEN"},
+  {t:"A veces no me doy cuenta de que tengo hambre, frío o cansancio hasta que es muy fuerte.",s:"SEN"},
+  {t:"Puedo concentrarme sin problema en un sitio ruidoso.",s:"SEN",r:true},
+  {t:"Las luces fuertes o parpadeantes no me molestan.",s:"SEN",r:true},
+  {t:"Me da igual el tacto de la ropa que llevo.",s:"SEN",r:true}
+ ]
+};
+window.TESTS.push(AUTISMO);
+window.SEO_CONTENT.autismo={slug:"test-soy-autista",seoTitle:"Test: ¿tengo rasgos autistas? Test de autismo para adultos gratis | Testia",h1:"Test: ¿tengo rasgos autistas?",
+ metaDesc:"Test para saber si tienes rasgos autistas: 30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Gratis y sin registro. Orienta, no diagnostica.",
+ intro:"¿Te agotan las situaciones sociales, necesitas tus rutinas o te saturan ruidos que otros ni notan, y te preguntas si podrías ser autista? Este test recorre las tres áreas que usan los criterios del DSM-5 y te dice si tus rasgos autistas son bajos, moderados o altos, y dónde pedir una evaluación si te lo planteas.",
+ learn:["Si tus rasgos autistas son bajos, moderados o altos","Dónde pedir una evaluación de autismo en adultos","Tu perfil en comunicación social, rutinas y sensibilidad sensorial","Los puntos fuertes asociados a tu perfil"],
+ overview:[
+  {label:"Mide",text:"Rasgos autistas en tres áreas: comunicación e interacción social, rutinas e intereses intensos, y sensibilidad sensorial."},
+  {label:"Formato",text:"30 afirmaciones; unos 5 minutos."},
+  {label:"Límite",text:"Preguntas propias, sin validar clínicamente: orienta, pero no diagnostica. Pensado para mayores de 18 años."}
+ ],
+ sections:[
+  {title:"Qué mide este test",body:"El autismo se diagnostica cuando hay diferencias persistentes en la comunicación y la interacción social y, a la vez, patrones de conducta, intereses o actividades restringidos y repetitivos, que incluyen la forma de procesar los estímulos sensoriales. Este test pregunta por esas tres áreas con situaciones de la vida adulta. Son preguntas propias de Testia, no un cuestionario clínico validado."},
+  {title:"Autismo en adultos",body:"Muchas personas reciben el diagnóstico de autismo en la edad adulta. Es especialmente frecuente en mujeres y en personas que han aprendido a camuflar sus rasgos imitando a los demás, algo que suele generar mucho cansancio. Un diagnóstico tardío ayuda a entenderse mejor y a pedir los apoyos que hagan falta."},
+  {title:"Cómo pedir una evaluación",body:"Empieza por tu médico de cabecera, que puede derivarte a salud mental (psiquiatría o psicología clínica). En algunas comunidades hay unidades especializadas en autismo adulto. Asociaciones como Autismo España orientan sobre dónde se hace la evaluación en cada zona."}
+ ],
+ faqs:[
+  {q:"¿Este test diagnostica el autismo?",a:"No. Es un test orientativo con preguntas propias, sin validar clínicamente. Solo una evaluación profesional, con entrevistas y pruebas específicas, puede diagnosticar el autismo."},
+  {q:"¿Por qué no usáis el AQ o el AQ-10?",a:"Porque sus autores no permiten usarlos en productos comerciales. Hemos preferido escribir preguntas propias sobre las áreas de los criterios del DSM-5 y decirlo claramente."},
+  {q:"¿Tener rasgos autistas significa ser autista?",a:"No necesariamente. Los rasgos autistas se reparten en toda la población, y mucha gente tiene algunos sin ser autista. El diagnóstico depende de cuántos haya, de su intensidad y de cuánto afecten a tu vida."},
+  {q:"¿Se puede ser autista y no haberlo sabido hasta la edad adulta?",a:"Sí, es muy frecuente, sobre todo en mujeres y en personas que han aprendido a camuflar sus rasgos. Muchas reciben el diagnóstico pasados los 30 o los 40 años."},
+  {q:"¿Dónde pido una evaluación de autismo siendo adulto?",a:"Pide cita con tu médico de cabecera, que puede derivarte a salud mental. Asociaciones como Autismo España te orientan sobre dónde se hace la evaluación de adultos en tu comunidad."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de rasgos autistas y dónde pedir una evaluación es gratis y sin registro. Tu perfil por áreas, con su lectura, los puntos fuertes y un resumen para la evaluación, se puede desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"Diagnostic and Statistical Manual of Mental Disorders (DSM-5)",url:"https://doi.org/10.1176/appi.books.9780890425596",note:"Asociación Americana de Psiquiatría (2013): criterios del trastorno del espectro autista."},
+  {title:"Autism",url:"https://doi.org/10.1016/S0140-6736(13)61539-1",note:"Lai, Lombardo y Baron-Cohen (2014), The Lancet: revisión general."},
+  {title:"Identifying the lost generation of adults with autism spectrum conditions",url:"https://doi.org/10.1016/S2215-0366(15)00277-1",note:"Lai y Baron-Cohen (2015), The Lancet Psychiatry: diagnóstico en adultos."}
+ ],
+ relatedIds:["tdah","empathy","ansiedad"]};
+
 window.SEO_CONTENT.ansiedad={slug:"test-de-ansiedad",seoTitle:"Test de ansiedad GAD-7 online gratis: mide tu nivel de ansiedad | Testia",h1:"Test de ansiedad",
  metaDesc:"Test de ansiedad con el cuestionario GAD-7, validado en español. Descubre si tu ansiedad es mínima, leve, moderada o grave. Gratis y sin registro. Orienta, no diagnostica.",
  intro:"¿Últimamente vas con los nervios de punta, te cuesta relajarte o no paras de darle vueltas a todo? Este test usa el GAD-7, el cuestionario de ansiedad más usado en atención primaria, validado en población española, y te dice al momento si tu nivel de ansiedad de las últimas dos semanas es mínimo, leve, moderado o grave.",
