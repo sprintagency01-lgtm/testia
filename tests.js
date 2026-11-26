@@ -3131,6 +3131,93 @@ const TDAH={
  ]
 };
 window.TESTS.push(TDAH);
+
+/* --- Ansiedad ---
+   GAD-7 (Spitzer et al., 2006): uso, reproducción y traducción libres. Ítems de la versión española validada por
+   García-Campayo et al. (2010, 2012; tabla 1 de 10.1186/1477-7525-10-114). Escala 0–3 en las últimas 2 semanas.
+   Bandas oficiales: 0–4 mínima, 5–9 leve, 10–14 moderada, 15–21 grave. */
+const CRISIS='<p>Si tienes pensamientos de hacerte daño, llama al <b>024</b> (gratuito, confidencial y a cualquier hora). En una emergencia, llama al <b>112</b>.</p>';
+const ANSIEDAD={
+ id:"ansiedad", name:"Test de ansiedad", emoji:"🌊", cat:"Bienestar", eyebrow:"Tu nivel de ansiedad",
+ blurb:"El cuestionario GAD-7, el más usado para medir la ansiedad, más un análisis de qué tipo de ansiedad predomina en ti.",
+ instrument:"Preguntas 1 a 7: GAD-7 (Spitzer et al., 2006), versión española validada por García-Campayo et al. (2010). Preguntas 8 a 17: propias de Testia, solo para el desglose por tipo de ansiedad.",
+ license:"🟢", sensitive:true, screening:true, official:7,
+ mode:"likert", scaleMax:4, labels:["Nunca","Varios días","Más de la mitad de los días","Casi todos los días"],
+ prompt:"Durante las últimas 2 semanas, ¿con qué frecuencia ha sentido molestias por los siguientes problemas?",
+ scales:{GAD:"GAD-7",SOC:"Ansiedad social",ANT:"Ansiedad anticipatoria",FIS:"Síntomas físicos",PRE:"Preocupación constante"},
+ result:{type:"screen",kind:"gad7",official:"GAD"},
+ premiumPitch:"Qué tipo de ansiedad predomina en ti (social, anticipatoria, física o preocupación constante), qué la dispara, pautas con evidencia para tu caso y un guion para hablarlo con un profesional.",
+ verdicts:{
+  minima:{name:"Ansiedad mínima",desc:"Tu puntuación está en el rango más bajo del GAD-7: los síntomas de ansiedad apenas te han molestado en las últimas dos semanas.",
+   help:"<p>Si en algún momento la ansiedad empieza a afectarte en tu día a día, coméntalo con tu médico de cabecera.</p>"+CRISIS},
+  leve:{name:"Ansiedad leve",desc:"Has notado algunos síntomas de ansiedad en las últimas dos semanas, en un nivel leve. Es frecuente en épocas de estrés y suele mejorar con descanso y con hábitos que te ayuden a calmarte.",
+   help:"<p>Si los síntomas duran más de unas semanas o te cuesta llevar tu día a día, coméntalo con tu médico de cabecera.</p>"+CRISIS},
+  moderada:{name:"Ansiedad moderada",desc:"Tu puntuación está en el rango moderado. A partir de 10 puntos, el GAD-7 indica que conviene que un profesional valore lo que te pasa.",
+   help:"<p><b>Te recomendamos consultarlo:</b> pide cita con tu médico de cabecera o con un psicólogo. La ansiedad tiene tratamientos eficaces, como la terapia cognitivo-conductual.</p>"+CRISIS},
+  grave:{name:"Ansiedad grave",desc:"Tu puntuación está en el rango más alto del GAD-7. La ansiedad te está afectando mucho, y es importante que un profesional te ayude cuanto antes.",
+   help:"<p><b>Pide ayuda pronto:</b> habla con tu médico de cabecera esta misma semana o acude a un psicólogo. No tienes por qué pasarlo solo: la ansiedad tiene tratamiento.</p>"+CRISIS}
+ },
+ interp:{
+  SOC:{hi:"La ansiedad se te dispara sobre todo delante de otras personas: miedo a que te juzguen, a quedar mal o a no saber qué decir. Lo que más ayuda es exponerte poco a poco a situaciones sociales asequibles en vez de evitarlas, porque evitar alivia en el momento pero hace crecer el miedo.",mid:"Algunas situaciones sociales te ponen nervioso, sobre todo si te sientes observado. Prepararlas un poco y recordarte que los demás se fijan en ti mucho menos de lo que parece ayuda a bajar la tensión.",lo:"Las situaciones sociales apenas te generan ansiedad."},
+  ANT:{hi:"Lo que más te pesa es la espera: los días previos a un examen, una cita o una decisión te imaginas lo peor. Fijar un rato al día para preocuparte y aplazar las preocupaciones hasta ese momento reduce mucho el tiempo que pasas anticipando.",mid:"Antes de compromisos importantes te inquietas más de la cuenta. Centrarte en lo siguiente que tienes que hacer, y no en lo que podría salir mal, te ayuda a llegar más tranquilo.",lo:"No sueles anticipar lo peor: afrontas los compromisos sin darles demasiadas vueltas antes."},
+  FIS:{hi:"Tu ansiedad se nota mucho en el cuerpo: tensión, palpitaciones, estómago o sueño. La respiración lenta, con espiraciones más largas que las inspiraciones, el ejercicio regular y horarios de sueño fijos son de lo que más ayuda. Si notas síntomas físicos nuevos, conviene que te vea tu médico.",mid:"A veces la ansiedad te pasa factura en el cuerpo, sobre todo en épocas de estrés. Moverte a diario y cuidar el sueño reduce esa tensión.",lo:"La ansiedad apenas se te nota en el cuerpo."},
+  PRE:{hi:"Tu mente vuelve una y otra vez a las mismas preocupaciones, aunque intentes apartarlas. Escribirlas en un papel y preguntarte qué puedes hacer hoy con cada una, y qué no depende de ti, ayuda a cortar el bucle.",mid:"Hay preocupaciones que se te quedan dando vueltas más de lo que te gustaría. Distinguir entre los problemas que puedes resolver y los que no te ayuda a soltarlos.",lo:"Las preocupaciones no se te enganchan: les das una vuelta y sigues."}
+ },
+ guide(pct,k,own){
+  return "Cuenta tu puntuación en el GAD-7 y desde cuándo te encuentras así. "
+   +`Explica en qué se nota más tu ansiedad: en tu caso, ${top2(pct,own,this)}. Lleva ejemplos concretos de situaciones recientes, qué sentiste y qué hiciste después (por ejemplo, si evitaste algo). `
+   +"Comenta también cómo duermes, si tomas café, alcohol u otras sustancias, y si la ansiedad te impide trabajar, estudiar o ver a gente: ayuda al profesional a valorar qué tratamiento te conviene.";
+ },
+ items:[
+  {t:"Sensación de nerviosismo, de ansiedad, de tener los nervios de punta",s:"GAD"},
+  {t:"Incapacidad para eludir o controlar la preocupación",s:"GAD"},
+  {t:"Preocupación excesiva por cosas diferentes",s:"GAD"},
+  {t:"Dificultad para relajarse",s:"GAD"},
+  {t:"Una intranquilidad de tal grado que no puede estarse quieto",s:"GAD"},
+  {t:"Facilidad para enfadarse o irritabilidad",s:"GAD"},
+  {t:"Sensación de miedo, como si pudiera ocurrir algo terrible",s:"GAD"},
+  {t:"Miedo a que los demás le juzguen o a quedar en ridículo",s:"SOC"},
+  {t:"Evitar reuniones, llamadas o conversaciones por los nervios que le producen",s:"SOC"},
+  {t:"Darle vueltas después a lo que dijo o hizo delante de otras personas",s:"SOC"},
+  {t:"Nervios intensos los días antes de un examen, una cita o un compromiso importante",s:"ANT"},
+  {t:"Imaginar lo peor que puede pasar antes de que ocurra algo",s:"ANT"},
+  {t:"Palpitaciones, sensación de ahogo o presión en el pecho por los nervios",s:"FIS"},
+  {t:"Tensión en los músculos, dolor de cabeza o molestias de estómago por los nervios",s:"FIS"},
+  {t:"Dificultad para dormirse o despertarse con la cabeza dándole vueltas",s:"FIS"},
+  {t:"Pensamientos de preocupación que vuelven una y otra vez aunque intente apartarlos",s:"PRE"},
+  {t:"Necesidad de comprobar las cosas o de pedir confirmación para quedarse tranquilo",s:"PRE"}
+ ]
+};
+window.TESTS.push(ANSIEDAD);
+window.SEO_CONTENT.ansiedad={slug:"test-de-ansiedad",seoTitle:"Test de ansiedad GAD-7 online gratis: mide tu nivel de ansiedad | Testia",h1:"Test de ansiedad",
+ metaDesc:"Test de ansiedad con el cuestionario GAD-7, validado en español. Descubre si tu ansiedad es mínima, leve, moderada o grave. Gratis y sin registro. Orienta, no diagnostica.",
+ intro:"¿Últimamente vas con los nervios de punta, te cuesta relajarte o no paras de darle vueltas a todo? Este test usa el GAD-7, el cuestionario de ansiedad más usado en atención primaria, validado en población española, y te dice al momento si tu nivel de ansiedad de las últimas dos semanas es mínimo, leve, moderado o grave.",
+ learn:["Tu nivel de ansiedad: mínimo, leve, moderado o grave","Tu puntuación en el GAD-7, de 0 a 21","Cuándo conviene consultar y a quién acudir","Qué tipo de ansiedad predomina en ti"],
+ overview:[
+  {label:"Mide",text:"Síntomas de ansiedad en las últimas dos semanas, con el cuestionario GAD-7."},
+  {label:"Formato",text:"7 preguntas oficiales y 10 más sobre el tipo de ansiedad; unos 3 minutos."},
+  {label:"Límite",text:"Orienta sobre tu nivel de ansiedad, pero no diagnostica un trastorno. Pensado para mayores de 18 años."}
+ ],
+ sections:[
+  {title:"Qué es el GAD-7",body:"El GAD-7 (Generalized Anxiety Disorder-7) es un cuestionario de 7 preguntas que publicaron Spitzer y su equipo en 2006. Se usa en todo el mundo en atención primaria para detectar la ansiedad y medir su intensidad. En España lo adaptó y validó el equipo de García-Campayo en 2010, con buenos resultados de fiabilidad y validez."},
+  {title:"Cómo se interpreta la puntuación",body:"Cada pregunta puntúa de 0 (nunca) a 3 (casi todos los días), y la suma va de 0 a 21. De 0 a 4 la ansiedad es mínima; de 5 a 9, leve; de 10 a 14, moderada, y de 15 a 21, grave. A partir de 10 puntos se recomienda que un profesional valore los síntomas."},
+  {title:"Cuándo pedir ayuda",body:"Si tu puntuación es de 10 o más, si la ansiedad dura semanas o si te impide trabajar, estudiar o relacionarte, habla con tu médico de cabecera o con un psicólogo. La ansiedad tiene tratamientos eficaces. Si tienes pensamientos de hacerte daño, llama al 024, gratuito y disponible a cualquier hora, o al 112 en una emergencia."}
+ ],
+ faqs:[
+  {q:"¿Este test diagnostica un trastorno de ansiedad?",a:"No. El GAD-7 mide la intensidad de tus síntomas de ansiedad y orienta sobre si conviene consultar, pero solo un profesional puede diagnosticar un trastorno de ansiedad tras una evaluación."},
+  {q:"¿Qué es una puntuación normal en el GAD-7?",a:"Entre 0 y 4 puntos la ansiedad es mínima. Es normal sentir algo de ansiedad en épocas de estrés; lo importante es si dura mucho tiempo o si te impide llevar tu vida con normalidad."},
+  {q:"¿A partir de qué puntuación debo consultar?",a:"A partir de 10 puntos se recomienda que un profesional valore lo que te pasa. Por debajo, consulta igualmente si los síntomas duran semanas o te afectan en el día a día."},
+  {q:"¿Por qué pregunta por las últimas dos semanas?",a:"Porque el GAD-7 mide cómo estás ahora, no cómo eres siempre. Si repites el test en otro momento, el resultado puede cambiar."},
+  {q:"¿Qué hago si estoy muy mal ahora mismo?",a:"Si tienes pensamientos de hacerte daño, llama al 024: es gratuito, confidencial y atiende a cualquier hora. En una emergencia, llama al 112."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de ansiedad, tu puntuación y cuándo conviene consultar es gratis y sin registro. El análisis del tipo de ansiedad que predomina en ti, con pautas y un guion para la consulta, se puede desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"A brief measure for assessing generalized anxiety disorder: the GAD-7",url:"https://doi.org/10.1001/archinte.166.10.1092",note:"Publicación original de Spitzer y otros (2006), Archives of Internal Medicine."},
+  {title:"Cultural adaptation into Spanish of the generalized anxiety disorder-7 (GAD-7) scale as a screening tool",url:"https://doi.org/10.1186/1477-7525-8-8",note:"Validación española de García-Campayo y otros (2010)."},
+  {title:"The assessment of generalized anxiety disorder: psychometric validation of the Spanish version of the self-administered GAD-2 scale in daily medical practice",url:"https://doi.org/10.1186/1477-7525-10-114",note:"García-Campayo y otros (2012): ítems del GAD-7 en español."}
+ ],
+ relatedIds:["panas","resilience","tdah"]};
+
 window.SEO_CONTENT.tdah={slug:"test-tdah-adultos",seoTitle:"Test de TDAH en adultos: cuestionario de cribado de la OMS gratis | Testia",h1:"Test de TDAH en adultos",
  metaDesc:"Test de TDAH para adultos con el cuestionario de cribado ASRS v1.1 de la OMS, validado en español. Resultado al momento, gratis y sin registro. Orienta, no diagnostica.",
  intro:"¿Te cuesta terminar lo que empiezas, organizarte o estarte quieto, y te preguntas si podría ser TDAH? Este test usa el cuestionario de cribado de 6 preguntas de la Organización Mundial de la Salud (ASRS v1.1), validado en población española, y te dice al momento si tu cribado sale positivo o negativo.",
