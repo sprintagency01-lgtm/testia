@@ -162,8 +162,8 @@ ${s.guide?`  <section><h2>Guía relacionada</h2><div class="rel"><a href="${esc(
 ${s.sources?.length?`  <section><h2>Fuentes y modelo de referencia</h2><ul class="sources">${s.sources.map(x=>`<li><a href="${esc(x.url)}" rel="noopener noreferrer" target="_blank">${esc(x.title)}</a>${x.note?`<span>${esc(x.note)}</span>`:""}</li>`).join("")}</ul></section>`:""}
 
   <h2>Sobre este test</h2>
-  <p style="color:#54565c">Este test toma como referencia: <b>${esc(t.instrument)}</b>. La redacción y la experiencia se han adaptado para uso divulgativo; el resultado no equivale a administrar el instrumento original en condiciones profesionales.</p>
-  <div class="note">Aviso: Testia es una herramienta de entretenimiento y autoconocimiento. Los resultados son orientativos y no constituyen una evaluación ni un diagnóstico clínico.</div>
+  <p style="color:#54565c">Este test toma como referencia: <b>${esc(t.instrument)}</b>. ${s.about?esc(s.about)+" Aun así, el resultado no equivale a una evaluación en condiciones profesionales.":"La redacción y la experiencia se han adaptado para uso divulgativo; el resultado no equivale a administrar el instrumento original en condiciones profesionales."}</p>
+  <div class="note">${esc(s.note||"Aviso: Testia es una herramienta de entretenimiento y autoconocimiento. Los resultados son orientativos y no constituyen una evaluación ni un diagnóstico clínico.")}</div>
 
 ${faqs.length?`  <section><h2>Preguntas frecuentes</h2><div class="faq">${faqs.map(f=>`<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</div></section>`:""}
 

@@ -869,7 +869,8 @@ function startTest(id){
   startedAt=Date.now();
   if(T.mode==='correct'&&!T.noTimer){timeLeft=T.duration||300;tm.style.display='inline';tm.classList.remove('low');updTimer();}
   else{tm.style.display='none';clearInterval(timerId);}
-  if(T.prompt){$('qprompt').style.display='block';$('qprompt').textContent=T.prompt;}else $('qprompt').style.display='none';
+  {const pr=[T.prompt,T.startNote].filter(Boolean).join(' '); // startNote: aviso de los tests de salud
+  if(pr){$('qprompt').style.display='block';$('qprompt').textContent=pr;}else $('qprompt').style.display='none';}
   go('quiz');
   if(T.mode==='iat'){startIAT();return;}
   armBackGuard();

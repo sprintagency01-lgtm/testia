@@ -51,6 +51,30 @@ test("type16Tie", () => {
   assert(win.type16({ E: 50, O: 50, A: 50, C: 50 }).code === "ENFJ", "tie");
 });
 
+// Contenido de los tests (revisión final): nada de afirmaciones que los datos no sostienen,
+// aviso antes de empezar y páginas sin el texto genérico de «entretenimiento» ni «redacción adaptada».
+const tw = { TESTS: [], SEO_CONTENT: {} };
+new Function("window", fs.readFileSync(path.join(root, "tests.js"), "utf8"))(tw);
+const TT = (id) => tw.TESTS.find((t) => t.id === id);
+test("autismoMedioSinAreaDominante", () => {
+  assert(!/sobre todo en un área/.test(TT("autismo").verdicts.medio.desc), "afirma un área dominante");
+});
+test("tdahGuiaNegativaNeutra", () => {
+  const T = TT("tdah"), own = ["TRA", "ORG", "DIN", "REL", "EMO"], zero = Object.fromEntries(own.map((k) => [k, 0]));
+  assert(!/hay cosas que te afectan/.test(T.guide(zero, "negative", own)), "afirma que algo afecta");
+});
+test("avisoAntesDeEmpezar", () => {
+  for (const id of ["tdah", "ansiedad", "autismo"]) assert(TT(id).screening && TT(id).startNote, id + " sin startNote");
+});
+test("landingsSaludSinTextoGenerico", () => {
+  for (const slug of ["test-tdah-adultos", "test-de-ansiedad", "test-soy-autista"]) {
+    const h = fs.readFileSync(path.join(root, "test", slug + ".html"), "utf8");
+    assert(!/herramienta de entretenimiento/.test(h), slug + ": entretenimiento");
+    assert(!/se han adaptado para uso divulgativo/.test(h), slug + ": redacción adaptada");
+    assert(!/inspiradas en un instrumento publicado/.test(h), slug + ": inspiradas");
+  }
+});
+
 let ok = 0;
 for (const [n, pass, msg] of results) { console.log(`${pass ? "✓" : "✗"} ${n}${pass ? "" : " — " + msg}`); if (pass) ok++; }
 console.log(`${ok}/${results.length}`);

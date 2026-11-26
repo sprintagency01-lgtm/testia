@@ -3073,6 +3073,9 @@ if(RS){RS.relatedIds=["carrera","fp","trabajo"];
    el veredicto gratis sale solo de ellos y los ítems propios alimentan el desglose de pago. */
 (function(){
 const FREQ5=["Nunca","Rara vez","A veces","A menudo","Muy a menudo"];
+const SNOTE="Orienta, no diagnostica. Pensado para mayores de 18 años.";
+/* Textos propios de las landings de salud (sustituyen al texto genérico de build-pages). */
+const HNOTE="Aviso: este test orienta, pero no diagnostica. Si te preocupa tu salud, habla con un profesional sanitario. Si tienes pensamientos de hacerte daño, llama al 024 (gratuito, a cualquier hora) o al 112 en una emergencia.";
 const top2=(pct,own,T)=>own.slice().sort((a,b)=>pct[b]-pct[a]).slice(0,2).map(k=>`«${T.scales[k]}»`).join(' y ');
 
 /* --- TDAH en adultos ---
@@ -3083,7 +3086,7 @@ const TDAH={
  id:"tdah", name:"Test de TDAH en adultos", emoji:"⏱️", cat:"Bienestar", eyebrow:"Tu cribado de TDAH",
  blurb:"El cuestionario de cribado de la OMS para el TDAH en adultos (ASRS v1.1), más un análisis de cómo te afecta en el día a día.",
  instrument:"Preguntas 1 a 6: ASRS v1.1, cuestionario de cribado de 6 preguntas de la OMS (Kessler et al., 2005; © New York University y Ronald C. Kessler, PhD), versión española validada por Ramos-Quiroga et al. (2009). Preguntas 7 a 18: propias de Testia, solo para el desglose por áreas.",
- license:"🟢", sensitive:true, screening:true, official:6,
+ license:"🟢", sensitive:true, screening:true, official:6, startNote:SNOTE,
  mode:"likert", scaleMax:5, labels:FREQ5,
  prompt:"Marque la casilla que mejor describe la manera en que se ha sentido y comportado en los últimos 6 meses.",
  scales:{ASRS:"Cribado ASRS",TRA:"Trabajo o estudios",ORG:"Organización y tiempo",DIN:"Dinero",REL:"Relaciones",EMO:"Emociones e impulsividad"},
@@ -3105,7 +3108,7 @@ const TDAH={
   EMO:{hi:"Tus emociones van rápido: te frustras con facilidad, reaccionas antes de pensar y luego te pesa. Es muy común en el TDAH adulto. Parar diez segundos antes de responder y dormir bien son de lo que más ayuda.",mid:"A veces reaccionas en caliente o te frustras por no llegar a todo. Detectar qué situaciones te encienden te da margen para frenar.",lo:"Manejas bien las emociones y la impulsividad: no es un área que te complique."}
  },
  guide(pct,k,own){
-  return (k==='positive'?"Empieza diciendo que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido positivo. ":"Explica que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido negativo, pero que hay cosas que te afectan. ")
+  return (k==='positive'?"Empieza diciendo que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido positivo. ":"Explica que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido negativo y qué te ha llevado a hacer el test. ")
    +`Céntrate en las dos áreas donde más se nota en tu caso: ${top2(pct,own,this)}. Lleva dos o tres ejemplos concretos de cada una: qué pasó, cada cuánto te ocurre y qué consecuencias ha tenido. `
    +"El profesional te preguntará si ya te pasaba de pequeño, porque es necesario para el diagnóstico en adultos: si puedes, pregúntale a tu familia cómo eras en el colegio o busca boletines de notas antiguos.";
  },
@@ -3141,7 +3144,7 @@ const ANSIEDAD={
  id:"ansiedad", name:"Test de ansiedad", emoji:"🌊", cat:"Bienestar", eyebrow:"Tu nivel de ansiedad",
  blurb:"El cuestionario GAD-7, el más usado para medir la ansiedad, más un análisis de qué tipo de ansiedad predomina en ti.",
  instrument:"Preguntas 1 a 7: GAD-7 (Spitzer et al., 2006), versión española validada por García-Campayo et al. (2010). Preguntas 8 a 17: propias de Testia, solo para el desglose por tipo de ansiedad.",
- license:"🟢", sensitive:true, screening:true, official:7,
+ license:"🟢", sensitive:true, screening:true, official:7, startNote:SNOTE,
  mode:"likert", scaleMax:4, labels:["Nunca","Varios días","Más de la mitad de los días","Casi todos los días"],
  prompt:"Durante las últimas 2 semanas, ¿con qué frecuencia ha sentido molestias por los siguientes problemas?",
  scales:{GAD:"GAD-7",SOC:"Ansiedad social",ANT:"Ansiedad anticipatoria",FIS:"Síntomas físicos",PRE:"Preocupación constante"},
@@ -3199,7 +3202,7 @@ const AUTISMO={
  id:"autismo", name:"Test: ¿tengo rasgos autistas?", emoji:"♾️", cat:"Bienestar", eyebrow:"Tus rasgos autistas",
  blurb:"30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial para saber si tienes rasgos autistas y dónde pedir una evaluación.",
  instrument:"Preguntas propias de Testia basadas en las tres áreas de los criterios del DSM-5 (APA, 2013) · sin validar clínicamente.",
- license:"🟡", sensitive:true, screening:true, official:0,
+ license:"🟡", sensitive:true, screening:true, official:0, startNote:SNOTE,
  mode:"likert", scaleMax:5,
  scales:{SOC:"Comunicación e interacción social",RUT:"Rutinas e intereses intensos",SEN:"Sensibilidad sensorial"},
  result:{type:"screen",kind:"traits"},
@@ -3207,7 +3210,7 @@ const AUTISMO={
  verdicts:{
   bajo:{name:"Rasgos autistas bajos",desc:"Tus respuestas muestran pocos rasgos de los que se asocian al autismo en comunicación social, rutinas y sensibilidad sensorial.",
    help:"<p>Si aun así te identificas con el autismo o hay cosas que te complican el día a día, coméntalo con tu médico de cabecera, que puede derivarte a salud mental. Asociaciones como Autismo España orientan sobre la evaluación en adultos.</p>"+NOVAL},
-  medio:{name:"Rasgos autistas moderados",desc:"Tus respuestas muestran algunos rasgos de los que se asocian al autismo, sobre todo en un área más que en las otras. Mucha gente tiene rasgos de este tipo sin ser autista.",
+  medio:{name:"Rasgos autistas moderados",desc:"Tus respuestas muestran algunos de los rasgos que se asocian al autismo. Mucha gente tiene rasgos de este tipo sin ser autista.",
    help:"<p>Si estos rasgos te generan malestar o te complican el trabajo o las relaciones, coméntalo con tu médico de cabecera, que puede derivarte a salud mental para una evaluación. Asociaciones como Autismo España te orientan sobre dónde se hace en tu comunidad.</p>"+NOVAL},
   alto:{name:"Rasgos autistas altos",desc:"Tus respuestas muestran muchos de los rasgos que se asocian al autismo en las tres áreas. No es un diagnóstico, pero sí una buena razón para pedir una evaluación si te lo planteas.",
    help:"<p><b>Si quieres una evaluación:</b> pide cita con tu médico de cabecera y explícale qué te pasa; puede derivarte a psiquiatría o psicología clínica. Asociaciones como Autismo España te orientan sobre dónde se hace el diagnóstico de adultos en tu comunidad.</p><p>Mucha gente recibe el diagnóstico de adulta, sobre todo mujeres y personas que han aprendido a camuflar sus rasgos.</p>"+NOVAL}
@@ -3323,7 +3326,7 @@ window.SEO_CONTENT.tipos16={slug:"test-16-tipos-de-personalidad",seoTitle:"Test 
  ],
  relatedIds:["bigfive","eneagrama","tipi"]};
 
-window.SEO_CONTENT.autismo={slug:"test-soy-autista",seoTitle:"Test: ¿tengo rasgos autistas? Test de autismo para adultos gratis | Testia",h1:"Test: ¿tengo rasgos autistas?",
+window.SEO_CONTENT.autismo={slug:"test-soy-autista",step1:"30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Sin registro.",about:"Todas las preguntas son propias de Testia, escritas a partir de las tres áreas de los criterios del DSM-5. No es un cuestionario clínico validado y no usa ítems de otros cuestionarios.",note:HNOTE,seoTitle:"Test: ¿tengo rasgos autistas? Test de autismo para adultos gratis | Testia",h1:"Test: ¿tengo rasgos autistas?",
  metaDesc:"Test para saber si tienes rasgos autistas: 30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Gratis y sin registro. Orienta, no diagnostica.",
  intro:"¿Te agotan las situaciones sociales, necesitas tus rutinas o te saturan ruidos que otros ni notan, y te preguntas si podrías ser autista? Este test recorre las tres áreas que usan los criterios del DSM-5 y te dice si tus rasgos autistas son bajos, moderados o altos, y dónde pedir una evaluación si te lo planteas.",
  learn:["Si tus rasgos autistas son bajos, moderados o altos","Dónde pedir una evaluación de autismo en adultos","Tu perfil en comunicación social, rutinas y sensibilidad sensorial","Los puntos fuertes asociados a tu perfil"],
@@ -3352,7 +3355,7 @@ window.SEO_CONTENT.autismo={slug:"test-soy-autista",seoTitle:"Test: ¿tengo rasg
  ],
  relatedIds:["tdah","empathy","ansiedad"]};
 
-window.SEO_CONTENT.ansiedad={slug:"test-de-ansiedad",seoTitle:"Test de ansiedad GAD-7 online gratis: mide tu nivel de ansiedad | Testia",h1:"Test de ansiedad",
+window.SEO_CONTENT.ansiedad={slug:"test-de-ansiedad",step1:"17 preguntas: las 7 del GAD-7 y 10 sobre el tipo de ansiedad. Sin registro.",about:"Las 7 primeras preguntas son el GAD-7 en su versión española, con su puntuación oficial de 0 a 21; tu nivel de ansiedad sale solo de ellas. Las 10 siguientes son propias de Testia y sirven para el análisis por tipo de ansiedad.",note:HNOTE,seoTitle:"Test de ansiedad GAD-7 online gratis: mide tu nivel de ansiedad | Testia",h1:"Test de ansiedad",
  metaDesc:"Test de ansiedad con el cuestionario GAD-7, validado en español. Descubre si tu ansiedad es mínima, leve, moderada o grave. Gratis y sin registro. Orienta, no diagnostica.",
  intro:"¿Últimamente vas con los nervios de punta, te cuesta relajarte o no paras de darle vueltas a todo? Este test usa el GAD-7, el cuestionario de ansiedad más usado en atención primaria, validado en población española, y te dice al momento si tu nivel de ansiedad de las últimas dos semanas es mínimo, leve, moderado o grave.",
  learn:["Tu nivel de ansiedad: mínimo, leve, moderado o grave","Tu puntuación en el GAD-7, de 0 a 21","Cuándo conviene consultar y a quién acudir","Qué tipo de ansiedad predomina en ti"],
@@ -3381,7 +3384,7 @@ window.SEO_CONTENT.ansiedad={slug:"test-de-ansiedad",seoTitle:"Test de ansiedad 
  ],
  relatedIds:["panas","resilience","tdah"]};
 
-window.SEO_CONTENT.tdah={slug:"test-tdah-adultos",seoTitle:"Test de TDAH en adultos: cuestionario de cribado de la OMS gratis | Testia",h1:"Test de TDAH en adultos",
+window.SEO_CONTENT.tdah={slug:"test-tdah-adultos",step1:"18 preguntas: las 6 del cuestionario oficial de la OMS, tal cual, y 12 sobre tu día a día. Sin registro.",about:"Las 6 primeras preguntas son el ASRS v1.1 de la OMS sin modificar, con su puntuación oficial; tu resultado de cribado sale solo de ellas. Las 12 siguientes son propias de Testia y sirven para el análisis por áreas.",note:HNOTE,seoTitle:"Test de TDAH en adultos: cuestionario de cribado de la OMS gratis | Testia",h1:"Test de TDAH en adultos",
  metaDesc:"Test de TDAH para adultos con el cuestionario de cribado ASRS v1.1 de la OMS, validado en español. Resultado al momento, gratis y sin registro. Orienta, no diagnostica.",
  intro:"¿Te cuesta terminar lo que empiezas, organizarte o estarte quieto, y te preguntas si podría ser TDAH? Este test usa el cuestionario de cribado de 6 preguntas de la Organización Mundial de la Salud (ASRS v1.1), validado en población española, y te dice al momento si tu cribado sale positivo o negativo.",
  learn:["Si tu cribado de TDAH sale positivo o negativo","Cuántas de las 6 preguntas superan el umbral","Qué hacer y a quién acudir según tu resultado","Cómo te afecta en trabajo, organización, dinero, relaciones y emociones"],
