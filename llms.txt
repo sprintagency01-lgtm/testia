@@ -5,7 +5,7 @@
 Datos útiles:
 - Idioma: español. Público: España y Latinoamérica.
 - Precio: responder y ver el resultado básico es gratis; informe completo 1,99 €; pase para todos los tests 4,99 €. Sin suscripción. Son gratis enteros: Test de Hogwarts: ¿a qué casa perteneces? y Test: ¿cuánto Grinch eres?
-- Privacidad: estos tests tratan datos especialmente protegidos y no registran respuestas ni resultados: Test: ¿cuánto facha eres?, Test para saber a qué partido votar en las elecciones del 29N, Test: ¿con qué candidato coincides en las elecciones del 29N?, Test de daltonismo, Test de racismo: ¿tienes prejuicios?, Test de racismo implícito y Test de orientación sexual.
+- Privacidad: estos tests tratan datos especialmente protegidos y no registran respuestas ni resultados: Test: ¿cuánto facha eres?, Test para saber a qué partido votar en las elecciones del 29N, Test: ¿con qué candidato coincides en las elecciones del 29N?, Test de daltonismo, Test de racismo: ¿tienes prejuicios?, Test de racismo implícito, Test de orientación sexual, Test de TDAH en adultos, Test de ansiedad y Test: ¿tengo rasgos autistas?
 
 ## Tests
 
@@ -60,6 +60,10 @@ Datos útiles:
 - [Test: ¿qué carrera estudiar?](https://www.testia.info/test/test-que-carrera-estudiar): Test gratis para saber qué carrera estudiar: compara tus intereses, tus puntos fuertes y lo que buscas con 58 grados universitarios. Resultado al instante.
 - [Test: ¿qué FP estudiar?](https://www.testia.info/test/test-que-fp-estudiar): Test gratis para saber qué FP estudiar: compara tus gustos, tus puntos fuertes y lo que buscas con 86 ciclos de grado medio y superior. Resultado al instante.
 - [Test: ¿qué trabajo es para mí?](https://www.testia.info/test/test-que-trabajo-es-para-mi): Test gratis para saber qué trabajo es para ti: compara tus intereses, tus puntos fuertes y lo que buscas con 62 profesiones, y descubre tu entorno ideal.
+- [Test de TDAH en adultos](https://www.testia.info/test/test-tdah-adultos): Test de TDAH para adultos con el cuestionario de cribado ASRS v1.1 de la OMS, validado en español. Resultado al momento, gratis y sin registro. Orienta, no diagnostica.
+- [Test de ansiedad](https://www.testia.info/test/test-de-ansiedad): Test de ansiedad con el cuestionario GAD-7, validado en español. Descubre si tu ansiedad es mínima, leve, moderada o grave. Gratis y sin registro. Orienta, no diagnostica.
+- [Test: ¿tengo rasgos autistas?](https://www.testia.info/test/test-soy-autista): Test para saber si tienes rasgos autistas: 30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Gratis y sin registro. Orienta, no diagnostica.
+- [Test: ¿cuál de los 16 tipos de personalidad eres?](https://www.testia.info/test/test-16-tipos-de-personalidad): Test de los 16 tipos de personalidad: descubre tus cuatro letras (INTJ, ENFP…) con preguntas científicas de dominio público. Gratis y sin registro.
 
 ## Guías
 

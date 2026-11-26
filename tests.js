@@ -3066,3 +3066,349 @@ const RS=window.SEO_CONTENT.riasec;
 if(RS){RS.relatedIds=["carrera","fp","trabajo"];
  RS.sections=(RS.sections||[]).concat([{title:"Del código de Holland a una carrera concreta",body:"Tu código de tres letras dice qué tipo de actividades te atraen, pero no qué estudiar ni a qué dedicarte. Para eso Testia tiene tres tests más concretos que cruzan tus intereses con tus puntos fuertes y lo que buscas: «¿Qué carrera estudiar?», que compara tu perfil con 58 grados universitarios; «¿Qué FP estudiar?», con 86 ciclos de grado medio y superior, y «¿Qué trabajo es para mí?», con 62 profesiones y tu entorno de trabajo ideal."}]);}
 })();
+
+/* ===== Tests de salud y 16 tipos (nov 2026) =====
+   Diseño: docs/superpowers/specs/2026-11-26-tests-tdah-ansiedad-autismo-16-tipos-design.md
+   Puntuación en salud.js. En los tests de salud, los ítems oficiales van intactos y primero (T.official);
+   el veredicto gratis sale solo de ellos y los ítems propios alimentan el desglose de pago. */
+(function(){
+const FREQ5=["Nunca","Rara vez","A veces","A menudo","Muy a menudo"];
+const SNOTE="Orienta, no diagnostica. Pensado para mayores de 18 años.";
+/* Textos propios de las landings de salud (sustituyen al texto genérico de build-pages). */
+const HNOTE="Aviso: este test orienta, pero no diagnostica. Si te preocupa tu salud, habla con un profesional sanitario. Si tienes pensamientos de hacerte daño, llama al 024 (gratuito, a cualquier hora) o al 112 en una emergencia.";
+const top2=(pct,own,T)=>own.slice().sort((a,b)=>pct[b]-pct[a]).slice(0,2).map(k=>`«${T.scales[k]}»`).join(' y ');
+
+/* --- TDAH en adultos ---
+   ASRS v1.1, 6 preguntas (Kessler et al., 2005; © New York University y Ronald C. Kessler, PhD). Uso libre con cita, sin modificar.
+   Texto de la versión española aprobada por la OMS, tal como la reproduce Ramos-Quiroga et al. (2009), tabla I.
+   Puntuación oficial: las preguntas 1–3 cuentan desde «A veces» y las 4–6 desde «A menudo»; 4 o más, cribado positivo. */
+const TDAH={
+ id:"tdah", name:"Test de TDAH en adultos", emoji:"⏱️", cat:"Bienestar", eyebrow:"Tu cribado de TDAH",
+ blurb:"El cuestionario de cribado de la OMS para el TDAH en adultos (ASRS v1.1), más un análisis de cómo te afecta en el día a día.",
+ instrument:"Preguntas 1 a 6: ASRS v1.1, cuestionario de cribado de 6 preguntas de la OMS (Kessler et al., 2005; © New York University y Ronald C. Kessler, PhD), versión española validada por Ramos-Quiroga et al. (2009). Preguntas 7 a 18: propias de Testia, solo para el desglose por áreas.",
+ license:"🟢", sensitive:true, screening:true, official:6, startNote:SNOTE,
+ mode:"likert", scaleMax:5, labels:FREQ5,
+ prompt:"Marque la casilla que mejor describe la manera en que se ha sentido y comportado en los últimos 6 meses.",
+ scales:{ASRS:"Cribado ASRS",TRA:"Trabajo o estudios",ORG:"Organización y tiempo",DIN:"Dinero",REL:"Relaciones",EMO:"Emociones e impulsividad"},
+ result:{type:"screen",kind:"asrs",official:"ASRS"},
+ premiumPitch:"Cómo te afecta en cinco áreas de tu vida (trabajo o estudios, organización, dinero, relaciones y emociones), una lectura de cada una y un guion hecho con tus respuestas para llevar a la consulta.",
+ verdicts:{
+  positive:{name:"Cribado de TDAH positivo",
+   desc:"Tus respuestas se parecen a las de muchas personas adultas con TDAH: 4 o más de las 6 preguntas del cuestionario de la OMS superan su umbral. No es un diagnóstico, pero sí una buena razón para consultarlo con un profesional.",
+   help:"<p><b>Qué hacer ahora:</b> pide cita con tu médico de cabecera y cuéntale que este cribado te ha salido positivo. Puede derivarte a psiquiatría o a psicología clínica, que son quienes diagnostican el TDAH en adultos. Si ya te atiende un profesional de salud mental, coméntaselo en tu próxima cita.</p><p>El TDAH en adultos tiene tratamiento, y mucha gente lo descubre de mayor.</p>"},
+  negative:{name:"Cribado de TDAH negativo",
+   desc:"Menos de 4 de las 6 preguntas del cuestionario de la OMS superan su umbral, así que tus respuestas no apuntan a un TDAH. Un cribado negativo no lo descarta del todo.",
+   help:"<p><b>Si te afecta en tu día a día:</b> coméntalo con tu médico de cabecera aunque el cribado haya salido negativo. Algunas personas con TDAH, sobre todo las que han aprendido a compensarlo, quedan por debajo del umbral.</p><p>El cansancio, el estrés, la ansiedad o dormir mal también afectan a la atención.</p>"}
+ },
+ interp:{
+  TRA:{hi:"Es donde más se nota: te cuesta sostener la atención y terminar lo que empiezas en el trabajo o en los estudios, aunque te interese. Ayuda trocear las tareas en pasos cortos con una fecha cada uno y trabajar en bloques de 25 minutos con descansos.",mid:"Te pasa a veces, sobre todo con tareas largas o poco estimulantes. Reservar las horas en las que mejor te concentras para lo más pesado suele marcar la diferencia.",lo:"En el trabajo o los estudios apenas lo notas: sueles mantener la concentración y acabar lo que empiezas."},
+  ORG:{hi:"El orden y el tiempo se te escapan a menudo: las cosas se acumulan y acabas haciéndolo todo a última hora. Funciona sacar todo de la cabeza: un calendario con avisos para todo y un único sitio para las llaves, la cartera y los papeles.",mid:"Te organizas, pero con esfuerzo, y en épocas de mucho lío se te descontrola. Revisar la semana cada domingo cinco minutos ayuda a no ir apagando fuegos.",lo:"Llevas bien el orden y el tiempo: rara vez se te echan las cosas encima."},
+  DIN:{hi:"El dinero es un punto débil: compras por impulso o se te pasan pagos y fechas. Domicilia los recibos, pon avisos para los plazos y date un día de espera antes de cualquier compra que no tenías prevista.",mid:"Algún despiste o capricho de vez en cuando. Un presupuesto sencillo y los pagos domiciliados te quitan la mayoría de sustos.",lo:"Con el dinero no tienes problemas de impulsividad ni de olvidos."},
+  REL:{hi:"Se nota en tus relaciones: olvidos, retrasos o despistes que los demás pueden leer como falta de interés. Explicar a la gente cercana cómo te funciona la atención y apuntar lo importante en el momento evita muchas discusiones.",mid:"De vez en cuando un olvido o un retraso genera roces. Compartir el calendario con tu pareja o tu familia ayuda.",lo:"En tus relaciones apenas pesa: no sueles tener roces por olvidos o retrasos."},
+  EMO:{hi:"Tus emociones van rápido: te frustras con facilidad, reaccionas antes de pensar y luego te pesa. Es muy común en el TDAH adulto. Parar diez segundos antes de responder y dormir bien son de lo que más ayuda.",mid:"A veces reaccionas en caliente o te frustras por no llegar a todo. Detectar qué situaciones te encienden te da margen para frenar.",lo:"Manejas bien las emociones y la impulsividad: no es un área que te complique."}
+ },
+ guide(pct,k,own){
+  return (k==='positive'?"Empieza diciendo que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido positivo. ":"Explica que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido negativo y qué te ha llevado a hacer el test. ")
+   +`Céntrate en las dos áreas donde más se nota en tu caso: ${top2(pct,own,this)}. Lleva dos o tres ejemplos concretos de cada una: qué pasó, cada cuánto te ocurre y qué consecuencias ha tenido. `
+   +"El profesional te preguntará si ya te pasaba de pequeño, porque es necesario para el diagnóstico en adultos: si puedes, pregúntale a tu familia cómo eras en el colegio o busca boletines de notas antiguos.";
+ },
+ items:[
+  {t:"¿Con qué frecuencia tiene usted dificultad para acabar los detalles finales de un proyecto, una vez que ha terminado con las partes difíciles?",s:"ASRS"},
+  {t:"¿Con qué frecuencia tiene usted dificultad para ordenar las cosas cuando está realizando una tarea que requiere organización?",s:"ASRS"},
+  {t:"¿Con qué frecuencia tiene usted problemas para recordar citas u obligaciones?",s:"ASRS"},
+  {t:"Cuando tiene que realizar una tarea que requiere pensar mucho, ¿con qué frecuencia evita o retrasa empezarla?",s:"ASRS"},
+  {t:"¿Con qué frecuencia mueve continuamente o retuerce las manos o los pies cuando tiene que permanecer sentado por mucho tiempo?",s:"ASRS"},
+  {t:"¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?",s:"ASRS"},
+  {t:"¿Con qué frecuencia deja tareas del trabajo o de los estudios a medias porque pierde el interés?",s:"TRA"},
+  {t:"¿Con qué frecuencia le cuesta concentrarse en reuniones, clases o lecturas largas aunque le interesen?",s:"TRA"},
+  {t:"¿Con qué frecuencia rinde por debajo de lo que sabe que podría por falta de constancia?",s:"TRA"},
+  {t:"¿Con qué frecuencia su casa, su mesa o su correo acaban desordenados aunque se proponga mantenerlos al día?",s:"ORG"},
+  {t:"¿Con qué frecuencia se le echa el tiempo encima y acaba haciendo las cosas a última hora?",s:"ORG"},
+  {t:"¿Con qué frecuencia gasta dinero por impulso en cosas que no tenía previsto comprar?",s:"DIN"},
+  {t:"¿Con qué frecuencia paga recargos o pierde dinero por olvidar pagos, recibos o trámites?",s:"DIN"},
+  {t:"¿Con qué frecuencia su pareja, su familia o sus amigos se quejan de que se olvida de lo que le dicen?",s:"REL"},
+  {t:"¿Con qué frecuencia tiene discusiones por llegar tarde o por no cumplir lo que había quedado?",s:"REL"},
+  {t:"¿Con qué frecuencia sus emociones cambian de golpe y le cuesta calmarse?",s:"EMO"},
+  {t:"¿Con qué frecuencia dice o hace cosas sin pensar y luego se arrepiente?",s:"EMO"},
+  {t:"¿Con qué frecuencia se siente culpable o frustrado por no llegar a todo lo que se propone?",s:"EMO"}
+ ]
+};
+window.TESTS.push(TDAH);
+
+/* --- Ansiedad ---
+   GAD-7 (Spitzer et al., 2006): uso, reproducción y traducción libres. Ítems de la versión española validada por
+   García-Campayo et al. (2010, 2012; tabla 1 de 10.1186/1477-7525-10-114). Escala 0–3 en las últimas 2 semanas.
+   Bandas oficiales: 0–4 mínima, 5–9 leve, 10–14 moderada, 15–21 grave. */
+const CRISIS='<p>Si tienes pensamientos de hacerte daño, llama al <b>024</b> (gratuito, confidencial y a cualquier hora). En una emergencia, llama al <b>112</b>.</p>';
+const ANSIEDAD={
+ id:"ansiedad", name:"Test de ansiedad", emoji:"🌊", cat:"Bienestar", eyebrow:"Tu nivel de ansiedad",
+ blurb:"El cuestionario GAD-7, el más usado para medir la ansiedad, más un análisis de qué tipo de ansiedad predomina en ti.",
+ instrument:"Preguntas 1 a 7: GAD-7 (Spitzer et al., 2006), versión española validada por García-Campayo et al. (2010). Preguntas 8 a 17: propias de Testia, solo para el desglose por tipo de ansiedad.",
+ license:"🟢", sensitive:true, screening:true, official:7, startNote:SNOTE,
+ mode:"likert", scaleMax:4, labels:["Nunca","Varios días","Más de la mitad de los días","Casi todos los días"],
+ prompt:"Durante las últimas 2 semanas, ¿con qué frecuencia ha sentido molestias por los siguientes problemas?",
+ scales:{GAD:"GAD-7",SOC:"Ansiedad social",ANT:"Ansiedad anticipatoria",FIS:"Síntomas físicos",PRE:"Preocupación constante"},
+ result:{type:"screen",kind:"gad7",official:"GAD"},
+ premiumPitch:"Qué tipo de ansiedad predomina en ti (social, anticipatoria, física o preocupación constante), qué la dispara, pautas con evidencia para tu caso y un guion para hablarlo con un profesional.",
+ verdicts:{
+  minima:{name:"Ansiedad mínima",desc:"Tu puntuación está en el rango más bajo del GAD-7: los síntomas de ansiedad apenas te han molestado en las últimas dos semanas.",
+   help:"<p>Si en algún momento la ansiedad empieza a afectarte en tu día a día, coméntalo con tu médico de cabecera.</p>"+CRISIS},
+  leve:{name:"Ansiedad leve",desc:"Has notado algunos síntomas de ansiedad en las últimas dos semanas, en un nivel leve. Es frecuente en épocas de estrés y suele mejorar con descanso y con hábitos que te ayuden a calmarte.",
+   help:"<p>Si los síntomas duran más de unas semanas o te cuesta llevar tu día a día, coméntalo con tu médico de cabecera.</p>"+CRISIS},
+  moderada:{name:"Ansiedad moderada",desc:"Tu puntuación está en el rango moderado. A partir de 10 puntos, el GAD-7 indica que conviene que un profesional valore lo que te pasa.",
+   help:"<p><b>Te recomendamos consultarlo:</b> pide cita con tu médico de cabecera o con un psicólogo. La ansiedad tiene tratamientos eficaces, como la terapia cognitivo-conductual.</p>"+CRISIS},
+  grave:{name:"Ansiedad grave",desc:"Tu puntuación está en el rango más alto del GAD-7. La ansiedad te está afectando mucho, y es importante que un profesional te ayude cuanto antes.",
+   help:"<p><b>Pide ayuda pronto:</b> habla con tu médico de cabecera esta misma semana o acude a un psicólogo. No tienes por qué pasarlo solo: la ansiedad tiene tratamiento.</p>"+CRISIS}
+ },
+ interp:{
+  SOC:{hi:"La ansiedad se te dispara sobre todo delante de otras personas: miedo a que te juzguen, a quedar mal o a no saber qué decir. Lo que más ayuda es exponerte poco a poco a situaciones sociales asequibles en vez de evitarlas, porque evitar alivia en el momento pero hace crecer el miedo.",mid:"Algunas situaciones sociales te ponen nervioso, sobre todo si te sientes observado. Prepararlas un poco y recordarte que los demás se fijan en ti mucho menos de lo que parece ayuda a bajar la tensión.",lo:"Las situaciones sociales apenas te generan ansiedad."},
+  ANT:{hi:"Lo que más te pesa es la espera: los días previos a un examen, una cita o una decisión te imaginas lo peor. Fijar un rato al día para preocuparte y aplazar las preocupaciones hasta ese momento reduce mucho el tiempo que pasas anticipando.",mid:"Antes de compromisos importantes te inquietas más de la cuenta. Centrarte en lo siguiente que tienes que hacer, y no en lo que podría salir mal, te ayuda a llegar más tranquilo.",lo:"No sueles anticipar lo peor: afrontas los compromisos sin darles demasiadas vueltas antes."},
+  FIS:{hi:"Tu ansiedad se nota mucho en el cuerpo: tensión, palpitaciones, estómago o sueño. La respiración lenta, con espiraciones más largas que las inspiraciones, el ejercicio regular y horarios de sueño fijos son de lo que más ayuda. Si notas síntomas físicos nuevos, conviene que te vea tu médico.",mid:"A veces la ansiedad te pasa factura en el cuerpo, sobre todo en épocas de estrés. Moverte a diario y cuidar el sueño reduce esa tensión.",lo:"La ansiedad apenas se te nota en el cuerpo."},
+  PRE:{hi:"Tu mente vuelve una y otra vez a las mismas preocupaciones, aunque intentes apartarlas. Escribirlas en un papel y preguntarte qué puedes hacer hoy con cada una, y qué no depende de ti, ayuda a cortar el bucle.",mid:"Hay preocupaciones que se te quedan dando vueltas más de lo que te gustaría. Distinguir entre los problemas que puedes resolver y los que no te ayuda a soltarlos.",lo:"Las preocupaciones no se te enganchan: les das una vuelta y sigues."}
+ },
+ guide(pct,k,own){
+  return "Cuenta tu puntuación en el GAD-7 y desde cuándo te encuentras así. "
+   +`Explica en qué se nota más tu ansiedad: en tu caso, ${top2(pct,own,this)}. Lleva ejemplos concretos de situaciones recientes, qué sentiste y qué hiciste después (por ejemplo, si evitaste algo). `
+   +"Comenta también cómo duermes, si tomas café, alcohol u otras sustancias, y si la ansiedad te impide trabajar, estudiar o ver a gente: ayuda al profesional a valorar qué tratamiento te conviene.";
+ },
+ items:[
+  {t:"Sensación de nerviosismo, de ansiedad, de tener los nervios de punta",s:"GAD"},
+  {t:"Incapacidad para eludir o controlar la preocupación",s:"GAD"},
+  {t:"Preocupación excesiva por cosas diferentes",s:"GAD"},
+  {t:"Dificultad para relajarse",s:"GAD"},
+  {t:"Una intranquilidad de tal grado que no puede estarse quieto",s:"GAD"},
+  {t:"Facilidad para enfadarse o irritabilidad",s:"GAD"},
+  {t:"Sensación de miedo, como si pudiera ocurrir algo terrible",s:"GAD"},
+  {t:"Miedo a que los demás le juzguen o a quedar en ridículo",s:"SOC"},
+  {t:"Evitar reuniones, llamadas o conversaciones por los nervios que le producen",s:"SOC"},
+  {t:"Darle vueltas después a lo que dijo o hizo delante de otras personas",s:"SOC"},
+  {t:"Nervios intensos los días antes de un examen, una cita o un compromiso importante",s:"ANT"},
+  {t:"Imaginar lo peor que puede pasar antes de que ocurra algo",s:"ANT"},
+  {t:"Palpitaciones, sensación de ahogo o presión en el pecho por los nervios",s:"FIS"},
+  {t:"Tensión en los músculos, dolor de cabeza o molestias de estómago por los nervios",s:"FIS"},
+  {t:"Dificultad para dormirse o despertarse con la cabeza dándole vueltas",s:"FIS"},
+  {t:"Pensamientos de preocupación que vuelven una y otra vez aunque intente apartarlos",s:"PRE"},
+  {t:"Necesidad de comprobar las cosas o de pedir confirmación para quedarse tranquilo",s:"PRE"}
+ ]
+};
+window.TESTS.push(ANSIEDAD);
+
+/* --- Rasgos autistas ---
+   Preguntas propias de Testia sobre las tres áreas de los criterios del DSM-5 (comunicación e interacción social;
+   rutinas, rigidez e intereses; sensibilidad sensorial). No reproducen ítems del AQ, AQ-10, CATI ni RAADS-R,
+   cuyas licencias no permiten este uso. Sin puntos de corte validados: bandas orientativas con traitBand(). */
+const NOVAL='<p class="rhnote">Este test usa preguntas propias basadas en los criterios del DSM-5 y no está validado clínicamente: solo una evaluación profesional puede diagnosticar el autismo.</p>';
+const AUTISMO={
+ id:"autismo", name:"Test: ¿tengo rasgos autistas?", emoji:"♾️", cat:"Bienestar", eyebrow:"Tus rasgos autistas",
+ blurb:"30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial para saber si tienes rasgos autistas y dónde pedir una evaluación.",
+ instrument:"Preguntas propias de Testia basadas en las tres áreas de los criterios del DSM-5 (APA, 2013) · sin validar clínicamente.",
+ license:"🟡", sensitive:true, screening:true, official:0, startNote:SNOTE,
+ mode:"likert", scaleMax:5,
+ scales:{SOC:"Comunicación e interacción social",RUT:"Rutinas e intereses intensos",SEN:"Sensibilidad sensorial"},
+ result:{type:"screen",kind:"traits"},
+ premiumPitch:"Tu perfil en las tres áreas del autismo (comunicación social, rutinas e intereses, y sensibilidad sensorial), qué significa cada una en la vida adulta, los puntos fuertes asociados y un resumen para llevar a una evaluación.",
+ verdicts:{
+  bajo:{name:"Rasgos autistas bajos",desc:"Tus respuestas muestran pocos rasgos de los que se asocian al autismo en comunicación social, rutinas y sensibilidad sensorial.",
+   help:"<p>Si aun así te identificas con el autismo o hay cosas que te complican el día a día, coméntalo con tu médico de cabecera, que puede derivarte a salud mental. Asociaciones como Autismo España orientan sobre la evaluación en adultos.</p>"+NOVAL},
+  medio:{name:"Rasgos autistas moderados",desc:"Tus respuestas muestran algunos de los rasgos que se asocian al autismo. Mucha gente tiene rasgos de este tipo sin ser autista.",
+   help:"<p>Si estos rasgos te generan malestar o te complican el trabajo o las relaciones, coméntalo con tu médico de cabecera, que puede derivarte a salud mental para una evaluación. Asociaciones como Autismo España te orientan sobre dónde se hace en tu comunidad.</p>"+NOVAL},
+  alto:{name:"Rasgos autistas altos",desc:"Tus respuestas muestran muchos de los rasgos que se asocian al autismo en las tres áreas. No es un diagnóstico, pero sí una buena razón para pedir una evaluación si te lo planteas.",
+   help:"<p><b>Si quieres una evaluación:</b> pide cita con tu médico de cabecera y explícale qué te pasa; puede derivarte a psiquiatría o psicología clínica. Asociaciones como Autismo España te orientan sobre dónde se hace el diagnóstico de adultos en tu comunidad.</p><p>Mucha gente recibe el diagnóstico de adulta, sobre todo mujeres y personas que han aprendido a camuflar sus rasgos.</p>"+NOVAL}
+ },
+ interp:{
+  SOC:{hi:"La interacción social te supone un esfuerzo extra: interpretar indirectas, saber cuándo hablar o sostener la mirada no te sale de forma automática, y después necesitas recuperarte. Muchas personas autistas aprenden a imitar lo que se espera de ellas, lo que agota. Como punto fuerte, sueles ser directo, sincero y fiel a lo que dices.",mid:"Algunas situaciones sociales te cuestan más que a la mayoría, sobre todo en grupo o con gente nueva. Elegir bien cuánto tiempo socializas y con quién te ayuda a no acabar agotado.",lo:"La comunicación y la interacción social te salen con naturalidad: lees bien a los demás y te mueves con soltura en grupo."},
+  RUT:{hi:"Las rutinas te dan seguridad y los cambios inesperados te desestabilizan. Además, tienes intereses que te absorben por completo. Es uno de los rasgos más característicos del autismo y también una fuente de talento: la constancia y la profundidad con la que dominas un tema son poco comunes. Avisar con tiempo de los cambios y reservar ratos para tus intereses te ayuda a estar bien.",mid:"Te gustan tus rutinas y tienes algún interés que te absorbe, aunque te adaptas a los cambios con algo de esfuerzo.",lo:"Llevas bien los cambios y la improvisación: no necesitas rutinas fijas para sentirte a gusto."},
+  SEN:{hi:"Tus sentidos van al máximo: ruidos, luces, texturas u olores que otros ni notan a ti te saturan, y los sitios concurridos te agotan rápido. Tapones o cascos, ropa cómoda y pausas en sitios tranquilos marcan mucha diferencia. Esa misma sensibilidad te hace captar detalles que a otros se les escapan.",mid:"Hay estímulos concretos que te molestan más que a la mayoría, sobre todo cuando estás cansado o estresado.",lo:"Los estímulos sensoriales no te afectan más que a la media."}
+ },
+ guide(pct,k,own){
+  return `Lleva a la evaluación ejemplos concretos de las dos áreas donde más se nota en tu caso: ${top2(pct,own,this)}. `
+   +"Para cada una, piensa en situaciones reales de tu día a día, cuánto esfuerzo te suponen y qué haces para compensarlas. "
+   +"El profesional también te preguntará por tu infancia: si puedes, pregunta a tu familia cómo eras de pequeño en el colegio, con otros niños y con los cambios.";
+ },
+ items:[
+  {t:"Después de una reunión o una comida con mucha gente, necesito tiempo a solas para recuperarme.",s:"SOC"},
+  {t:"Me cuesta saber cuándo me toca hablar en una conversación de grupo.",s:"SOC"},
+  {t:"A veces la gente se molesta por algo que he dicho y no entiendo bien por qué.",s:"SOC"},
+  {t:"Prefiero que me digan las cosas de forma literal y directa, sin indirectas.",s:"SOC"},
+  {t:"En situaciones sociales nuevas sé qué decir sin tener que pensarlo.",s:"SOC",r:true},
+  {t:"Mirar a los ojos mientras hablo me resulta incómodo o me desconcentra.",s:"SOC"},
+  {t:"Observo cómo se comportan los demás para copiarlo en situaciones nuevas.",s:"SOC"},
+  {t:"Las conversaciones de cortesía, como hablar del tiempo, me salen solas.",s:"SOC",r:true},
+  {t:"Me doy cuenta enseguida de si alguien se aburre mientras le hablo.",s:"SOC",r:true},
+  {t:"Hacer amigos nuevos me resulta sencillo.",s:"SOC",r:true},
+  {t:"Cuando cambian un plan en el último momento, me cuesta mucho adaptarme.",s:"RUT"},
+  {t:"Tengo temas que me apasionan y sobre los que podría leer o hablar durante horas.",s:"RUT"},
+  {t:"Me gusta hacer las cosas cotidianas siempre en el mismo orden.",s:"RUT"},
+  {t:"Cuando algo me interesa, me cuesta parar aunque tenga otras cosas que hacer.",s:"RUT"},
+  {t:"Me tranquiliza saber exactamente qué va a pasar durante el día.",s:"RUT"},
+  {t:"Cuando estoy nervioso o muy concentrado, repito movimientos como balancearme o mover las manos.",s:"RUT"},
+  {t:"Si alguien cambia de sitio mis cosas, me da igual.",s:"RUT",r:true},
+  {t:"Improvisar un plan sobre la marcha me resulta divertido.",s:"RUT",r:true},
+  {t:"Me adapto sin problema cuando cambian mi forma de trabajar.",s:"RUT",r:true},
+  {t:"Mis aficiones cambian a menudo y ninguna me absorbe demasiado.",s:"RUT",r:true},
+  {t:"Hay ruidos que a otros no les molestan y a mí me resultan insoportables.",s:"SEN"},
+  {t:"Algunas texturas de ropa o algunas etiquetas me molestan tanto que no puedo llevarlas.",s:"SEN"},
+  {t:"Los sitios con mucha luz, ruido y gente me agotan rápido.",s:"SEN"},
+  {t:"Evito ciertas comidas por su textura más que por su sabor.",s:"SEN"},
+  {t:"Sigo sin esfuerzo una conversación aunque haya otras a mi alrededor.",s:"SEN",r:true},
+  {t:"Hay olores de comida, perfumes o productos de limpieza que me resultan muy intensos.",s:"SEN"},
+  {t:"A veces no me doy cuenta de que tengo hambre, frío o cansancio hasta que es muy fuerte.",s:"SEN"},
+  {t:"Puedo concentrarme sin problema en un sitio ruidoso.",s:"SEN",r:true},
+  {t:"Las luces fuertes o parpadeantes no me molestan.",s:"SEN",r:true},
+  {t:"Me da igual el tacto de la ropa que llevo.",s:"SEN",r:true}
+ ]
+};
+window.TESTS.push(AUTISMO);
+
+/* --- 16 tipos de personalidad ---
+   Ítems IPIP (Goldberg, dominio público), los mismos del test bigfive para extraversión, apertura, amabilidad y responsabilidad.
+   Paso a 4 letras con type16() según la relación descrita por McCrae y Costa (1989). Nombres de tipo propios de Testia. */
+const BF=window.TESTS.find(t=>t.id==="bigfive");
+const bfBy=k=>BF.items.filter(it=>it.s===k);
+const T16ITEMS=[];{const g=["E","O","A","C"].map(bfBy),n=Math.max(...g.map(x=>x.length));for(let i=0;i<n;i++)g.forEach(x=>{if(x[i])T16ITEMS.push(Object.assign({},x[i]));});}
+const TIPOS16={
+ id:"tipos16", name:"¿Cuál de los 16 tipos de personalidad eres?", emoji:"🔠", cat:"Personalidad", eyebrow:"Tu tipo de personalidad",
+ blurb:"Tus cuatro letras: cómo te relacionas, cómo percibes el mundo, cómo decides y cómo te organizas. Con preguntas científicas de dominio público.",
+ instrument:"Ítems IPIP de los cinco grandes (Goldberg, 1992; dominio público) convertidos a cuatro preferencias según McCrae y Costa (1989). Nombres de tipo propios de Testia.",
+ license:"🟢",
+ mode:"likert", scaleMax:5,
+ scales:{E:"Extraversión",O:"Apertura",A:"Amabilidad",C:"Responsabilidad"},
+ result:{type:"type16"},
+ premiumPitch:"Cuánto se inclina cada una de tus cuatro preferencias, tus puntos fuertes y débiles, cómo eres en pareja y en el trabajo, y con qué tipos encajas mejor.",
+ types:{
+  INTJ:{name:"El Estratega",desc:"Piensas a largo plazo y te mueves con un plan. Te atraen las ideas complejas, confías en tu criterio y prefieres trabajar a tu ritmo, con pocos pero buenos vínculos.",fuertes:"Visión de futuro, independencia y capacidad para convertir ideas en planes concretos.",debiles:"Puedes parecer distante o impaciente con quien no sigue tu ritmo, y te cuesta delegar.",pareja:"Leal y comprometido, aunque expresas el cariño más con hechos que con palabras. Necesitas a alguien que respete tu espacio.",trabajo:"Brillas en estrategia, investigación, ingeniería o cualquier puesto donde puedas diseñar sistemas con autonomía.",compatibles:["ENFP","ENTP"]},
+  INTP:{name:"El Pensador",desc:"Tu mente no para: quieres entender cómo funciona todo. Disfrutas analizando ideas, detectas incoherencias al vuelo y valoras la lógica por encima de las convenciones.",fuertes:"Pensamiento original, curiosidad sin límites y objetividad para analizar problemas.",debiles:"Te pierdes en las ideas y te cuesta llevar las cosas a la práctica o seguir rutinas.",pareja:"Tranquilo y fiel, buscas a alguien con quien compartir conversaciones profundas sin presiones.",trabajo:"Encajas en ciencia, programación, análisis de datos o filosofía: trabajos con problemas complejos y libertad.",compatibles:["ENTJ","ENFJ"]},
+  ENTJ:{name:"El Líder",desc:"Ves lo que hay que hacer y organizas a la gente para conseguirlo. Eres decidido, directo y ambicioso, y los retos te motivan más que nada.",fuertes:"Liderazgo, seguridad al decidir y capacidad para organizar equipos hacia una meta.",debiles:"Puedes resultar dominante o poco paciente con las emociones ajenas.",pareja:"Te tomas la relación en serio y quieres crecer en pareja; necesitas a alguien con criterio propio.",trabajo:"Destacas dirigiendo proyectos, empresas o equipos, y en consultoría o derecho.",compatibles:["INTP","INFP"]},
+  ENTP:{name:"El Polemista",desc:"Te encanta darle la vuelta a las ideas y discutir por el placer de pensar. Eres ingenioso, rápido y siempre tienes un proyecto nuevo entre manos.",fuertes:"Creatividad, agilidad mental y facilidad para ver oportunidades donde otros ven problemas.",debiles:"Empiezas más cosas de las que terminas y a veces discutes solo por discutir.",pareja:"Divertido y estimulante; buscas a alguien que te siga el ritmo y no se tome a mal el debate.",trabajo:"Encajas en emprendimiento, innovación, marketing, periodismo o cualquier sitio donde haya que inventar.",compatibles:["INFJ","INTJ"]},
+  INFJ:{name:"El Consejero",desc:"Captas lo que sienten los demás antes de que lo digan y te guías por valores profundos. Reservado pero cálido, quieres que lo que haces tenga sentido.",fuertes:"Intuición para las personas, empatía y compromiso con tus ideales.",debiles:"Te exiges mucho, te cuesta poner límites y puedes agotarte por cargar con los demás.",pareja:"Buscas una conexión profunda y auténtica; prefieres pocas relaciones pero de verdad.",trabajo:"Brillas en psicología, educación, escritura, orientación o causas sociales.",compatibles:["ENTP","ENFP"]},
+  INFP:{name:"El Idealista",desc:"Vives según tus valores y tienes un mundo interior muy rico. Eres sensible, creativo y buscas autenticidad en todo lo que haces.",fuertes:"Empatía, creatividad y fidelidad a lo que crees.",debiles:"Te afectan mucho las críticas y te cuesta lo práctico y lo rutinario.",pareja:"Romántico y entregado; necesitas sentir que te entienden de verdad.",trabajo:"Encajas en escritura, arte, diseño, psicología o trabajos con propósito social.",compatibles:["ENFJ","ENTJ"]},
+  ENFJ:{name:"El Mentor",desc:"Sacas lo mejor de la gente y te importa que todos estén bien. Eres carismático, organizado y te mueve ayudar a los demás a crecer.",fuertes:"Carisma, capacidad para motivar y talento para unir grupos.",debiles:"Te olvidas de ti por cuidar a otros y te afecta demasiado no gustar.",pareja:"Generoso y atento; vuelcas mucha energía en que la relación funcione.",trabajo:"Destacas en docencia, recursos humanos, formación, comunicación o coaching.",compatibles:["INFP","INTP"]},
+  ENFP:{name:"El Inspirador",desc:"Contagias entusiasmo y ves posibilidades en todas partes. Eres curioso, cercano y necesitas libertad para seguir lo que te ilusiona.",fuertes:"Entusiasmo, creatividad y facilidad para conectar con todo tipo de gente.",debiles:"Te dispersas, pierdes el interés cuando algo se vuelve rutina y te cuesta concretar.",pareja:"Cariñoso y espontáneo; buscas una relación que te haga crecer y no te ate.",trabajo:"Encajas en comunicación, creatividad, emprendimiento, eventos o trabajos con personas.",compatibles:["INTJ","INFJ"]},
+  ISTJ:{name:"El Metódico",desc:"Eres responsable, ordenado y cumples lo que prometes. Confías en lo que ha demostrado funcionar y la gente sabe que puede contar contigo.",fuertes:"Fiabilidad, constancia y atención al detalle.",debiles:"Te cuestan los cambios bruscos y puedes ser rígido con las normas.",pareja:"Estable y leal; demuestras el cariño cumpliendo y estando ahí.",trabajo:"Brillas en administración, finanzas, derecho, logística o ingeniería.",compatibles:["ESFP","ESTP"]},
+  ISFJ:{name:"El Cuidador",desc:"Te fijas en lo que necesitan los demás y lo resuelves sin hacer ruido. Eres trabajador, atento y muy leal con tu gente.",fuertes:"Generosidad, paciencia y sentido práctico para ayudar.",debiles:"Te cuesta decir que no y te guardas lo que te molesta.",pareja:"Detallista y entregado; cuidas la relación en las pequeñas cosas.",trabajo:"Encajas en sanidad, educación, atención al cliente o administración.",compatibles:["ESFP","ESTP"]},
+  ESTJ:{name:"El Organizador",desc:"Pones orden donde hay caos y haces que las cosas se hagan. Eres práctico, directo y te gusta tener claro quién hace qué.",fuertes:"Organización, determinación y capacidad para llevar proyectos a término.",debiles:"Puedes ser inflexible y poco paciente con otras formas de hacer las cosas.",pareja:"Comprometido y protector; te gusta que haya planes y acuerdos claros.",trabajo:"Destacas en gestión, dirección de operaciones, administración pública o finanzas.",compatibles:["ISFP","ISTP"]},
+  ESFJ:{name:"El Anfitrión",desc:"Te encanta reunir a la gente y que todos se sientan a gusto. Eres sociable, atento y te importa mucho la armonía del grupo.",fuertes:"Calidez, sentido de comunidad y facilidad para organizar planes con gente.",debiles:"Te preocupa demasiado qué piensan los demás y te afectan los conflictos.",pareja:"Cariñoso y dedicado; te gusta cuidar y que te cuiden.",trabajo:"Encajas en sanidad, educación, hostelería, eventos o recursos humanos.",compatibles:["ISFP","ISTP"]},
+  ISTP:{name:"El Resolutivo",desc:"Tranquilo y práctico, entiendes cómo funcionan las cosas tocándolas. Mantienes la calma cuando algo falla y prefieres actuar a hablar.",fuertes:"Sangre fría, habilidad práctica y capacidad para resolver problemas sobre la marcha.",debiles:"Te aburres con la rutina y te cuesta hablar de lo que sientes.",pareja:"Independiente y leal; demuestras el cariño haciendo cosas juntos.",trabajo:"Brillas en mecánica, tecnología, oficios, emergencias o deporte.",compatibles:["ESTJ","ESFJ"]},
+  ISFP:{name:"El Artista",desc:"Sensible y espontáneo, vives el momento y te expresas mejor con hechos o con arte que con palabras. Valoras la libertad y la belleza.",fuertes:"Sensibilidad estética, amabilidad y capacidad para disfrutar del presente.",debiles:"Evitas los conflictos y te cuesta planificar a largo plazo.",pareja:"Tierno y atento a los detalles; necesitas una relación sin presiones.",trabajo:"Encajas en diseño, arte, cocina, cuidado de animales o trabajos manuales creativos.",compatibles:["ESTJ","ESFJ"]},
+  ESTP:{name:"El Intrépido",desc:"Vas a por todas y aprendes haciendo. Eres enérgico, directo y te encantan la acción y los retos del momento.",fuertes:"Iniciativa, sentido práctico y facilidad para moverte en situaciones cambiantes.",debiles:"Te precipitas y te cuesta pensar en las consecuencias a largo plazo.",pareja:"Divertido y apasionado; buscas a alguien que se apunte a planes.",trabajo:"Destacas en ventas, emprendimiento, deporte, emergencias o negocios.",compatibles:["ISTJ","ISFJ"]},
+  ESFP:{name:"El Espontáneo",desc:"Llenas de energía cualquier sitio y disfrutas de la vida con los demás. Eres alegre, generoso y vives el momento.",fuertes:"Simpatía, optimismo y capacidad para animar a cualquiera.",debiles:"Te cuesta planificar y aburrirte te sienta fatal.",pareja:"Cariñoso y divertido; quieres una relación con planes y emociones.",trabajo:"Encajas en espectáculos, turismo, ventas, hostelería o comunicación.",compatibles:["ISTJ","ISFJ"]}
+ },
+ items:T16ITEMS
+};
+window.TESTS.push(TIPOS16);
+/* Enlaces de vuelta: los tests parecidos enlazan a los nuevos. */
+[["bigfive","tipos16"],["eneagrama","tipos16"],["atencion","tdah"]].forEach(([k,id])=>{const S=window.SEO_CONTENT[k];if(S)S.relatedIds=[id].concat((S.relatedIds||[]).filter(x=>x!==id)).slice(0,3);});
+window.SEO_CONTENT.tipos16={slug:"test-16-tipos-de-personalidad",seoTitle:"Test de los 16 tipos de personalidad gratis: ¿cuál es el tuyo? | Testia",h1:"Test: ¿cuál de los 16 tipos de personalidad eres?",
+ metaDesc:"Test de los 16 tipos de personalidad: descubre tus cuatro letras (INTJ, ENFP…) con preguntas científicas de dominio público. Gratis y sin registro.",
+ intro:"Introvertido o extravertido, intuitivo o práctico, racional o emocional, organizado o espontáneo: este test te da tus cuatro letras entre los 16 tipos de personalidad. Usa preguntas del banco científico IPIP, de dominio público, y una conversión publicada en una revista científica.",
+ learn:["Tus cuatro letras y el nombre de tu tipo","Cuánto se inclina cada preferencia","Tus puntos fuertes y débiles","Cómo eres en pareja y en el trabajo, y con qué tipos encajas"],
+ overview:[
+  {label:"Mide",text:"Cuatro preferencias: extraversión o introversión, intuición o sensorial, sentimiento o pensamiento, y juicio o percepción."},
+  {label:"Formato",text:"40 afirmaciones del banco público IPIP; unos 6 minutos."},
+  {label:"Límite",text:"Los tipos simplifican: la personalidad es un continuo, y por eso te mostramos también cuánto se inclina cada letra."}
+ ],
+ sections:[
+  {title:"De dónde salen los 16 tipos",body:"Los 16 tipos combinan cuatro preferencias que propuso Carl Jung: hacia dónde diriges tu energía (E o I), cómo percibes la información (N o S), cómo decides (F o T) y cómo te organizas (J o P). Este test es una alternativa abierta a tests como el MBTI: en lugar de un cuestionario de pago, usa preguntas del banco IPIP, de dominio público."},
+  {title:"Cómo se calculan tus letras",body:"McCrae y Costa demostraron en 1989 que esas cuatro preferencias se corresponden con cuatro de los cinco grandes rasgos de personalidad: la extraversión con E/I, la apertura con N/S, la amabilidad con F/T y la responsabilidad con J/P. Medimos esos cuatro rasgos y los traducimos a letras. Cuanto más lejos del punto medio, más marcada es la preferencia."},
+  {title:"Cómo tomarte el resultado",body:"Los tipos son una forma cómoda de describirse, pero la personalidad no viene en 16 cajas: si una letra te sale poco marcada, es normal que te reconozcas también en la contraria. Si quieres una medida más completa, el test de los cinco grandes te da tu puntuación en cada rasgo."}
+ ],
+ faqs:[
+  {q:"¿Es lo mismo que el test MBTI?",a:"No. El MBTI es un cuestionario comercial con marca registrada. Este test mide las mismas cuatro preferencias con preguntas científicas de dominio público (IPIP), siguiendo la correspondencia que publicaron McCrae y Costa en 1989."},
+  {q:"¿Qué significan las cuatro letras?",a:"E o I: extraversión o introversión. N o S: intuición o sensorial. F o T: sentimiento o pensamiento. J o P: juicio (te gusta planificar) o percepción (prefieres improvisar)."},
+  {q:"¿Por qué mis letras pueden cambiar si repito el test?",a:"Porque si una preferencia está cerca del punto medio, una o dos respuestas la pueden inclinar hacia un lado u otro. Por eso mostramos cuánto se inclina cada letra."},
+  {q:"¿Cuál es el tipo de personalidad más raro?",a:"Suele citarse INFJ como uno de los menos frecuentes, aunque las cifras varían según el estudio y el cuestionario. Ningún tipo es mejor que otro."},
+  {q:"¿Qué tipos son compatibles?",a:"No hay reglas fijas, pero suelen encajar bien los tipos que comparten la forma de percibir el mundo y se complementan en lo demás. En tu resultado completo verás con qué tipos encajas mejor."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tus cuatro letras y tu tipo es gratis y sin registro. Cuánto se inclina cada letra, tus puntos fuertes y débiles, cómo eres en pareja y en el trabajo y tus tipos compatibles se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"The development of markers for the Big-Five factor structure",url:"https://doi.org/10.1037/1040-3590.4.1.26",note:"Goldberg (1992), Psychological Assessment: origen de los ítems IPIP."},
+  {title:"Reinterpreting the Myers-Briggs Type Indicator from the perspective of the five-factor model of personality",url:"https://doi.org/10.1111/j.1467-6494.1989.tb00759.x",note:"McCrae y Costa (1989), Journal of Personality: correspondencia entre las cuatro preferencias y los cinco grandes."}
+ ],
+ relatedIds:["bigfive","eneagrama","tipi"]};
+
+window.SEO_CONTENT.autismo={slug:"test-soy-autista",step1:"30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Sin registro.",about:"Todas las preguntas son propias de Testia, escritas a partir de las tres áreas de los criterios del DSM-5. No es un cuestionario clínico validado y no usa ítems de otros cuestionarios.",note:HNOTE,seoTitle:"Test: ¿tengo rasgos autistas? Test de autismo para adultos gratis | Testia",h1:"Test: ¿tengo rasgos autistas?",
+ metaDesc:"Test para saber si tienes rasgos autistas: 30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Gratis y sin registro. Orienta, no diagnostica.",
+ intro:"¿Te agotan las situaciones sociales, necesitas tus rutinas o te saturan ruidos que otros ni notan, y te preguntas si podrías ser autista? Este test recorre las tres áreas que usan los criterios del DSM-5 y te dice si tus rasgos autistas son bajos, moderados o altos, y dónde pedir una evaluación si te lo planteas.",
+ learn:["Si tus rasgos autistas son bajos, moderados o altos","Dónde pedir una evaluación de autismo en adultos","Tu perfil en comunicación social, rutinas y sensibilidad sensorial","Los puntos fuertes asociados a tu perfil"],
+ overview:[
+  {label:"Mide",text:"Rasgos autistas en tres áreas: comunicación e interacción social, rutinas e intereses intensos, y sensibilidad sensorial."},
+  {label:"Formato",text:"30 afirmaciones; unos 5 minutos."},
+  {label:"Límite",text:"Preguntas propias, sin validar clínicamente: orienta, pero no diagnostica. Pensado para mayores de 18 años."}
+ ],
+ sections:[
+  {title:"Qué mide este test",body:"El autismo se diagnostica cuando hay diferencias persistentes en la comunicación y la interacción social y, a la vez, patrones de conducta, intereses o actividades restringidos y repetitivos, que incluyen la forma de procesar los estímulos sensoriales. Este test pregunta por esas tres áreas con situaciones de la vida adulta. Son preguntas propias de Testia, no un cuestionario clínico validado."},
+  {title:"Autismo en adultos",body:"Muchas personas reciben el diagnóstico de autismo en la edad adulta. Es especialmente frecuente en mujeres y en personas que han aprendido a camuflar sus rasgos imitando a los demás, algo que suele generar mucho cansancio. Un diagnóstico tardío ayuda a entenderse mejor y a pedir los apoyos que hagan falta."},
+  {title:"Cómo pedir una evaluación",body:"Empieza por tu médico de cabecera, que puede derivarte a salud mental (psiquiatría o psicología clínica). En algunas comunidades hay unidades especializadas en autismo adulto. Asociaciones como Autismo España orientan sobre dónde se hace la evaluación en cada zona."}
+ ],
+ faqs:[
+  {q:"¿Este test diagnostica el autismo?",a:"No. Es un test orientativo con preguntas propias, sin validar clínicamente. Solo una evaluación profesional, con entrevistas y pruebas específicas, puede diagnosticar el autismo."},
+  {q:"¿Por qué no usáis el AQ o el AQ-10?",a:"Porque sus autores no permiten usarlos en productos comerciales. Hemos preferido escribir preguntas propias sobre las áreas de los criterios del DSM-5 y decirlo claramente."},
+  {q:"¿Tener rasgos autistas significa ser autista?",a:"No necesariamente. Los rasgos autistas se reparten en toda la población, y mucha gente tiene algunos sin ser autista. El diagnóstico depende de cuántos haya, de su intensidad y de cuánto afecten a tu vida."},
+  {q:"¿Se puede ser autista y no haberlo sabido hasta la edad adulta?",a:"Sí, es muy frecuente, sobre todo en mujeres y en personas que han aprendido a camuflar sus rasgos. Muchas reciben el diagnóstico pasados los 30 o los 40 años."},
+  {q:"¿Dónde pido una evaluación de autismo siendo adulto?",a:"Pide cita con tu médico de cabecera, que puede derivarte a salud mental. Asociaciones como Autismo España te orientan sobre dónde se hace la evaluación de adultos en tu comunidad."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de rasgos autistas y dónde pedir una evaluación es gratis y sin registro. Tu perfil por áreas, con su lectura, los puntos fuertes y un resumen para la evaluación, se puede desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"Diagnostic and Statistical Manual of Mental Disorders (DSM-5)",url:"https://doi.org/10.1176/appi.books.9780890425596",note:"Asociación Americana de Psiquiatría (2013): criterios del trastorno del espectro autista."},
+  {title:"Autism",url:"https://doi.org/10.1016/S0140-6736(13)61539-1",note:"Lai, Lombardo y Baron-Cohen (2014), The Lancet: revisión general."},
+  {title:"Identifying the lost generation of adults with autism spectrum conditions",url:"https://doi.org/10.1016/S2215-0366(15)00277-1",note:"Lai y Baron-Cohen (2015), The Lancet Psychiatry: diagnóstico en adultos."}
+ ],
+ relatedIds:["tdah","empathy","ansiedad"]};
+
+window.SEO_CONTENT.ansiedad={slug:"test-de-ansiedad",step1:"17 preguntas: las 7 del GAD-7 y 10 sobre el tipo de ansiedad. Sin registro.",about:"Las 7 primeras preguntas son el GAD-7 en su versión española, con su puntuación oficial de 0 a 21; tu nivel de ansiedad sale solo de ellas. Las 10 siguientes son propias de Testia y sirven para el análisis por tipo de ansiedad.",note:HNOTE,seoTitle:"Test de ansiedad GAD-7 online gratis: mide tu nivel de ansiedad | Testia",h1:"Test de ansiedad",
+ metaDesc:"Test de ansiedad con el cuestionario GAD-7, validado en español. Descubre si tu ansiedad es mínima, leve, moderada o grave. Gratis y sin registro. Orienta, no diagnostica.",
+ intro:"¿Últimamente vas con los nervios de punta, te cuesta relajarte o no paras de darle vueltas a todo? Este test usa el GAD-7, el cuestionario de ansiedad más usado en atención primaria, validado en población española, y te dice al momento si tu nivel de ansiedad de las últimas dos semanas es mínimo, leve, moderado o grave.",
+ learn:["Tu nivel de ansiedad: mínimo, leve, moderado o grave","Tu puntuación en el GAD-7, de 0 a 21","Cuándo conviene consultar y a quién acudir","Qué tipo de ansiedad predomina en ti"],
+ overview:[
+  {label:"Mide",text:"Síntomas de ansiedad en las últimas dos semanas, con el cuestionario GAD-7."},
+  {label:"Formato",text:"7 preguntas oficiales y 10 más sobre el tipo de ansiedad; unos 3 minutos."},
+  {label:"Límite",text:"Orienta sobre tu nivel de ansiedad, pero no diagnostica un trastorno. Pensado para mayores de 18 años."}
+ ],
+ sections:[
+  {title:"Qué es el GAD-7",body:"El GAD-7 (Generalized Anxiety Disorder-7) es un cuestionario de 7 preguntas que publicaron Spitzer y su equipo en 2006. Se usa en todo el mundo en atención primaria para detectar la ansiedad y medir su intensidad. En España lo adaptó y validó el equipo de García-Campayo en 2010, con buenos resultados de fiabilidad y validez."},
+  {title:"Cómo se interpreta la puntuación",body:"Cada pregunta puntúa de 0 (nunca) a 3 (casi todos los días), y la suma va de 0 a 21. De 0 a 4 la ansiedad es mínima; de 5 a 9, leve; de 10 a 14, moderada, y de 15 a 21, grave. A partir de 10 puntos se recomienda que un profesional valore los síntomas."},
+  {title:"Cuándo pedir ayuda",body:"Si tu puntuación es de 10 o más, si la ansiedad dura semanas o si te impide trabajar, estudiar o relacionarte, habla con tu médico de cabecera o con un psicólogo. La ansiedad tiene tratamientos eficaces. Si tienes pensamientos de hacerte daño, llama al 024, gratuito y disponible a cualquier hora, o al 112 en una emergencia."}
+ ],
+ faqs:[
+  {q:"¿Este test diagnostica un trastorno de ansiedad?",a:"No. El GAD-7 mide la intensidad de tus síntomas de ansiedad y orienta sobre si conviene consultar, pero solo un profesional puede diagnosticar un trastorno de ansiedad tras una evaluación."},
+  {q:"¿Qué es una puntuación normal en el GAD-7?",a:"Entre 0 y 4 puntos la ansiedad es mínima. Es normal sentir algo de ansiedad en épocas de estrés; lo importante es si dura mucho tiempo o si te impide llevar tu vida con normalidad."},
+  {q:"¿A partir de qué puntuación debo consultar?",a:"A partir de 10 puntos se recomienda que un profesional valore lo que te pasa. Por debajo, consulta igualmente si los síntomas duran semanas o te afectan en el día a día."},
+  {q:"¿Por qué pregunta por las últimas dos semanas?",a:"Porque el GAD-7 mide cómo estás ahora, no cómo eres siempre. Si repites el test en otro momento, el resultado puede cambiar."},
+  {q:"¿Qué hago si estoy muy mal ahora mismo?",a:"Si tienes pensamientos de hacerte daño, llama al 024: es gratuito, confidencial y atiende a cualquier hora. En una emergencia, llama al 112."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver tu nivel de ansiedad, tu puntuación y cuándo conviene consultar es gratis y sin registro. El análisis del tipo de ansiedad que predomina en ti, con pautas y un guion para la consulta, se puede desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"A brief measure for assessing generalized anxiety disorder: the GAD-7",url:"https://doi.org/10.1001/archinte.166.10.1092",note:"Publicación original de Spitzer y otros (2006), Archives of Internal Medicine."},
+  {title:"Cultural adaptation into Spanish of the generalized anxiety disorder-7 (GAD-7) scale as a screening tool",url:"https://doi.org/10.1186/1477-7525-8-8",note:"Validación española de García-Campayo y otros (2010)."},
+  {title:"The assessment of generalized anxiety disorder: psychometric validation of the Spanish version of the self-administered GAD-2 scale in daily medical practice",url:"https://doi.org/10.1186/1477-7525-10-114",note:"García-Campayo y otros (2012): ítems del GAD-7 en español."}
+ ],
+ relatedIds:["panas","resilience","tdah"]};
+
+window.SEO_CONTENT.tdah={slug:"test-tdah-adultos",step1:"18 preguntas: las 6 del cuestionario oficial de la OMS, tal cual, y 12 sobre tu día a día. Sin registro.",about:"Las 6 primeras preguntas son el ASRS v1.1 de la OMS sin modificar, con su puntuación oficial; tu resultado de cribado sale solo de ellas. Las 12 siguientes son propias de Testia y sirven para el análisis por áreas.",note:HNOTE,seoTitle:"Test de TDAH en adultos: cuestionario de cribado de la OMS gratis | Testia",h1:"Test de TDAH en adultos",
+ metaDesc:"Test de TDAH para adultos con el cuestionario de cribado ASRS v1.1 de la OMS, validado en español. Resultado al momento, gratis y sin registro. Orienta, no diagnostica.",
+ intro:"¿Te cuesta terminar lo que empiezas, organizarte o estarte quieto, y te preguntas si podría ser TDAH? Este test usa el cuestionario de cribado de 6 preguntas de la Organización Mundial de la Salud (ASRS v1.1), validado en población española, y te dice al momento si tu cribado sale positivo o negativo.",
+ learn:["Si tu cribado de TDAH sale positivo o negativo","Cuántas de las 6 preguntas superan el umbral","Qué hacer y a quién acudir según tu resultado","Cómo te afecta en trabajo, organización, dinero, relaciones y emociones"],
+ overview:[
+  {label:"Mide",text:"Síntomas de falta de atención e hiperactividad en los últimos 6 meses, con el cuestionario ASRS v1.1 de la OMS."},
+  {label:"Formato",text:"6 preguntas oficiales y 12 más sobre tu día a día; unos 4 minutos."},
+  {label:"Límite",text:"Es un cribado: orienta sobre si conviene consultar, pero solo un profesional puede diagnosticar el TDAH. Pensado para mayores de 18 años."}
+ ],
+ sections:[
+  {title:"Qué es el cuestionario ASRS de la OMS",body:"El ASRS v1.1 (Adult ADHD Self-Report Scale) lo desarrollaron la Organización Mundial de la Salud y el equipo de Ronald Kessler en la Universidad de Harvard. Sus 6 preguntas son las que mejor separan, en estudios con población general, a los adultos con TDAH de los que no lo tienen. En España lo validó en 2009 el equipo de Ramos-Quiroga en el Hospital Vall d'Hebron de Barcelona: con el punto de corte de 4, detectó al 82 % de las personas con TDAH y descartó correctamente al 96 % de las que no lo tenían."},
+  {title:"Cómo se interpreta el resultado",body:"Cada pregunta tiene un umbral: en las tres primeras cuenta desde «A veces» y en las otras tres desde «A menudo». Si 4 o más preguntas superan su umbral, el cribado es positivo. Un resultado positivo significa que tus síntomas se parecen a los de muchas personas con TDAH y que merece la pena consultarlo; uno negativo hace menos probable el TDAH, pero no lo descarta."},
+  {title:"Qué hacer si sale positivo",body:"Pide cita con tu médico de cabecera, que puede derivarte a psiquiatría o psicología clínica. Para diagnosticar el TDAH en adultos, el profesional hace una entrevista, revisa si los síntomas venían ya de la infancia y descarta otras causas, como la ansiedad, la depresión o la falta de sueño. El TDAH adulto tiene tratamiento, y mucha gente lo descubre de mayor."}
+ ],
+ faqs:[
+  {q:"¿Este test diagnostica el TDAH?",a:"No. Es un cribado: indica si tus síntomas se parecen a los del TDAH y si conviene consultarlo. El diagnóstico solo lo puede hacer un profesional de la salud mental tras una evaluación completa."},
+  {q:"¿Qué es el ASRS v1.1?",a:"Es el cuestionario de cribado del TDAH en adultos de la Organización Mundial de la Salud, desarrollado con la Universidad de Harvard. Sus 6 preguntas son las primeras de la escala completa y las que mejor predicen el TDAH."},
+  {q:"¿Es fiable en español?",a:"Sí. La versión española se validó en 2009 en el Hospital Vall d'Hebron de Barcelona. Con el punto de corte de 4 preguntas, detectó al 82 % de los adultos con TDAH y acertó con el 96 % de los que no lo tenían."},
+  {q:"¿Y si me sale negativo pero me sigo sintiendo identificado?",a:"Coméntalo igualmente con tu médico. Un cribado negativo hace menos probable el TDAH, pero no lo descarta, sobre todo en personas que han aprendido a compensar sus dificultades."},
+  {q:"¿A quién acudo para un diagnóstico de TDAH adulto?",a:"Empieza por tu médico de cabecera, que puede derivarte a psiquiatría o psicología clínica de la sanidad pública. También puedes acudir a un psiquiatra o psicólogo clínico privado con experiencia en TDAH adulto."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver si tu cribado sale positivo o negativo, con lo que conviene hacer, es gratis y sin registro. El análisis por áreas de tu vida y el guion para la consulta se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"The World Health Organization adult ADHD self-report scale (ASRS): a short screening scale for use in the general population",url:"https://doi.org/10.1017/S0033291704002892",note:"Publicación original de Kessler y otros (2005), Psychological Medicine."},
+  {title:"Validación al español de la escala de cribado del trastorno por déficit de atención/hiperactividad en adultos (ASRS v. 1.1)",url:"https://doi.org/10.33588/rn.4809.2008677",note:"Ramos-Quiroga y otros (2009), Revista de Neurología."}
+ ],
+ relatedIds:["ansiedad","atencion","autismo"]};
+})();
