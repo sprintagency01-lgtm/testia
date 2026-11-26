@@ -3293,6 +3293,8 @@ const TIPOS16={
  items:T16ITEMS
 };
 window.TESTS.push(TIPOS16);
+/* Enlaces de vuelta: los tests parecidos enlazan a los nuevos. */
+[["bigfive","tipos16"],["eneagrama","tipos16"],["atencion","tdah"]].forEach(([k,id])=>{const S=window.SEO_CONTENT[k];if(S)S.relatedIds=[id].concat((S.relatedIds||[]).filter(x=>x!==id)).slice(0,3);});
 window.SEO_CONTENT.tipos16={slug:"test-16-tipos-de-personalidad",seoTitle:"Test de los 16 tipos de personalidad gratis: ¿cuál es el tuyo? | Testia",h1:"Test: ¿cuál de los 16 tipos de personalidad eres?",
  metaDesc:"Test de los 16 tipos de personalidad: descubre tus cuatro letras (INTJ, ENFP…) con preguntas científicas de dominio público. Gratis y sin registro.",
  intro:"Introvertido o extravertido, intuitivo o práctico, racional o emocional, organizado o espontáneo: este test te da tus cuatro letras entre los 16 tipos de personalidad. Usa preguntas del banco científico IPIP, de dominio público, y una conversión publicada en una revista científica.",

@@ -960,7 +960,7 @@ function renderScale(it){
     const lab=labels[i].replace(/'/g,"\\'");
     dots+=`<button class="dot${sel?' sel':''}" style="width:${size}px;height:${size}px;border-color:${side};background:${bg}" aria-label="${labels[i]}" onclick="pick(${v})" onmouseenter="scaleCap('${lab}')" onfocus="scaleCap('${lab}')"></button>`;
   }
-  const cur=answers[idx]?'Tu respuesta: '+labels[answers[idx]-1]:'Toca un círculo: izquierda = en desacuerdo, derecha = de acuerdo';
+  const cur=answers[idx]?'Tu respuesta: '+labels[answers[idx]-1]:(T.labels?`Toca un círculo: izquierda = ${labels[0].toLowerCase()}, derecha = ${labels[n-1].toLowerCase()}`:'Toca un círculo: izquierda = en desacuerdo, derecha = de acuerdo');
   $('opts').innerHTML=`<div class="scale"><span class="endlab l">${labels[0]}</span><div class="dots">${dots}</div><span class="endlab r">${labels[n-1]}</span></div><div class="scaleCap" id="scaleCap">${cur}</div>`;
 }
 function scaleCap(t){const e=$('scaleCap');if(e&&answers[idx]==null)e.textContent=t;}
