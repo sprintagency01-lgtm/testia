@@ -3066,3 +3066,96 @@ const RS=window.SEO_CONTENT.riasec;
 if(RS){RS.relatedIds=["carrera","fp","trabajo"];
  RS.sections=(RS.sections||[]).concat([{title:"Del código de Holland a una carrera concreta",body:"Tu código de tres letras dice qué tipo de actividades te atraen, pero no qué estudiar ni a qué dedicarte. Para eso Testia tiene tres tests más concretos que cruzan tus intereses con tus puntos fuertes y lo que buscas: «¿Qué carrera estudiar?», que compara tu perfil con 58 grados universitarios; «¿Qué FP estudiar?», con 86 ciclos de grado medio y superior, y «¿Qué trabajo es para mí?», con 62 profesiones y tu entorno de trabajo ideal."}]);}
 })();
+
+/* ===== Tests de salud y 16 tipos (nov 2026) =====
+   Diseño: docs/superpowers/specs/2026-11-26-tests-tdah-ansiedad-autismo-16-tipos-design.md
+   Puntuación en salud.js. En los tests de salud, los ítems oficiales van intactos y primero (T.official);
+   el veredicto gratis sale solo de ellos y los ítems propios alimentan el desglose de pago. */
+(function(){
+const FREQ5=["Nunca","Rara vez","A veces","A menudo","Muy a menudo"];
+const top2=(pct,own,T)=>own.slice().sort((a,b)=>pct[b]-pct[a]).slice(0,2).map(k=>`«${T.scales[k]}»`).join(' y ');
+
+/* --- TDAH en adultos ---
+   ASRS v1.1, 6 preguntas (Kessler et al., 2005; © New York University y Ronald C. Kessler, PhD). Uso libre con cita, sin modificar.
+   Texto de la versión española aprobada por la OMS, tal como la reproduce Ramos-Quiroga et al. (2009), tabla I.
+   Puntuación oficial: las preguntas 1–3 cuentan desde «A veces» y las 4–6 desde «A menudo»; 4 o más, cribado positivo. */
+const TDAH={
+ id:"tdah", name:"Test de TDAH en adultos", emoji:"⏱️", cat:"Bienestar", eyebrow:"Tu cribado de TDAH",
+ blurb:"El cuestionario de cribado de la OMS para el TDAH en adultos (ASRS v1.1), más un análisis de cómo te afecta en el día a día.",
+ instrument:"Preguntas 1 a 6: ASRS v1.1, cuestionario de cribado de 6 preguntas de la OMS (Kessler et al., 2005; © New York University y Ronald C. Kessler, PhD), versión española validada por Ramos-Quiroga et al. (2009). Preguntas 7 a 18: propias de Testia, solo para el desglose por áreas.",
+ license:"🟢", sensitive:true, screening:true, official:6,
+ mode:"likert", scaleMax:5, labels:FREQ5,
+ prompt:"Marque la casilla que mejor describe la manera en que se ha sentido y comportado en los últimos 6 meses.",
+ scales:{ASRS:"Cribado ASRS",TRA:"Trabajo o estudios",ORG:"Organización y tiempo",DIN:"Dinero",REL:"Relaciones",EMO:"Emociones e impulsividad"},
+ result:{type:"screen",kind:"asrs",official:"ASRS"},
+ premiumPitch:"Cómo te afecta en cinco áreas de tu vida (trabajo o estudios, organización, dinero, relaciones y emociones), una lectura de cada una y un guion hecho con tus respuestas para llevar a la consulta.",
+ verdicts:{
+  positive:{name:"Cribado de TDAH positivo",
+   desc:"Tus respuestas se parecen a las de muchas personas adultas con TDAH: 4 o más de las 6 preguntas del cuestionario de la OMS superan su umbral. No es un diagnóstico, pero sí una buena razón para consultarlo con un profesional.",
+   help:"<p><b>Qué hacer ahora:</b> pide cita con tu médico de cabecera y cuéntale que este cribado te ha salido positivo. Puede derivarte a psiquiatría o a psicología clínica, que son quienes diagnostican el TDAH en adultos. Si ya te atiende un profesional de salud mental, coméntaselo en tu próxima cita.</p><p>El TDAH en adultos tiene tratamiento, y mucha gente lo descubre de mayor.</p>"},
+  negative:{name:"Cribado de TDAH negativo",
+   desc:"Menos de 4 de las 6 preguntas del cuestionario de la OMS superan su umbral, así que tus respuestas no apuntan a un TDAH. Un cribado negativo no lo descarta del todo.",
+   help:"<p><b>Si te afecta en tu día a día:</b> coméntalo con tu médico de cabecera aunque el cribado haya salido negativo. Algunas personas con TDAH, sobre todo las que han aprendido a compensarlo, quedan por debajo del umbral.</p><p>El cansancio, el estrés, la ansiedad o dormir mal también afectan a la atención.</p>"}
+ },
+ interp:{
+  TRA:{hi:"Es donde más se nota: te cuesta sostener la atención y terminar lo que empiezas en el trabajo o en los estudios, aunque te interese. Ayuda trocear las tareas en pasos cortos con una fecha cada uno y trabajar en bloques de 25 minutos con descansos.",mid:"Te pasa a veces, sobre todo con tareas largas o poco estimulantes. Reservar las horas en las que mejor te concentras para lo más pesado suele marcar la diferencia.",lo:"En el trabajo o los estudios apenas lo notas: sueles mantener la concentración y acabar lo que empiezas."},
+  ORG:{hi:"El orden y el tiempo se te escapan a menudo: las cosas se acumulan y acabas haciéndolo todo a última hora. Funciona sacar todo de la cabeza: un calendario con avisos para todo y un único sitio para las llaves, la cartera y los papeles.",mid:"Te organizas, pero con esfuerzo, y en épocas de mucho lío se te descontrola. Revisar la semana cada domingo cinco minutos ayuda a no ir apagando fuegos.",lo:"Llevas bien el orden y el tiempo: rara vez se te echan las cosas encima."},
+  DIN:{hi:"El dinero es un punto débil: compras por impulso o se te pasan pagos y fechas. Domicilia los recibos, pon avisos para los plazos y date un día de espera antes de cualquier compra que no tenías prevista.",mid:"Algún despiste o capricho de vez en cuando. Un presupuesto sencillo y los pagos domiciliados te quitan la mayoría de sustos.",lo:"Con el dinero no tienes problemas de impulsividad ni de olvidos."},
+  REL:{hi:"Se nota en tus relaciones: olvidos, retrasos o despistes que los demás pueden leer como falta de interés. Explicar a la gente cercana cómo te funciona la atención y apuntar lo importante en el momento evita muchas discusiones.",mid:"De vez en cuando un olvido o un retraso genera roces. Compartir el calendario con tu pareja o tu familia ayuda.",lo:"En tus relaciones apenas pesa: no sueles tener roces por olvidos o retrasos."},
+  EMO:{hi:"Tus emociones van rápido: te frustras con facilidad, reaccionas antes de pensar y luego te pesa. Es muy común en el TDAH adulto. Parar diez segundos antes de responder y dormir bien son de lo que más ayuda.",mid:"A veces reaccionas en caliente o te frustras por no llegar a todo. Detectar qué situaciones te encienden te da margen para frenar.",lo:"Manejas bien las emociones y la impulsividad: no es un área que te complique."}
+ },
+ guide(pct,k,own){
+  return (k==='positive'?"Empieza diciendo que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido positivo. ":"Explica que el cuestionario de cribado de la OMS (ASRS v1.1) te ha salido negativo, pero que hay cosas que te afectan. ")
+   +`Céntrate en las dos áreas donde más se nota en tu caso: ${top2(pct,own,this)}. Lleva dos o tres ejemplos concretos de cada una: qué pasó, cada cuánto te ocurre y qué consecuencias ha tenido. `
+   +"El profesional te preguntará si ya te pasaba de pequeño, porque es necesario para el diagnóstico en adultos: si puedes, pregúntale a tu familia cómo eras en el colegio o busca boletines de notas antiguos.";
+ },
+ items:[
+  {t:"¿Con qué frecuencia tiene usted dificultad para acabar los detalles finales de un proyecto, una vez que ha terminado con las partes difíciles?",s:"ASRS"},
+  {t:"¿Con qué frecuencia tiene usted dificultad para ordenar las cosas cuando está realizando una tarea que requiere organización?",s:"ASRS"},
+  {t:"¿Con qué frecuencia tiene usted problemas para recordar citas u obligaciones?",s:"ASRS"},
+  {t:"Cuando tiene que realizar una tarea que requiere pensar mucho, ¿con qué frecuencia evita o retrasa empezarla?",s:"ASRS"},
+  {t:"¿Con qué frecuencia mueve continuamente o retuerce las manos o los pies cuando tiene que permanecer sentado por mucho tiempo?",s:"ASRS"},
+  {t:"¿Con qué frecuencia se siente demasiado activo e impulsado a hacer cosas, como si lo empujase un motor?",s:"ASRS"},
+  {t:"¿Con qué frecuencia deja tareas del trabajo o de los estudios a medias porque pierde el interés?",s:"TRA"},
+  {t:"¿Con qué frecuencia le cuesta concentrarse en reuniones, clases o lecturas largas aunque le interesen?",s:"TRA"},
+  {t:"¿Con qué frecuencia rinde por debajo de lo que sabe que podría por falta de constancia?",s:"TRA"},
+  {t:"¿Con qué frecuencia su casa, su mesa o su correo acaban desordenados aunque se proponga mantenerlos al día?",s:"ORG"},
+  {t:"¿Con qué frecuencia se le echa el tiempo encima y acaba haciendo las cosas a última hora?",s:"ORG"},
+  {t:"¿Con qué frecuencia gasta dinero por impulso en cosas que no tenía previsto comprar?",s:"DIN"},
+  {t:"¿Con qué frecuencia paga recargos o pierde dinero por olvidar pagos, recibos o trámites?",s:"DIN"},
+  {t:"¿Con qué frecuencia su pareja, su familia o sus amigos se quejan de que se olvida de lo que le dicen?",s:"REL"},
+  {t:"¿Con qué frecuencia tiene discusiones por llegar tarde o por no cumplir lo que había quedado?",s:"REL"},
+  {t:"¿Con qué frecuencia sus emociones cambian de golpe y le cuesta calmarse?",s:"EMO"},
+  {t:"¿Con qué frecuencia dice o hace cosas sin pensar y luego se arrepiente?",s:"EMO"},
+  {t:"¿Con qué frecuencia se siente culpable o frustrado por no llegar a todo lo que se propone?",s:"EMO"}
+ ]
+};
+window.TESTS.push(TDAH);
+window.SEO_CONTENT.tdah={slug:"test-tdah-adultos",seoTitle:"Test de TDAH en adultos: cuestionario de cribado de la OMS gratis | Testia",h1:"Test de TDAH en adultos",
+ metaDesc:"Test de TDAH para adultos con el cuestionario de cribado ASRS v1.1 de la OMS, validado en español. Resultado al momento, gratis y sin registro. Orienta, no diagnostica.",
+ intro:"¿Te cuesta terminar lo que empiezas, organizarte o estarte quieto, y te preguntas si podría ser TDAH? Este test usa el cuestionario de cribado de 6 preguntas de la Organización Mundial de la Salud (ASRS v1.1), validado en población española, y te dice al momento si tu cribado sale positivo o negativo.",
+ learn:["Si tu cribado de TDAH sale positivo o negativo","Cuántas de las 6 preguntas superan el umbral","Qué hacer y a quién acudir según tu resultado","Cómo te afecta en trabajo, organización, dinero, relaciones y emociones"],
+ overview:[
+  {label:"Mide",text:"Síntomas de falta de atención e hiperactividad en los últimos 6 meses, con el cuestionario ASRS v1.1 de la OMS."},
+  {label:"Formato",text:"6 preguntas oficiales y 12 más sobre tu día a día; unos 4 minutos."},
+  {label:"Límite",text:"Es un cribado: orienta sobre si conviene consultar, pero solo un profesional puede diagnosticar el TDAH. Pensado para mayores de 18 años."}
+ ],
+ sections:[
+  {title:"Qué es el cuestionario ASRS de la OMS",body:"El ASRS v1.1 (Adult ADHD Self-Report Scale) lo desarrollaron la Organización Mundial de la Salud y el equipo de Ronald Kessler en la Universidad de Harvard. Sus 6 preguntas son las que mejor separan, en estudios con población general, a los adultos con TDAH de los que no lo tienen. En España lo validó en 2009 el equipo de Ramos-Quiroga en el Hospital Vall d'Hebron de Barcelona: con el punto de corte de 4, detectó al 82 % de las personas con TDAH y descartó correctamente al 96 % de las que no lo tenían."},
+  {title:"Cómo se interpreta el resultado",body:"Cada pregunta tiene un umbral: en las tres primeras cuenta desde «A veces» y en las otras tres desde «A menudo». Si 4 o más preguntas superan su umbral, el cribado es positivo. Un resultado positivo significa que tus síntomas se parecen a los de muchas personas con TDAH y que merece la pena consultarlo; uno negativo hace menos probable el TDAH, pero no lo descarta."},
+  {title:"Qué hacer si sale positivo",body:"Pide cita con tu médico de cabecera, que puede derivarte a psiquiatría o psicología clínica. Para diagnosticar el TDAH en adultos, el profesional hace una entrevista, revisa si los síntomas venían ya de la infancia y descarta otras causas, como la ansiedad, la depresión o la falta de sueño. El TDAH adulto tiene tratamiento, y mucha gente lo descubre de mayor."}
+ ],
+ faqs:[
+  {q:"¿Este test diagnostica el TDAH?",a:"No. Es un cribado: indica si tus síntomas se parecen a los del TDAH y si conviene consultarlo. El diagnóstico solo lo puede hacer un profesional de la salud mental tras una evaluación completa."},
+  {q:"¿Qué es el ASRS v1.1?",a:"Es el cuestionario de cribado del TDAH en adultos de la Organización Mundial de la Salud, desarrollado con la Universidad de Harvard. Sus 6 preguntas son las primeras de la escala completa y las que mejor predicen el TDAH."},
+  {q:"¿Es fiable en español?",a:"Sí. La versión española se validó en 2009 en el Hospital Vall d'Hebron de Barcelona. Con el punto de corte de 4 preguntas, detectó al 82 % de los adultos con TDAH y acertó con el 96 % de los que no lo tenían."},
+  {q:"¿Y si me sale negativo pero me sigo sintiendo identificado?",a:"Coméntalo igualmente con tu médico. Un cribado negativo hace menos probable el TDAH, pero no lo descarta, sobre todo en personas que han aprendido a compensar sus dificultades."},
+  {q:"¿A quién acudo para un diagnóstico de TDAH adulto?",a:"Empieza por tu médico de cabecera, que puede derivarte a psiquiatría o psicología clínica de la sanidad pública. También puedes acudir a un psiquiatra o psicólogo clínico privado con experiencia en TDAH adulto."},
+  {q:"¿Es gratis?",a:"Sí. Hacer el test y ver si tu cribado sale positivo o negativo, con lo que conviene hacer, es gratis y sin registro. El análisis por áreas de tu vida y el guion para la consulta se pueden desbloquear por 1,99 €, en un pago único y sin suscripción."}
+ ],
+ sources:[
+  {title:"The World Health Organization adult ADHD self-report scale (ASRS): a short screening scale for use in the general population",url:"https://doi.org/10.1017/S0033291704002892",note:"Publicación original de Kessler y otros (2005), Psychological Medicine."},
+  {title:"Validación al español de la escala de cribado del trastorno por déficit de atención/hiperactividad en adultos (ASRS v. 1.1)",url:"https://doi.org/10.33588/rn.4809.2008677",note:"Ramos-Quiroga y otros (2009), Revista de Neurología."}
+ ],
+ relatedIds:["ansiedad","atencion","autismo"]};
+})();
