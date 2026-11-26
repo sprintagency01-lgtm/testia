@@ -33,6 +33,16 @@
     capture_pageview: true,
     capture_pageleave: true,
     disable_session_recording: true,
+    // El resultado que viaja desde el navegador de Instagram (#res=…) no se manda a PostHog.
+    before_send: function (ev) {
+      try {
+        var p = ev && ev.properties;
+        if (p) ['$current_url', '$referrer', '$initial_current_url'].forEach(function (k) {
+          if (typeof p[k] === 'string') p[k] = p[k].replace(/#res=.*$/, '');
+        });
+      } catch (e) {}
+      return ev;
+    },
     loaded: function (ph) { ph.register({ site: 'testia', domain: location.hostname }); }
   });
 
