@@ -718,7 +718,7 @@ try{window.__RES_IN=IAB.fromHash(location.hash);if(window.__RES_IN)history.repla
 </form>
 <div class="toast" id="toast"></div>
 
-<script src="tests.js?v=20261117"></script>
+<script src="tests.js?v=20261127"></script>
 <script src="tarot.js"></script>
 <script src="iq.js?v=20261008"></script>
 <script src="cognitive.js?v=20261109b"></script>
@@ -726,7 +726,7 @@ try{window.__RES_IN=IAB.fromHash(location.hash);if(window.__RES_IN)history.repla
 <script src="aacc.js?v=20261026"></script>
 <script src="aptitud.js?v=20261027"></script>
 <script src="orientacion-catalogos.js?v=20261117"></script>
-<script src="salud.js?v=20261126"></script>
+<script src="salud.js?v=20261127"></script>
 <script>
 /* ===== Testia engine ===== */
 const BRAND="Testia", DOMAIN="testia.info", FLAGSHIP="bigfive";
@@ -1428,7 +1428,9 @@ function finish(){
           :{kind:'coherente',title:'Tus dos ejes apuntan al mismo sitio',pitch:'En tu caso, economía y valores van en la misma dirección. Mira cuánto en cada eje y qué dice de ti la lectura conjunta de los dos.'};
       }
     }else if(R.type==='profileBars'){
-      const keys=Object.keys(T.scales),arr=keys.map(k=>({k,lab:T.scales[k],p:pct[k]})).sort((a,b)=>b.p-a.p);
+      const keys=Object.keys(T.scales),cnt={};keys.forEach(k=>cnt[k]=[0,0]);
+      if(T.mode==='likert')items.forEach((it,i)=>{const a=it.r?(T.scaleMax+1-answers[i]):answers[i];if(a===T.scaleMax)cnt[it.s][0]++;else if(a===T.scaleMax-1)cnt[it.s][1]++;});
+      const arr=rankProfiles(pct,keys,cnt).map(k=>({k,lab:T.scales[k],p:pct[k]}));
       const showArr=R.topOnly?arr.slice(0,R.topOnly):arr;
       if(R.overall){const mean=keys.reduce((s,k)=>s+pct[k],0)/keys.length;const tier=band(OVERALL_TIERS[T.id],mean);
         r.name=tier.name;r.role=R.overallLabel;r.desc=tier.desc;r.mono=initials(R.overallLabel);
@@ -1443,8 +1445,9 @@ function finish(){
       r.traits=arr.slice(0,3).map(x=>x.lab);r.bars=showArr;
       r.stats=[{v:Math.round(arr[0].p)+'%',l:arr[0].lab},{v:Math.round(arr[1].p)+'%',l:arr[1].lab}];
       if(T.interp){ // análisis profesional por dimensión (orden fijo de escalas)
-        r.analysis=keys.map(k=>{const p=pct[k],bn=p>=66?'Alto':p>=40?'Medio':'Bajo',key=p>=66?'hi':p>=40?'mid':'lo';
+        r.analysis=keys.map(k=>{const p=pct[k],bn=p>=66?'Alto':p>=40?'Medio':'Bajo',key=interpLevel(p,k===arr[0].k);
           return {lab:T.scales[k],p,band:bn,text:(T.interp[k]&&T.interp[k][key])||''};});
+        if(T.match&&T.matchText&&T.matchText[arr[0].k])r.analysis.unshift({lab:'Con quién te complementas',p:arr[0].p,band:arr[0].lab,hidePct:true,text:T.matchText[arr[0].k]});
       }
     }else if(R.type==='narc'){
       const K=Object.keys(T.scales),ix=Math.round(K.reduce((a,k)=>a+pct[k],0)/K.length);
@@ -2237,7 +2240,7 @@ async function handleReturn(){
     toast('No hemos podido confirmar el pago. Si se te ha cobrado, escríbenos.');
   }
 }
-const NEXT_TEST={animal:['alfa','bigfive'],alfa:['animal','darktriad'],tdah:['ansiedad','atencion'],ansiedad:['panas','resilience'],autismo:['tdah','empathy'],tipos16:['bigfive','eneagrama'],carrera:['fp','riasec'],fp:['carrera','trabajo'],trabajo:['riasec','values'],racismo:['implicito','politico'],implicito:['racismo','empathy'],orientacion:['lovestyles','attachment'],grinch:['solluna','bruja'],politico:['partido','solluna'],partido:['iq','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],razonamiento:['iq','riasec'],dependencia:['attachment','celos'],eneagrama:['bigfive','attachment'],hogwarts:['bigfive','darktriad'],daltonismo:['atencion','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
+const NEXT_TEST={animal:['alfa','bigfive'],alfa:['animal','bigfive'],tdah:['ansiedad','atencion'],ansiedad:['panas','resilience'],autismo:['tdah','empathy'],tipos16:['bigfive','eneagrama'],carrera:['fp','riasec'],fp:['carrera','trabajo'],trabajo:['riasec','values'],racismo:['implicito','politico'],implicito:['racismo','empathy'],orientacion:['lovestyles','attachment'],grinch:['solluna','bruja'],politico:['partido','solluna'],partido:['iq','candidato'],candidato:['partido','solluna'],entrenador:['bigfive','darktriad'],solluna:['bruja','bigfive'],ccse:['partido','iq'],aacc:['iq','memoria'],narcisismo:['parejanarc','darktriad'],parejanarc:['narcisismo','celos'],pareja2:['lovelang','lovestyles'],razonamiento:['iq','riasec'],dependencia:['attachment','celos'],eneagrama:['bigfive','attachment'],hogwarts:['bigfive','darktriad'],daltonismo:['atencion','iq'],bruja:['solluna','lovestyles'],honesty:['dificil','darktriad'],darktriad:['narcisismo','dificil'],moral:['politico','values'],
   iq:['partido','aacc'],crt:['iq','atencion'],memoria:['atencion','iq'],atencion:['memoria','crt'],edadmental:['memoria','bigfive'],ncs:['crt','iq'],riasec:['carrera','trabajo'],ei:['empathy','attachment'],empathy:['ei','darktriad'],
   selfesteem:['resilience','swls'],grit:['resilience','maximizer'],swls:['panas','selfesteem'],panas:['swls','resilience'],resilience:['grit','selfesteem'],
   values:['moral','riasec'],maximizer:['crt','swls'],attachment:['lovelang','celos'],chronotype:['bigfive','grit'],lovelang:['lovestyles','celos'],

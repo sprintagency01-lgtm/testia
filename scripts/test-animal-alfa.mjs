@@ -11,6 +11,9 @@ const TT = (id) => tw.TESTS.find((t) => t.id === id);
 const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
 const build = fs.readFileSync(path.join(root, "build-pages.mjs"), "utf8");
 
+const win = {};
+new Function("window", fs.readFileSync(path.join(root, "salud.js"), "utf8"))(win);
+
 const results = [];
 function test(name, fn) {
   try { fn(); results.push([name, true]); }
@@ -66,10 +69,71 @@ test("betaYOmegaEnPositivo", () => {
   const T = TT("alfa");
   for (const k of ["BET", "OME"]) assert(!/débil|blando de verdad|fracas|menos que/.test(T.topDesc[k]), k);
 });
-test("encajeEnAltoYMedio", () => {
-  // la parte de pago promete «con qué encajas»: tiene que salir aunque ningún perfil llegue a «alto»
-  for (const id of ["animal", "alfa"]) for (const [k, v] of Object.entries(TT(id).interp))
-    for (const lv of ["hi", "mid"]) assert(/Encajas con/.test(v[lv]), `${id}.${k}.${lv}`);
+
+// ----- Revisión final: desempates, afinidades y textos -----
+test("desempatePorRespuestasMaximas", () => {
+  const r = win.rankProfiles({ ALF: 50, BET: 50, OME: 20 }, ["ALF", "BET", "OME"], { ALF: [0, 2], BET: [1, 0], OME: [0, 0] });
+  assert(JSON.stringify(r) === JSON.stringify(["BET", "ALF", "OME"]), JSON.stringify(r));
+});
+test("desempateSegundoCriterio", () => {
+  const r = win.rankProfiles({ ALF: 50, BET: 50 }, ["ALF", "BET"], { ALF: [1, 0], BET: [1, 2] });
+  assert(r[0] === "BET", JSON.stringify(r));
+});
+test("sinEmpateManda el porcentaje", () => {
+  const r = win.rankProfiles({ ALF: 40, BET: 60 }, ["ALF", "BET"], { ALF: [5, 0], BET: [0, 0] });
+  assert(r[0] === "BET", JSON.stringify(r));
+});
+test("perfilGanadorNuncaEnBajo", () => {
+  assert(win.interpLevel(10, true) === "mid", "top bajo");
+  assert(win.interpLevel(10, false) === "lo", "no top bajo");
+  assert(win.interpLevel(70, true) === "hi", "top alto");
+  assert(win.interpLevel(50, false) === "mid", "medio");
+});
+test("motorUsaDesempateNivelYAfinidad", () => {
+  for (const re of [/rankProfiles\(/, /interpLevel\(/, /T\.match/, /Con quién te complementas/]) assert(re.test(html), "index.html sin " + re);
+});
+test("afinidadesSimetricas", () => {
+  for (const id of ["animal", "alfa"]) {
+    const T = TT(id), m = T.match;
+    assert(m, id + " sin match");
+    for (const k of Object.keys(T.scales)) {
+      assert(m[k] && m[k].length === 2, `${id}.${k}: ${m[k]}`);
+      for (const o of m[k]) assert(m[o] && m[o].includes(k), `${id}: ${k}→${o} sin vuelta`);
+      for (const o of m[k]) assert(T.matchText[k].toLowerCase().includes(T.scales[o].toLowerCase()), `${id}.${k}: matchText sin ${o}`);
+    }
+  }
+});
+test("sinEncajasEnLosTextos", () => {
+  for (const id of ["animal", "alfa"]) {
+    const T = TT(id), S = tw.SEO_CONTENT[id];
+    const txt = JSON.stringify([T.interp, T.premiumPitch, S.metaDesc, S.learn, S.faqs]);
+    assert(!/[Ee]ncaj/.test(txt), id + ": «encaja» suena a pareja");
+  }
+});
+test("textosNeutrosEnGenero", () => {
+  const bad = ["creativo", "ambicioso", "empático", "protector", "observador", "reflexivo", "juguetón", "cariñoso", "astuto", "tranquilo", "centrado", "selectivo", "atrapado", "ingenioso", "rapidísimo", "solo alfa"];
+  for (const id of ["animal", "alfa"]) {
+    const txt = JSON.stringify([TT(id).topDesc, TT(id).interp]).toLowerCase();
+    for (const w of bad) assert(!txt.includes(w), `${id}: «${w}»`);
+  }
+});
+test("mitoDelLoboBienAtribuido", () => {
+  const sec = tw.SEO_CONTENT.alfa.sections.find((x) => /mito/.test(x.title)).body;
+  // Schenkel la usó primero (1947, cautividad); Mech la descartó en 1999 tras revisar estudios y observar en libertad.
+  assert(/1947/.test(sec) && /revisar/.test(sec) && !/la popularizó el estudio/.test(sec), sec);
+});
+test("instrumentAnimalSimbolismo", () => {
+  assert(/simbolismo popular/.test(TT("animal").instrument), TT("animal").instrument);
+});
+test("alfaSinEnlaceAOmegaverseNiTriadaOscura", () => {
+  const S = tw.SEO_CONTENT.alfa;
+  assert(!S.sources.some((x) => /Omegaverse/.test(x.url)), "enlace a Omegaverse");
+  assert(!S.relatedIds.includes("darktriad"), "relatedIds darktriad");
+  assert(!/alfa:\[[^\]]*darktriad/.test(html), "NEXT_TEST darktriad");
+});
+test("nombresYTitulos", () => {
+  assert(!/^Test:/.test(TT("alfa").name), "prefijo Test:");
+  for (const id of ["animal", "alfa"]) assert(tw.SEO_CONTENT[id].seoTitle.length <= 66, id + ": " + tw.SEO_CONTENT[id].seoTitle.length);
 });
 test("iconoPaw", () => {
   assert(/\bpaw:/.test(html), "falta el icono paw en ICONS");
