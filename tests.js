@@ -3412,3 +3412,186 @@ window.SEO_CONTENT.tdah={slug:"test-tdah-adultos",step1:"18 preguntas: las 6 del
  ],
  relatedIds:["ansiedad","atencion","autismo"]};
 })();
+
+/* ===== ¿Qué animal eres? y ¿Eres alfa, beta, omega, sigma o enigma? (noviembre 2026) =====
+   Textos sin género (sustantivos y verbos en vez de adjetivos) y nada que suene a emparejamiento:
+   buena parte del público de «alfa, beta, omega» llega desde el omegaverse y es adolescente. */
+(function(){
+const W=n=>`https://es.wikipedia.org/wiki/${n}`;
+const FORER={title:"The fallacy of personal validation: a classroom demonstration of gullibility",url:"https://doi.org/10.1037/h0059240",note:"Forer (1949): el efecto por el que nos identificamos con descripciones generales."};
+
+window.TESTS.push({
+ id:"animal", name:"¿Qué animal eres?", emoji:"🐾", cat:"Personalidad", eyebrow:"Tu animal",
+ blurb:"¿Lealtad de lobo, mirada de búho, chispa de delfín o libertad de gato? 24 preguntas sobre tu forma de ser para descubrir qué animal eres.",
+ instrument:"Test recreativo · ítems propios de Testia sobre ocho animales, basados en su simbolismo popular", license:"🟢",
+ mode:"likert", scaleMax:5, hideCardBars:true,
+ premiumTitle:"Ya sabes tu animal. Descubre tu mezcla completa",
+ premiumPitch:"Todos llevamos un poco de varios animales. Mira cuánto tienes de cada uno de los ocho, qué dice cada uno de ti y con qué animales te complementas en un grupo.",
+ scales:{LOB:"Lobo",BUH:"Búho",DEL:"Delfín",GAT:"Gato",AGU:"Águila",ZOR:"Zorro",OSO:"Oso",MAR:"Mariposa"},
+ result:{type:"profileBars"},
+ topDesc:{
+  LOB:"Eres lobo: lealtad a prueba de todo. Lo das todo por tu gente, rindes más en equipo que por tu cuenta y para ti la confianza es sagrada. Quien entra en tu manada tiene a alguien para siempre.",
+  BUH:"Eres búho: te fijas en todo y piensas antes de hablar. Tienes una curiosidad que no se apaga, ves detalles que a los demás se les escapan y, cuando opinas, la gente escucha.",
+  DEL:"Eres delfín: pura sociabilidad y buen humor. Haces amigos allá donde vas, se te da genial hacer reír y la gente te carga las pilas. Tu buen rollo se contagia a todo el grupo.",
+  GAT:"Eres gato: libertad ante todo. Necesitas tu espacio y tus ratos a solas, no soportas que te controlen y das cariño a tu manera, solo a quien eliges. Y a quien eliges, se lo demuestras de verdad.",
+  AGU:"Eres águila: ambición y visión de futuro. Cuando te propones algo vas a por ello sin distracciones, piensas a largo plazo y ves el conjunto mientras otros se pierden en los detalles.",
+  ZOR:"Eres zorro: ingenio y reflejos. Lees a la gente al vuelo, siempre encuentras una salida y, cuando cambian los planes, reaccionas antes que nadie.",
+  OSO:"Eres oso: calma y planes sin prisa. Cuesta muchísimo sacarte de quicio, a tu lado la gente se siente segura y para ti el mejor plan es buena comida y buena compañía.",
+  MAR:"Eres mariposa: creatividad y sensibilidad a flor de piel. Te reinventas cada cierto tiempo, te emocionas con la música, el arte o un paisaje y necesitas expresarte de alguna forma para estar bien."
+ },
+ interp:{
+  LOB:{hi:"Tu lado lobo es muy fuerte: lealtad total, instinto de cuidar a los tuyos y mucho espíritu de equipo.",mid:"Tienes tu punto de lobo: te vuelcas con los tuyos, aunque también sabes ir por tu cuenta cuando toca.",lo:"El espíritu de manada no es lo tuyo: prefieres moverte con libertad antes que depender de un grupo."},
+  BUH:{hi:"Tu lado búho domina: observas, analizas y piensas antes de actuar.",mid:"Tienes algo de búho: le das una vuelta a las cosas cuando hace falta, sin entrar en bucle.",lo:"Lo tuyo es actuar más que analizar: decides rápido y aprendes sobre la marcha."},
+  DEL:{hi:"Tu lado delfín brilla: sociabilidad, humor y un imán para la gente.",mid:"Tienes tu punto de delfín: disfrutas de la gente, aunque también necesitas tus ratos de calma.",lo:"Las multitudes no te cargan las pilas: prefieres pocos planes y con gente de confianza."},
+  GAT:{hi:"Tu lado gato es muy marcado: independencia, espacio propio y cariño a tu manera.",mid:"Tienes algo de gato: valoras tu espacio, pero no te cuesta compartir tiempo con los demás.",lo:"No tienes nada de gato: te gusta la compañía constante y no necesitas muchos ratos a solas."},
+  AGU:{hi:"Tu lado águila manda: objetivos claros, ambición y visión a largo plazo.",mid:"Tienes tu punto de águila: te pones metas, aunque sin obsesionarte con ellas.",lo:"Vives más el día a día que los grandes objetivos, y eso también tiene su valor."},
+  ZOR:{hi:"Tu lado zorro es fuerte: ingenio, intuición con la gente y facilidad para adaptarte a lo que venga.",mid:"Tienes algo de zorro: improvisas bien cuando hace falta, aunque prefieres tener un plan.",lo:"Las estrategias y la improvisación no van contigo: prefieres ir de frente y con las cosas claras."},
+  OSO:{hi:"Tu lado oso domina: calma, ganas de cuidar a los tuyos y amor por los planes sin prisa.",mid:"Tienes tu punto de oso: disfrutas de la calma, aunque te apuntas a un plan movido cuando toca.",lo:"La calma no es lo tuyo: necesitas movimiento, planes nuevos y algo de acción."},
+  MAR:{hi:"Tu lado mariposa brilla: creatividad, sensibilidad y ganas de reinventarte.",mid:"Tienes algo de mariposa: te emocionas y creas a tu manera, sin perder los pies en el suelo.",lo:"Lo tuyo es la constancia más que los cambios: te gusta lo que ya conoces y te funciona."}
+ },
+ match:{LOB:["OSO","MAR"],OSO:["LOB","GAT"],GAT:["OSO","BUH"],BUH:["GAT","AGU"],AGU:["BUH","ZOR"],ZOR:["AGU","DEL"],DEL:["ZOR","MAR"],MAR:["DEL","LOB"]},
+ matchText:{
+  LOB:"En un grupo te complementas con el oso, que comparte tus ganas de cuidar a los tuyos, y con la mariposa, que le pone color y cambios a tu lealtad de siempre.",
+  OSO:"En un grupo te complementas con el lobo, con quien compartes la lealtad, y con el gato, que respeta tus tiempos tanto como tú los suyos.",
+  GAT:"En un grupo te complementas con el oso, que te da calma sin agobiarte, y con el búho, que entiende que necesites tu espacio.",
+  BUH:"En un grupo te complementas con el gato, que valora el silencio tanto como tú, y con el águila, que convierte lo que observas en un plan.",
+  AGU:"En un grupo te complementas con el búho, que pone el análisis a tus objetivos, y con el zorro, que encuentra atajos para llegar antes.",
+  ZOR:"En un grupo te complementas con el águila, que marca el rumbo mientras tú improvisas, y con el delfín, que sigue tu ritmo con la gente.",
+  DEL:"En un grupo te complementas con el zorro, que tiene tanta chispa como tú, y con la mariposa, que comparte tus ganas de disfrutar y expresarte.",
+  MAR:"En un grupo te complementas con el delfín, que celebra tu forma de ver el mundo, y con el lobo, que te da la estabilidad que a veces te falta."
+ },
+ items:[
+  {t:"Por mi gente hago lo que haga falta.",s:"LOB"},
+  {t:"Antes de opinar, prefiero observar y pensarlo bien.",s:"BUH"},
+  {t:"Hago amigos con facilidad allá donde voy.",s:"DEL"},
+  {t:"Necesito mis ratos a solas para estar bien.",s:"GAT"},
+  {t:"Cuando me propongo algo, voy a por ello sin distraerme.",s:"AGU"},
+  {t:"Siempre encuentro una forma ingeniosa de salirme con la mía.",s:"ZOR"},
+  {t:"Soy de planes tranquilos: sofá, comida rica y buena compañía.",s:"OSO"},
+  {t:"Cada cierto tiempo me reinvento: estilo, aficiones o planes.",s:"MAR"},
+  {t:"Rindo más en equipo que por mi cuenta.",s:"LOB"},
+  {t:"Me pierdo leyendo o investigando sobre lo que me interesa.",s:"BUH"},
+  {t:"Me encanta hacer reír a la gente.",s:"DEL"},
+  {t:"Doy cariño, pero a mi manera y cuando me apetece.",s:"GAT"},
+  {t:"Me gusta tener objetivos grandes y ambiciosos.",s:"AGU"},
+  {t:"Me adapto rápido cuando cambian los planes.",s:"ZOR"},
+  {t:"Cuesta mucho sacarme de quicio.",s:"OSO"},
+  {t:"Me emociono con facilidad con la música, el arte o un paisaje.",s:"MAR"},
+  {t:"La lealtad es lo que más valoro en una persona.",s:"LOB"},
+  {t:"Me doy cuenta de detalles que a otros se les pasan.",s:"BUH"},
+  {t:"Un plan con mucha gente me carga las pilas.",s:"DEL"},
+  {t:"No me gusta que me agobien ni que me controlen.",s:"GAT"},
+  {t:"Pienso las cosas a largo plazo, con perspectiva.",s:"AGU"},
+  {t:"Se me da bien leer a la gente y saber qué decir.",s:"ZOR"},
+  {t:"La gente se siente protegida a mi lado.",s:"OSO"},
+  {t:"Necesito crear o expresarme de alguna forma.",s:"MAR"}
+ ]
+});
+
+window.TESTS.push({
+ id:"alfa", name:"¿Eres alfa, beta, omega, sigma o enigma?", emoji:"🐺", cat:"Personalidad", eyebrow:"Tu perfil en la manada",
+ blurb:"¿Lideras como un alfa, sostienes al grupo como un beta, cuidas como un omega, vas por libre como un sigma o nadie te descifra, como un enigma? 20 preguntas para saberlo.",
+ instrument:"Test recreativo · ítems propios de Testia sobre cinco perfiles populares; no mide ninguna jerarquía real ni es una evaluación psicológica", license:"🟢",
+ mode:"likert", scaleMax:5, hideCardBars:true,
+ premiumTitle:"Ya sabes tu perfil. Descubre tu mezcla completa",
+ premiumPitch:"Nadie es de un solo perfil. Mira cuánto tienes de cada uno de los cinco, qué dice cada uno de ti y con quién te complementas en un grupo.",
+ scales:{ALF:"Alfa",BET:"Beta",OME:"Omega",SIG:"Sigma",ENI:"Enigma"},
+ result:{type:"profileBars"},
+ topDesc:{
+  ALF:"Eres alfa: tomas la iniciativa, das la cara por los tuyos y el grupo te sigue casi sin darse cuenta. No mandas por mandar: te sale natural ponerte delante cuando hace falta. Como en las manadas de lobos de verdad, tu fuerza está en guiar y organizar, no en imponerte.",
+  BET:"Eres beta: el pegamento del grupo. Pones paz cuando hay tensión, se puede contar contigo para todo y te importa más que al equipo le vaya bien que colgarte medallas. Sin alguien como tú, ningún grupo aguanta mucho tiempo.",
+  OME:"Eres omega: sensibilidad y empatía a raudales. Notas cómo está la gente sin que te lo diga, te sale cuidar de los tuyos y tienes un lado artístico muy personal. Contigo, la gente se siente entendida.",
+  SIG:"Eres sigma: vas a tu aire y no necesitas la aprobación de nadie. Estás a gusto en solitario, tienes pocos amigos pero de verdad y las normas del grupo solo te importan si les ves sentido.",
+  ENI:"Eres enigma: nadie termina de descifrarte. Tu presencia se nota aunque no hables, tus reacciones sorprenden y lo previsible te aburre. Despiertas curiosidad justo porque nadie sabe qué vas a hacer."
+ },
+ interp:{
+  ALF:{hi:"Tu lado alfa es muy fuerte: iniciativa, seguridad y ganas de cuidar del grupo.",mid:"Tienes tu punto de alfa: lideras cuando hace falta, aunque no necesitas estar siempre al mando.",lo:"Mandar no va contigo: prefieres aportar desde otro sitio y que otros lleven la voz cantante."},
+  BET:{hi:"Tu lado beta domina: fiabilidad, calma y capacidad de unir al grupo.",mid:"Tienes algo de beta: colaboras y pones paz, aunque también sabes plantarte cuando algo no te convence.",lo:"Adaptarte al grupo no es lo tuyo: prefieres seguir tu propio criterio aunque genere roces."},
+  OME:{hi:"Tu lado omega brilla: empatía, sensibilidad y ganas de cuidar.",mid:"Tienes tu punto de omega: notas cómo están los demás, aunque no te dejas arrastrar por sus emociones.",lo:"Te afectan poco los dramas ajenos: eres más de resolver que de acompañar emociones."},
+  SIG:{hi:"Tu lado sigma es muy marcado: independencia, criterio propio y cero necesidad de aprobación.",mid:"Tienes algo de sigma: vas por libre a ratos, pero también disfrutas formando parte de un grupo.",lo:"Lo de ir por libre no va contigo: te gusta estar con gente y sentirte parte de algo."},
+  ENI:{hi:"Tu lado enigma manda: misterio, intensidad y ganas de romper los esquemas.",mid:"Tienes tu punto de enigma: sorprendes de vez en cuando, aunque la gente suele saber por dónde vas.",lo:"Eres un libro abierto: la gente sabe qué piensas y cómo vas a reaccionar, y eso da mucha confianza."}
+ },
+ match:{ALF:["BET","SIG"],BET:["ALF","OME"],OME:["BET","ENI"],ENI:["OME","SIG"],SIG:["ENI","ALF"]},
+ matchText:{
+  ALF:"En un grupo te complementas con los betas, que convierten tus ideas en planes que funcionan, y con los sigmas, que van por su cuenta sin competir contigo.",
+  BET:"En un grupo te complementas con los alfas, que tiran del grupo mientras tú lo mantienes unido, y con los omegas, que aportan la empatía que completa tu calma.",
+  OME:"En un grupo te complementas con los betas, que te dan estabilidad, y con los enigmas, que agradecen que les entiendas sin explicaciones.",
+  ENI:"En un grupo te complementas con los omegas, que saben leerte cuando nadie más puede, y con los sigmas, que respetan tu espacio y no se asustan de lo imprevisible.",
+  SIG:"En un grupo te complementas con los enigmas, que entienden tus ganas de ir a tu aire, y con los alfas, que lideran sin pedirte que les sigas."
+ },
+ items:[
+  {t:"En un grupo, acabo tomando las decisiones casi sin proponérmelo.",s:"ALF"},
+  {t:"Soy quien pone paz cuando hay tensión en el grupo.",s:"BET"},
+  {t:"Noto enseguida cómo se siente alguien aunque no lo diga.",s:"OME"},
+  {t:"Voy a mi aire y no necesito la aprobación de nadie.",s:"SIG"},
+  {t:"Me dicen que soy difícil de descifrar.",s:"ENI"},
+  {t:"Me sale natural defender a los míos.",s:"ALF"},
+  {t:"Se puede contar conmigo para lo que sea, sin hacer ruido.",s:"BET"},
+  {t:"Me sale cuidar de la gente de mi alrededor.",s:"OME"},
+  {t:"Me siento bien haciendo planes en solitario.",s:"SIG"},
+  {t:"La gente no sabe muy bien cómo voy a reaccionar.",s:"ENI"},
+  {t:"Hablar delante de mucha gente no me impone.",s:"ALF"},
+  {t:"Prefiero que al equipo le vaya bien a destacar yo.",s:"BET"},
+  {t:"Me afectan mucho las discusiones y los malos rollos.",s:"OME"},
+  {t:"Las normas del grupo me dan igual si no les veo sentido.",s:"SIG"},
+  {t:"Cuando entro en un sitio, se nota, aunque no hable.",s:"ENI"},
+  {t:"Si nadie da el paso, lo doy yo.",s:"ALF"},
+  {t:"Me adapto a los planes de los demás sin problema.",s:"BET"},
+  {t:"Tengo un lado creativo o artístico muy presente.",s:"OME"},
+  {t:"Prefiero pocos amigos de verdad a un grupo grande.",s:"SIG"},
+  {t:"Me aburro si todo es previsible; me gusta romper los esquemas.",s:"ENI"}
+ ]
+});
+
+window.SEO_CONTENT.animal={slug:"test-que-animal-eres",seoTitle:"Test: ¿qué animal eres según tu personalidad? | Testia",h1:"Test: ¿qué animal eres?",
+ metaDesc:"Test de qué animal eres según tu personalidad: 24 preguntas para saber si eres lobo, búho, delfín, gato, águila, zorro, oso o mariposa. Gratis y sin registro.",
+ intro:"¿Lealtad de lobo, mirada de búho o libertad de gato? Este test te hace 24 preguntas sobre tu forma de ser y te dice qué animal eres según tu personalidad, entre ocho: lobo, búho, delfín, gato, águila, zorro, oso y mariposa. Es lo que mucha gente llama su animal espiritual, aunque aquí no hay nada místico: el animal sale de tus respuestas.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-27",
+ learn:["Qué animal eres según tu personalidad","Qué dice tu animal de ti","Cuánto tienes de cada uno de los ocho animales","Con qué animales te complementas en un grupo","Carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Ocho perfiles de personalidad con forma de animal."},{label:"Formato",text:"24 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"Es un test recreativo, no una evaluación psicológica."}],
+ sections:[
+  {title:"Los ocho animales del test",body:"El lobo representa la lealtad y el trabajo en equipo. El búho, la observación y la reflexión. El delfín, la sociabilidad y el humor. El gato, la independencia y el cariño a su manera. El águila, la ambición y la visión a largo plazo. El zorro, el ingenio y la capacidad de adaptarse. El oso, la calma y las ganas de cuidar. La mariposa, la creatividad, la sensibilidad y el cambio."},
+  {title:"¿Qué es un animal espiritual?",body:"La idea de tener un animal que te representa viene de tradiciones muy antiguas. En muchas culturas, el tótem es un animal o símbolo sagrado que hace de emblema de una familia o un clan. En las creencias mesoamericanas, el nahual es la persona que puede tomar forma animal, y también ese animal, su otro yo. Hoy la expresión se usa sobre todo como juego: el animal que mejor resume cómo eres."},
+  {title:"¿Tienen personalidad los animales?",body:"Sí, y la ciencia lo ha estudiado. Gosling y John (1999) revisaron 19 estudios con 12 especies y encontraron que rasgos como la extraversión, la amabilidad o la tendencia a la ansiedad aparecen también en varias especies. Este test no se basa en esos estudios: los animales se eligen por su simbolismo popular, como el búho sabio o el zorro astuto."},
+  {title:"¿Por qué nos vemos tan reflejados?",body:"Las descripciones de este tipo de tests suelen ser lo bastante amplias como para que casi todo el mundo se sienta identificado. Es el llamado efecto Forer. Tómate el resultado como un juego para conocerte un poco y compararte con tus amigos, no como un diagnóstico."}],
+ faqs:[
+  {q:"¿Cómo sé qué animal soy según mi personalidad?",a:"Responde a las 24 afirmaciones del test según lo de acuerdo que estés con cada una. Tu animal es el de los ocho con el que más coinciden tus respuestas."},
+  {q:"¿Qué significa que me salga lobo?",a:"Que tu rasgo más fuerte es la lealtad: lo das todo por tu gente, rindes mejor en equipo y para ti la confianza es sagrada."},
+  {q:"¿Es lo mismo que mi animal espiritual?",a:"Se parece a la idea popular de animal espiritual, pero aquí no hay nada místico: el animal sale de cómo respondes, no de tu fecha de nacimiento ni de tu nombre."},
+  {q:"¿Puedo hacerlo con mis amigos?",a:"Sí, es la mejor forma. Al terminar tienes una carta para compartir y comparar qué animal es cada uno."},
+  {q:"¿Es un test científico?",a:"No. Es un test recreativo con preguntas propias de Testia. Que los animales tienen rasgos de personalidad sí está estudiado, pero este test no mide nada clínico."},
+  {q:"¿Es gratis?",a:"Sí. Responder y ver tu animal es gratis y no requiere registro. Tu mezcla completa y con qué animales te complementas se pueden desbloquear por 1,99 €."}],
+ sources:[
+  {title:"Personality Dimensions in Nonhuman Animals: A Cross-Species Review",url:"https://doi.org/10.1111/1467-8721.00017",note:"Gosling y John (1999): rasgos como la extraversión o la amabilidad aparecen en varias especies."},
+  {title:"Tótem",url:W("T%C3%B3tem"),note:"El animal o símbolo que hace de emblema de un clan."},
+  {title:"Nahual",url:W("Nahual"),note:"En las creencias mesoamericanas, la persona que puede tomar forma animal y ese animal, su otro yo."},
+  FORER],
+ relatedIds:["alfa","bruja","solluna"]};
+
+window.SEO_CONTENT.alfa={slug:"test-alfa-beta-omega",seoTitle:"Test alfa, beta u omega: ¿cuál eres? (y sigma o enigma) | Testia",h1:"Test: ¿eres alfa, beta, omega, sigma o enigma?",
+ metaDesc:"Test alfa, beta u omega: 20 preguntas para saber si eres alfa, beta, omega, sigma o enigma y qué significa cada perfil. Gratis y sin registro.",
+ intro:"¿Eres alfa, beta u omega? ¿O más bien sigma o enigma? Este test te hace 20 preguntas sobre cómo te comportas en grupo y te dice cuál de los cinco perfiles va más contigo. Aquí ninguno es mejor que otro: son cinco formas distintas de estar en una manada, y todas tienen su valor.",
+ updated:"noviembre de 2026",updatedISO:"2026-11-27",
+ learn:["Si eres alfa, beta, omega, sigma o enigma","Qué significa cada perfil","Cuánto tienes de cada uno de los cinco","Con quién te complementas en un grupo","Carta de resultado para compartir"],
+ overview:[{label:"Mide",text:"Cinco perfiles populares: alfa, beta, omega, sigma y enigma."},{label:"Formato",text:"20 afirmaciones de acuerdo o desacuerdo; unos 3 minutos."},{label:"Límite",text:"Es un test recreativo: no existe una jerarquía real de tipos de persona."}],
+ sections:[
+  {title:"Qué significa ser alfa, beta, omega, sigma o enigma",body:"En este test, el alfa toma la iniciativa y da la cara por los suyos. El beta es el pegamento del grupo: fiabilidad, calma y espíritu de equipo. El omega aporta sensibilidad y empatía, y cuida de los demás. El sigma va por libre y no necesita la aprobación de nadie. El enigma es difícil de descifrar y rompe los esquemas. Ninguno está por encima de otro."},
+  {title:"El mito del lobo alfa",body:"Rudolf Schenkel, de la Universidad de Basilea, usó la palabra alfa en 1947 estudiando lobos en cautividad, que competían por dominar al resto, y la idea se hizo muy popular. Décadas después, el biólogo L. David Mech, tras revisar la investigación y pasar trece veranos observando lobos en libertad en la isla de Ellesmere (Canadá), concluyó en 1999 que la manada típica es una familia guiada por los padres, que se reparten las tareas."},
+  {title:"Alfa, beta y omega en el omegaverse",body:"Mucha gente llega a estos nombres por el omegaverse, también llamado A/B/O: un género de ficción para público adulto nacido en los fanfics, que imagina una sociedad dividida en alfas, betas y omegas. Algunas historias añaden otros rangos, como el enigma. Este test solo toma los nombres y los convierte en perfiles de personalidad; no tiene nada que ver con las tramas del género."},
+  {title:"¿Y el sigma?",body:"El sigma es un invento de internet: se popularizó en redes y memes como el lobo solitario que va por libre, fuera de cualquier jerarquía. En algunos foros, «beta» se usa incluso como insulto; aquí ningún perfil está por encima de otro. La psicología no clasifica a las personas en alfas, betas o sigmas: lo que sí estudia son rasgos como la extraversión o la tendencia a liderar, que cada persona tiene en distinta medida."},
+  {title:"¿Por qué nos vemos tan reflejados?",body:"Las descripciones de este tipo de tests suelen ser lo bastante amplias como para que casi todo el mundo se sienta identificado. Es el llamado efecto Forer. Tómate el resultado como un juego para pensar en cómo te mueves en grupo, no como una etiqueta."}],
+ faqs:[
+  {q:"¿Qué significa ser alfa?",a:"En este test, ser alfa significa tomar la iniciativa en grupo, dar la cara por los tuyos y ponerte delante cuando hace falta, sin necesidad de imponerte."},
+  {q:"¿Ser beta u omega es malo?",a:"No. El beta es quien sostiene al grupo y el omega, quien cuida y entiende a los demás. Son perfiles igual de valiosos que el alfa, solo que distintos."},
+  {q:"¿Qué es ser sigma?",a:"Es un perfil que se popularizó en internet: la persona que va por libre, no necesita la aprobación de nadie y está a gusto en solitario."},
+  {q:"¿Qué es ser enigma?",a:"En este test, el enigma es alguien difícil de descifrar, con una presencia que se nota y reacciones que sorprenden. El nombre lo toma de algunas historias del omegaverse, que lo usan como un rango más."},
+  {q:"¿Existen de verdad los alfas?",a:"No como tipo de persona. Incluso en los lobos, la idea de un alfa que domina a la manada viene de estudios en cautividad: en una manada típica en libertad, los llamados alfas son los padres de la familia."},
+  {q:"¿Es un test científico?",a:"No. Es un test recreativo con preguntas propias de Testia. La psicología no divide a las personas en alfas, betas u omegas."},
+  {q:"¿Es gratis?",a:"Sí. Responder y ver tu perfil es gratis y no requiere registro. Tu mezcla completa y con quién te complementas en un grupo se pueden desbloquear por 1,99 €."}],
+ sources:[
+  {title:"Alpha status, dominance, and division of labor in wolf packs",url:"https://doi.org/10.1139/z99-099",note:"Mech (1999): en libertad, la manada típica de lobos es una familia guiada por los padres."},
+  {title:"Macho alfa",url:W("Macho_alfa"),note:"Origen del término en el estudio de lobos en cautividad (Schenkel, 1947)."},
+  {title:"Alpha and beta male",url:"https://en.wikipedia.org/wiki/Alpha_and_beta_male",note:"Cómo se popularizaron en internet las etiquetas alfa, beta y sigma."},
+  FORER],
+ relatedIds:["animal","bigfive","bruja"]};
+})();

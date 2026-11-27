@@ -64,6 +64,8 @@ Datos útiles:
 - [Test de ansiedad](https://www.testia.info/test/test-de-ansiedad): Test de ansiedad con el cuestionario GAD-7, validado en español. Descubre si tu ansiedad es mínima, leve, moderada o grave. Gratis y sin registro. Orienta, no diagnostica.
 - [Test: ¿tengo rasgos autistas?](https://www.testia.info/test/test-soy-autista): Test para saber si tienes rasgos autistas: 30 afirmaciones sobre comunicación social, rutinas y sensibilidad sensorial. Gratis y sin registro. Orienta, no diagnostica.
 - [Test: ¿cuál de los 16 tipos de personalidad eres?](https://www.testia.info/test/test-16-tipos-de-personalidad): Test de los 16 tipos de personalidad: descubre tus cuatro letras (INTJ, ENFP…) con preguntas científicas de dominio público. Gratis y sin registro.
+- [Test: ¿qué animal eres?](https://www.testia.info/test/test-que-animal-eres): Test de qué animal eres según tu personalidad: 24 preguntas para saber si eres lobo, búho, delfín, gato, águila, zorro, oso o mariposa. Gratis y sin registro.
+- [Test: ¿eres alfa, beta, omega, sigma o enigma?](https://www.testia.info/test/test-alfa-beta-omega): Test alfa, beta u omega: 20 preguntas para saber si eres alfa, beta, omega, sigma o enigma y qué significa cada perfil. Gratis y sin registro.
 
 ## Guías
 
